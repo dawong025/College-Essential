@@ -16,7 +16,7 @@
 
 | Student Name | Student Email | GitHub Username | Student ID#  | Student Roles |
 |    :---:     |     :---:     |     :---:       |     :---:    |      :---:    |
-| Ryan Murphy      |               |                 |              |               |
+| Ryan Murphy      | rmurphy4@mail.sfsu.edu | deadlepricon   | 921366560     | team lead/ backend lead  |
 | member2      |               |                 |              |               |
 | member3      |               |                 |              |               |
 | member4      |               |                 |              |               |
