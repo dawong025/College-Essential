@@ -21,6 +21,6 @@
 |Duncan Forniss     | Dforniss@mail.sfsu.edu   | dunkeyfunkey       |917678507     |frontend lead        |
 | Justin Wong     | jwong66@mail.sfsu.edu  | Jwong66     | 918516578    |               |
 | Wee Yang Leong (Brendan)  |wleong@mail.sfsu.edu  | ktleong2000   |918614936   |               |
-| member6      |               |                 |              |               |
+| Mike G    | mgebere@mail.sfsu.edu  | MicheasG     | 921581125  |               |
 
 ## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
