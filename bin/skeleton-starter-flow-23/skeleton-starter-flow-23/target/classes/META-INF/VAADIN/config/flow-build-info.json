@@ -1,0 +1,18 @@
+{
+  "productionMode": false,
+  "useDeprecatedV14Bootstrapping": false,
+  "eagerServerLoad": false,
+  "npmFolder": "/Users/duncanforniss/Desktop/Spring 22/CSC 413/csc648-848-01-sw-engineering-summer-22-team04/bin/skeleton-starter-flow-23/skeleton-starter-flow-23",
+  "node.version": "v16.15.0",
+  "node.download.root": "https://nodejs.org/dist/",
+  "generatedFolder": "/Users/duncanforniss/Desktop/Spring 22/CSC 413/csc648-848-01-sw-engineering-summer-22-team04/bin/skeleton-starter-flow-23/skeleton-starter-flow-23/target/frontend",
+  "frontendFolder": "/Users/duncanforniss/Desktop/Spring 22/CSC 413/csc648-848-01-sw-engineering-summer-22-team04/bin/skeleton-starter-flow-23/skeleton-starter-flow-23/frontend",
+  "connect.javaSourceFolder": "/Users/duncanforniss/Desktop/Spring 22/CSC 413/csc648-848-01-sw-engineering-summer-22-team04/bin/skeleton-starter-flow-23/skeleton-starter-flow-23/src/main/java",
+  "javaResourceFolder": "/Users/duncanforniss/Desktop/Spring 22/CSC 413/csc648-848-01-sw-engineering-summer-22-team04/bin/skeleton-starter-flow-23/skeleton-starter-flow-23/src/main/resources",
+  "connect.applicationProperties": "/Users/duncanforniss/Desktop/Spring 22/CSC 413/csc648-848-01-sw-engineering-summer-22-team04/bin/skeleton-starter-flow-23/skeleton-starter-flow-23/src/main/resources/application.properties",
+  "connect.openApiFile": "/Users/duncanforniss/Desktop/Spring 22/CSC 413/csc648-848-01-sw-engineering-summer-22-team04/bin/skeleton-starter-flow-23/skeleton-starter-flow-23/target/generated-resources/openapi.json",
+  "project.frontend.generated": "/Users/duncanforniss/Desktop/Spring 22/CSC 413/csc648-848-01-sw-engineering-summer-22-team04/bin/skeleton-starter-flow-23/skeleton-starter-flow-23/frontend/generated",
+  "pnpm.enable": false,
+  "require.home.node": false,
+  "build.folder": "target"
+}
