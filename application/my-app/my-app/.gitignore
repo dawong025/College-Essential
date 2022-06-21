@@ -1,4 +1,3 @@
-/target/
 .idea/
 .vscode/
 .settings
@@ -20,7 +19,4 @@ drivers/
 error-screenshots/
 webpack.generated.js
 
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+

@@ -1,0 +1,23 @@
+branch-defaults:
+  default:
+    environment: my-app-dev2
+deploy:
+  artifact: target/myapp-1.0-SNAPSHOT.jar
+environment-defaults:
+  my-app-dev2:
+    branch: null
+    repository: null
+global:
+  application_name: my-app
+  branch: null
+  default_ec2_keyname: null
+  default_platform: Corretto 11 running on 64bit Amazon Linux 2
+  default_region: us-west-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  repository: null
+  sc: null
+  workspace_type: Application
