@@ -13,6 +13,8 @@
 
 3. Fill out the table below
 
+link to website prototype: my-app-dev.us-west-1.elasticbeanstalk.com
+
 
 | Student Name | Student Email | GitHub Username | Student ID#  | Student Roles |
 |    :---:     |     :---:     |     :---:       |     :---:    |      :---:    |
