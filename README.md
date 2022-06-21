@@ -19,8 +19,8 @@
 | Ryan Murphy      | rmurphy4@mail.sfsu.edu | deadlepricon   | 921366560     | team lead/ backend lead  |
 | Darren Wong      | dwong19@mail.sfsu.edu   | dawong025     | 918565679      | database master       |
 |Duncan Forniss     | Dforniss@mail.sfsu.edu   | dunkeyfunkey       |917678507     |frontend lead        |
-| Justin Wong     | jwong66@mail.sfsu.edu  | Jwong66     | 918516578    |               |
+| Justin Wong     | jwong66@mail.sfsu.edu  | Jwong66     | 918516578    |Git Master               |
 | Wee Yang Leong (Brendan)  |wleong@mail.sfsu.edu  | ktleong2000   |918614936   |               |
-| Mike G    | mgebere@mail.sfsu.edu  | MicheasG     | 921581125  |               |
+
 
 ## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
