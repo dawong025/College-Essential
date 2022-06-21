@@ -3,6 +3,7 @@ package com.example.application.views;
 
 import com.example.application.views.aboutus.AboutUsView;
 import com.example.application.views.home.HomeView;
+import com.example.application.views.registration.RegistrationView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -18,6 +19,8 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
+
+//mvn spring-boot:run
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -118,6 +121,8 @@ public class MainLayout extends AppLayout {
                 new MenuItemInfo("Home", "la la-adjust", HomeView.class), //
 
                 new MenuItemInfo("About Us", "la la-file", AboutUsView.class), //
+                //added for registration
+                new MenuItemInfo("Registration", "la la-file", RegistrationView.class),
 
         };
     }
