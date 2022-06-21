@@ -1,6 +1,6 @@
 branch-defaults:
   default:
-    environment: my-app-dev2
+    environment: my-app-dev
 deploy:
   artifact: target/myapp-1.0-SNAPSHOT.jar
 environment-defaults:
