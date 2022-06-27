@@ -1,4 +1,5 @@
 package com.example.application.views.registration;
+import com.example.application.Data.UserDetails;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
