@@ -4,6 +4,7 @@ package com.example.application.views;
 import com.example.application.views.aboutus.AboutUsView;
 import com.example.application.views.home.HomeView;
 import com.example.application.views.registration.RegistrationView;
+import com.example.application.views.login.*;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -123,6 +124,7 @@ public class MainLayout extends AppLayout {
                 new MenuItemInfo("About Us", "la la-file", AboutUsView.class), //
                 //added for registration
                 new MenuItemInfo("Registration", "la la-file", RegistrationView.class),
+                new MenuItemInfo("Login", "la la-file", LoginView.class),
 
         };
     }

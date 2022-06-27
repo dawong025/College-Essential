@@ -1,4 +1,4 @@
-package com.example.application.views.registration;
+package com.example.application.Data;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
