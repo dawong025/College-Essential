@@ -78,9 +78,13 @@ public class MainLayout extends AppLayout {
         //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
         log.addClickListener(e ->
         log.getUI().ifPresent(ui ->
-            ui.navigate("/login/LoginView"))
+            ui.navigate("/login"))
         );
         Button reg = new Button("Register");
+        reg.addClickListener(e ->
+        reg.getUI().ifPresent(ui ->
+            ui.navigate("/registration"))
+        );
         //reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
          HorizontalLayout hv = new HorizontalLayout(log,reg);
         addToNavbar(true, createHeaderContent(),hv);
