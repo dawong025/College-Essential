@@ -15,6 +15,7 @@ import com.vaadin.flow.router.Route;
 
 @Route("login") 
 @PageTitle("Login | Vaadin CRM")
+
 public class LoginView extends Composite<LoginOverlay> implements BeforeEnterObserver {
 
 	private final LoginForm login = new LoginForm(); 

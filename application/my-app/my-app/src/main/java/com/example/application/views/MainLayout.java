@@ -8,6 +8,7 @@ import com.example.application.views.login.*;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Footer;
@@ -18,6 +19,7 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 
@@ -72,7 +74,20 @@ public class MainLayout extends AppLayout {
 
     public MainLayout() {
         setPrimarySection(Section.DRAWER);
-        addToNavbar(true, createHeaderContent());
+        Button log = new Button("Log in");
+        //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        log.addClickListener(e ->
+        log.getUI().ifPresent(ui ->
+            ui.navigate("/login"))
+        );
+        Button reg = new Button("Register");
+        reg.addClickListener(e ->
+        reg.getUI().ifPresent(ui ->
+            ui.navigate("/registration"))
+        );
+        //reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
+         HorizontalLayout hv = new HorizontalLayout(log,reg);
+        addToNavbar(true, createHeaderContent(),hv);
         addToDrawer(createDrawerContent());
     }
 
@@ -84,6 +99,7 @@ public class MainLayout extends AppLayout {
 
         viewTitle = new H1();
         viewTitle.addClassNames("view-title");
+        
 
         Header header = new Header(toggle, viewTitle);
         header.addClassNames("view-header");
@@ -121,7 +137,7 @@ public class MainLayout extends AppLayout {
         return new MenuItemInfo[]{ //
                 new MenuItemInfo("Home", "la la-adjust", HomeView.class), //
 
-                new MenuItemInfo("About Us", "la la-file", AboutUsView.class), //
+                new MenuItemInfo("About Us", "la la-adjust", AboutUsView.class), //
                 //added for registration
                 new MenuItemInfo("Registration", "la la-file", RegistrationView.class),
                 new MenuItemInfo("Login", "la la-file", LoginView.class),
