@@ -29,6 +29,8 @@ public class HomeView extends HorizontalLayout {
         setMargin(true);
         setVerticalComponentAlignment(Alignment.END, name, sayHello);
 
+
+
         add(name, sayHello);
     }
 
