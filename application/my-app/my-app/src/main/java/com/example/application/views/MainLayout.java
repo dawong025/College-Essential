@@ -1,6 +1,7 @@
 package com.example.application.views;
 
 
+import com.example.application.views.SellingPage.SellingPageView;
 import com.example.application.views.aboutus.AboutUsView;
 import com.example.application.views.home.HomeView;
 import com.example.application.views.registration.RegistrationView;
@@ -85,10 +86,21 @@ public class MainLayout extends AppLayout {
         reg.getUI().ifPresent(ui ->
             ui.navigate("/registration"))
         );
+
+        Button cart = new Button("Cart");
+        //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        cart.addClickListener(e ->
+        cart.getUI().ifPresent(ui ->
+            ui.navigate("/ShoppingCart"))
+        );
+        
+
+
         //reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
-         HorizontalLayout hv = new HorizontalLayout(log,reg);
+         HorizontalLayout hv = new HorizontalLayout(log,reg,cart);
         addToNavbar(true, createHeaderContent(),hv);
         addToDrawer(createDrawerContent());
+        
     }
 
     private Component createHeaderContent() {
@@ -139,7 +151,7 @@ public class MainLayout extends AppLayout {
 
                 new MenuItemInfo("About Us", "la la-adjust", AboutUsView.class), //
                 //added for registration
-                new MenuItemInfo("Registration", "la la-file", RegistrationView.class),
+                new MenuItemInfo("Buy", "la la-file", SellingPageView.class),
                 new MenuItemInfo("Login", "la la-file", LoginView.class),
 
         };
