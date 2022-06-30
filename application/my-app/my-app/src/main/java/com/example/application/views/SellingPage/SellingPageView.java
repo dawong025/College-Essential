@@ -40,6 +40,7 @@ public class SellingPageView extends VerticalLayout{
         zipCode.setClearButtonVisible(true);
         
         HorizontalLayout hv = new HorizontalLayout(zipCode,searchBar);
+        setHorizontalComponentAlignment(Alignment.CENTER, hv);
         add(hv);
 
         //Grid

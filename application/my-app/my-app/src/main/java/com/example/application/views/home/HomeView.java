@@ -7,6 +7,8 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.router.PageTitle;
@@ -16,7 +18,7 @@ import com.vaadin.flow.router.RouteAlias;
 @PageTitle("Home")
 @Route(value = "home", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
-public class HomeView extends HorizontalLayout {
+public class HomeView extends VerticalLayout {
 
     private TextField name;
     private Button sayHello;
@@ -28,9 +30,7 @@ public class HomeView extends HorizontalLayout {
          searchBar.setPrefixComponent(VaadinIcon.SEARCH.create());
          searchBar.setClearButtonVisible(true);
          searchBar.setWidth("50em");
-         //searchBar.addThemeVariants(TextFieldVariant.LUMO_ALIGN_CENTER);
-         //searchBar.CENTER;
-         //searchBar.set
+    
  
          //zipcode searchbar
          TextField zipCode = new TextField();
@@ -40,10 +40,20 @@ public class HomeView extends HorizontalLayout {
          zipCode.getStyle().set("width", "6em");
         // zipCode.setLabel("Zip code");
          zipCode.setClearButtonVisible(true);
+
+         //dropdown menu
+         Select<String> select = new Select<>();
+         //select.setLabel("Sort by");
+         select.setItems("New", "Used",
+         "All");
+        select.setValue("All");
+
+         //add(select);
          
-         HorizontalLayout hv = new HorizontalLayout(zipCode,searchBar);
+         HorizontalLayout hv = new HorizontalLayout(zipCode,searchBar,select);
+         setHorizontalComponentAlignment(Alignment.CENTER, hv);
          hv.setPadding(true);
-         hv.setAlignItems(FlexComponent.Alignment.CENTER);
+         
 
          add(hv);
     }
