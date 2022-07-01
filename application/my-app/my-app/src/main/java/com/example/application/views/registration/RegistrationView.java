@@ -5,7 +5,7 @@ import com.example.application.views.MainLayout;
 import com.vaadin.flow.router.PageTitle;
 
 @PageTitle("Registration")
-@Route(value = "registration", layout = MainLayout.class)
+@Route(value = "registration")
 
 public class RegistrationView extends VerticalLayout {
 

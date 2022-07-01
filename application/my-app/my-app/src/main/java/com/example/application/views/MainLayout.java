@@ -1,15 +1,18 @@
 package com.example.application.views;
 
 
+import com.example.application.views.SellingPage.SellingPageView;
 import com.example.application.views.aboutus.AboutUsView;
 import com.example.application.views.home.HomeView;
 import com.example.application.views.registration.RegistrationView;
 import com.example.application.views.login.*;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.charts.model.Title;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Footer;
 import com.vaadin.flow.component.html.H1;
@@ -74,6 +77,9 @@ public class MainLayout extends AppLayout {
 
     public MainLayout() {
         setPrimarySection(Section.DRAWER);
+
+        Text Title = new Text("College Essentials");
+
         Button log = new Button("Log in");
         //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
         log.addClickListener(e ->
@@ -85,10 +91,21 @@ public class MainLayout extends AppLayout {
         reg.getUI().ifPresent(ui ->
             ui.navigate("/registration"))
         );
+
+        Button cart = new Button("Cart");
+        //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        cart.addClickListener(e ->
+        cart.getUI().ifPresent(ui ->
+            ui.navigate("/ShoppingCart"))
+        );
+        
+
+
         //reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
-         HorizontalLayout hv = new HorizontalLayout(log,reg);
+         HorizontalLayout hv = new HorizontalLayout(log,reg,cart);
         addToNavbar(true, createHeaderContent(),hv);
         addToDrawer(createDrawerContent());
+        
     }
 
     private Component createHeaderContent() {
@@ -107,7 +124,7 @@ public class MainLayout extends AppLayout {
     }
 
     private Component createDrawerContent() {
-        H2 appName = new H2("My App");
+        H2 appName = new H2("College Essentials");
         appName.addClassNames("app-name");
 
         com.vaadin.flow.component.html.Section section = new com.vaadin.flow.component.html.Section(appName,
@@ -139,7 +156,7 @@ public class MainLayout extends AppLayout {
 
                 new MenuItemInfo("About Us", "la la-adjust", AboutUsView.class), //
                 //added for registration
-                new MenuItemInfo("Registration", "la la-file", RegistrationView.class),
+                new MenuItemInfo("Buy", "la la-file", SellingPageView.class),
                 new MenuItemInfo("Login", "la la-file", LoginView.class),
 
         };

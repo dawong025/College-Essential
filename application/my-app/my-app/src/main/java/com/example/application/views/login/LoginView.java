@@ -1,17 +1,23 @@
 package com.example.application.views.login;
 
 import com.vaadin.flow.component.html.H1;
+
+import org.apache.commons.math3.analysis.function.Add;
+
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexLayout.FlexDirection;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
+
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.HasComponents;
 
 @Route("login") 
 @PageTitle("Login | Vaadin CRM")
@@ -25,6 +31,7 @@ public class LoginView extends Composite<LoginOverlay> implements BeforeEnterObs
         overlay.setTitle("College Essentials");
         overlay.setDescription("Sign up to post or buy");
         overlay.setOpened(true);
+        
 
         overlay.addLoginListener(event ->{
             if("user".equals(event.getUsername())){
@@ -32,7 +39,10 @@ public class LoginView extends Composite<LoginOverlay> implements BeforeEnterObs
             }else if("admin".equals(event.getUsername())){
 
             }else{
-                Notification.show("Usernam is not found");
+                    overlay.getUI().ifPresent(ui ->
+                ui.navigate("/home"));
+                
+                
             }
         });
 

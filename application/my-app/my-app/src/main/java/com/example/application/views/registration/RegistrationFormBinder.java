@@ -50,6 +50,8 @@ public class RegistrationFormBinder {
        registrationForm.getSubmitButton().addClickListener(event -> {
            try {
                // Create empty bean to store the details into
+               registrationForm.getUI().ifPresent(ui ->
+               ui.navigate("/login"));
                UserDetails userBean = new UserDetails();
 
                // Run validators and write the values to the bean
@@ -106,6 +108,7 @@ public class RegistrationFormBinder {
        Notification notification =
                Notification.show("Account Created, welcome " + userBean.getFirstName());
        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+       
 
        // Here you'd typically redirect the user to another view
    }
