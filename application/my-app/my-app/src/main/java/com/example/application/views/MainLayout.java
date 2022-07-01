@@ -1,6 +1,8 @@
 package com.example.application.views;
 
 
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Lettuce.Cluster.Refresh;
+
 import com.example.application.views.SellingPage.SellingPageView;
 import com.example.application.views.aboutus.AboutUsView;
 import com.example.application.views.home.HomeView;
@@ -8,6 +10,7 @@ import com.example.application.views.registration.RegistrationView;
 import com.example.application.views.login.*;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
@@ -79,33 +82,55 @@ public class MainLayout extends AppLayout {
         setPrimarySection(Section.DRAWER);
 
         Text Title = new Text("College Essentials");
-
-        Button log = new Button("Log in");
-        //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
-        log.addClickListener(e ->
-        log.getUI().ifPresent(ui ->
-            ui.navigate("/login"))
-        );
-        Button reg = new Button("Register");
-        reg.addClickListener(e ->
-        reg.getUI().ifPresent(ui ->
-            ui.navigate("/registration"))
-        );
-
+        //LoginView logStat = new LoginView();
+        HorizontalLayout hv;
         Button cart = new Button("Cart");
         //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
         cart.addClickListener(e ->
         cart.getUI().ifPresent(ui ->
             ui.navigate("/ShoppingCart"))
         );
+         
+        //change login and logout buttons
+        if(LoginView.logStatus() == false){
+           hv = setUnLogin();
+           hv.add(cart);
+
+        }else{
+            Button logout = new Button("Log Out");
+            logout.addClickListener(e -> {
+                LoginView.logOut();
+                UI.getCurrent().getPage().reload();
+            });
+            hv = new HorizontalLayout(logout, cart);
+            
+        }
         
 
-
         //reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
-         HorizontalLayout hv = new HorizontalLayout(log,reg,cart);
+         //HorizontalLayout hv = new HorizontalLayout(log,reg,cart);
         addToNavbar(true, createHeaderContent(),hv);
         addToDrawer(createDrawerContent());
         
+    }
+
+    public void setLogout(){
+
+    }
+
+    public HorizontalLayout setUnLogin(){
+        Button log = new Button("Log in");
+                //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
+                log.addClickListener(e ->
+                log.getUI().ifPresent(ui ->
+                    ui.navigate("/login"))
+                );
+                    Button reg = new Button("Register");
+                    reg.addClickListener(e ->
+                    reg.getUI().ifPresent(ui ->
+                        ui.navigate("/registration"))
+                    );
+                   return new HorizontalLayout(log,reg);
     }
 
     private Component createHeaderContent() {

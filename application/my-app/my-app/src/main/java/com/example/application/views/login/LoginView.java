@@ -17,6 +17,9 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+
+import ch.qos.logback.core.status.Status;
+
 import com.vaadin.flow.component.HasComponents;
 
 @Route("login") 
@@ -25,6 +28,7 @@ import com.vaadin.flow.component.HasComponents;
 public class LoginView extends Composite<LoginOverlay> implements BeforeEnterObserver {
 
 	private final LoginForm login = new LoginForm(); 
+    public static boolean status = false;
 
 	public LoginView(){
         LoginOverlay overlay = getContent();
@@ -39,6 +43,7 @@ public class LoginView extends Composite<LoginOverlay> implements BeforeEnterObs
             }else if("admin".equals(event.getUsername())){
 
             }else{
+                status = true;
                     overlay.getUI().ifPresent(ui ->
                 ui.navigate("/home"));
                 
@@ -48,6 +53,15 @@ public class LoginView extends Composite<LoginOverlay> implements BeforeEnterObs
 
 		
 	}
+
+    public static boolean logStatus(){
+        return status;
+
+    }
+
+    public static void logOut(){
+        status = false;
+    }
 
 	@Override
 	public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
