@@ -38,7 +38,7 @@ public class PostItemFormBinder {
                 // Typically, you would here call backend to store the bean
  
                 // Show success message if everything went well
-                // showSuccess(userBean);
+                showSuccess(userBean);
             } catch (ValidationException exception) {
                 // validation errors are already visible for each field,
                 // and bean-level errors are shown in the status label.

@@ -53,6 +53,9 @@ public class PostItemView extends VerticalLayout{
             postButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
             add(postButton);
 
+            PostItemFormBinder postItemFormBinder= new PostItemFormBinder(this);
+       postItemFormBinder.addBinderForPostItem();
+
 
     }
     

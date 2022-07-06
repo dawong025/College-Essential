@@ -23,7 +23,7 @@ public class DBPostItem {
             System.out.println("Connection is Successful to the database" + url);
             
             
-            String query = "Insert into MarketplaceListing(title) values('"+Title+"')";
+            String query = "Insert into MarketplaceListing(title, seller_id) values('"+Title+"', 2)";
             
             Statement statement = connection.createStatement();
             statement.execute(query);
