@@ -24,6 +24,8 @@ public class PostItemView extends VerticalLayout{
     private File file;
     private String originalFileName;
     private String mimeType;
+    private Button postButton;
+    private TextField Title;
 
     public PostItemView(){
 
@@ -42,19 +44,21 @@ public class PostItemView extends VerticalLayout{
             output.removeAll();
             output.add(new Text("Upload failed: " + event.getReason()));
         });
-            TextField itemName = new TextField("Title");
-            itemName.setPlaceholder("Title");
+            Title = new TextField("Title");
+            Title.setPlaceholder("Title");
 
-            add(itemName);
+            add(Title);
 
-            Button Post = new Button("Post");
-            Post.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-            add(Post);
+            postButton = new Button("Post");
+            postButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+            add(postButton);
 
 
     }
     
+    public Button getPostButton() { return postButton; }
 
+    public TextField getTitle(){return Title; }
     
     /** Load a file from local filesystem.
      *

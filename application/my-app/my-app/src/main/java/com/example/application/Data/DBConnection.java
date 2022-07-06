@@ -1,6 +1,7 @@
 package com.example.application.Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -20,21 +21,35 @@ public class DBConnection implements CommandLineRunner{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
-        // String sql = "Insert into RegisteredUser(first_name, last_name, email, password) values(?,?, ?, '?')";
-         
-        // int result = jdbc.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
-         
-        // if (result > 0) {
-        //     System.out.println("A new row has been inserted.");
-        // }
             
+            //creates general user first
+            String GeneralQ = "INSERT INTO GeneralUser(ip_address) VALUES (1234567)";
             
-            String query = "Insert into RegisteredUser(first_name, last_name, email, password) values('"+FirstName+"','"+LastName+"','"+Email+"','"+password+"')";
             
             Statement statement = connection.createStatement();
-            statement.execute(query);
+            statement.execute(GeneralQ);
+
+            String idVal = "SELECT general_user_id FROM GeneralUser ORDER BY general_user_id DESC LIMIT 1;";
+
+
+            int generalUserId =0;
+
+            try (Statement stmt = connection.createStatement()) {
+                ResultSet rs = stmt.executeQuery(idVal);
+                while (rs.next()) {
+                  generalUserId = rs.getInt("general_user_id");
+                  System.out.println(generalUserId);
+                }
+              } catch (SQLException e) {
+
+              }
+              
             
+            String query = "Insert into RegisteredUser(first_name, last_name, email, password, general_user_id) values('"+FirstName+"','"+LastName+"','"+Email+"','"+password+"', '"+generalUserId+"')";
+            
+            statement = connection.createStatement();
             statement.execute(query);
+        
 
 
         } catch (ClassNotFoundException e) {
