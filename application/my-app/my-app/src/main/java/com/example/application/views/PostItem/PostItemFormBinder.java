@@ -32,7 +32,7 @@ public class PostItemFormBinder {
  
                 // Run validators and write the values to the bean
                 binder.writeBean(userBean);
-                db.StorePostItem(userBean.getTitle(), userBean.getImage());
+                db.StorePostItem(userBean.getTitle(), userBean.getImage(), userBean.getCodition());
                  postItem.getUI().ifPresent(ui ->
                 ui.navigate("/home"));
                 // Typically, you would here call backend to store the bean

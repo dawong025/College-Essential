@@ -13,6 +13,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
 
+import ch.qos.logback.core.joran.conditional.Condition;
+
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,28 +28,25 @@ public class PostItemView extends VerticalLayout{
     private String mimeType;
     private Button postButton;
     private TextField Title;
+    private TextField url;
+    private TextField condition;
 
     public PostItemView(){
 
-        Upload upload = new Upload(this::receiveUpload);
-        Div output = new Div(new Text("(no image file uploaded yet)"));
-        add(upload, output);
-
+            url = new TextField("url");
+            url.setPlaceholder("Enter URL of Image");
+            add(url);
         // Configure upload component
-        upload.setAcceptedFileTypes("image/jpeg", "image/png", "image/gif","image/pdf");
-        upload.addSucceededListener(event -> {
-            output.removeAll();
-            output.add(new Text("Uploaded: "+originalFileName+" to "+ file.getAbsolutePath()+ "Type: "+mimeType));
-            output.add(new Image(new StreamResource(this.originalFileName,this::loadFile),"Uploaded image"));
-        });
-        upload.addFailedListener(event -> {
-            output.removeAll();
-            output.add(new Text("Upload failed: " + event.getReason()));
-        });
+        
             Title = new TextField("Title");
             Title.setPlaceholder("Title");
 
             add(Title);
+
+            condition = new TextField("Condition");
+            condition.setPlaceholder("Condition");
+
+            add(condition);
 
             postButton = new Button("Post");
             postButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -61,7 +60,9 @@ public class PostItemView extends VerticalLayout{
     
     public Button getPostButton() { return postButton; }
 
-    public TextField getTitle(){return Title; }
+    // public TextField getTitle(){return Title; }
+
+    // public TextField getUrl(){return url;};
     
     /** Load a file from local filesystem.
      *

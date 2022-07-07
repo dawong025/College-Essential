@@ -2,6 +2,7 @@ package com.example.application.views.home;
 
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
@@ -22,10 +23,12 @@ public class HomeView extends VerticalLayout {
 
     private TextField name;
     private Button sayHello;
+    TextField searchBar;
+    Select<String> select;
 
     public HomeView() {
          //searchbar
-         TextField searchBar = new TextField();
+         searchBar = new TextField();
          searchBar.setPlaceholder("Search");
          searchBar.setPrefixComponent(VaadinIcon.SEARCH.create());
          searchBar.setClearButtonVisible(true);
@@ -42,7 +45,7 @@ public class HomeView extends VerticalLayout {
          zipCode.setClearButtonVisible(true);
 
          //dropdown menu
-         Select<String> select = new Select<>();
+        select = new Select<>();
          //select.setLabel("Sort by");
          select.setItems("New", "Used",
          "All");
@@ -56,6 +59,32 @@ public class HomeView extends VerticalLayout {
          
 
          add(hv);
+
+    //      HomeBinder homeBinder= new HomeBinder(this);
+    //   homeBinder.getItemsSearched();
+
+    //   Grid<UserDetails> grid = new Grid<>(UserDetails.class, false);
+    //     grid.addColumn(createImageRenderer()).setHeader("Image");
+    //            // .setAutoWidth(true).setFlexGrow(0);
+    //     grid.addColumn(UserDetails::getFirstName).setHeader("Image");
+    //     grid.addColumn(UserDetails::getLastName).setHeader("image");
+    //     grid.addColumn(UserDetails::getEmail).setHeader("image");
+
+    //     grid.addThemeVariants(GridVariant.LUMO_COLUMN_BORDERS);
+
+    //    // grid.setItems(UserDetails);
+    //     add(grid);
+
+
+
+    }
+
+    public TextField getSearch(){
+        return searchBar;
+    }
+
+    public Select<String> getSelector(){
+        return select;
     }
 
 }
