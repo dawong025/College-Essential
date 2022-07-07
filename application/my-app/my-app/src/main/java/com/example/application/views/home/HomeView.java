@@ -78,14 +78,21 @@ public class HomeView extends VerticalLayout {
             itemList = db.searchHomeItem(searchedItem, "All");
             System.out.println(itemList.size());
 
-            Grid<String> grid = new Grid<>(String.class);
-            for (String key: itemList.keySet()) {
-                // System.out.println("key : " + key);
-                // System.out.println("value : " + map.get(key));
-            grid.addColumn(itemList.get("key")).setHeader(itemList.get(key));
-            //grid.addColumn(key).setHeader("Title");
+            Grid<HashMap<String, String>> grid = new Grid<>();
+            grid.setItems(itemList);
+            grid.addColumn(itemList -> itemList.keySet()).setHeader("key");
+            grid.addColumn(itemList -> itemList.values()).setHeader("value");
+            // grid.addColumn(grid -> grid.get(key)).setHeader("Title");
+            // Grid<String> grid = new Grid<>(String.class);
+            // System.out.println("Grid printted successfully");
+            // for (String key: itemList.keySet()) {
+            //     // System.out.println("item list: " + itemList);
+            //     // System.out.println("key : " + key);
+            //     // System.out.println("value : " + itemList.get(key));
+            //     grid.addColumn(itemList -> itemList.get(key)).setHeader(key);
+            //     //grid.addColumn(key).setHeader("Title");
             
-            }
+            // }
             add(grid);
 
             //List<Person> people = DataService.getPeople();
