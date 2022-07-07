@@ -1,4 +1,7 @@
 package com.example.application.views.registration;
+import org.springframework.boot.SpringApplication;
+
+import com.example.application.Data.DBConnection;
 import com.example.application.Data.UserDetails;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
@@ -50,13 +53,15 @@ public class RegistrationFormBinder {
        registrationForm.getSubmitButton().addClickListener(event -> {
            try {
                // Create empty bean to store the details into
-               registrationForm.getUI().ifPresent(ui ->
-               ui.navigate("/login"));
+               DBConnection db = new DBConnection();
+               
                UserDetails userBean = new UserDetails();
 
                // Run validators and write the values to the bean
                binder.writeBean(userBean);
-
+               db.StoreRegUser(userBean.getFirstName(), userBean.getLastName(), userBean.getEmail(), userBean.getPassword());
+                registrationForm.getUI().ifPresent(ui ->
+               ui.navigate("/login"));
                // Typically, you would here call backend to store the bean
 
                // Show success message if everything went well
