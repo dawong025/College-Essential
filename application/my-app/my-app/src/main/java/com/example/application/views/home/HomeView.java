@@ -1,14 +1,17 @@
 package com.example.application.views.home;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Stream;
 
 import com.example.application.Data.DBHome;
 import com.example.application.Data.HomeDetail;
 import com.example.application.views.MainLayout;
-
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -68,37 +71,42 @@ public class HomeView extends VerticalLayout {
         add(hv);
 
         HomeBinder home = new HomeBinder(this);
+        Grid<HashMap<String, String>> grid = new Grid<>();
+
         getSearchButton().addClickListener(event -> {
             searchedItem = searchBar.getValue();
+            itemList.clear();
+            System.out.println("selector = " + select.getValue());
             System.out.println("item searched =" + searchedItem);
-            // Create empty bean to store the details into
 
             DBHome db = new DBHome();
-            //key is title, val is url
-            itemList = db.searchHomeItem(searchedItem, "All");
-            System.out.println(itemList.size());
-
-            Grid<HashMap<String, String>> grid = new Grid<>();
-            grid.setItems(itemList);
-            grid.addColumn(itemList -> itemList.keySet()).setHeader("key");
-            grid.addColumn(itemList -> itemList.values()).setHeader("value");
-            // grid.addColumn(grid -> grid.get(key)).setHeader("Title");
-            // Grid<String> grid = new Grid<>(String.class);
-            // System.out.println("Grid printted successfully");
-            // for (String key: itemList.keySet()) {
-            //     // System.out.println("item list: " + itemList);
-            //     // System.out.println("key : " + key);
-            //     // System.out.println("value : " + itemList.get(key));
-            //     grid.addColumn(itemList -> itemList.get(key)).setHeader(key);
-            //     //grid.addColumn(key).setHeader("Title");
+            // key is title, val is url
+            itemList = db.searchHomeItem(searchedItem, select.getValue());
             
-            // }
-            add(grid);
 
-            //List<Person> people = DataService.getPeople();
-            //grid.setItems(itemList);
+            for (String key : itemList.keySet()) {
+                System.out.println(itemList.keySet());
+
+                grid.addComponentColumn(v -> {
+                    Image image = new Image(itemList.get(key), key);
+                    image.setHeight("200px");
+                    image.setWidth("150px");
+                    return image;
+                }).setHeader(key);
+            }
+
+            grid.setItems(itemList);
+
+            add(grid);
+            
 
         });
+
+        itemList.clear();
+       // grid.removeAllColumns();
+        //grid.getDataProvider().refreshAll();
+
+        // UI.getCurrent().getPage().reload();
 
     }
 
@@ -106,12 +114,16 @@ public class HomeView extends VerticalLayout {
         return searchBar;
     }
 
-    public Select<String> getSelector() {
-        return select;
+    public String getSelector() {
+        return select.toString();
     }
 
     public Button getSearchButton() {
         return search;
+    }
+
+    public void ifClicked() {
+
     }
 
     private ValueProvider<HomeDetail, ?> createImageRenderer() {
