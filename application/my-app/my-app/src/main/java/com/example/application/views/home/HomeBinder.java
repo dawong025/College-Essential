@@ -1,38 +1,44 @@
 package com.example.application.views.home;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.apache.xmlbeans.impl.common.ValidatorListener.Event;
-
 import com.example.application.Data.DBHome;
 import com.example.application.Data.HomeDetail;
-import com.vaadin.flow.component.map.Map;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
-import com.vaadin.flow.server.startup.VaadinInitializerException;
-import java.util.HashMap;
+import com.vaadin.flow.data.binder.ValidationException;
 
 public class HomeBinder {
     HomeView homeView;
-    HashMap<String,String> itemList = new HashMap<String,String>();
-
-    public HomeBinder(HomeView homeView){
-        this.homeView = homeView;
+    public HomeBinder(HomeView home){
+        homeView = home;
     }
 
-    public HashMap<String,String> getItemsSearched(){
+    public void addHomeBinder(){
         BeanValidationBinder<HomeDetail> binder = new BeanValidationBinder<>(HomeDetail.class);
         binder.bindInstanceFields(homeView);
 
-        homeView.getSearch().addAttachListener( event ->{
-            DBHome db = new DBHome();
-            HomeDetail userBean = new HomeDetail();
-           itemList = db.searchHomeItem(userBean.getText(),userBean.getSelector());
-            
+        homeView.getSearchButton().addClickListener(event ->{
+            try {
+                // Create empty bean to store the details into
 
+                
+                DBHome db = new DBHome();
+                
+                HomeDetail userBean = new HomeDetail();
+ 
+                // Run validators and write the values to the bean
+                binder.writeBean(userBean);
+                //db.StorePostItem(userBean.getTitle(), userBean.getUrl(), userBean.getCondition());
+                homeView.getUI().ifPresent(ui ->
+                ui.navigate("/login"));
+                // Typically, you would here call backend to store the bean
+ 
+                // Show success message if everything went well
+                //showSuccess(userBean);
+            } catch (ValidationException exception) {
+                // validation errors are already visible for each field,
+                // and bean-level errors are shown in the status label.
+                // We could show additional messages here if we want, do logging, etc.
+            }
         });
-        return itemList;
     }
     
 }

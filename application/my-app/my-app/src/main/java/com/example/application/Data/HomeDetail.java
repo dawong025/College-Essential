@@ -1,18 +1,21 @@
 package com.example.application.Data;
 
+import java.util.List;
+
 import javax.validation.constraints.NotBlank;
 
 public class HomeDetail {
 
     @NotBlank
     private String text;
-    private String selector;
+    // @NotBlank
+    // private List<String> selector;
 
     public String getText(){return text;}
     public void setText(String text){this.text = text;}
-    public String getSelector(){
-        return selector;
-    }
-    public void setSelector(String selector){this.selector = selector;}
+    // public List<String> getSelector(){
+    //     return selector;
+    // }
+    // public void setSelector(List<String> selector){this.selector = selector;}
     
 }

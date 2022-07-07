@@ -26,7 +26,7 @@ public class DBHome {
                 String q = "SELECT MarketplaceListing.title, Product.product_image, Product.condition FROM ProductListings"
                + " JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
                +" JOIN Product ON ProductListings.product_id = Product.product_id"
-               +" WHERE MarketplaceListing.title LIKE '%searchterm%' AND Product.condition = 'NEW';";
+               +" WHERE MarketplaceListing.title LIKE '"+Title+"' AND Product.condition = '"+selector+"';";
                 String nameItem;
                 String imageURL;
                 try (Statement stmt = connection.createStatement()) {
@@ -46,14 +46,15 @@ public class DBHome {
             String q = "SELECT MarketplaceListing.title, Product.product_image FROM ProductListings"
             +" JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
            +" JOIN Product ON ProductListings.product_id = Product.product_id"
-            + " WHERE MarketplaceListing.title LIKE '%searchterm%';";
+            + " WHERE MarketplaceListing.title LIKE '%" +Title + "%';";
             String nameItem;
             String imageURL;
             try (Statement stmt = connection.createStatement()) {
                 ResultSet rs = stmt.executeQuery(q);
+               
                 while (rs.next()) {
                   nameItem = rs.getString("title");
-                  imageURL = rs.getString(url);
+                  imageURL = rs.getString("product_image");
                   
                     itemList.put(nameItem,imageURL);
                   
@@ -62,11 +63,6 @@ public class DBHome {
 
               }  
             }
-
-
-            
-        
-
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {

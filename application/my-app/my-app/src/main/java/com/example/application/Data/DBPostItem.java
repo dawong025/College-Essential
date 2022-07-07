@@ -21,19 +21,21 @@ public class DBPostItem {
         String password = "team4_2022";
         System.out.println("\n\n\n\n\n" + Title + " " + image +" "+ condition+"\n\n\n\n");
 
-        int productID =0;
-        int marketPlaceID =0;
+        int productID = 0;
+        int marketPlaceID = 0;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
             
-            //this graps product id
+            /* Insert into the product table */
             String query = "INSERT INTO Product (product_image, product_condition) VALUES ('"+image+"','"+condition+"' );";
             
             Statement statement = connection.createStatement();
             statement.execute(query);
+
+            /* Get the ID of the newly added product */
             query = "SELECT product_id FROM Product ORDER BY product_id DESC LIMIT 1;";
             
             try (Statement stmt = connection.createStatement()) {
@@ -44,15 +46,8 @@ public class DBPostItem {
                 }
               } catch (SQLException e) {
 
-              }
-            
-
-        
-
-
-
-
-        //marketplace listing
+            }
+        /* Insert into the marketplace listing table */
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
              connection = DriverManager.getConnection(url, userName, password);
@@ -70,7 +65,7 @@ public class DBPostItem {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        //get marketplace id
+        /* Get the marketplace listing id of the newly added listing */
         query = "SELECT marketplace_listing_id FROM MarketplaceListing ORDER BY marketplace_listing_id DESC LIMIT 1;";
            
         try (Statement stmt = connection.createStatement()) {
@@ -82,28 +77,22 @@ public class DBPostItem {
           } catch (SQLException e) {
 
           }
-
-          try {
+        /* Insert into the associative table ProductListings */
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
              connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
-            
             
              query = "INSERT INTO ProductListings (marketplace_listing_id, product_id) VALUES ('"+marketPlaceID+"', '"+productID+"');";
             
              statement = connection.createStatement();
             statement.execute(query);
         
-
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
-    
-
     } catch (ClassNotFoundException e) {
         e.printStackTrace();
     } catch (SQLException throwables) {
