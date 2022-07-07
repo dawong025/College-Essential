@@ -9,14 +9,25 @@ public class PostItemDetail {
    private String Title;
 
    @NotBlank
-   private Image image;
+   private String url;
+
+   @NotBlank
+   private String condition;
+
+   public String getCondition(){
+    return condition;
+   }
+
+   public void setCondition(String condition){
+    this.condition = condition;
+   }
 
    public String getTitle() {return Title;}
 
-   public void setTitle(String firstName) {this.Title = Title;}
+   public void setTitle(String Title) {this.Title = Title;}
 
-   public Image getImage() {return image;}
+   public String getUrl() {return url;}
 
-   public void setImage(String firstName) {this.image = image;}
+   public void setUrl(String url) {this.url = url;}
     
 }
