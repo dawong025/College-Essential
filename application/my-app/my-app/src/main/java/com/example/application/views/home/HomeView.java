@@ -71,7 +71,7 @@ public class HomeView extends VerticalLayout {
         add(hv);
 
         HomeBinder home = new HomeBinder(this);
-        Grid<HashMap<String, String>> grid = new Grid<>();
+        
 
         getSearchButton().addClickListener(event -> {
             searchedItem = searchBar.getValue();
@@ -81,6 +81,7 @@ public class HomeView extends VerticalLayout {
 
             DBHome db = new DBHome();
             // key is title, val is url
+            Grid<HashMap<String, String>> grid = new Grid<>();
             itemList = db.searchHomeItem(searchedItem, select.getValue());
             
 
