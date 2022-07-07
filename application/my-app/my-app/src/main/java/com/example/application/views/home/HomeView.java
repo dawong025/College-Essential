@@ -1,9 +1,12 @@
 package com.example.application.views.home;
 
+import com.example.application.Data.HomeDetail;
+import com.example.application.Data.PostItemDetail;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -12,9 +15,13 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
+import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+
+import com.vaadin.flow.component.grid.GridVariant;
+
 
 @PageTitle("Home")
 @Route(value = "home", layout = MainLayout.class)
@@ -60,20 +67,20 @@ public class HomeView extends VerticalLayout {
 
          add(hv);
 
-    //      HomeBinder homeBinder= new HomeBinder(this);
-    //   homeBinder.getItemsSearched();
+         HomeBinder homeBinder= new HomeBinder(this);
+      homeBinder.getItemsSearched();
 
-    //   Grid<UserDetails> grid = new Grid<>(UserDetails.class, false);
-    //     grid.addColumn(createImageRenderer()).setHeader("Image");
-    //            // .setAutoWidth(true).setFlexGrow(0);
-    //     grid.addColumn(UserDetails::getFirstName).setHeader("Image");
-    //     grid.addColumn(UserDetails::getLastName).setHeader("image");
-    //     grid.addColumn(UserDetails::getEmail).setHeader("image");
+      Grid<PostItemDetail> grid = new Grid<>(PostItemDetail.class, false);
+       // grid.addColumn(createImageRenderer()).setHeader("Image");
+               // .setAutoWidth(true).setFlexGrow(0);
+        grid.addColumn(PostItemDetail::getUrl).setHeader("Image");
+        grid.addColumn(PostItemDetail::getTitle).setHeader("image");
+        grid.addColumn(PostItemDetail::getCondition).setHeader("image");
 
-    //     grid.addThemeVariants(GridVariant.LUMO_COLUMN_BORDERS);
+        grid.addThemeVariants(GridVariant.LUMO_COLUMN_BORDERS);
 
-    //    // grid.setItems(UserDetails);
-    //     add(grid);
+       // grid.setItems(UserDetails);
+        add(grid);
 
 
 
@@ -85,6 +92,13 @@ public class HomeView extends VerticalLayout {
 
     public Select<String> getSelector(){
         return select;
+    }
+
+    private ValueProvider<HomeDetail, ?> createImageRenderer() {
+        /*return LitRenderer.<Person>of(
+                "<vaadin-avatar img=\"${item.pictureUrl}\" name=\"${item.fullName}\" alt=\"User avatar\"></vaadin-avatar>")
+                .withProperty("pictureUrl", Person::getPictureUrl); */
+        return null;
     }
 
 }

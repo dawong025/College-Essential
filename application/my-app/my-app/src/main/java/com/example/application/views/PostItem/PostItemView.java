@@ -60,9 +60,8 @@ public class PostItemView extends VerticalLayout{
     
     public Button getPostButton() { return postButton; }
 
-    // public TextField getTitle(){return Title; }
 
-    // public TextField getUrl(){return url;};
+    
     
     /** Load a file from local filesystem.
      *
