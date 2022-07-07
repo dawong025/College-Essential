@@ -74,6 +74,7 @@ public class HomeView extends VerticalLayout {
             // Create empty bean to store the details into
 
             DBHome db = new DBHome();
+            //key is title, val is url
             itemList = db.searchHomeItem(searchedItem, "All");
             System.out.println(itemList.size());
 
@@ -81,8 +82,8 @@ public class HomeView extends VerticalLayout {
             for (String key: itemList.keySet()) {
                 // System.out.println("key : " + key);
                 // System.out.println("value : " + map.get(key));
-            grid.addColumn(itemList.get("key")).setHeader("Image");
-            grid.addColumn(key).setHeader("Title");
+            grid.addColumn(itemList.get("key")).setHeader(itemList.get(key));
+            //grid.addColumn(key).setHeader("Title");
             
             }
             add(grid);
