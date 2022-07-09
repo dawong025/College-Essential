@@ -35,7 +35,7 @@ public class HomeView extends VerticalLayout {
     Select<String> select;
     HashMap<String, String> itemList = new HashMap<>();
     String searchedItem;
-
+    //Liveshare test - Darren Wong
     public HomeView() {
         // searchbar
         searchBar = new TextField();
