@@ -70,14 +70,14 @@ public class HomeView extends VerticalLayout {
 
         add(hv);
 
-        HomeBinder home = new HomeBinder(this);
+        //HomeBinder home = new HomeBinder(this);
         
 
         getSearchButton().addClickListener(event -> {
             searchedItem = searchBar.getValue();
-            itemList.clear();
-            System.out.println("selector = " + select.getValue());
-            System.out.println("item searched =" + searchedItem);
+            //itemList.clear();
+            //System.out.println("selector = " + select.getValue());
+            //System.out.println("item searched =" + searchedItem);
 
             DBHome db = new DBHome();
             // key is title, val is url
@@ -86,7 +86,7 @@ public class HomeView extends VerticalLayout {
             
 
             for (String key : itemList.keySet()) {
-                System.out.println(itemList.keySet());
+               // System.out.println(itemList.keySet());
 
                 grid.addComponentColumn(v -> {
                     Image image = new Image(itemList.get(key), key);
