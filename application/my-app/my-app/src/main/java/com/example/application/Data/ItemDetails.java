@@ -19,7 +19,7 @@ public class ItemDetails {
         itemName = name;
     }
 
-    public String getcCurTitle(){
+    public String getCurTitle(){
         return itemName;
     }
 

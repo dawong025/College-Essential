@@ -17,7 +17,7 @@ public class ItemView {
     private ItemDetails itemDetail = new ItemDetails();
 
     public ItemView(){
-        itemName = itemDetail.getcCurTitle();
+        itemName = itemDetail.getCurTitle();
         System.out.println(itemDetail);
 
     }
