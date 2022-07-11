@@ -5,8 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
+//import java.awt.*;
+
+
 import com.example.application.Data.DBHome;
 import com.example.application.Data.HomeDetail;
+import com.example.application.views.ItemDes;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -31,6 +35,7 @@ public class HomeView extends VerticalLayout {
 
     private TextField name;
     private Button search;
+    private Button itemButton;
     TextField searchBar;
     Select<String> select;
     HashMap<String, String> itemList = new HashMap<>();
@@ -71,41 +76,58 @@ public class HomeView extends VerticalLayout {
         add(hv);
 
         //HomeBinder home = new HomeBinder(this);
-        
+        ArrayList<Button> buttonList = new ArrayList<>();
 
         getSearchButton().addClickListener(event -> {
             searchedItem = searchBar.getValue();
-            //itemList.clear();
-            //System.out.println("selector = " + select.getValue());
-            //System.out.println("item searched =" + searchedItem);
+            String condition = select.getValue();
+           
 
             DBHome db = new DBHome();
+            
             // key is title, val is url
             Grid<HashMap<String, String>> grid = new Grid<>();
-            itemList = db.searchHomeItem(searchedItem, select.getValue());
             
-
+            
+            itemList = db.searchHomeItem(searchedItem, condition);
+            
+            //Button b = new Button();
             for (String key : itemList.keySet()) {
                // System.out.println(itemList.keySet());
-
+                Button b = new Button(key);
                 grid.addComponentColumn(v -> {
                     Image image = new Image(itemList.get(key), key);
                     image.setHeight("200px");
                     image.setWidth("150px");
                     return image;
-                }).setHeader(key);
+                }).setHeader(b);
+                buttonList.add(b);
+                
             }
+            //gets button for specific item
+            for(int i =0; i < buttonList.size(); i++){
+                Button b = buttonList.get(i);
+                b.addClickListener(e ->{
+                    setButton(b);
+                    System.out.println("\n\nbutton is =" + getButton().getText() + "\n\n");
+                    this.getUI().ifPresent(ui ->
+                    ui.navigate("/item"));
+                });
+            }
+            
 
             grid.setItems(itemList);
 
             add(grid);
             
+            
 
         });
 
+        
+
         itemList.clear();
-       // grid.removeAllColumns();
-        //grid.getDataProvider().refreshAll();
+    
 
         // UI.getCurrent().getPage().reload();
 
@@ -115,26 +137,20 @@ public class HomeView extends VerticalLayout {
         return searchBar;
     }
 
+    public void setButton(Button title){
+        itemButton = title;
+    }
+
+    public Button getButton(){
+        return itemButton;
+    }
+
     public String getSelector() {
         return select.toString();
     }
 
     public Button getSearchButton() {
         return search;
-    }
-
-    public void ifClicked() {
-
-    }
-
-    private ValueProvider<HomeDetail, ?> createImageRenderer() {
-        /*
-         * return LitRenderer.<Person>of(
-         * "<vaadin-avatar img=\"${item.pictureUrl}\" name=\"${item.fullName}\" alt=\"User avatar\"></vaadin-avatar>"
-         * )
-         * .withProperty("pictureUrl", Person::getPictureUrl);
-         */
-        return null;
     }
 
 }
