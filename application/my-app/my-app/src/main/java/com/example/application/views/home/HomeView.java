@@ -10,7 +10,8 @@ import java.util.stream.Stream;
 
 import com.example.application.Data.DBHome;
 import com.example.application.Data.HomeDetail;
-import com.example.application.views.ItemDes;
+import com.example.application.Data.ItemDetails;
+
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -40,6 +41,9 @@ public class HomeView extends VerticalLayout {
     Select<String> select;
     HashMap<String, String> itemList = new HashMap<>();
     String searchedItem;
+    ItemDetails itemDetails = new ItemDetails();
+
+
     //Liveshare test - Darren Wong
     public HomeView() {
         // searchbar
@@ -108,8 +112,8 @@ public class HomeView extends VerticalLayout {
             for(int i =0; i < buttonList.size(); i++){
                 Button b = buttonList.get(i);
                 b.addClickListener(e ->{
-                    setButton(b);
-                    System.out.println("\n\nbutton is =" + getButton().getText() + "\n\n");
+                    itemDetails.setItemName(b.getText());
+                    System.out.println("\n\nbutton is =" + b.getText() + "\n\n");
                     this.getUI().ifPresent(ui ->
                     ui.navigate("/item"));
                 });
