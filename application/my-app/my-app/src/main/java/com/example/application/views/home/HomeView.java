@@ -110,9 +110,12 @@ public class HomeView extends VerticalLayout {
                     image.setHeight("200px");
                     image.setWidth("150px");
                     vl.add(image);
-                    Button b = new Button(key);
+                    Button b = new Button(key, e ->{
+                        currTitle = key;
+                        System.out.println("\n\nbutton is =" + key + "\n\n");
+                        this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
+                    });
                     b.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-
                     buttonList.add(b);
                     vl.add(b);
                     hor.add(vl);
@@ -122,9 +125,7 @@ public class HomeView extends VerticalLayout {
                     hor.setPadding(true);
                     hor.setSpacing(true);
                     hor.setWidthFull();
-
                     hor.setJustifyContentMode(JustifyContentMode.AROUND);
-
                     add(hor);
 
                     hor = new HorizontalLayout();
@@ -138,17 +139,6 @@ public class HomeView extends VerticalLayout {
             hor.setJustifyContentMode(JustifyContentMode.AROUND);
             add(hor);
             // gets button for specific item
-            for (int i = 0; i < buttonList.size(); i++) {
-                Button b = buttonList.get(i);
-                b.addClickListener(e -> {
-                    currTitle = b.getText();
-
-                    System.out.println("\n\nbutton is =" + b.getText() + "\n\n");
-                    this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
-
-                });
-
-            }
 
         });
 
