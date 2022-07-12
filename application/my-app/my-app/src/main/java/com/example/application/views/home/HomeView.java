@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.atmosphere.interceptor.AtmosphereResourceStateRecovery.B;
+
 //import java.awt.*;
 
 import com.example.application.Data.DBHome;
@@ -12,6 +14,7 @@ import com.example.application.Data.HomeDetail;
 import com.example.application.Data.ItemDetails;
 
 import com.example.application.views.MainLayout;
+import com.example.application.views.Items.ItemView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -41,6 +44,7 @@ public class HomeView extends VerticalLayout {
     HashMap<String, String> itemList = new HashMap<>();
     String searchedItem;
     ItemDetails itemDetails = new ItemDetails();
+    ItemView itemView = new ItemView();
 
     // Liveshare test - Darren Wong
     public HomeView() {
@@ -92,33 +96,62 @@ public class HomeView extends VerticalLayout {
             itemList = db.searchHomeItem(searchedItem, condition);
 
             // creates new buttons for each entry and adds buttons to list
+            int count =0;
+            HorizontalLayout hor = new HorizontalLayout();
+            HorizontalLayout buttonsLays = new HorizontalLayout();
             for (String key : itemList.keySet()) {
 
-                Button b = new Button(key);
-                grid.addComponentColumn(v -> {
+                if(count < 4 ){
                     Image image = new Image(itemList.get(key), key);
                     image.setHeight("200px");
                     image.setWidth("150px");
-                    return image;
-                }).setHeader(b);
-                buttonList.add(b);
+                    hor.add(image);
+                    Button b = new Button(key);
+                    buttonList.add(b);
+                    buttonsLays.add(b);
+                }else{
+                    hor.setPadding(true);
+                    hor.setSpacing(true);
+                    //buttonsLays.setPadding(true);
+                    buttonsLays.setSizeFull();
+                        
+                    add(hor, buttonsLays);
+                    
+                    hor = new HorizontalLayout();
+                    buttonsLays = new HorizontalLayout();
+                    count =0;
+                }
+                count++;
+
+                // Button b = new Button(key);
+                // grid.addComponentColumn(v -> {
+                //     Image image = new Image(itemList.get(key), key);
+                //     image.setHeight("200px");
+                //     image.setWidth("150px");
+                //     return image;
+                // }).setHeader(b);
+                // buttonList.add(b);
 
             }
+            add(hor,buttonsLays);
             // gets button for specific item
             for (int i = 0; i < buttonList.size(); i++) {
                 Button b = buttonList.get(i);
                 b.addClickListener(e -> {
                     itemDetails.setItemName(b.getText());
+                    itemView.setTitle(b.getText());
+                    
                     System.out.println("\n\nbutton is =" + b.getText() + "\n\n");
                     this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
                     
                 });
+                
             
             }
             
-            grid.setItems(itemList);
+            // grid.setItems(itemList);
 
-            add(grid);
+            // add(grid);
 
         });
 

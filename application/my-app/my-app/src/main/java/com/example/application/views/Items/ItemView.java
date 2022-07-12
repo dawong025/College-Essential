@@ -18,10 +18,19 @@ public class ItemView extends VerticalLayout{
     private ItemDetails itemDetail = new ItemDetails();
 
     public ItemView(){
-        itemName = itemDetail.getCurTitle();
-        System.out.println(itemDetail);
+        itemName = itemDetail.itemName;
+        System.out.println(itemName);
+        System.out.println(getTitle());
         
 
+    }
+
+    public String getTitle(){
+       return itemDetail.getCurTitle();
+    }
+
+    public void setTitle(String s){
+        itemName = s;
     }
     
 }
