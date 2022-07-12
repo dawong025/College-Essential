@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 //import java.awt.*;
 
-
 import com.example.application.Data.DBHome;
 import com.example.application.Data.HomeDetail;
 import com.example.application.Data.ItemDetails;
@@ -43,8 +42,7 @@ public class HomeView extends VerticalLayout {
     String searchedItem;
     ItemDetails itemDetails = new ItemDetails();
 
-
-    //Liveshare test - Darren Wong
+    // Liveshare test - Darren Wong
     public HomeView() {
         // searchbar
         searchBar = new TextField();
@@ -79,25 +77,23 @@ public class HomeView extends VerticalLayout {
 
         add(hv);
 
-        //HomeBinder home = new HomeBinder(this);
+        // HomeBinder home = new HomeBinder(this);
         ArrayList<Button> buttonList = new ArrayList<>();
 
         getSearchButton().addClickListener(event -> {
             searchedItem = searchBar.getValue();
             String condition = select.getValue();
-           
 
             DBHome db = new DBHome();
-            
+
             // key is title, val is url
             Grid<HashMap<String, String>> grid = new Grid<>();
-            
-            
+
             itemList = db.searchHomeItem(searchedItem, condition);
-            
-            //Button b = new Button();
+
+            // creates new buttons for each entry and adds buttons to list
             for (String key : itemList.keySet()) {
-               // System.out.println(itemList.keySet());
+
                 Button b = new Button(key);
                 grid.addComponentColumn(v -> {
                     Image image = new Image(itemList.get(key), key);
@@ -106,34 +102,27 @@ public class HomeView extends VerticalLayout {
                     return image;
                 }).setHeader(b);
                 buttonList.add(b);
-                
+
             }
-            //gets button for specific item
-            for(int i =0; i < buttonList.size(); i++){
+            // gets button for specific item
+            for (int i = 0; i < buttonList.size(); i++) {
                 Button b = buttonList.get(i);
-                b.addClickListener(e ->{
+                b.addClickListener(e -> {
                     itemDetails.setItemName(b.getText());
                     System.out.println("\n\nbutton is =" + b.getText() + "\n\n");
-                    this.getUI().ifPresent(ui ->
-                    ui.navigate("/item"));
+                    this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
+                    
                 });
+            
             }
             
-
             grid.setItems(itemList);
 
             add(grid);
-            
-            
 
         });
 
-        
-
         itemList.clear();
-    
-
-        // UI.getCurrent().getPage().reload();
 
     }
 
@@ -141,11 +130,11 @@ public class HomeView extends VerticalLayout {
         return searchBar;
     }
 
-    public void setButton(Button title){
+    public void setButton(Button title) {
         itemButton = title;
     }
 
-    public Button getButton(){
+    public Button getButton() {
         return itemButton;
     }
 
