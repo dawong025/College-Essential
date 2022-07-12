@@ -54,8 +54,8 @@ public class DBPostItem {
              connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
             
-            
-             query = "Insert into MarketplaceListing(title, seller_id) values('"+Title+"',2)";
+            //TODO - Hardcoded solution
+             query = "Insert into MarketplaceListing(title, seller_id) values('"+Title+"', 1)";
             
              statement = connection.createStatement();
             statement.execute(query);
