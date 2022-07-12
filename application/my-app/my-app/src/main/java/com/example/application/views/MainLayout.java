@@ -144,7 +144,7 @@ public class MainLayout extends AppLayout {
         toggle.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         toggle.getElement().setAttribute("aria-label", "Menu toggle");
 
-        viewTitle = new H1();
+        viewTitle = new H1();//posible add name
         viewTitle.addClassNames("view-title");
         
 

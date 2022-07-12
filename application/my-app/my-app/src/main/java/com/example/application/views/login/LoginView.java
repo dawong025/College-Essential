@@ -23,7 +23,7 @@ import ch.qos.logback.core.status.Status;
 import com.vaadin.flow.component.HasComponents;
 
 @Route("login") 
-@PageTitle("Login | Vaadin CRM")
+@PageTitle("Login | College Essentials")
 
 public class LoginView extends Composite<LoginOverlay> implements BeforeEnterObserver {
 

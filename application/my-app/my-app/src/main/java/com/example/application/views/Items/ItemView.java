@@ -2,7 +2,6 @@ package com.example.application.views.Items;
 
 import java.util.HashMap;
 
-import com.example.application.Data.ItemDetails;
 import com.example.application.views.MainLayout;
 import com.example.application.views.home.HomeView;
 import com.vaadin.flow.component.button.Button;

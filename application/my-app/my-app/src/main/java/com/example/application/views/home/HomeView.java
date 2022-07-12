@@ -11,7 +11,7 @@ import org.atmosphere.interceptor.AtmosphereResourceStateRecovery.B;
 
 import com.example.application.Data.DBHome;
 import com.example.application.Data.HomeDetail;
-import com.example.application.Data.ItemDetails;
+
 
 import com.example.application.views.MainLayout;
 import com.example.application.views.Items.ItemView;
@@ -45,7 +45,7 @@ public class HomeView extends VerticalLayout {
     Select<String> select;
     static HashMap<String, String> itemList = new HashMap<>();
     String searchedItem;
-    ItemDetails itemDetails = new ItemDetails();
+
     ItemView itemView = new ItemView();
     private static String currTitle;
 
@@ -114,22 +114,21 @@ public class HomeView extends VerticalLayout {
                     b.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
                     buttonList.add(b);
-                   vl.add(b);
-                   hor.add(vl);
-                   vl.setAlignItems(Alignment.CENTER);
-                   vl = new VerticalLayout();
+                    vl.add(b);
+                    hor.add(vl);
+                    vl.setAlignItems(Alignment.CENTER);
+                    vl = new VerticalLayout();
                 } else {
                     hor.setPadding(true);
                     hor.setSpacing(true);
                     hor.setWidthFull();
-                    
+
                     hor.setJustifyContentMode(JustifyContentMode.AROUND);
-                    
 
                     add(hor);
 
                     hor = new HorizontalLayout();
-                    
+
                     count = 0;
                 }
                 count++;
@@ -150,10 +149,6 @@ public class HomeView extends VerticalLayout {
                 });
 
             }
-
-            // grid.setItems(itemList);
-
-            // add(grid);
 
         });
 
