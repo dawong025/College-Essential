@@ -6,9 +6,8 @@ import com.example.application.views.Items.ItemView;
 import com.vaadin.flow.component.button.Button;
 
 public class ItemDetails{
-    public String itemName ="";
-    private HashMap<String, String> itemList;
-    private Button curButton;
+    public static  String itemNameItem;
+    private static HashMap<String, String> itemList;
 
     public ItemDetails(){
 
@@ -16,11 +15,11 @@ public class ItemDetails{
 
 
     public void setItemName(String name){
-        itemName = name;
+        itemNameItem = name;
     }
 
-    public String getCurTitle(){
-        return itemName;
+    public static String getCurTitle(){
+        return itemNameItem;
     }
 
 

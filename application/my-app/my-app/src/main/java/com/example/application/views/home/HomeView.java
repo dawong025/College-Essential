@@ -41,10 +41,11 @@ public class HomeView extends VerticalLayout {
     private Button itemButton;
     TextField searchBar;
     Select<String> select;
-    HashMap<String, String> itemList = new HashMap<>();
+    static HashMap<String, String> itemList = new HashMap<>();
     String searchedItem;
     ItemDetails itemDetails = new ItemDetails();
     ItemView itemView = new ItemView();
+    private static String currTitle;
 
     // Liveshare test - Darren Wong
     public HomeView() {
@@ -138,8 +139,7 @@ public class HomeView extends VerticalLayout {
             for (int i = 0; i < buttonList.size(); i++) {
                 Button b = buttonList.get(i);
                 b.addClickListener(e -> {
-                    itemDetails.setItemName(b.getText());
-                    itemView.setTitle(b.getText());
+                    currTitle = b.getText();
                     
                     System.out.println("\n\nbutton is =" + b.getText() + "\n\n");
                     this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
@@ -157,6 +157,13 @@ public class HomeView extends VerticalLayout {
 
         itemList.clear();
 
+    }
+
+    public static String getTitle(){
+        return currTitle;
+    }
+    public static HashMap<String,String> getMap(){
+        return itemList;
     }
 
     public TextField getSearch() {
