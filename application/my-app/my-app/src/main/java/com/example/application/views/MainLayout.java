@@ -96,6 +96,7 @@ public class MainLayout extends AppLayout {
         //change login and logout buttons
         if(LoginView.logStatus() == false){
            hv = setUnLogin();
+
            hv.add(cart);
 
         }else{
@@ -104,6 +105,7 @@ public class MainLayout extends AppLayout {
                 LoginView.logOut();
                 UI.getCurrent().getPage().reload();
             });
+
             hv = new HorizontalLayout(logout, cart);
             
         }
@@ -111,6 +113,7 @@ public class MainLayout extends AppLayout {
 
         //reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
          //HorizontalLayout hv = new HorizontalLayout(log,reg,cart);
+         hv.setPadding(true);
         addToNavbar(true, createHeaderContent(),hv);
         addToDrawer(createDrawerContent());
         

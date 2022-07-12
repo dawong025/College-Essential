@@ -17,11 +17,14 @@ import com.example.application.views.MainLayout;
 import com.example.application.views.Items.ItemView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.ValidationException;
@@ -36,7 +39,6 @@ import java.awt.GridLayout;
 @RouteAlias(value = "", layout = MainLayout.class)
 public class HomeView extends VerticalLayout {
 
-    private TextField name;
     private Button search;
     private Button itemButton;
     TextField searchBar;
@@ -97,58 +99,58 @@ public class HomeView extends VerticalLayout {
             itemList = db.searchHomeItem(searchedItem, condition);
 
             // creates new buttons for each entry and adds buttons to list
-            int count =0;
+            int count = 0;
             HorizontalLayout hor = new HorizontalLayout();
             HorizontalLayout buttonsLays = new HorizontalLayout();
+            VerticalLayout vl = new VerticalLayout();
             for (String key : itemList.keySet()) {
 
-                if(count < 4 ){
+                if (count < 4) {
                     Image image = new Image(itemList.get(key), key);
                     image.setHeight("200px");
                     image.setWidth("150px");
-                    hor.add(image);
+                    vl.add(image);
                     Button b = new Button(key);
+                    b.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
                     buttonList.add(b);
-                    buttonsLays.add(b);
-                }else{
+                   vl.add(b);
+                   hor.add(vl);
+                   vl.setAlignItems(Alignment.CENTER);
+                   vl = new VerticalLayout();
+                } else {
                     hor.setPadding(true);
                     hor.setSpacing(true);
-                    //buttonsLays.setPadding(true);
-                    buttonsLays.setSizeFull();
-                        
-                    add(hor, buttonsLays);
+                    hor.setWidthFull();
                     
+                    hor.setJustifyContentMode(JustifyContentMode.AROUND);
+                    
+
+                    add(hor);
+
                     hor = new HorizontalLayout();
-                    buttonsLays = new HorizontalLayout();
-                    count =0;
+                    
+                    count = 0;
                 }
                 count++;
 
-                // Button b = new Button(key);
-                // grid.addComponentColumn(v -> {
-                //     Image image = new Image(itemList.get(key), key);
-                //     image.setHeight("200px");
-                //     image.setWidth("150px");
-                //     return image;
-                // }).setHeader(b);
-                // buttonList.add(b);
-
             }
-            add(hor,buttonsLays);
+            hor.setWidthFull();
+            hor.setJustifyContentMode(JustifyContentMode.AROUND);
+            add(hor);
             // gets button for specific item
             for (int i = 0; i < buttonList.size(); i++) {
                 Button b = buttonList.get(i);
                 b.addClickListener(e -> {
                     currTitle = b.getText();
-                    
+
                     System.out.println("\n\nbutton is =" + b.getText() + "\n\n");
                     this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
-                    
+
                 });
-                
-            
+
             }
-            
+
             // grid.setItems(itemList);
 
             // add(grid);
@@ -159,10 +161,11 @@ public class HomeView extends VerticalLayout {
 
     }
 
-    public static String getTitle(){
+    public static String getTitle() {
         return currTitle;
     }
-    public static HashMap<String,String> getMap(){
+
+    public static HashMap<String, String> getMap() {
         return itemList;
     }
 
