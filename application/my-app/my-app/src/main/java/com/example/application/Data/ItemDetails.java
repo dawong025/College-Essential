@@ -9,11 +9,10 @@ public class ItemDetails {
     private HashMap<String, String> itemList;
     private Button curButton;
 
-    public void ItemDetails(){
+    public ItemDetails(){
         
-
-
     }
+
 
     public void setItemName(String name){
         itemName = name;

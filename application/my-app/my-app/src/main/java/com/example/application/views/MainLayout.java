@@ -3,6 +3,7 @@ package com.example.application.views;
 
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Lettuce.Cluster.Refresh;
 
+import com.example.application.views.Items.ItemView;
 import com.example.application.views.PostItem.PostItemView;
 import com.example.application.views.SellingPage.SellingPageView;
 import com.example.application.views.aboutus.AboutUsView;
@@ -184,7 +185,7 @@ public class MainLayout extends AppLayout {
                 //added for registration
                 new MenuItemInfo("Post", "la la-adjust", PostItemView.class),
                 new MenuItemInfo("Buy", "la la-file", SellingPageView.class),
-                new MenuItemInfo("Login", "la la-file", LoginView.class),
+                
 
         };
     }
