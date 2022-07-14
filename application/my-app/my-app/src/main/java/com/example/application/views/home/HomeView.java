@@ -11,10 +11,11 @@ import org.atmosphere.interceptor.AtmosphereResourceStateRecovery.B;
 
 import com.example.application.Data.DBHome;
 import com.example.application.Data.HomeDetail;
-import com.example.application.Data.ItemDetails;
+
 
 import com.example.application.views.MainLayout;
 import com.example.application.views.Items.ItemView;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -34,7 +35,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import java.awt.GridLayout;
 
-@PageTitle("Home")
+@PageTitle("College Essentials Home")
 @Route(value = "home", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 public class HomeView extends VerticalLayout {
@@ -45,13 +46,15 @@ public class HomeView extends VerticalLayout {
     Select<String> select;
     static HashMap<String, String> itemList = new HashMap<>();
     String searchedItem;
-    ItemDetails itemDetails = new ItemDetails();
+
     ItemView itemView = new ItemView();
     private static String currTitle;
 
     // Liveshare test - Darren Wong
     public HomeView() {
         // searchbar
+        //adds background image
+        //this.getElement().getStyle().set( "background-image" , "url('cat.jpg')" );
         searchBar = new TextField();
         searchBar.setPlaceholder("Search");
         searchBar.setPrefixComponent(VaadinIcon.SEARCH.create());
@@ -69,14 +72,11 @@ public class HomeView extends VerticalLayout {
 
         // dropdown menu
         select = new Select<>();
-        // select.setLabel("Sort by");
         select.setItems("New", "Used",
                 "All");
         select.setValue("All");
 
         search = new Button("Search");
-
-        // add(select);
 
         HorizontalLayout hv = new HorizontalLayout(searchBar, search, select);
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
@@ -84,9 +84,8 @@ public class HomeView extends VerticalLayout {
 
         add(hv);
 
-        // HomeBinder home = new HomeBinder(this);
         ArrayList<Button> buttonList = new ArrayList<>();
-
+        List<Component> comps = new ArrayList<>();
         getSearchButton().addClickListener(event -> {
             searchedItem = searchBar.getValue();
             String condition = select.getValue();
@@ -103,33 +102,42 @@ public class HomeView extends VerticalLayout {
             HorizontalLayout hor = new HorizontalLayout();
             HorizontalLayout buttonsLays = new HorizontalLayout();
             VerticalLayout vl = new VerticalLayout();
-            for (String key : itemList.keySet()) {
 
+            //removes components
+            if(!comps.isEmpty()){
+                for(Component c : comps){
+                    remove(c);
+                }
+            }
+            
+            for (String key : itemList.keySet()) {
+                    
                 if (count < 4) {
                     Image image = new Image(itemList.get(key), key);
                     image.setHeight("200px");
                     image.setWidth("150px");
                     vl.add(image);
-                    Button b = new Button(key);
+                    Button b = new Button(key, e ->{
+                        currTitle = key;
+                        this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
+                    });
                     b.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-
                     buttonList.add(b);
-                   vl.add(b);
-                   hor.add(vl);
-                   vl.setAlignItems(Alignment.CENTER);
-                   vl = new VerticalLayout();
+                    vl.add(b);
+                    hor.add(vl);
+                    comps.add(hor);
+                    vl.setAlignItems(Alignment.CENTER);
+                    vl = new VerticalLayout();
                 } else {
                     hor.setPadding(true);
                     hor.setSpacing(true);
                     hor.setWidthFull();
-                    
                     hor.setJustifyContentMode(JustifyContentMode.AROUND);
-                    
-
                     add(hor);
+                    comps.add(hor);
 
                     hor = new HorizontalLayout();
-                    
+
                     count = 0;
                 }
                 count++;
@@ -139,21 +147,6 @@ public class HomeView extends VerticalLayout {
             hor.setJustifyContentMode(JustifyContentMode.AROUND);
             add(hor);
             // gets button for specific item
-            for (int i = 0; i < buttonList.size(); i++) {
-                Button b = buttonList.get(i);
-                b.addClickListener(e -> {
-                    currTitle = b.getText();
-
-                    System.out.println("\n\nbutton is =" + b.getText() + "\n\n");
-                    this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
-
-                });
-
-            }
-
-            // grid.setItems(itemList);
-
-            // add(grid);
 
         });
 

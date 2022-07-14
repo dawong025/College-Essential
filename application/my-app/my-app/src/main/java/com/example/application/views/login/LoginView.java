@@ -23,7 +23,7 @@ import ch.qos.logback.core.status.Status;
 import com.vaadin.flow.component.HasComponents;
 
 @Route("login") 
-@PageTitle("Login | Vaadin CRM")
+@PageTitle("Login | College Essentials")
 
 public class LoginView extends Composite<LoginOverlay> implements BeforeEnterObserver {
 
@@ -41,7 +41,8 @@ public class LoginView extends Composite<LoginOverlay> implements BeforeEnterObs
             if("user".equals(event.getUsername())){
                 
             }else if("admin".equals(event.getUsername())){
-
+                overlay.getUI().ifPresent(ui ->
+                ui.navigate("/home"));
             }else{
                 status = true;
                     overlay.getUI().ifPresent(ui ->

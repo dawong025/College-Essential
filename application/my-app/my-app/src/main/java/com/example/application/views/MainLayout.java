@@ -28,8 +28,10 @@ import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.theme.lumo.LumoUtility.JustifyContent;
 
 //mvn spring-boot:run
 
@@ -80,6 +82,9 @@ public class MainLayout extends AppLayout {
 
     private H1 viewTitle;
 
+    
+
+
     public MainLayout() {
         setPrimarySection(Section.DRAWER);
 
@@ -87,6 +92,7 @@ public class MainLayout extends AppLayout {
         //LoginView logStat = new LoginView();
         HorizontalLayout hv;
         Button cart = new Button("Cart");
+        cart.addClassName("cartButton");
         //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
         cart.addClickListener(e ->
         cart.getUI().ifPresent(ui ->
@@ -101,6 +107,7 @@ public class MainLayout extends AppLayout {
 
         }else{
             Button logout = new Button("Log Out");
+            logout.addClassName("logOutButton");
             logout.addClickListener(e -> {
                 LoginView.logOut();
                 UI.getCurrent().getPage().reload();
@@ -113,6 +120,9 @@ public class MainLayout extends AppLayout {
 
         //reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
          //HorizontalLayout hv = new HorizontalLayout(log,reg,cart);
+         hv.addClassNames("hv");
+         hv.setHeight("3.5em");
+         hv.setAlignItems(Alignment.CENTER);
          hv.setPadding(true);
         addToNavbar(true, createHeaderContent(),hv);
         addToDrawer(createDrawerContent());
@@ -125,12 +135,14 @@ public class MainLayout extends AppLayout {
 
     public HorizontalLayout setUnLogin(){
         Button log = new Button("Log in");
+        log.addClassName("logInButton");
                 //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
                 log.addClickListener(e ->
                 log.getUI().ifPresent(ui ->
                     ui.navigate("/login"))
                 );
                     Button reg = new Button("Register");
+                    reg.addClassName("regButton");
                     reg.addClickListener(e ->
                     reg.getUI().ifPresent(ui ->
                         ui.navigate("/registration"))
@@ -144,7 +156,8 @@ public class MainLayout extends AppLayout {
         toggle.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         toggle.getElement().setAttribute("aria-label", "Menu toggle");
 
-        viewTitle = new H1();
+        viewTitle = new H1();//posible add name
+        viewTitle.setHeight("1.8em");
         viewTitle.addClassNames("view-title");
         
 
@@ -162,6 +175,10 @@ public class MainLayout extends AppLayout {
         section.addClassNames("drawer-section");
         return section;
     }
+
+
+    
+
 
     private Nav createNavigation() {
         Nav nav = new Nav();
@@ -196,6 +213,7 @@ public class MainLayout extends AppLayout {
     private Footer createFooter() {
         Footer layout = new Footer();
         layout.addClassNames("footer");
+
 
         return layout;
     }

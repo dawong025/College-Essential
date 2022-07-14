@@ -1,0 +1,23 @@
+package com.example.application.views.Admin;
+
+import javax.annotation.security.RolesAllowed;
+
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.Route;
+
+@Route("Admin")
+@RolesAllowed("ADMIN")
+
+public class AdminView extends VerticalLayout{
+    var crud = new GridCrud<>(UserDetails.class);
+    
+
+    public AdminView(){
+        add(
+            new H1("Admin View"),
+            crud
+        );
+    }
+
+}

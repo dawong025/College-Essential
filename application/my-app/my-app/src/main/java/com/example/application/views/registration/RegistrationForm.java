@@ -11,6 +11,11 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import java.util.stream.Stream;
 
+import javax.swing.event.HyperlinkEvent;
+
+import org.apache.poi.common.usermodel.Hyperlink;
+import org.apache.poi.hslf.record.InteractiveInfoAtom.Link;
+
 public class RegistrationForm extends FormLayout {
 
    private H3 title;
@@ -35,8 +40,14 @@ public class RegistrationForm extends FormLayout {
        firstName = new TextField("First name");
        lastName = new TextField("Last name");
        email = new EmailField("Email");
+        Button terms = new Button("Terms & Services",e ->{
+                this.getUI().ifPresent(ui -> ui.navigate("/termView"));
+        });
+
+        
 
        allowMarketing = new Checkbox("Agree To Terms & Services?");
+       
        allowMarketing.getStyle().set("margin-top", "10px");
 
        password = new PasswordField("Password");
@@ -51,7 +62,7 @@ public class RegistrationForm extends FormLayout {
        submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
        add(title, firstName, lastName, email, password,
-               passwordConfirm, allowMarketing, errorMessageField,
+               passwordConfirm, allowMarketing,terms, errorMessageField,
                submitButton);
 
        // Max width of the Form

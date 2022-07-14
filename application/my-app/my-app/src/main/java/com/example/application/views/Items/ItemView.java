@@ -2,7 +2,6 @@ package com.example.application.views.Items;
 
 import java.util.HashMap;
 
-import com.example.application.Data.ItemDetails;
 import com.example.application.views.MainLayout;
 import com.example.application.views.home.HomeView;
 import com.vaadin.flow.component.button.Button;
@@ -32,7 +31,6 @@ public class ItemView extends VerticalLayout{
        H3 h3 = new H3(itemName);
        vl.add(h3);
        String url = items.get(itemName);
-       System.out.println(url);
        if(url != null){
         Image image = new Image(url,"");
 
