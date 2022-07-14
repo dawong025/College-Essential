@@ -31,7 +31,6 @@ public class ItemView extends VerticalLayout{
        H3 h3 = new H3(itemName);
        vl.add(h3);
        String url = items.get(itemName);
-       System.out.println(url);
        if(url != null){
         Image image = new Image(url,"");
 

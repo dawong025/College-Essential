@@ -28,8 +28,10 @@ import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.theme.lumo.LumoUtility.JustifyContent;
 
 //mvn spring-boot:run
 
@@ -119,6 +121,8 @@ public class MainLayout extends AppLayout {
         //reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
          //HorizontalLayout hv = new HorizontalLayout(log,reg,cart);
          hv.addClassNames("hv");
+         hv.setHeight("3.5em");
+         hv.setAlignItems(Alignment.CENTER);
          hv.setPadding(true);
         addToNavbar(true, createHeaderContent(),hv);
         addToDrawer(createDrawerContent());
@@ -153,6 +157,7 @@ public class MainLayout extends AppLayout {
         toggle.getElement().setAttribute("aria-label", "Menu toggle");
 
         viewTitle = new H1();//posible add name
+        viewTitle.setHeight("1.8em");
         viewTitle.addClassNames("view-title");
         
 
@@ -208,6 +213,7 @@ public class MainLayout extends AppLayout {
     private Footer createFooter() {
         Footer layout = new Footer();
         layout.addClassNames("footer");
+
 
         return layout;
     }

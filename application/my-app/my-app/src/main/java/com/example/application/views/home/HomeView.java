@@ -119,7 +119,6 @@ public class HomeView extends VerticalLayout {
                     vl.add(image);
                     Button b = new Button(key, e ->{
                         currTitle = key;
-                        System.out.println("\n\nbutton is =" + key + "\n\n");
                         this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
                     });
                     b.addThemeVariants(ButtonVariant.LUMO_PRIMARY);

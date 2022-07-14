@@ -11,6 +11,9 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import java.util.stream.Stream;
 
+import javax.swing.event.HyperlinkEvent;
+
+import org.apache.poi.common.usermodel.Hyperlink;
 import org.apache.poi.hslf.record.InteractiveInfoAtom.Link;
 
 public class RegistrationForm extends FormLayout {
@@ -40,6 +43,9 @@ public class RegistrationForm extends FormLayout {
         Button terms = new Button("Terms & Services",e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/termView"));
         });
+
+        
+
        allowMarketing = new Checkbox("Agree To Terms & Services?");
        
        allowMarketing.getStyle().set("margin-top", "10px");
