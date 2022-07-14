@@ -15,6 +15,7 @@ import com.example.application.Data.HomeDetail;
 
 import com.example.application.views.MainLayout;
 import com.example.application.views.Items.ItemView;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -86,7 +87,7 @@ public class HomeView extends VerticalLayout {
 
         // HomeBinder home = new HomeBinder(this);
         ArrayList<Button> buttonList = new ArrayList<>();
-
+        List<Component> comps = new ArrayList<>();
         getSearchButton().addClickListener(event -> {
             searchedItem = searchBar.getValue();
             String condition = select.getValue();
@@ -103,8 +104,16 @@ public class HomeView extends VerticalLayout {
             HorizontalLayout hor = new HorizontalLayout();
             HorizontalLayout buttonsLays = new HorizontalLayout();
             VerticalLayout vl = new VerticalLayout();
-            for (String key : itemList.keySet()) {
 
+            //removes components
+            if(!comps.isEmpty()){
+                for(Component c : comps){
+                    remove(c);
+                }
+            }
+            
+            for (String key : itemList.keySet()) {
+                    
                 if (count < 4) {
                     Image image = new Image(itemList.get(key), key);
                     image.setHeight("200px");
@@ -119,6 +128,7 @@ public class HomeView extends VerticalLayout {
                     buttonList.add(b);
                     vl.add(b);
                     hor.add(vl);
+                    comps.add(hor);
                     vl.setAlignItems(Alignment.CENTER);
                     vl = new VerticalLayout();
                 } else {
@@ -127,6 +137,7 @@ public class HomeView extends VerticalLayout {
                     hor.setWidthFull();
                     hor.setJustifyContentMode(JustifyContentMode.AROUND);
                     add(hor);
+                    comps.add(hor);
 
                     hor = new HorizontalLayout();
 
