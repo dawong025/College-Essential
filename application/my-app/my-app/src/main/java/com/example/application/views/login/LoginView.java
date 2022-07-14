@@ -41,7 +41,8 @@ public class LoginView extends Composite<LoginOverlay> implements BeforeEnterObs
             if("user".equals(event.getUsername())){
                 
             }else if("admin".equals(event.getUsername())){
-
+                overlay.getUI().ifPresent(ui ->
+                ui.navigate("/home"));
             }else{
                 status = true;
                     overlay.getUI().ifPresent(ui ->
