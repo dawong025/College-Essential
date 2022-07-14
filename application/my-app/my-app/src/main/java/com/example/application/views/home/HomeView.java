@@ -35,7 +35,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import java.awt.GridLayout;
 
-@PageTitle("Home")
+@PageTitle("College Essentials Home")
 @Route(value = "home", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 public class HomeView extends VerticalLayout {
@@ -53,6 +53,8 @@ public class HomeView extends VerticalLayout {
     // Liveshare test - Darren Wong
     public HomeView() {
         // searchbar
+        //adds background image
+        //this.getElement().getStyle().set( "background-image" , "url('cat.jpg')" );
         searchBar = new TextField();
         searchBar.setPlaceholder("Search");
         searchBar.setPrefixComponent(VaadinIcon.SEARCH.create());
@@ -70,14 +72,11 @@ public class HomeView extends VerticalLayout {
 
         // dropdown menu
         select = new Select<>();
-        // select.setLabel("Sort by");
         select.setItems("New", "Used",
                 "All");
         select.setValue("All");
 
         search = new Button("Search");
-
-        // add(select);
 
         HorizontalLayout hv = new HorizontalLayout(searchBar, search, select);
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
@@ -85,7 +84,6 @@ public class HomeView extends VerticalLayout {
 
         add(hv);
 
-        // HomeBinder home = new HomeBinder(this);
         ArrayList<Button> buttonList = new ArrayList<>();
         List<Component> comps = new ArrayList<>();
         getSearchButton().addClickListener(event -> {
