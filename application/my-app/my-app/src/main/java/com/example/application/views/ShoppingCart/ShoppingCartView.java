@@ -87,14 +87,41 @@ public class ShoppingCartView extends VerticalLayout{
             Button addToCart = new Button("Remove from Cart");
             addToCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
+
             title.setValue(i.get("title"));
             title.setReadOnly(true);
             image.setTitle(i.get("image"));
             quantity.setValue(i.get("quantity"));
             price.setValue(i.get("price"));
+            
+            
+            
+            Button plusButton = new Button("+",e->{
+                Integer val = Integer.parseInt("quantity") +1;
+                quantity.setValue(val.toString());
+            });
+            plusButton.setWidth("10%");
+            plusButton.addThemeVariants(ButtonVariant.LUMO_ICON);
+
+            Button minusButton = new Button("-",e->{
+                
+                Integer val = Integer.parseInt("quantity");
+                if (val != 0){
+                    val--;
+                }
+                quantity.setValue(val.toString());
+            });
+            minusButton.setWidth("10%");
+            minusButton.addThemeVariants(ButtonVariant.LUMO_ICON);
 
 
-            horizontal.add(title, image, quantity, price, addToCart);
+            HorizontalLayout hl = new HorizontalLayout();
+            hl.add( plusButton,quantity, minusButton);
+            hl.setSpacing(false);
+            //hl.setJustifyContentMode(JustifyContentMode.EVENLY);
+            hl.setAlignItems(Alignment.BASELINE);
+
+            horizontal.add(title, image, hl, price, addToCart);
             horizontal.setJustifyContentMode(JustifyContentMode.START);
 
             add(horizontal);
