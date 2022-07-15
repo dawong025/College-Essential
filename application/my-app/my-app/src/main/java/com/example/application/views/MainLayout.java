@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Lettuce
 import com.example.application.views.Items.ItemView;
 import com.example.application.views.PostItem.PostItemView;
 import com.example.application.views.SellingPage.SellingPageView;
+import com.example.application.views.Services.ServiceList;
 import com.example.application.views.aboutus.AboutUsView;
 import com.example.application.views.forum.ForumList;
 import com.example.application.views.home.HomeView;
@@ -188,6 +189,7 @@ public class MainLayout extends AppLayout {
                 new MenuItemInfo("Post", "la la-adjust", PostItemView.class),
                 new MenuItemInfo("Buy", "la la-adjust", SellingPageView.class),
                 new MenuItemInfo("Forum", "la la-adjust", ForumList.class),
+                new MenuItemInfo("Services", "la la-adjust", ServiceList.class),
                 
 
         };

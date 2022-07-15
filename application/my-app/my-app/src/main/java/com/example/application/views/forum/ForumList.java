@@ -85,7 +85,7 @@ public class ForumList extends VerticalLayout {
             });
 
             Button user = new Button(i.get("user"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
+                this.getUI().ifPresent(ui -> ui.navigate("/Account"));
             });
 
             Button description = new Button(i.get("description"), e ->{

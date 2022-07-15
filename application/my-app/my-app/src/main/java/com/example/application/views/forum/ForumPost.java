@@ -27,7 +27,7 @@ public class ForumPost extends VerticalLayout{
         TextField title= new TextField("Title");
         TextArea description = new TextArea("Description");
         description.setWidth("800px");
-        description.setMinHeight("200px");
+        description.setHeight("200px");
 
         //This should create a new post object which will later be stored on the database to be accessed later
         //Binder will make it so all inputs into the fields will alter the object properties
