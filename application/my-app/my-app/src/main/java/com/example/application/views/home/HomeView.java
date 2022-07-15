@@ -71,14 +71,32 @@ public class HomeView extends VerticalLayout {
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
         add(hv);
 
-        Button marketPlaceButton = new Button("Market Place");
+        Button marketPlaceButton = new Button("Market Place",e->{
+            //clears page and shows grid of everything
+            if (!comps.isEmpty()) {
+                for (Component c : comps) {
+                    remove(c);
+                }
+            }
+            DBHome db = new DBHome();
+            itemList = db.searchHomeItem("", "All");
+            popPage();
+
+        });
         marketPlaceButton.setClassName("marketPlaceButton");
+        marketPlaceButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
 
-        Button formButton = new Button("Form Place");
+        Button formButton = new Button("Form Place", ev ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/forumList"));
+        });
         formButton.setClassName("formButton");
+        formButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
 
-        Button serviceButton = new Button("Service Listing");
+        Button serviceButton = new Button("Service Listing" ,event ->{
+            //add for service listing
+        });
         serviceButton.setClassName("serviceButton");
+        serviceButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
 
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.add(marketPlaceButton,formButton,serviceButton);
@@ -126,8 +144,9 @@ public class HomeView extends VerticalLayout {
     public void popPage(){
 
         int count = 0;
-            HorizontalLayout hor = new HorizontalLayout();
-            VerticalLayout vl = new VerticalLayout();
+            hor = new HorizontalLayout();
+            
+            vl = new VerticalLayout();
         for (String key : itemList.keySet()) {
 
             if (count < 4) {
@@ -139,6 +158,7 @@ public class HomeView extends VerticalLayout {
                     currTitle = key;
                     this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
                 });
+                b.setClassName("buttonItem");
                 b.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
                 vl.add(b);
                 hor.add(vl);

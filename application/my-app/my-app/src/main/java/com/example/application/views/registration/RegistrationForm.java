@@ -39,7 +39,7 @@ public class RegistrationForm extends FormLayout {
 
 
    public RegistrationForm() {
-       title = new H3("Signup form");
+       title = new H3("Signup for College Essentials");
        firstName = new TextField("First name");
        lastName = new TextField("Last name");
        email = new EmailField("Email");
