@@ -186,13 +186,9 @@ public class MainLayout extends AppLayout {
                 new MenuItemInfo("About Us", "la la-adjust", AboutUsView.class), //
                 // added for registration
                 new MenuItemInfo("Post", "la la-adjust", PostItemView.class),
-<<<<<<< HEAD
-                new MenuItemInfo("Buy", "la la-file", SellingPageView.class),
-=======
                 new MenuItemInfo("Buy", "la la-adjust", SellingPageView.class),
                 new MenuItemInfo("Forum", "la la-adjust", ForumList.class),
                 
->>>>>>> 5125535b7e1483d0f0a3b690c2a8d2de0b9b7813
 
         };
     }
