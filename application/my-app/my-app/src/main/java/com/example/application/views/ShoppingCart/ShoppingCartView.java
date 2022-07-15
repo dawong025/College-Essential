@@ -15,13 +15,15 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.dependency.StyleSheet;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
 
-
+@CssImport("./themes/myapp/shopping-cart.css")
 
 @PageTitle("Shopping Cart")//maybe make to name of web
 @Route(value = "ShoppingCart", layout = MainLayout.class)
@@ -34,6 +36,7 @@ public class ShoppingCartView extends VerticalLayout{
     String quantity;
 
     public ShoppingCartView(){
+        // todo make bigger and underline
         H3 h1 = new H3("Shopping Cart");
        
     
@@ -43,7 +46,7 @@ public class ShoppingCartView extends VerticalLayout{
 
         // mock data delete later
         HashMap<String, String> item1 = new HashMap<String, String>();
-        item1.put("title", "pencil");
+        item1.put("title", "really long string of text");
         item1.put("image", "url");
         item1.put("price", "10");
         item1.put("quantity", "1");
@@ -61,7 +64,7 @@ public class ShoppingCartView extends VerticalLayout{
 
         // System.out.println("Starting to iterate");
         for (HashMap<String, String> i: cart){
-            HorizontalLayout horizontal = new HorizontalLayout();
+            HorizontalLayout horizontalSC = new HorizontalLayout();
            
 
             // // System.out.println(i.get("title"));
@@ -72,17 +75,23 @@ public class ShoppingCartView extends VerticalLayout{
 
             // add(horizontal);
 
-            horizontal.setWidthFull();
+            horizontalSC.setWidthFull();
 
-            String url = i.get("image");
+            String cartUrl = i.get("image");
             
-            TextField title = new TextField("Name");
-            Image image = new Image(url,"");
-            image.setHeight("200px");
+            TextArea title = new TextArea("Name");
+
+            Image image = new Image(cartUrl,"");
+            image.setHeight("150px");
             image.setWidth("150px");
             // TextField image = new TextField();
             TextField quantity = new TextField("Quantity");
+            quantity.setWidth("50%");
+            quantity.setHeight("50%");
+
             TextField price = new TextField("Price");
+            price.setWidth("50%");
+            price.setHeight("50%");
 
             Button removeFromCart = new Button("Remove from Cart");
             removeFromCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
@@ -95,7 +104,7 @@ public class ShoppingCartView extends VerticalLayout{
             price.setValue(i.get("price"));
             
             
-            
+            // layout for the quanitity and buttons
             Button plusButton = new Button("+",e->{
                 Integer val = Integer.parseInt("quantity") +1;
                 quantity.setValue(val.toString());
@@ -119,18 +128,50 @@ public class ShoppingCartView extends VerticalLayout{
             quantLayout.setSpacing(false);
             quantLayout.setAlignItems(Alignment.BASELINE);
 
+
+            // layout helps align removeFromCart
             HorizontalLayout priceLayout = new HorizontalLayout();
             priceLayout.add(price, removeFromCart);
             priceLayout.setSpacing(true);
             priceLayout.setAlignItems(Alignment.BASELINE);
 
 
-            horizontal.add(title, image, quantLayout, priceLayout);
-            horizontal.setJustifyContentMode(JustifyContentMode.START);
-            horizontal.setAlignItems(Alignment.CENTER);
 
-            add(horizontal);
+            // recently viewed vertical layout
+            VerticalLayout verticalLayout = new VerticalLayout();
+            verticalLayout.setAlignItems(Alignment.END);
+
+            String recentUrl = ("image");
+
+            TextArea recentlyViewed = new TextArea("Recently Viewed:");
+            recentlyViewed.setValue(i.get("title"));
+            recentlyViewed.setReadOnly(true);
+            recentlyViewed.setWidth("150px");
+            recentlyViewed.setHeight("100px");
+
+            Image recentImage = new Image(recentUrl,"");
+            recentImage.setHeight("200px");
+            recentImage.setWidth("150px");
+            verticalLayout.addClassName("verticalLayout");
+            verticalLayout.add(recentlyViewed, recentImage);
+
+
+
+            // add all the layouts to the page
+            // todo loop recently viewed
+            horizontalSC.addClassName("shoppingCartLayout");
+            horizontalSC.add(image, title, quantLayout, priceLayout);
+            horizontalSC.setJustifyContentMode(JustifyContentMode.START);
+            horizontalSC.setAlignItems(Alignment.CENTER);
+
+
+            HorizontalLayout finalLayout = new HorizontalLayout();
+            finalLayout.add(horizontalSC, verticalLayout);
+            finalLayout.setAlignItems(Alignment.CENTER);
+            
+            add(finalLayout);
         } 
+
 
         // Grid<HashMap<String, String>> grid = new Grid<>();
 
