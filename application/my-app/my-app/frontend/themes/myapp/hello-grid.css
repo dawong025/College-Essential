@@ -4,7 +4,7 @@
 */
 * {
     font-family: 'Poppins', sans-serif;
-    text-shadow: 1px 1px black;
+    text-shadow: .25px .25px black;
 }
 .hello-grid {
     margin: 10px;

@@ -8,6 +8,9 @@ import { css, unsafeCSS, registerStyles } from '@vaadin/vaadin-themable-mixin';
 import $cssFromFile_0 from 'Frontend/themes/myapp/hello-grid.css';
 const $css_0 = typeof $cssFromFile_0  === 'string' ? unsafeCSS($cssFromFile_0) : $cssFromFile_0;
 addCssBlock(`<style>${$css_0}</style>`);
+import $cssFromFile_1 from 'Frontend/themes/myapp/Home.css';
+const $css_1 = typeof $cssFromFile_1  === 'string' ? unsafeCSS($cssFromFile_1) : $cssFromFile_1;
+addCssBlock(`<style>${$css_1}</style>`);
 
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-list/iron-list.js';
