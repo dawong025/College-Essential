@@ -1,0 +1,61 @@
+
+
+
+.buttonLayout{
+    margin: auto;
+    margin-top:16%;
+  width: 50%;
+ 
+  padding: 20px;
+}
+
+.marketPlaceButton{
+background-color: black;
+color: whitesmoke;
+}
+
+.marketPlaceButton:hover{
+    background-color: whitesmoke;
+    color: black;
+
+}
+
+
+.formButton{
+    background-color: black;
+color: whitesmoke;
+}
+
+.formButton:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+
+.serviceButton{
+    background-color: black;
+    color: whitesmoke;
+}
+
+.serviceButton:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+
+.horItemLayout{
+border: 3px solid green;
+}
+
+.vertItemLayout{
+    border: 3px solid green;
+    background-color: black;
+}
+
+.buttonItem{
+    background-color: black;
+    
+}
+
+.buttonItem:hover{
+    background-color: whitesmoke;
+    color: black;
+}

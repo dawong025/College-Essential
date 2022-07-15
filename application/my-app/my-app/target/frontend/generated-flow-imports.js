@@ -11,6 +11,12 @@ addCssBlock(`<style>${$css_0}</style>`);
 import $cssFromFile_1 from 'Frontend/themes/myapp/shopping-cart.css';
 const $css_1 = typeof $cssFromFile_1  === 'string' ? unsafeCSS($cssFromFile_1) : $cssFromFile_1;
 addCssBlock(`<style>${$css_1}</style>`);
+<<<<<<< HEAD
+=======
+import $cssFromFile_2 from 'Frontend/themes/myapp/Home.css';
+const $css_2 = typeof $cssFromFile_2  === 'string' ? unsafeCSS($cssFromFile_2) : $cssFromFile_2;
+addCssBlock(`<style>${$css_2}</style>`);
+>>>>>>> 8b728de89f58a5dd344601587b010432ebb975c3
 
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-list/iron-list.js';

@@ -6,7 +6,9 @@ import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.EmailField;
+import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import java.util.stream.Stream;
@@ -22,9 +24,10 @@ public class RegistrationForm extends FormLayout {
 
    private TextField firstName;
    private TextField lastName;
+   private TextField school;
 
    private EmailField email;
-
+   private TextField userName;
    private PasswordField password;
    private PasswordField passwordConfirm;
 
@@ -36,10 +39,14 @@ public class RegistrationForm extends FormLayout {
 
 
    public RegistrationForm() {
-       title = new H3("Signup form");
+       title = new H3("Signup for College Essentials");
        firstName = new TextField("First name");
        lastName = new TextField("Last name");
        email = new EmailField("Email");
+       school = new TextField("University");
+       userName = new TextField("UserName");
+       userName.setWidth("20em");
+       
         Button terms = new Button("Terms & Services",e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/termView"));
         });
@@ -53,7 +60,7 @@ public class RegistrationForm extends FormLayout {
        password = new PasswordField("Password");
        passwordConfirm = new PasswordField("Confirm password");
 
-       setRequiredIndicatorVisible(firstName, lastName, email, password,
+       setRequiredIndicatorVisible(firstName, lastName, email, userName,password,
                passwordConfirm);
 
        errorMessageField = new Span();
@@ -61,7 +68,7 @@ public class RegistrationForm extends FormLayout {
        submitButton = new Button("Create Account");
        submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-       add(title, firstName, lastName, email, password,
+       add(title, firstName, lastName, userName,school,email, password,
                passwordConfirm, allowMarketing,terms, errorMessageField,
                submitButton);
 
