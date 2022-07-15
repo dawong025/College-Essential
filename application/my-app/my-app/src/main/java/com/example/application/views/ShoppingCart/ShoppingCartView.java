@@ -6,6 +6,7 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
@@ -24,7 +25,6 @@ import java.util.HashMap;
 
 @PageTitle("Shopping Cart")//maybe make to name of web
 @Route(value = "ShoppingCart", layout = MainLayout.class)
-
 
 public class ShoppingCartView extends VerticalLayout{
 
@@ -84,8 +84,8 @@ public class ShoppingCartView extends VerticalLayout{
             TextField quantity = new TextField("Quantity");
             TextField price = new TextField("Price");
 
-            Button addToCart = new Button("Remove from Cart");
-            addToCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+            Button removeFromCart = new Button("Remove from Cart");
+            removeFromCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
 
             title.setValue(i.get("title"));
@@ -114,15 +114,20 @@ public class ShoppingCartView extends VerticalLayout{
             minusButton.setWidth("10%");
             minusButton.addThemeVariants(ButtonVariant.LUMO_ICON);
 
+            HorizontalLayout quantLayout = new HorizontalLayout();
+            quantLayout.add(minusButton, quantity, plusButton);
+            quantLayout.setSpacing(false);
+            quantLayout.setAlignItems(Alignment.BASELINE);
 
-            HorizontalLayout hl = new HorizontalLayout();
-            hl.add( plusButton,quantity, minusButton);
-            hl.setSpacing(false);
-            //hl.setJustifyContentMode(JustifyContentMode.EVENLY);
-            hl.setAlignItems(Alignment.BASELINE);
+            HorizontalLayout priceLayout = new HorizontalLayout();
+            priceLayout.add(price, removeFromCart);
+            priceLayout.setSpacing(true);
+            priceLayout.setAlignItems(Alignment.BASELINE);
 
-            horizontal.add(title, image, hl, price, addToCart);
+
+            horizontal.add(title, image, quantLayout, priceLayout);
             horizontal.setJustifyContentMode(JustifyContentMode.START);
+            horizontal.setAlignItems(Alignment.CENTER);
 
             add(horizontal);
         } 
