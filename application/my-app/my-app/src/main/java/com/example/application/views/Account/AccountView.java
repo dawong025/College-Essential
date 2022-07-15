@@ -32,6 +32,7 @@ public class AccountView extends Div{
         getElement().getClassList().add("hello-grid");
         setWidth("99%");
 
+        /* Name Profile Grid Area */
         Div nametag = new Div();
         nametag.addClassName("label-one");
 
@@ -45,6 +46,7 @@ public class AccountView extends Div{
         HorizontalLayout h1 = new HorizontalLayout(img1, name);
         h1.addClassName("label-one");
 
+        /* Contact Grid Area */
         Div contactDiv = new Div();
         H3 contact = new H3("Contact Me");
         contact.addClassName("contact-me");
@@ -52,6 +54,7 @@ public class AccountView extends Div{
         h2.addClassName("label-two");
         contactDiv.addClassName("label-two");
 
+        /* Ratings Grid Area */
         Div ratingsDiv = new Div();
         H3 ratings = new H3("Ratings");
         ratings.addClassName("ratings");
@@ -64,8 +67,26 @@ public class AccountView extends Div{
         commentText1.addClassName("comment-text");
         VerticalLayout rating1 = new VerticalLayout(ratingAuthor1, datePosted1, commentText1);
         rating1.addClassName("single-rating");
+
+        H6 ratingAuthor2 = new H6 ("@Reviewer2");
+        ratingAuthor2.addClassName("rating-author");
+        Span datePosted2 = new Span ("12/17/2022");
+        datePosted2.addClassName("date-posted");
+        H6 commentText2 = new H6("Kelly sold me a pair of Sony Headphones");
+        commentText2.addClassName("comment-text");
+        VerticalLayout rating2 = new VerticalLayout(ratingAuthor2, datePosted2, commentText2);
+        rating2.addClassName("single-rating");
+
+        H6 ratingAuthor3 = new H6 ("@Reviewer3");
+        ratingAuthor3.addClassName("rating-author");
+        Span datePosted3 = new Span ("12/17/2022");
+        datePosted3.addClassName("date-posted");
+        H6 commentText3 = new H6("Kelly sold me a nice couch from IKEA");
+        commentText3.addClassName("comment-text");
+        VerticalLayout rating3 = new VerticalLayout(ratingAuthor3, datePosted3, commentText3);
+        rating3.addClassName("single-rating");
         
-        VerticalLayout h3 = new VerticalLayout(ratings, rating1);
+        VerticalLayout h3 = new VerticalLayout(ratings, rating1, rating2, rating3);
         h3.addClassName("label-three");
         ratingsDiv.addClassName("label-three");
         rating1.addClassName("label-three");
