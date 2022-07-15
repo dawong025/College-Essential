@@ -6,12 +6,16 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
+import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
 
 import ch.qos.logback.core.joran.conditional.Condition;
 
@@ -30,27 +34,40 @@ public class PostItemView extends VerticalLayout{
     private TextField Title;
     private TextField url;
     private TextField condition;
+    private VerticalLayout vert;
 
     public PostItemView(){
-
+            vert = new VerticalLayout();
             url = new TextField("url");
             url.setPlaceholder("Enter URL of Image");
-            add(url);
+            vert.add(url);
         // Configure upload component
         
             Title = new TextField("Title");
             Title.setPlaceholder("Title");
 
-            add(Title);
+            vert.add(Title);
 
             condition = new TextField("Condition");
             condition.setPlaceholder("Condition");
 
-            add(condition);
+            vert.add(condition);
+            
+            Select<String> select = new Select<>();
+            
+            
+            select.setItems(
+                "Select Catagory","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
+                select.setValue("Select Catagory");
+                vert.add(select);
+
 
             postButton = new Button("Post");
             postButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-            add(postButton);
+            vert.add(postButton);
+            vert.setAlignItems(Alignment.CENTER);
+           // h1.setAll
+           add(vert);
 
             PostItemFormBinder postItemFormBinder= new PostItemFormBinder(this);
        postItemFormBinder.addBinderForPostItem();
@@ -61,37 +78,7 @@ public class PostItemView extends VerticalLayout{
     public Button getPostButton() { return postButton; }
 
 
-    
-    
-    /** Load a file from local filesystem.
-     *
-     */
-    public InputStream loadFile() {
-        try {
-            return new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "Failed to create InputStream for: '" + this.file.getAbsolutePath(), e);
-        }
-        return null;
-    }
-
-    /** Receive a uploaded file to a file.
-     */
-    public OutputStream receiveUpload(String originalFileName, String MIMEType) {
-        this.originalFileName = originalFileName;
-        this.mimeType = MIMEType;
-        try {
-            // Create a temporary file for example, you can provide your file here.
-            this.file = File.createTempFile("prefix-", "-suffix");
-            file.deleteOnExit();
-            return new FileOutputStream(file);
-        } catch (FileNotFoundException e) {
-            Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "Failed to create InputStream for: '" + this.file.getAbsolutePath(), e);
-        } catch (IOException e) {
-            Logger.getLogger(this.getClass().getName()).log(Level.WARNING, "Failed to create InputStream for: '" + this.file.getAbsolutePath() + "'", e);
-        }
-
-        return null;
-    }
+  
+  
 
 }

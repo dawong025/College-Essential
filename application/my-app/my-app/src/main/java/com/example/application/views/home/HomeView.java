@@ -12,7 +12,6 @@ import org.atmosphere.interceptor.AtmosphereResourceStateRecovery.B;
 import com.example.application.Data.DBHome;
 import com.example.application.Data.HomeDetail;
 
-
 import com.example.application.views.MainLayout;
 import com.example.application.views.Items.ItemView;
 import com.vaadin.flow.component.Component;
@@ -53,10 +52,10 @@ public class HomeView extends VerticalLayout {
     // Liveshare test - Darren Wong
     public HomeView() {
         // searchbar
-        //adds background image
-        //this.getElement().getStyle().set( "background-image" , "url('cat.jpg')" );
+        // adds background image
+        // this.getElement().getStyle().set( "background-image" , "url('cat.jpg')" );
         searchBar = new TextField();
-        searchBar.setPlaceholder("Search");
+        searchBar.setPlaceholder("Search For Books, Furniture and More....");
         searchBar.setPrefixComponent(VaadinIcon.SEARCH.create());
         searchBar.setClearButtonVisible(true);
         searchBar.setWidth("50em");
@@ -96,28 +95,25 @@ public class HomeView extends VerticalLayout {
             Grid<HashMap<String, String>> grid = new Grid<>();
 
             itemList = db.searchHomeItem(searchedItem, condition);
-
-            // creates new buttons for each entry and adds buttons to list
             int count = 0;
             HorizontalLayout hor = new HorizontalLayout();
-            HorizontalLayout buttonsLays = new HorizontalLayout();
             VerticalLayout vl = new VerticalLayout();
 
-            //removes components
-            if(!comps.isEmpty()){
-                for(Component c : comps){
+            // removes components
+            if (!comps.isEmpty()) {
+                for (Component c : comps) {
                     remove(c);
                 }
             }
-            
+
             for (String key : itemList.keySet()) {
-                    
+
                 if (count < 4) {
                     Image image = new Image(itemList.get(key), key);
                     image.setHeight("200px");
                     image.setWidth("150px");
                     vl.add(image);
-                    Button b = new Button(key, e ->{
+                    Button b = new Button(key, e -> {
                         currTitle = key;
                         this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
                     });
