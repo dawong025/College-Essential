@@ -6,12 +6,15 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.StreamResource;
+import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
 
 import ch.qos.logback.core.joran.conditional.Condition;
 
@@ -30,27 +33,38 @@ public class PostItemView extends VerticalLayout{
     private TextField Title;
     private TextField url;
     private TextField condition;
+    private HorizontalLayout hl;
 
     public PostItemView(){
-
+            hl = new HorizontalLayout();
             url = new TextField("url");
             url.setPlaceholder("Enter URL of Image");
-            add(url);
+            hl.add(url);
         // Configure upload component
         
             Title = new TextField("Title");
             Title.setPlaceholder("Title");
 
-            add(Title);
+            hl.add(Title);
 
             condition = new TextField("Condition");
             condition.setPlaceholder("Condition");
 
-            add(condition);
+            hl.add(condition);
+            
+            Select<String> select = new Select<>();
+            
+            
+            select.setItems(
+                "Select Catagory","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
+                select.setValue("Select Catagory");
+                hl.add(select);
+
 
             postButton = new Button("Post");
             postButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-            add(postButton);
+            hl.add(postButton);
+           // h1.setAll
 
             PostItemFormBinder postItemFormBinder= new PostItemFormBinder(this);
        postItemFormBinder.addBinderForPostItem();
