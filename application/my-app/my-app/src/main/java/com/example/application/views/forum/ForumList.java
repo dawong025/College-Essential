@@ -57,7 +57,7 @@ public class ForumList extends VerticalLayout {
         add(hv);
 
         getSearchButton().addClickListener(event -> {
-            //Should show a list of forum posts from the input in the search bar
+            //Should show a list of forum posts based on the input from the search bar
         });
         
         //Fake posts to be deleted later, code below this should be altered or deleted later
