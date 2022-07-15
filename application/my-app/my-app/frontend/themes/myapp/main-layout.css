@@ -1,6 +1,6 @@
 [slot='drawer'] {
   background-image: linear-gradient(0deg, var(--lumo-shade-5pct), var(--lumo-shade-5pct));
-  
+
 }
 
 [slot='drawer'] nav a {
@@ -48,13 +48,13 @@
 .menu-item-text {
   font-weight: 500;
   font-size: var(--lumo-font-size-s);
-  
+
 }
 
 .menu-item-icon {
   margin-inline-end: var(--lumo-space-s);
   font-size: var(--lumo-font-size-l);
-  
+
 }
 
 /* title for main layout */
@@ -63,50 +63,51 @@
   margin-right: auto; */
   color: aliceblue;
   font-size: 30px;
-  
+
 }
 
-.hv{
-  
-  background-color:black;
-  
+.hv {
+
+  background-color: black;
+
 }
 
-.logInButton{
+.logInButton {
   color: gainsboro;
-  background-color:black
+  background-color: black
 }
 
-.logInButton:hover{
+.logInButton:hover {
   color: black;
   background-color: azure;
 }
 
-.logOutButton{
+.logOutButton {
   color: gainsboro;
-  background-color:black
+  background-color: black
 }
 
-.logOutButton:hover{
-  color: black;
-  background-color: azure;
-}
-.regButton{
-  color: gainsboro;
-  background-color:black
-
-}
-.regButton:hover{
+.logOutButton:hover {
   color: black;
   background-color: azure;
 }
 
-.cartButton{
+.regButton {
   color: gainsboro;
-  background-color:black
-
+  background-color: black
 }
-.cartButton:hover{
+
+.regButton:hover {
+  color: black;
+  background-color: azure;
+}
+
+.cartButton {
+  color: gainsboro;
+  background-color: black
+}
+
+.cartButton:hover {
   color: black;
   background-color: azure;
 }
@@ -121,14 +122,15 @@
   height: var(--lumo-size-xl);
   width: 100%;
   color: aliceblue;
-  background-color:black;
+  background-color: black;
 }
 
 
 .view-toggle {
   color: white;
 }
-.view-toggle:hover{
+
+.view-toggle:hover {
   color: black;
   background-color: aliceblue;
 }
@@ -149,7 +151,7 @@
   flex-direction: column;
   max-height: 100%;
   min-height: 100%;
-  background-color:antiquewhite;
+  background-color: antiquewhite;
 }
 
 .menu-item-container {
@@ -157,14 +159,14 @@
   border-color: var(--lumo-contrast-10pct);
   flex-grow: 1;
   overflow: auto;
-  
+
 }
 
 .navigation-list {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  
+
 }
 
 .footer {

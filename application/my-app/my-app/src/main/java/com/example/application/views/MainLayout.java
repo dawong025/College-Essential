@@ -1,6 +1,5 @@
 package com.example.application.views;
 
-
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Lettuce.Cluster.Refresh;
 
 import com.example.application.views.Items.ItemView;
@@ -83,30 +82,24 @@ public class MainLayout extends AppLayout {
 
     private H1 viewTitle;
 
-    
-
-
     public MainLayout() {
         setPrimarySection(Section.DRAWER);
 
         Text Title = new Text("College Essentials");
-        //LoginView logStat = new LoginView();
+        // LoginView logStat = new LoginView();
         HorizontalLayout hv;
         Button cart = new Button("Cart");
         cart.addClassName("cartButton");
-        //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
-        cart.addClickListener(e ->
-        cart.getUI().ifPresent(ui ->
-            ui.navigate("/ShoppingCart"))
-        );
-         
-        //change login and logout buttons
-        if(LoginView.logStatus() == false){
-           hv = setUnLogin();
+        // log.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        cart.addClickListener(e -> cart.getUI().ifPresent(ui -> ui.navigate("/ShoppingCart")));
 
-           hv.add(cart);
+        // change login and logout buttons
+        if (LoginView.logStatus() == false) {
+            hv = setUnLogin();
 
-        }else{
+            hv.add(cart);
+
+        } else {
             Button logout = new Button("Log Out");
             logout.addClassName("logOutButton");
             logout.addClickListener(e -> {
@@ -115,40 +108,33 @@ public class MainLayout extends AppLayout {
             });
 
             hv = new HorizontalLayout(logout, cart);
-            
+
         }
-        
 
-        //reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
-         //HorizontalLayout hv = new HorizontalLayout(log,reg,cart);
-         hv.addClassNames("hv");
-         hv.setHeight("3.5em");
-         hv.setAlignItems(Alignment.CENTER);
-         hv.setPadding(true);
-        addToNavbar(true, createHeaderContent(),hv);
+        // reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        // HorizontalLayout hv = new HorizontalLayout(log,reg,cart);
+        hv.addClassNames("hv");
+        hv.setHeight("3.5em");
+        hv.setAlignItems(Alignment.CENTER);
+        hv.setPadding(true);
+        addToNavbar(true, createHeaderContent(), hv);
         addToDrawer(createDrawerContent());
-        
-    }
-
-    public void setLogout(){
 
     }
 
-    public HorizontalLayout setUnLogin(){
+    public void setLogout() {
+
+    }
+
+    public HorizontalLayout setUnLogin() {
         Button log = new Button("Log in");
         log.addClassName("logInButton");
-                //log.addThemeVariants(ButtonVariant.LUMO_LARGE);
-                log.addClickListener(e ->
-                log.getUI().ifPresent(ui ->
-                    ui.navigate("/login"))
-                );
-                    Button reg = new Button("Register");
-                    reg.addClassName("regButton");
-                    reg.addClickListener(e ->
-                    reg.getUI().ifPresent(ui ->
-                        ui.navigate("/registration"))
-                    );
-                   return new HorizontalLayout(log,reg);
+        // log.addThemeVariants(ButtonVariant.LUMO_LARGE);
+        log.addClickListener(e -> log.getUI().ifPresent(ui -> ui.navigate("/login")));
+        Button reg = new Button("Register");
+        reg.addClassName("regButton");
+        reg.addClickListener(e -> reg.getUI().ifPresent(ui -> ui.navigate("/registration")));
+        return new HorizontalLayout(log, reg);
     }
 
     private Component createHeaderContent() {
@@ -157,10 +143,9 @@ public class MainLayout extends AppLayout {
         toggle.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         toggle.getElement().setAttribute("aria-label", "Menu toggle");
 
-        viewTitle = new H1();//posible add name
+        viewTitle = new H1();// posible add name
         viewTitle.setHeight("1.8em");
         viewTitle.addClassNames("view-title");
-        
 
         Header header = new Header(toggle, viewTitle);
         header.addClassNames("view-header");
@@ -176,10 +161,6 @@ public class MainLayout extends AppLayout {
         section.addClassNames("drawer-section");
         return section;
     }
-
-
-    
-
 
     private Nav createNavigation() {
         Nav nav = new Nav();
@@ -199,11 +180,11 @@ public class MainLayout extends AppLayout {
     }
 
     private MenuItemInfo[] createMenuItems() {
-        return new MenuItemInfo[]{ //
+        return new MenuItemInfo[] { //
                 new MenuItemInfo("Home", "la la-adjust", HomeView.class), //
 
                 new MenuItemInfo("About Us", "la la-adjust", AboutUsView.class), //
-                //added for registration
+                // added for registration
                 new MenuItemInfo("Post", "la la-adjust", PostItemView.class),
                 new MenuItemInfo("Buy", "la la-adjust", SellingPageView.class),
                 new MenuItemInfo("Forum", "la la-adjust", ForumList.class),
@@ -215,7 +196,6 @@ public class MainLayout extends AppLayout {
     private Footer createFooter() {
         Footer layout = new Footer();
         layout.addClassNames("footer");
-
 
         return layout;
     }
