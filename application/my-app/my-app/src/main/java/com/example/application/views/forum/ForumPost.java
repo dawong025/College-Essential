@@ -4,6 +4,7 @@ import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -20,10 +21,13 @@ import com.vaadin.flow.router.Route;
 public class ForumPost extends VerticalLayout{
 
     public ForumPost(){
+        //The title of the make a forum post page
+        add(new H1("Make a new Post!"));
+
         TextField title= new TextField("Title");
         TextArea description = new TextArea("Description");
         description.setWidth("800px");
-        description.setMinHeight("200px");
+        description.setHeight("200px");
 
         //This should create a new post object which will later be stored on the database to be accessed later
         //Binder will make it so all inputs into the fields will alter the object properties

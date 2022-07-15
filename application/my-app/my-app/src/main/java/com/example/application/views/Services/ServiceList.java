@@ -1,4 +1,4 @@
-package com.example.application.views.forum;
+package com.example.application.views.Services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,10 +16,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-
-@PageTitle("Forum List")
-@Route(value = "forumList", layout = MainLayout.class)
-public class ForumList extends VerticalLayout {
+@PageTitle("Service Listing")
+@Route(value = "serviceList", layout = MainLayout.class)
+public class ServiceList extends VerticalLayout{
     //Array list of posts to be added to the horizontal layout. Temporary, and should be deleted later
     ArrayList<HashMap<String, String>> post = new ArrayList<HashMap<String, String>>();
     
@@ -31,7 +30,7 @@ public class ForumList extends VerticalLayout {
         this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
     });
 
-    public ForumList(){
+    public ServiceList(){
 
         //Code for the text field
         TextField searchBar = new TextField();
