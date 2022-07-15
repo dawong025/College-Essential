@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -39,8 +40,15 @@ public class ForumList extends VerticalLayout {
         searchBar.setClearButtonVisible(true);
         searchBar.setWidth("50em");
 
+        //This is a selection drop down bar. Dropdown is here as placeholder, and will not be changed till later.
+        Select select = new Select<>();
+        select.setItems("New", "Used",
+                "All");
+        select.setValue("All");
+
+
         //The horizontal layout with the text field, search button, and new post button
-        HorizontalLayout hv = new HorizontalLayout(searchBar, search, newPost);
+        HorizontalLayout hv = new HorizontalLayout(searchBar, search, select, newPost);
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
         hv.setWidthFull();
         
@@ -71,6 +79,7 @@ public class ForumList extends VerticalLayout {
             HorizontalLayout hv1 = new HorizontalLayout();
             hv1.setWidthFull();
 
+            //Should at some point route to an url stored in the database
             Button title = new Button(i.get("title"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
             });
