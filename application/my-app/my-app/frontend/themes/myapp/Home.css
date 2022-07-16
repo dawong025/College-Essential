@@ -84,9 +84,9 @@ border: 3px solid green;
 }
 
 .searchBar{
-    /* background-color: rgba(211, 211, 211, 0.933); */
-    background-color: white;
-    margin-right: 2px;
+    background-color: gray;
+    
+    /* margin-right: 2px; */
 }
 .selector{
     background-color: white;
