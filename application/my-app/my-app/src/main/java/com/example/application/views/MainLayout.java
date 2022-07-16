@@ -189,10 +189,10 @@ public class MainLayout extends AppLayout {
 
                 new MenuItemInfo("About Us", "la la-adjust", AboutUsView.class), //
                 // added for registration
-                new MenuItemInfo("Post", "la la-adjust", PostItemView.class),
-                new MenuItemInfo("Buy", "la la-adjust", SellingPageView.class),
-                new MenuItemInfo("Forum", "la la-adjust", ForumList.class),
-                new MenuItemInfo("Services", "la la-adjust", ServiceList.class),
+                new MenuItemInfo("Post Item", "la la-adjust", PostItemView.class),
+                //new MenuItemInfo("Buy", "la la-adjust", SellingPageView.class),
+                new MenuItemInfo("Forum Listing", "la la-adjust", ForumList.class),
+                new MenuItemInfo("Services Listing", "la la-adjust", ServiceList.class),
                 
 
         };

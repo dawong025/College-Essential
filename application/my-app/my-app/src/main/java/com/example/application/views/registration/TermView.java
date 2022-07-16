@@ -21,8 +21,8 @@ public class TermView extends VerticalLayout{
         terms.setValue("Do you agree to let us do what ever we want?");
         terms.setReadOnly(true);
         add(terms);
-        Path path = Paths.get("termsText.txt");
-        Scanner input = new Scanner(new File(path.toString()));
+        //Path path = Paths.get("./src/main/java/com/example/application/views/registration/termsText.txt");
+        Scanner input = new Scanner(new File("./views/registration/termsText.txt"));///src/main/java/com/example/application
 
         while (input.hasNextLine())
         {
