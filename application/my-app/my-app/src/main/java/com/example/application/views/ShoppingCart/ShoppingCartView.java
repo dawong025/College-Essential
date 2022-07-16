@@ -66,7 +66,7 @@ public class ShoppingCartView extends HorizontalLayout{
         h1.addClassName("h3");
 
         Button checkout = new Button("checkout", e ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/checkoutPage"));
+            this.getUI().ifPresent(ui -> ui.navigate("/checkout"));
         });
         checkout.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 

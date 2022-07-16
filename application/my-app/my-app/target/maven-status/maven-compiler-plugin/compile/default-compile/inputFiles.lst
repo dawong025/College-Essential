@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\HomeDetail.java
 C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationView.java
 C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBPostItem.java
@@ -31,3 +32,39 @@ C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\applicati
 C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\login\LoginView.java
 C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\ForumList.java
 C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\ShoppingCart\ShoppingCartView.java
+=======
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Account\AccountView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\ForumPost.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\home\HomeView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Services\ServicePost.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBForumList.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\BrendanView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\messages\MessageView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\PostItemDetail.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\PostItem\PostItemFormBinder.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\TermView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\PostItem\PostItemView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBHome.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Services\ServiceList.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\AboutUsView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationForm.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\RyanView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\DuncanView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\JustinView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\DarrenView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\fPost.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\UserDetails.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\checkout\checkout.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBConnection.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\MainLayout.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationFormBinder.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\SellingPage\SellingPageView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\ShoppingCart\ShoppingCartView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBPostItem.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Items\ItemView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\login\LoginView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Application.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\HomeDetail.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationView.java
+E:\Schoolwork\Summer2022\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\ForumList.java
+>>>>>>> 36ba2e8525f8ed8a9aa241bd37ca4d8a174051ff
