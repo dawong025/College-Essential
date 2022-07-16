@@ -150,6 +150,7 @@ public class checkout extends HorizontalLayout{
 
         TextArea totalPrice = new TextArea("Total Price");
         totalPrice.setValue("this is the total");
+        totalPrice.setReadOnly(true);
 
         payment.add(totalPrice);
 
