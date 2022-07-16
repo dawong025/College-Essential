@@ -8,12 +8,12 @@
  
 }
 
-body {
+/* body {
     background-image: url("https://cdn.discordapp.com/attachments/982032674078216210/997652262996430868/unknown.png");
     background-color: #cccccc;
     background-size: cover;
     background-position: center;
-   }
+} */
 
 .marketPlaceButton{
 background-color: black;
@@ -73,7 +73,9 @@ border: 3px solid green;
 }
 
 .searchBar{
-    background-color: rgba(211, 211, 211, 0.933);
+    /* background-color: rgba(211, 211, 211, 0.933); */
+    background-color: white;
+    margin-right: 2px;
 }
 .selector{
     background-color: white;

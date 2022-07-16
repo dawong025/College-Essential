@@ -43,12 +43,13 @@ public class HomeView extends VerticalLayout {
     HorizontalLayout hor = new HorizontalLayout();
     VerticalLayout vl = new VerticalLayout();
     private static String currTitle;
-
+    
     // Liveshare test - Darren Wong
     public HomeView() {
         // searchbar
         // adds background image
         // this.getElement().getStyle().set( "background-image" , "url('cat.jpg')" );
+        this.addClassName("background-photo");
         searchBar = new TextField();
         searchBar.setClassName("searchBar");
         searchBar.setPlaceholder("Search For Books, Furniture and More....");
@@ -60,8 +61,8 @@ public class HomeView extends VerticalLayout {
 
         // dropdown menu
         select = new Select<>();
-        select.setItems("All Catagory","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
-        select.setValue("All Catagory");
+        select.setItems("All Category","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
+        select.setValue("All Category");
         select.setClassName("selector");
 
         search = new Button("Search");
@@ -77,7 +78,7 @@ public class HomeView extends VerticalLayout {
         descrip.setClassName("description");
         add(descrip);
 
-        Button marketPlaceButton = new Button("Market Place",e->{
+        Button marketPlaceButton = new Button("Marketplace",e->{
             //clears page and shows grid of everything
             if (!comps.isEmpty()) {
                 for (Component c : comps) {
@@ -92,13 +93,13 @@ public class HomeView extends VerticalLayout {
         marketPlaceButton.setClassName("marketPlaceButton");
         marketPlaceButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
 
-        Button formButton = new Button("Form Place", ev ->{
+        Button formButton = new Button("Forum Place", ev ->{
             this.getUI().ifPresent(ui -> ui.navigate("/forumList"));
         });
         formButton.setClassName("formButton");
         formButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
 
-        Button serviceButton = new Button("Service Listing" ,event ->{
+        Button serviceButton = new Button("Service Listings" ,event ->{
             //add for service listing
         });
         serviceButton.setClassName("serviceButton");
