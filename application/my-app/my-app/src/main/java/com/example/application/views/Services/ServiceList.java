@@ -61,14 +61,16 @@ public class ServiceList extends VerticalLayout{
         
         //Fake posts to be deleted later, code below this should be altered or deleted later
         HashMap<String, String> post1 = new HashMap<String, String>();
-        post1.put("title", "Anime");
+        post1.put("title", "CSC 648 TA");
         post1.put("user", "Brendan1");
-        post1.put("description", "I really like this one anime. AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+        post1.put("school", "San Francisco State University");
+        post1.put("description", "I am in need of a teacher assistant for my class.");
 
         HashMap<String, String> post2 = new HashMap<String, String>();
-        post2.put("title", "Website");
+        post2.put("title", "CSC 510 TA");
         post2.put("user", "Brendan2");
-        post2.put("description", "This is a website. AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+        post2.put("school", "San Francisco State University");
+        post2.put("description", "I am in need of a teacher assistant for my class.");
 
         post.add(post1);
         post.add(post2);
@@ -80,18 +82,22 @@ public class ServiceList extends VerticalLayout{
 
             //Should at some point route to an url stored in the database
             Button title = new Button(i.get("title"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
+                this.getUI().ifPresent(ui -> ui.navigate("/servicePost"));
             });
 
             Button user = new Button(i.get("user"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/Account"));
             });
 
-            Button description = new Button(i.get("description"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
+            Button school = new Button(i.get("school"), e ->{
+                this.getUI().ifPresent(ui -> ui.navigate("/Account"));
             });
 
-            hv1.add(title, user, description);
+            Button description = new Button(i.get("description"), e ->{
+                this.getUI().ifPresent(ui -> ui.navigate("/servicePost"));
+            });
+
+            hv1.add(title, user, school, description);
             add(hv1);
         }
         
