@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -16,6 +17,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+@CssImport("./themes/myapp/servicelist.css")
 @PageTitle("Service Listing")
 @Route(value = "serviceList", layout = MainLayout.class)
 public class ServiceList extends VerticalLayout{
@@ -84,18 +86,26 @@ public class ServiceList extends VerticalLayout{
             Button title = new Button(i.get("title"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/servicePost"));
             });
+            title.addClassName("service-post-title");
+            title.addClassName("service-post-title-hov");
 
             Button user = new Button(i.get("user"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/Account"));
             });
+            user.addClassName("service-post-user");
+            user.addClassName("service-post-user-hov");
 
             Button school = new Button(i.get("school"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/Account"));
             });
+            school.addClassName("service-post-school");
+            school.addClassName("service-post-school-hov");
 
             Button description = new Button(i.get("description"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/servicePost"));
             });
+            description.addClassName("service-post-description");
+            description.addClassName("service-post-description-hov");
 
             hv1.add(title, user, school, description);
             add(hv1);

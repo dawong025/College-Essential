@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -16,7 +17,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-
+@CssImport("./themes/myapp/forumlist.css")
 @PageTitle("Forum List")
 @Route(value = "forumList", layout = MainLayout.class)
 public class ForumList extends VerticalLayout {
@@ -83,14 +84,20 @@ public class ForumList extends VerticalLayout {
             Button title = new Button(i.get("title"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
             });
+            title.addClassName("forum-post-title");
+            title.addClassName("forum-post-title-hov");
 
             Button user = new Button(i.get("user"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/Account"));
             });
+            user.addClassName("forum-post-user");
+            user.addClassName("forum-post-user-hov");
 
             Button description = new Button(i.get("description"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
             });
+            description.addClassName("forum-post-description");
+            description.addClassName("forum-post-description-hov");
 
             hv1.add(title, user, description);
             add(hv1);
