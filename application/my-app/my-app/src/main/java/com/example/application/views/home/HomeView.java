@@ -48,7 +48,7 @@ public class HomeView extends VerticalLayout {
     public HomeView() {
         // searchbar
         // adds background image
-        // this.getElement().getStyle().set( "background-image" , "url('cat.jpg')" );
+        //this.getElement().getStyle().set( "background-image" , "url('https://cdn.discordapp.com/attachments/982032674078216210/997652262996430868/unknown.png')" );
         this.addClassName("background-photo");
         searchBar = new TextField();
         searchBar.setClassName("searchBar");
