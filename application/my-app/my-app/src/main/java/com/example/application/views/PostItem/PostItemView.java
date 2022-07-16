@@ -57,8 +57,8 @@ public class PostItemView extends VerticalLayout{
             
             
             select.setItems(
-                "Select Catagory","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
-                select.setValue("Select Catagory");
+                "Select Category","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
+                select.setValue("Select Category");
                 vert.add(select);
 
 

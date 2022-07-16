@@ -5,7 +5,7 @@ export const addCssBlock = function(block, before = false) {
 };
 
 import { css, unsafeCSS, registerStyles } from '@vaadin/vaadin-themable-mixin';
-import $cssFromFile_0 from 'Frontend/themes/myapp/hello-grid.css';
+import $cssFromFile_0 from 'Frontend/themes/myapp/Account.css';
 const $css_0 = typeof $cssFromFile_0  === 'string' ? unsafeCSS($cssFromFile_0) : $cssFromFile_0;
 addCssBlock(`<style>${$css_0}</style>`);
 import $cssFromFile_1 from 'Frontend/themes/myapp/servicelist.css';

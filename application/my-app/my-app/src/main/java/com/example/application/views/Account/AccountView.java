@@ -19,11 +19,12 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.*;
-
+import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.component.textfield.TextField;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@CssImport("./themes/myapp/hello-grid.css")
+@CssImport("./themes/myapp/Account.css")
 @PageTitle("My Account")
 @Route(value = "Account", layout = MainLayout.class)
 public class AccountView extends Div{
@@ -32,6 +33,7 @@ public class AccountView extends Div{
         getElement().getClassList().add("hello-grid");
         setWidth("99%");
 
+        /* Name Profile Grid Area */
         Div nametag = new Div();
         nametag.addClassName("label-one");
 
@@ -45,17 +47,33 @@ public class AccountView extends Div{
         HorizontalLayout h1 = new HorizontalLayout(img1, name);
         h1.addClassName("label-one");
 
-        Div contactDiv = new Div();
-        H3 contact = new H3("Contact Me");
-        contact.addClassName("contact-me");
-        HorizontalLayout h2 = new HorizontalLayout(contact);
-        h2.addClassName("label-two");
-        contactDiv.addClassName("label-two");
+        /* Contact Grid Area */
+        Div personalDiv = new Div();
+        H3 aboutMe = new H3("About Me");
+        aboutMe.addClassName("about-me");
+        
+        H6 aboutText1 = new H6("Hi, I'm Kelly! Nice to meet you!");
+        H6 aboutText2 = new H6("CS @ Northwestern");
+        
+        VerticalLayout aboutText = new VerticalLayout(aboutText1, aboutText2);
+        aboutText.addClassName("aboutText");
+        
+        H3 contactMe = new H3("Contact Me");
+        contactMe.addClassName("contact-me");
+        H6 contactText1 = new H6("For business inquiries only: ksmith292@gmail.com");
+        VerticalLayout contactText = new VerticalLayout(contactText1);
+        contactText.addClassName("contact-text");
+        VerticalLayout personalInfo = new VerticalLayout(aboutMe, aboutText, contactMe, contactText);
+        personalInfo.addClassName("label-two");
+        
 
+
+        /* Ratings Grid Area */
         Div ratingsDiv = new Div();
         H3 ratings = new H3("Ratings");
         ratings.addClassName("ratings");
 
+        
         H6 ratingAuthor1 = new H6 ("@Reviewer1");
         ratingAuthor1.addClassName("rating-author");
         Span datePosted1 = new Span ("12/17/2022");
@@ -64,18 +82,41 @@ public class AccountView extends Div{
         commentText1.addClassName("comment-text");
         VerticalLayout rating1 = new VerticalLayout(ratingAuthor1, datePosted1, commentText1);
         rating1.addClassName("single-rating");
+
+        H6 ratingAuthor2 = new H6 ("@Reviewer2");
+        ratingAuthor2.addClassName("rating-author");
+        Span datePosted2 = new Span ("12/17/2022");
+        datePosted2.addClassName("date-posted");
+        H6 commentText2 = new H6("Kelly sold me a pair of Sony Headphones");
+        commentText2.addClassName("comment-text");
+        VerticalLayout rating2 = new VerticalLayout(ratingAuthor2, datePosted2, commentText2);
+        rating2.addClassName("single-rating");
+
+        H6 ratingAuthor3 = new H6 ("@Reviewer3");
+        ratingAuthor3.addClassName("rating-author");
+        Span datePosted3 = new Span ("12/17/2022");
+        datePosted3.addClassName("date-posted");
+        H6 commentText3 = new H6("Kelly sold me a nice couch from IKEA");
+        commentText3.addClassName("comment-text");
+        VerticalLayout rating3 = new VerticalLayout(ratingAuthor3, datePosted3, commentText3);
+        rating3.addClassName("single-rating");
         
-        VerticalLayout h3 = new VerticalLayout(ratings, rating1);
+        VerticalLayout allRatings = new VerticalLayout(rating1, rating2, rating3);
+        allRatings.addClassName("all-ratings");
+        
+        TextArea newRatingField = new TextArea();
+        newRatingField.addClassName("new-rating-text");
+        newRatingField.setPlaceholder("Add a new rating for this user");
+
+        VerticalLayout h3 = new VerticalLayout(ratings, allRatings, newRatingField);
         h3.addClassName("label-three");
         ratingsDiv.addClassName("label-three");
-        rating1.addClassName("label-three");
-   
         add(nametag);
-        add(contactDiv);
+        add(personalDiv);
         add(ratingsDiv);
 
         add(h1);
-        add(h2);
+        add(personalInfo);
         add(h3);
     }
 }
