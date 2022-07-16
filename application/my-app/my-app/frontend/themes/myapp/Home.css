@@ -1,0 +1,85 @@
+
+
+
+.buttonLayout{
+    margin: auto;
+    margin-top:10%;
+  width: 50%;
+ 
+}
+
+body {
+    background-image: url("https://cdn.discordapp.com/attachments/982032674078216210/997652262996430868/unknown.png");
+    background-color: #cccccc;
+    background-size: cover;
+    background-position: center;
+   }
+
+.marketPlaceButton{
+background-color: black;
+color: whitesmoke;
+}
+
+.marketPlaceButton:hover{
+    background-color: whitesmoke;
+    color: black;
+
+}
+
+
+.formButton{
+    background-color: black;
+color: whitesmoke;
+}
+
+.formButton:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+
+.serviceButton{
+    background-color: black;
+    color: whitesmoke;
+}
+
+.serviceButton:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+
+.horItemLayout{
+border: 3px solid green;
+}
+
+.vertItemLayout{
+    border: 3px solid green;
+    background-color: black;
+}
+
+.buttonItem{
+    background-color: black;
+    
+}
+
+.buttonItem:hover{
+    background-color: whitesmoke;
+    color: black;
+}
+
+.description{
+    margin: auto;
+    margin-top: 10%;
+    font-size: 10px;
+}
+
+.searchBar{
+    background-color: rgba(211, 211, 211, 0.933);
+}
+.selector{
+    background-color: white;
+}
+.searchButton{
+    background-color: white;
+    color:black;
+    
+}
