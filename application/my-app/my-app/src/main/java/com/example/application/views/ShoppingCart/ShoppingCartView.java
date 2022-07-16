@@ -15,6 +15,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
 import com.vaadin.flow.component.dependency.StyleSheet;
 
 
@@ -59,7 +60,11 @@ public class ShoppingCartView extends VerticalLayout{
 
         cart.add(item1);
         cart.add(item2);
-        // System.out.println("items added to cart");
+
+        H3 header2 = new H3("Recently Viewed: ");
+        add(header2);
+        setAlignSelf(Alignment.END, header2);
+
 
 
         // System.out.println("Starting to iterate");
@@ -67,13 +72,6 @@ public class ShoppingCartView extends VerticalLayout{
             HorizontalLayout horizontalSC = new HorizontalLayout();
            
 
-            // // System.out.println(i.get("title"));
-            // horizontal.add(i.get("title"));
-            // horizontal.add(i.get("image"));
-            // horizontal.add(i.get("price"));
-            // horizontal.add(i.get("quantity"));
-
-            // add(horizontal);
 
             horizontalSC.setWidthFull();
 
@@ -143,6 +141,7 @@ public class ShoppingCartView extends VerticalLayout{
 
             String recentUrl = ("image");
 
+
             TextArea recentlyViewed = new TextArea("Recently Viewed:");
             recentlyViewed.setValue(i.get("title"));
             recentlyViewed.setReadOnly(true);
@@ -159,10 +158,13 @@ public class ShoppingCartView extends VerticalLayout{
 
             // add all the layouts to the page
             // todo loop recently viewed
+
             horizontalSC.addClassName("shoppingCartLayout");
             horizontalSC.add(image, title, quantLayout, priceLayout);
             horizontalSC.setJustifyContentMode(JustifyContentMode.START);
             horizontalSC.setAlignItems(Alignment.CENTER);
+
+
 
 
             HorizontalLayout finalLayout = new HorizontalLayout();
@@ -170,10 +172,10 @@ public class ShoppingCartView extends VerticalLayout{
             finalLayout.setAlignItems(Alignment.CENTER);
             
             add(finalLayout);
+
+            setAlignSelf(Alignment.STRETCH, finalLayout);
         } 
 
-
-        // Grid<HashMap<String, String>> grid = new Grid<>();
 
 
     }
