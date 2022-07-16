@@ -17,7 +17,7 @@
 
 
 .background-photo{
-    background-image: url("https://cdn.discordapp.com/attachments/982032674078216210/997652262996430868/unknown.png");
+    background-image: url("https://cdn.discordapp.com/attachments/982032674078216210/997942932478890094/wooden-table-with-blurred-background.jpg");
     background-color: #cccccc;
     background-size: cover;
     height: 100%;
@@ -109,13 +109,14 @@ border: 3px solid green;
 .description{
     margin: auto;
     margin-top: 10%;
-    font-size: 10px;
+    font-size: 20px;
+    color: white;
 }
 
 .searchBar{
-    /* background-color: rgba(211, 211, 211, 0.933); */
-    background-color: white;
-    margin-right: 2px;
+    background-color: gray;
+    
+    /* margin-right: 2px; */
 }
 .selector{
     background-color: white;
