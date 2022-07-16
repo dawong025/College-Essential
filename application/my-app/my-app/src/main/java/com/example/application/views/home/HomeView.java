@@ -77,7 +77,7 @@ public class HomeView extends VerticalLayout {
         H3 descrip = new H3("Get Started By clicking one of the three button or searching for our products with the search bar");
         descrip.setClassName("description");
         add(descrip);
-
+        comps.add(descrip);
         Button marketPlaceButton = new Button("Marketplace",e->{
             //clears page and shows grid of everything
             if (!comps.isEmpty()) {
@@ -100,7 +100,8 @@ public class HomeView extends VerticalLayout {
         formButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
 
         Button serviceButton = new Button("Service Listings" ,event ->{
-            //add for service listing
+            //add for service listing serviceList
+            this.getUI().ifPresent(ui -> ui.navigate("/serviceList"));
         });
         serviceButton.setClassName("serviceButton");
         serviceButton.addThemeVariants(ButtonVariant.LUMO_LARGE);

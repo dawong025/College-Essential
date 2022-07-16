@@ -23,6 +23,7 @@ import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Footer;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Nav;
@@ -120,6 +121,8 @@ public class MainLayout extends AppLayout {
         hv.setPadding(true);
         addToNavbar(true, createHeaderContent(), hv);
         addToDrawer(createDrawerContent());
+        //setAppFooterInner(createFooter());
+        
 
     }
 
@@ -198,6 +201,10 @@ public class MainLayout extends AppLayout {
     private Footer createFooter() {
         Footer layout = new Footer();
         layout.addClassNames("footer");
+        HorizontalLayout hLayout = new HorizontalLayout();
+        H3 n = new H3("Hi");
+        hLayout.add(n);
+        layout.add(hLayout);
 
         return layout;
     }
