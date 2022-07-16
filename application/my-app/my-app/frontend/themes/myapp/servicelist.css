@@ -1,0 +1,31 @@
+.service-post-title{
+    color: black;
+}
+
+.service-post-title-hov:hover{
+    color: blue;
+}
+
+.service-post-user{
+    color: black;
+}
+
+.service-post-user-hov:hover{
+    color: blue;
+}
+
+.service-post-school{
+    color: black;
+}
+
+.service-post-school-hov:hover{
+    color: blue;
+}
+
+.service-post-description{
+    color: black;
+}
+
+.service-post-description-hov:hover{
+    color: blue;
+}

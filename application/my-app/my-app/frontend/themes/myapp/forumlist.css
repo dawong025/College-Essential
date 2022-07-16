@@ -1,0 +1,23 @@
+.forum-post-title{
+    color: black;
+}
+
+.forum-post-title-hov:hover{
+    color: blue;
+}
+
+.forum-post-user{
+    color: black;
+}
+
+.forum-post-user-hov:hover{
+    color: blue;
+}
+
+.forum-post-description{
+    color: black;
+}
+
+.forum-post-description-hov:hover{
+    color: blue;
+}
