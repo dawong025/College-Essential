@@ -1,68 +1,33 @@
-<<<<<<< HEAD
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\HomeDetail.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBPostItem.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationFormBinder.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\PostItem\PostItemView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\SellingPage\SellingPageView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Services\ServiceList.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Application.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\UserDetails.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\ForumPost.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\messages\MessageView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\PostItemDetail.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBConnection.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\fPost.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\MainLayout.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\home\HomeView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\PostItem\PostItemFormBinder.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationForm.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\JustinView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Account\AccountView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\DuncanView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\DarrenView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBHome.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\AboutUsView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Items\ItemView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\RyanView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\TermView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\BrendanView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBForumList.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\login\LoginView.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\ForumList.java
-C:\Users\Admin\Documents\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\ShoppingCart\ShoppingCartView.java
-=======
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBForumList.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Account\AccountView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\home\HomeView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\AboutUsView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\SellingPage\SellingPageView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\fPost.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\messages\MessageView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBPostItem.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\RyanView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\HomeDetail.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\login\LoginView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\ForumList.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Application.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\PostItem\PostItemFormBinder.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\DuncanView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\BrendanView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\JustinView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationForm.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Services\ServiceList.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBHome.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationFormBinder.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\DarrenView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\ShoppingCart\ShoppingCartView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\ForumPost.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\MainLayout.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Items\ItemView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Services\ServicePost.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\PostItem\PostItemView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\UserDetails.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\PostItemDetail.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBConnection.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationView.java
-C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\TermView.java
->>>>>>> f794119c4305a5f35b68ea99a2f52b5093a3b385
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBConnection.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\fPost.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\SellingPage\SellingPageView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\TermView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Account\AccountView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\ForumList.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBHome.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\AboutUsView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBForumList.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Items\ItemView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBPostItem.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationForm.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationFormBinder.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\HomeDetail.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\login\LoginView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\JustinView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\BrendanView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\DuncanView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\RyanView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\PostItemDetail.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\UserDetails.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\messages\MessageView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Application.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\ShoppingCart\ShoppingCartView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\MainLayout.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Services\ServiceList.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Services\ServicePost.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\PostItem\PostItemFormBinder.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\DarrenView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\ForumPost.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\PostItem\PostItemView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\registration\RegistrationView.java
+C:\Users\ryant\OneDrive\Documents\SE project\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\home\HomeView.java

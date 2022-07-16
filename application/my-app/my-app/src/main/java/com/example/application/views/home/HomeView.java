@@ -100,7 +100,8 @@ public class HomeView extends VerticalLayout {
         formButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
 
         Button serviceButton = new Button("Service Listings" ,event ->{
-            //add for service listing
+            //add for service listing serviceList
+            this.getUI().ifPresent(ui -> ui.navigate("/serviceList"));
         });
         serviceButton.setClassName("serviceButton");
         serviceButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
