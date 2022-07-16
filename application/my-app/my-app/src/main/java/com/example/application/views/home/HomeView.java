@@ -11,6 +11,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -66,10 +67,15 @@ public class HomeView extends VerticalLayout {
         search = new Button("Search");
         search.setClassName("searchButton");
 
+
         HorizontalLayout hv = new HorizontalLayout(searchBar, select,search);
         hv.setSpacing(false);
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
         add(hv);
+
+        H3 descrip = new H3("Get Started By clicking one of the three button or searching for our products with the search bar");
+        descrip.setClassName("description");
+        add(descrip);
 
         Button marketPlaceButton = new Button("Market Place",e->{
             //clears page and shows grid of everything
@@ -105,12 +111,6 @@ public class HomeView extends VerticalLayout {
         add(buttonLayout);
         comps.add(buttonLayout);
 
-        
-        
-
-       
-        
-        
 
         ArrayList<Button> buttonList = new ArrayList<>();
         hor.setClassName("horItemLayout");
@@ -133,7 +133,6 @@ public class HomeView extends VerticalLayout {
             }
 
             popPage();
-            // gets button for specific item
 
         });
 
@@ -178,8 +177,8 @@ public class HomeView extends VerticalLayout {
                 count = 0;
             }
             count++;
-
         }
+
         hor.setWidthFull();
         hor.setJustifyContentMode(JustifyContentMode.AROUND);
         add(hor);
