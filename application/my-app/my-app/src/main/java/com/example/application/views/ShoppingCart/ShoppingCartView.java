@@ -29,7 +29,7 @@ import java.util.HashMap;
 @PageTitle("Shopping Cart")//maybe make to name of web
 @Route(value = "ShoppingCart", layout = MainLayout.class)
 
-public class ShoppingCartView extends VerticalLayout{
+public class ShoppingCartView extends HorizontalLayout{
 
     String title;
     String image;
@@ -38,10 +38,10 @@ public class ShoppingCartView extends VerticalLayout{
 
     public ShoppingCartView(){
         // todo make bigger and underline
-        H3 h1 = new H3("Shopping Cart");
+        // H3 h1 = new H3("Shopping Cart");
        
     
-        add(h1); 
+        // add(h1); 
 
         ArrayList<HashMap<String, String>> cart = new ArrayList<HashMap<String, String>>(); 
 
@@ -61,13 +61,10 @@ public class ShoppingCartView extends VerticalLayout{
         cart.add(item1);
         cart.add(item2);
 
-        H3 header2 = new H3("Recently Viewed: ");
-        add(header2);
-        setAlignSelf(Alignment.END, header2);
-
-
-
-        // System.out.println("Starting to iterate");
+        VerticalLayout shoppingCartItems = new VerticalLayout();
+        H3 h1 = new H3("Shopping Cart");
+       
+        shoppingCartItems.add(h1);
         for (HashMap<String, String> i: cart){
             HorizontalLayout horizontalSC = new HorizontalLayout();
            
@@ -133,16 +130,34 @@ public class ShoppingCartView extends VerticalLayout{
             priceLayout.setSpacing(true);
             priceLayout.setAlignItems(Alignment.BASELINE);
 
+            horizontalSC.addClassName("shoppingCartLayout");
+            horizontalSC.add(image, title, quantLayout, priceLayout);
+            horizontalSC.setJustifyContentMode(JustifyContentMode.START);
+            horizontalSC.setAlignItems(Alignment.CENTER);
+
+            shoppingCartItems.add(horizontalSC);
+
+        }
+
+        add(shoppingCartItems);
+        
 
 
-            // recently viewed vertical layout
-            VerticalLayout verticalLayout = new VerticalLayout();
-            verticalLayout.setAlignItems(Alignment.END);
+
+        VerticalLayout recentlyAdded = new VerticalLayout();
+
+        H3 header2 = new H3("Recently Viewed");
+        recentlyAdded.add(header2);
+
+        for (HashMap<String, String> i: cart)
+        {
 
             String recentUrl = ("image");
 
+            VerticalLayout recentlyAddedItem = new VerticalLayout();
 
-            TextArea recentlyViewed = new TextArea("Recently Viewed:");
+
+            TextArea recentlyViewed = new TextArea();
             recentlyViewed.setValue(i.get("title"));
             recentlyViewed.setReadOnly(true);
             recentlyViewed.setWidth("150px");
@@ -151,38 +166,19 @@ public class ShoppingCartView extends VerticalLayout{
             Image recentImage = new Image(recentUrl,"");
             recentImage.setHeight("200px");
             recentImage.setWidth("150px");
-            verticalLayout.addClassName("verticalLayout");
-            verticalLayout.add(recentlyViewed, recentImage);
+            recentlyAddedItem.addClassName("verticalLayout");
+            recentlyAddedItem.add(recentlyViewed, recentImage);
+            recentlyAddedItem.setAlignItems(Alignment.CENTER);
+            recentlyAdded.add(recentlyAddedItem);
 
 
+        }
 
-            // add all the layouts to the page
-            // todo loop recently viewed
-
-            horizontalSC.addClassName("shoppingCartLayout");
-            horizontalSC.add(image, title, quantLayout, priceLayout);
-            horizontalSC.setJustifyContentMode(JustifyContentMode.START);
-            horizontalSC.setAlignItems(Alignment.CENTER);
+        add(recentlyAdded);
 
 
-
-
-            HorizontalLayout finalLayout = new HorizontalLayout();
-            finalLayout.add(horizontalSC, verticalLayout);
-            finalLayout.setAlignItems(Alignment.CENTER);
-            
-            add(finalLayout);
-
-            setAlignSelf(Alignment.STRETCH, finalLayout);
         } 
-
 
 
     }
     
-
-
-
-
-    
-}
