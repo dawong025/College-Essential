@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 
 
-@CssImport("./themes/myapp/shopping-cart.css")
+@CssImport("./themes/myapp/checkout.css")
 
 @PageTitle("checkout")//maybe make to name of web
 @Route(value = "checkout", layout = MainLayout.class)
@@ -156,6 +156,8 @@ public class checkout extends HorizontalLayout{
 
 
         add(payment);
+        payment.addClassName("box");
+
 
         //Vertical layout for user information
         VerticalLayout userInfo = new VerticalLayout();
@@ -170,8 +172,11 @@ public class checkout extends HorizontalLayout{
         TextArea shippingAddress = new TextArea("Shipping Address:");
         shippingAddress.setValue("this is someone's shipping address");
         shippingAddress.setReadOnly(true);
+
         Button changeShippingAddress = new Button("change");
-        shippingAddressLayout.add(shippingAddress,changeShippingAddress);
+        changeShippingAddress.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        shippingAddressLayout.add(shippingAddress, changeShippingAddress);
+        shippingAddressLayout.setAlignItems(Alignment.BASELINE);
 
 
 
@@ -184,6 +189,7 @@ public class checkout extends HorizontalLayout{
         paymentMethod.setReadOnly(true);
 
         Button changePayment = new Button("change");
+        changePayment.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         paymentMethodLayout.add(paymentMethod, changePayment);
         paymentMethodLayout.setAlignItems(Alignment.BASELINE);
 
@@ -200,19 +206,22 @@ public class checkout extends HorizontalLayout{
         billingAddress.setReadOnly(true);
 
         Button changeBillingAddress = new Button("change");
+        changeBillingAddress.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        
         billingAddressLayout.add(billingAddress, changeBillingAddress);
         billingAddressLayout.setAlignItems(Alignment.BASELINE);
 
         //Place your order button
         Button placeYourOrder = new Button("Place Your Order");
-        placeYourOrder.addThemeVariants(ButtonVariant.LUMO_ICON);
+        placeYourOrder.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
 
 
 
         //add all to vertical layout
-        userInfo.add(h3, shippingAddress, paymentMethodLayout, billingAddressLayout, placeYourOrder);
+        userInfo.add(h3, shippingAddressLayout, paymentMethodLayout, billingAddressLayout, placeYourOrder);
         add(userInfo);
+        userInfo.addClassName("box");
 
         
 
