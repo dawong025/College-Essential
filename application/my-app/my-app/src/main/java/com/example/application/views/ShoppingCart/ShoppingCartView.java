@@ -63,6 +63,12 @@ public class ShoppingCartView extends HorizontalLayout{
 
         VerticalLayout shoppingCartItems = new VerticalLayout();
         H3 h1 = new H3("Shopping Cart");
+
+        Button checkout = new Button("checkout", e ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
+        });
+        checkout.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
        
         shoppingCartItems.add(h1);
         for (HashMap<String, String> i: cart){
@@ -97,6 +103,7 @@ public class ShoppingCartView extends HorizontalLayout{
             image.setTitle(i.get("image"));
             quantity.setValue(i.get("quantity"));
             price.setValue(i.get("price"));
+            price.setReadOnly(true);
             
             
             // layout for the quanitity and buttons
@@ -139,6 +146,7 @@ public class ShoppingCartView extends HorizontalLayout{
 
         }
 
+        shoppingCartItems.add(checkout);
         add(shoppingCartItems);
         
 
