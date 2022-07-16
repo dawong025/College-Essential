@@ -15,6 +15,15 @@
     background-position: center;
 } */
 
+
+.background-photo{
+    background-image: url("https://cdn.discordapp.com/attachments/982032674078216210/997652262996430868/unknown.png");
+    background-color: #cccccc;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
+
 .marketPlaceButton{
 background-color: black;
 color: whitesmoke;
