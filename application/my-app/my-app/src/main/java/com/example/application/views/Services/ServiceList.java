@@ -78,14 +78,14 @@ public class ServiceList extends VerticalLayout{
         post.add(post1);
         post.add(post2);
 
-        
+        int servicePostCounter = 1; //Keeps count of the service posts
         for(HashMap<String, String> i: post){
             HorizontalLayout hv1 = new HorizontalLayout();
             hv1.addClassName("service-post");
             hv1.setWidthFull();
 
             //Should at some point route to an url stored in the database
-            Button title = new Button("Title: " + i.get("title"), e ->{
+            Button title = new Button("(" + servicePostCounter + ")Title: " + i.get("title"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/servicePost"));
             });
             title.addClassName("service-post-title");
@@ -111,6 +111,8 @@ public class ServiceList extends VerticalLayout{
 
             hv1.add(title, user, school, description);
             add(hv1);
+
+            servicePostCounter++;
         }
         
     }
