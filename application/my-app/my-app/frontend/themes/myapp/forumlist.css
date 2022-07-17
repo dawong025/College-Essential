@@ -1,3 +1,10 @@
+.forum-post{
+    background-color: whitesmoke;
+    border-style: solid;
+    border-color: black;
+    margin: 0px;
+}
+
 .forum-post-title{
     color: black;
 }
@@ -21,3 +28,15 @@
 .forum-post-description-hov:hover{
     color: blue;
 }
+
+.forum-background {
+    min-height: 100%;
+    background-color: lightblue;
+    /*background-image: url(../../img/background.png); work in progress*/
+    letter-spacing: normal;
+    margin: 0;
+    font-family: "Anton", sans-serif;
+    overflow: hidden;
+  }
+  
+  

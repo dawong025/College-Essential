@@ -33,6 +33,7 @@ public class ServiceList extends VerticalLayout{
     });
 
     public ServiceList(){
+        this.addClassName("service-background");
 
         //Code for the text field
         TextField searchBar = new TextField();
@@ -80,22 +81,23 @@ public class ServiceList extends VerticalLayout{
         
         for(HashMap<String, String> i: post){
             HorizontalLayout hv1 = new HorizontalLayout();
+            hv1.addClassName("service-post");
             hv1.setWidthFull();
 
             //Should at some point route to an url stored in the database
-            Button title = new Button(i.get("title"), e ->{
+            Button title = new Button("Title: " + i.get("title"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/servicePost"));
             });
             title.addClassName("service-post-title");
             title.addClassName("service-post-title-hov");
 
-            Button user = new Button(i.get("user"), e ->{
+            Button user = new Button("User: " + i.get("user"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/Account"));
             });
             user.addClassName("service-post-user");
             user.addClassName("service-post-user-hov");
 
-            Button school = new Button(i.get("school"), e ->{
+            Button school = new Button("School: " + i.get("school"), e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/Account"));
             });
             school.addClassName("service-post-school");
