@@ -88,11 +88,9 @@ public class MainLayout extends AppLayout {
         setPrimarySection(Section.DRAWER);
 
         Text Title = new Text("College Essentials");
-        // LoginView logStat = new LoginView();
         HorizontalLayout hv;
         Button cart = new Button("Cart");
         cart.addClassName("cartButton");
-        // log.addThemeVariants(ButtonVariant.LUMO_LARGE);
         cart.addClickListener(e -> cart.getUI().ifPresent(ui -> ui.navigate("/ShoppingCart")));
 
         // change login and logout buttons
@@ -112,28 +110,18 @@ public class MainLayout extends AppLayout {
             hv = new HorizontalLayout(logout, cart);
 
         }
-
-        // reg.addThemeVariants(ButtonVariant.LUMO_LARGE);
-        // HorizontalLayout hv = new HorizontalLayout(log,reg,cart);
         hv.addClassNames("hv");
         hv.setHeight("3.5em");
         hv.setAlignItems(Alignment.CENTER);
         hv.setPadding(true);
         addToNavbar(true, createHeaderContent(), hv);
         addToDrawer(createDrawerContent());
-        //setAppFooterInner(createFooter());
         
-
-    }
-
-    public void setLogout() {
-
     }
 
     public HorizontalLayout setUnLogin() {
         Button log = new Button("Log in");
         log.addClassName("logInButton");
-        // log.addThemeVariants(ButtonVariant.LUMO_LARGE);
         log.addClickListener(e -> log.getUI().ifPresent(ui -> ui.navigate("/login")));
         Button reg = new Button("Register");
         reg.addClassName("regButton");
@@ -189,10 +177,10 @@ public class MainLayout extends AppLayout {
 
                 new MenuItemInfo("About Us", "la la-adjust", AboutUsView.class), //
                 // added for registration
-                new MenuItemInfo("Post", "la la-adjust", PostItemView.class),
-                new MenuItemInfo("Buy", "la la-adjust", SellingPageView.class),
-                new MenuItemInfo("Forum", "la la-adjust", ForumList.class),
-                new MenuItemInfo("Services", "la la-adjust", ServiceList.class),
+                new MenuItemInfo("Post Items", "la la-adjust", PostItemView.class),
+               // new MenuItemInfo("Buy", "la la-adjust", SellingPageView.class),
+                new MenuItemInfo("Forum Listing", "la la-adjust", ForumList.class),
+                new MenuItemInfo("Services Listing", "la la-adjust", ServiceList.class),
                 
 
         };
