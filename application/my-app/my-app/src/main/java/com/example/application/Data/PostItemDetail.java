@@ -14,6 +14,12 @@ public class PostItemDetail {
    @NotBlank
    private String condition;
 
+   @NotBlank
+   private String price;
+
+   @NotBlank
+   private String catagory;//make getter and setters
+
    public String getCondition(){
     return condition;
    }

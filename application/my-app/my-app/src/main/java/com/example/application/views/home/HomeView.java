@@ -7,6 +7,7 @@ import com.example.application.Data.DBHome;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Items.ItemView;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -71,6 +72,7 @@ public class HomeView extends VerticalLayout {
 
         search = new Button("Search");
         search.setClassName("searchButton");
+        search.setClassName("searchButton");
         search.addClassName("home-search-button");
 
 
@@ -81,6 +83,9 @@ public class HomeView extends VerticalLayout {
 
         H1 descrip = new H1("Get Started By clicking one of the three button or searching for our products with the search bar");
         descrip.setClassName("description");
+        descrip.addClickListener(event ->{
+            System.out.println("it worked");
+        });
         
         comps.add(descrip);
         Button marketPlaceButton = new Button("Marketplace",e->{
@@ -165,8 +170,13 @@ public class HomeView extends VerticalLayout {
                     currTitle = key;
                     this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
                 });
+                // H3 b = new H3(key);
+                //     b.addClickListener(e->{
+                //         currTitle = key;
+                //         this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
+                //     });
                 b.setClassName("buttonItem");
-                b.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+                //b.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
                 vl.add(b);
                 hor.add(vl);
                 comps.add(hor);

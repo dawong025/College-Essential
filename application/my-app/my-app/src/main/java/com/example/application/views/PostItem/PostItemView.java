@@ -30,15 +30,13 @@ import java.util.stream.Stream;
 @Route(value = "postItem", layout = MainLayout.class)
 
 public class PostItemView extends VerticalLayout{
-    private File file;
-    private String originalFileName;
-    private String mimeType;
     private Button postButton;
     private TextField Title;
     private TextField url;
     private Select<String> condition;
     private VerticalLayout vert;
     private TextField price;
+    Select<String> catagory;
 
     public PostItemView(){
             
@@ -68,7 +66,7 @@ public class PostItemView extends VerticalLayout{
 
             h1.add(condition);
             
-            Select<String> catagory = new Select<>();
+            catagory = new Select<>();
             catagory.setLabel("Select Catagory of item");
             
             catagory.setItems(
