@@ -24,6 +24,37 @@
     overflow: hidden;
 }
 
+.home-search-bar{
+    border-radius: 25px;
+    background-position: left top;
+    padding-bottom: 10px;
+    width: 200px;
+    height: 25px;
+    margin-top: 2px;
+    text-align: center;
+}
+
+.home-dropdown-bar{
+    border-radius: 25px;
+    background-position: left top;
+    background-color: white;
+    width: 150px;
+    height: 25px;
+    margin-top: 2px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.home-search-button{
+    border-radius: 25px;
+    background-position: left top;
+    width: 150px;
+    height: 25px;
+    padding: 18px;
+    margin-bottom: 65px;
+    text-align: center;
+}
+
 .marketPlaceButton{
 background-color: black;
 color: whitesmoke;
@@ -83,7 +114,7 @@ border: 3px solid green;
 }
 
 .searchBar{
-    background-color: gray;
+    background-color: white;
     
     /* margin-right: 2px; */
 }

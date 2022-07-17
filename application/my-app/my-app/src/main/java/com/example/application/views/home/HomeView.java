@@ -11,6 +11,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -56,6 +57,7 @@ public class HomeView extends VerticalLayout {
         searchBar.setPrefixComponent(VaadinIcon.SEARCH.create());
         searchBar.setClearButtonVisible(true);
         searchBar.setWidth("40em");
+        searchBar.addClassName("home-search-bar");
 
         
 
@@ -64,9 +66,12 @@ public class HomeView extends VerticalLayout {
         select.setItems("All Category","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
         select.setValue("All Category");
         select.setClassName("selector");
+        select.addClassName("home-dropdown-bar");
+
 
         search = new Button("Search");
         search.setClassName("searchButton");
+        search.addClassName("home-search-button");
 
 
         HorizontalLayout hv = new HorizontalLayout(searchBar, select,search);
@@ -74,7 +79,7 @@ public class HomeView extends VerticalLayout {
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
         add(hv);
 
-        H3 descrip = new H3("Get Started By clicking one of the three button or searching for our products with the search bar");
+        H1 descrip = new H1("Get Started By clicking one of the three button or searching for our products with the search bar");
         descrip.setClassName("description");
         
         comps.add(descrip);
