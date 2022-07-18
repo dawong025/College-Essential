@@ -71,11 +71,11 @@ public class PostItemView extends VerticalLayout{
             h1.add(condition);
             
             catagory = new Select<>();
-            catagory.setLabel("Select Catagory of item");
+            catagory.setLabel("Select Category of item");
             
             catagory.setItems(
-                "Textbook", "School", "Supplies", "Furniture", "Lifestyle");
-               catagory.setPlaceholder("Select Catagory");
+                "Textbook", "School Supplies", "Furniture", "Lifestyle", "Miscellaneous");
+               catagory.setPlaceholder("Select Category");
                 h1.add(catagory);
 
             price = new TextField("Enter Price");

@@ -65,7 +65,7 @@ public class HomeView extends VerticalLayout {
 
         // dropdown menu
         select = new Select<>();
-        select.setItems("All Categories","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
+        select.setItems("All Categories","Textbook", "School Supplies", "Furniture", "Lifestyle", "Miscellaneous");
         select.setValue("All Categories");
         select.setClassName("selector");
         select.addClassName("home-dropdown-bar");
@@ -226,6 +226,10 @@ public class HomeView extends VerticalLayout {
         hor.setWidthFull();
         hor.setJustifyContentMode(JustifyContentMode.AROUND);
         add(hor);
+        HorizontalLayout footer = new HorizontalLayout();
+        footer = new FooterView().getFooter();
+        add(footer);
+        comps.add(footer);
 
 
     }
