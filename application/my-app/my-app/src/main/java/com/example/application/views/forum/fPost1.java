@@ -19,27 +19,32 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+@CssImport("./themes/myapp/forumpost.css")
 @PageTitle("Forum Page")
 @Route(value = "fPost1", layout = MainLayout.class)
 public class fPost1 extends VerticalLayout{
     public fPost1(){
         this.addClassName("forum-background");
+
         HashMap<String, String> post1 = new HashMap<String, String>();
         post1.put("title", "Anime");
         post1.put("user", "Brendan1");
         post1.put("description", "I really like this one anime. AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 
         H2 title = new H2(post1.get("title"));
+        title.addClassName("title");
 
-        TextField user = new TextField("User");
+        TextField user = new TextField("");
+        user.addClassName("user");
         user.setValue(post1.get("user"));
         user.setReadOnly(true);
 
-        TextArea description = new TextArea("Description");
+        TextArea description = new TextArea("");
         description.setWidth("800px");
         description.setMinHeight("200px");
         description.setValue(post1.get("description"));
         description.setReadOnly(true);
+        description.addClassName("description");
 
         add(
             title,

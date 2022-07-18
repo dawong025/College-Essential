@@ -11,18 +11,31 @@ addCssBlock(`<style>${$css_0}</style>`);
 import $cssFromFile_1 from 'Frontend/themes/myapp/shopping-cart.css';
 const $css_1 = typeof $cssFromFile_1  === 'string' ? unsafeCSS($cssFromFile_1) : $cssFromFile_1;
 addCssBlock(`<style>${$css_1}</style>`);
+<<<<<<< HEAD
 import $cssFromFile_2 from 'Frontend/themes/myapp/servicelist.css';
+=======
+import $cssFromFile_2 from 'Frontend/themes/myapp/Post.css';
+>>>>>>> c8735ee83bfb01a5203a454100f36ee3e01ed14c
 const $css_2 = typeof $cssFromFile_2  === 'string' ? unsafeCSS($cssFromFile_2) : $cssFromFile_2;
 addCssBlock(`<style>${$css_2}</style>`);
-import $cssFromFile_3 from 'Frontend/themes/myapp/checkout.css';
+import $cssFromFile_3 from 'Frontend/themes/myapp/servicelist.css';
 const $css_3 = typeof $cssFromFile_3  === 'string' ? unsafeCSS($cssFromFile_3) : $cssFromFile_3;
 addCssBlock(`<style>${$css_3}</style>`);
-import $cssFromFile_4 from 'Frontend/themes/myapp/forumlist.css';
+import $cssFromFile_4 from 'Frontend/themes/myapp/checkout.css';
 const $css_4 = typeof $cssFromFile_4  === 'string' ? unsafeCSS($cssFromFile_4) : $cssFromFile_4;
 addCssBlock(`<style>${$css_4}</style>`);
-import $cssFromFile_5 from 'Frontend/themes/myapp/Home.css';
+import $cssFromFile_5 from 'Frontend/themes/myapp/forumlist.css';
 const $css_5 = typeof $cssFromFile_5  === 'string' ? unsafeCSS($cssFromFile_5) : $cssFromFile_5;
 addCssBlock(`<style>${$css_5}</style>`);
+import $cssFromFile_6 from 'Frontend/themes/myapp/makeforumpost.css';
+const $css_6 = typeof $cssFromFile_6  === 'string' ? unsafeCSS($cssFromFile_6) : $cssFromFile_6;
+addCssBlock(`<style>${$css_6}</style>`);
+import $cssFromFile_7 from 'Frontend/themes/myapp/forumpost.css';
+const $css_7 = typeof $cssFromFile_7  === 'string' ? unsafeCSS($cssFromFile_7) : $cssFromFile_7;
+addCssBlock(`<style>${$css_7}</style>`);
+import $cssFromFile_8 from 'Frontend/themes/myapp/Home.css';
+const $css_8 = typeof $cssFromFile_8  === 'string' ? unsafeCSS($cssFromFile_8) : $cssFromFile_8;
+addCssBlock(`<style>${$css_8}</style>`);
 
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-list/iron-list.js';

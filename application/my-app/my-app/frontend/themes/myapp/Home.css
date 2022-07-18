@@ -21,7 +21,8 @@
     background-image: url("https://cdn.discordapp.com/attachments/998116033850249267/998362671403516005/blurred-background.jpg");
     background-color: #cccccc;
     background-size: cover;
-    height: 100%;
+    /* position: absolute; */
+    position:relative;
     overflow: hidden;
 }
 

@@ -30,12 +30,15 @@ public class fPost2 extends VerticalLayout{
         post2.put("description", "This is a website. AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 
         H2 title = new H2(post2.get("title"));
+        title.addClassName("title");
         
-        TextField user = new TextField("User");
+        TextField user = new TextField("");
+        user.addClassName("user");
         user.setValue(post2.get("user"));
         user.setReadOnly(true);
 
-        TextArea description = new TextArea("Description");
+        TextArea description = new TextArea("");
+        description.addClassName("description");
         description.setWidth("800px");
         description.setMinHeight("200px");
         description.setValue(post2.get("description"));

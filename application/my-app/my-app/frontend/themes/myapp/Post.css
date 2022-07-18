@@ -12,3 +12,12 @@
 .h1Layout{
     margin: auto;
 }
+
+.FooterLayout{
+    border-radius: 40px;
+    background-color: gray;
+    justify-self: stretch;
+    margin: auto;
+    margin-bottom: 0%;
+}
+
