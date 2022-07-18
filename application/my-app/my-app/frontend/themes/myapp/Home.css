@@ -22,8 +22,8 @@
     background-color: #cccccc;
     background-size: cover;
     /* position: absolute; */
-    position:static;
-    overflow: hidden;
+    position:relative;
+    overflow:auto;
     height: 100%;
 }
 
