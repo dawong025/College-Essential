@@ -71,7 +71,7 @@ public class FooterView{
         privacy.add(priv);
         footerLayout.add(AboutUs,contactUs,adds,privacy);
         footerLayout.setClassName("FooterLayout");
-        footerLayout.setAlignItems(Alignment.CENTER);
+        footerLayout.setAlignItems(Alignment.BASELINE);
         return footerLayout;
 
     }
