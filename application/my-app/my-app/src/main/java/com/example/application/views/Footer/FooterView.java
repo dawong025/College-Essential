@@ -1,11 +1,19 @@
 package com.example.application.views.Footer;
 
+import com.example.application.views.aboutus.AboutUsView;
+import com.example.application.views.aboutus.BrendanView;
+import com.example.application.views.aboutus.DarrenView;
+import com.example.application.views.aboutus.DuncanView;
+import com.example.application.views.aboutus.JustinView;
+import com.example.application.views.aboutus.RyanView;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.H6;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
+import com.vaadin.flow.router.RouterLink;
 
 public class FooterView{
     
@@ -18,12 +26,26 @@ public class FooterView{
     public HorizontalLayout getFooter(){
         HorizontalLayout footerLayout = new HorizontalLayout();
         VerticalLayout AboutUs = new VerticalLayout();
-        H3 about = new H3("AboutUs");
-        H6 ryan = new H6("Ryan");
-        H6 darren = new H6("Darren");
-        H6 brend = new H6("Brendan");
-        H6 justin = new H6("Justin");
-        H6 duncan = new H6("Duncan");
+        // H3 about = new H3("AboutUs");
+        // 
+        Div about = new Div();
+        about.add(new RouterLink("About Us", AboutUsView.class));
+        //about.getUI().ifPresent(ui -> ui.navigate("/aboutuss"));
+        //H6 ryan = new H6("Ryan");
+        Div ryan = new Div();
+        ryan.add(new RouterLink("Ryan", RyanView.class));
+        //H6 darren = new H6("Darren");
+        Div darren = new Div();
+        darren.add(new RouterLink("Darren", DarrenView.class));
+        //H6 brend = new H6("Brendan");
+        Div brend = new Div();
+        brend.add(new RouterLink("Brendan", BrendanView.class));
+        //H6 justin = new H6("Justin");
+        Div justin = new Div();
+        justin.add(new RouterLink("Justin", JustinView.class));
+        //H6 duncan = new H6("Duncan");
+        Div duncan = new Div();
+        duncan.add(new RouterLink("Duncan", DuncanView.class));
         AboutUs.add(about,ryan,darren,brend,justin,duncan);
 
         VerticalLayout contactUs = new VerticalLayout();
@@ -45,6 +67,7 @@ public class FooterView{
         privacy.add(priv);
         footerLayout.add(AboutUs,contactUs,adds,privacy);
         footerLayout.setClassName("FooterLayout");
+        footerLayout.setJustifyContentMode(JustifyContentMode.AROUND);
         return footerLayout;
 
     }

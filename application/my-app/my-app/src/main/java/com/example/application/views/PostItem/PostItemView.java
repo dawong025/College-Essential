@@ -90,7 +90,7 @@ public class PostItemView extends VerticalLayout{
             vert.setAlignItems(Alignment.CENTER);
            // h1.setAll
            add(vert);
-
+            Div cdcd = new Div();
            FooterView footer = new FooterView();
            HorizontalLayout footerLay = new HorizontalLayout();
            footerLay.setClassName("FooterLayout");
