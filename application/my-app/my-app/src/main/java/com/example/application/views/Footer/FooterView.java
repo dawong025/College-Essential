@@ -48,6 +48,7 @@ public class FooterView{
         //H6 duncan = new H6("Duncan");
         Div duncan = new Div();
         duncan.add(new RouterLink("Duncan", DuncanView.class));
+        AboutUs.setSpacing(false);
         AboutUs.add(about,ryan,darren,brend,justin,duncan);
 
         VerticalLayout contactUs = new VerticalLayout();
@@ -58,12 +59,14 @@ public class FooterView{
         H6 number = new H6("415-000-0000");
         H6 addy = new H6("1600 Hollow way, SF, 94132");
         H6 country = new H6("Unided States");
+        contactUs.setSpacing(false);
         contactUs.add(contact,email,number,addy,country);
 
         VerticalLayout adds = new VerticalLayout();
         H3 Adver = new H3("Adveritments");
         H6 add2 = new H6("Apply for an Ad");
         H6 add3 = new H6("AD Status");
+        adds.setSpacing(false);
         adds.add(Adver,add2,add3);
 
         VerticalLayout privacy = new VerticalLayout();

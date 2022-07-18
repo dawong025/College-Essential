@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import com.example.application.Data.DBHome;
 import com.example.application.views.MainLayout;
+import com.example.application.views.Footer.FooterView;
 import com.example.application.views.Items.ItemView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
@@ -141,6 +142,11 @@ public class HomeView extends VerticalLayout {
         add(buttonLayout);
         //add(descrip);
         comps.add(buttonLayout);
+        FooterView footer = new FooterView();
+        HorizontalLayout footerLay = footer.getFooter();
+        
+        comps.add(footerLay);
+        add(footerLay);
 
 
         ArrayList<Button> buttonList = new ArrayList<>();
@@ -168,6 +174,8 @@ public class HomeView extends VerticalLayout {
         });
 
         itemList.clear();
+
+       
 
     }
 
