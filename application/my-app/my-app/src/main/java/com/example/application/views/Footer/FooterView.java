@@ -7,6 +7,7 @@ import com.example.application.views.aboutus.DarrenView;
 import com.example.application.views.aboutus.DuncanView;
 import com.example.application.views.aboutus.JustinView;
 import com.example.application.views.aboutus.RyanView;
+import com.example.application.views.ads.AdSubmissionForm;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
@@ -63,7 +64,9 @@ public class FooterView{
         contactUs.add(contact,email,number,addy,country);
 
         VerticalLayout adds = new VerticalLayout();
-        H3 Adver = new H3("Advertisements");
+        Div Adver = new Div();
+        Adver.add(new RouterLink("Advertisements", AdSubmissionForm.class));
+        // H3 Adver = new H3("Advertisements");
         H6 add2 = new H6("Apply for an Ad");
         H6 add3 = new H6("AD Status");
         adds.setSpacing(false);
