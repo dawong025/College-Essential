@@ -185,7 +185,6 @@ public class MainLayout extends AppLayout {
                 new MenuItemInfo("Forum Listing", "la la-adjust", ForumList.class),
                 new MenuItemInfo("Services Listing", "la la-adjust", ServiceList.class),
                 
-
         };
     }
 

@@ -73,7 +73,7 @@
     color: black;
     margin-left: 25%;
     margin-top: 100px;
-    text-shadow: 2px 2px white;
+    text-shadow: 1px 1px white;
 }
 .title-p2 {
     font-size: 25px;
@@ -81,7 +81,7 @@
     color: black;
     margin-left: 25%;
     margin-top: -35px;
-    text-shadow: 2px 2px white;
+    text-shadow: 1px 1px white;
 }
 .marketPlaceButton{
     background-color: black;
@@ -141,20 +141,22 @@ border: 3px solid green;
     margin-left: 25%;
     margin-top: -30px;
     font-size: 16px;
-    color: white;
-    text-shadow: 1px 1px black;
+    color: black;
+    text-shadow: 0.5px 0.5px white;
 }
 .description-2{
     margin-left: 25%;
     margin-top: -20px;
     font-size: 16px;
     color: black;
+    text-shadow: 0.5px 0.5px white;
 }
 .description-3{
     margin-left: 25%;
     margin-top: -17px;
     font-size: 16px;
     color: black;
+    text-shadow: 0.5px 0.5px white;
 }
 .searchBar{
     background-color: white;
