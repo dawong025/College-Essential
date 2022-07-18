@@ -31,8 +31,8 @@
 
 .forum-background {
     min-height: 100%;
-    background-color: lightblue;
-    /*background-image: url(../../img/background.png); work in progress*/
+    background-image: url("https://i.redd.it/n0z080h4mpf01.png");
+    background-size: cover;
     letter-spacing: normal;
     margin: 0;
     font-family: "Anton", sans-serif;
