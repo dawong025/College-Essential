@@ -110,8 +110,12 @@ public class MainLayout extends AppLayout {
                 LoginView.logOut();
                 UI.getCurrent().getPage().reload();
             });
+            Button account = new Button("Account",e->{
+                this.getUI().ifPresent(ui -> ui.navigate("/Account"));
+            });
+            account.setClassName("accountButton");
 
-            hv = new HorizontalLayout(logout, cart);
+            hv = new HorizontalLayout(account,logout, cart);
 
         }
         hv.addClassNames("hv");
