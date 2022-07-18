@@ -63,7 +63,7 @@ public class FooterView{
         contactUs.add(contact,email,number,addy,country);
 
         VerticalLayout adds = new VerticalLayout();
-        H3 Adver = new H3("Adveritments");
+        H3 Adver = new H3("Advertisements");
         H6 add2 = new H6("Apply for an Ad");
         H6 add3 = new H6("AD Status");
         adds.setSpacing(false);

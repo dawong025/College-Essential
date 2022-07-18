@@ -227,6 +227,8 @@ public class HomeView extends VerticalLayout {
         hor.setJustifyContentMode(JustifyContentMode.AROUND);
         add(hor);
 
+        add(new FooterView().getFooter());
+
 
     }
 

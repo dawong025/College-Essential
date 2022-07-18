@@ -22,7 +22,7 @@
     background-color: #cccccc;
     background-size: cover;
     /* position: absolute; */
-    position:relative;
+    position:static;
     overflow: hidden;
 }
 
