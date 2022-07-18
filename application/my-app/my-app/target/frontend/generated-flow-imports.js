@@ -11,11 +11,7 @@ addCssBlock(`<style>${$css_0}</style>`);
 import $cssFromFile_1 from 'Frontend/themes/myapp/shopping-cart.css';
 const $css_1 = typeof $cssFromFile_1  === 'string' ? unsafeCSS($cssFromFile_1) : $cssFromFile_1;
 addCssBlock(`<style>${$css_1}</style>`);
-<<<<<<< HEAD
-import $cssFromFile_2 from 'Frontend/themes/myapp/servicelist.css';
-=======
 import $cssFromFile_2 from 'Frontend/themes/myapp/Post.css';
->>>>>>> c8735ee83bfb01a5203a454100f36ee3e01ed14c
 const $css_2 = typeof $cssFromFile_2  === 'string' ? unsafeCSS($cssFromFile_2) : $cssFromFile_2;
 addCssBlock(`<style>${$css_2}</style>`);
 import $cssFromFile_3 from 'Frontend/themes/myapp/servicelist.css';

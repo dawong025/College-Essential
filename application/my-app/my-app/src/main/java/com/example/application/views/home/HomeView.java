@@ -65,7 +65,7 @@ public class HomeView extends VerticalLayout {
 
         // dropdown menu
         select = new Select<>();
-        select.setItems("All Categories","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
+        select.setItems("All Categories","Textbook", "School Supplies", "Furniture", "Lifestyle", "Miscellaneous");
         select.setValue("All Categories");
         select.setClassName("selector");
         select.addClassName("home-dropdown-bar");
