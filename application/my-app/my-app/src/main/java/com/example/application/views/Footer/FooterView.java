@@ -1,5 +1,6 @@
 package com.example.application.views.Footer;
 
+import com.example.application.views.ContactUs.ContactUsview;
 import com.example.application.views.aboutus.AboutUsView;
 import com.example.application.views.aboutus.BrendanView;
 import com.example.application.views.aboutus.DarrenView;
@@ -12,6 +13,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.H6;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
 import com.vaadin.flow.router.RouterLink;
 
@@ -49,7 +51,9 @@ public class FooterView{
         AboutUs.add(about,ryan,darren,brend,justin,duncan);
 
         VerticalLayout contactUs = new VerticalLayout();
-        H3 contact = new H3("Contact Us");
+        //H3 contact = new H3("Contact Us");
+        Div contact = new Div();
+        contact.add(new RouterLink("Contact Us", ContactUsview.class));
         H6 email = new H6("CollegeEssentialsHelp@CollegeEssentials.com");
         H6 number = new H6("415-000-0000");
         H6 addy = new H6("1600 Hollow way, SF, 94132");
@@ -67,7 +71,7 @@ public class FooterView{
         privacy.add(priv);
         footerLayout.add(AboutUs,contactUs,adds,privacy);
         footerLayout.setClassName("FooterLayout");
-        footerLayout.setJustifyContentMode(JustifyContentMode.AROUND);
+        footerLayout.setAlignItems(Alignment.CENTER);
         return footerLayout;
 
     }
