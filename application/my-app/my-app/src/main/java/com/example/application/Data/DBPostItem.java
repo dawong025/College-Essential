@@ -15,7 +15,7 @@ public class DBPostItem {
     
 
 
-    public static void StorePostItem(String Title, String image, String condition) {
+    public static void StorePostItem(String Title, String image, String condition, String general_type) {
         
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
@@ -31,7 +31,8 @@ public class DBPostItem {
             System.out.println("Connection is Successful to the database" + url);
             
             /* Insert into the product table */
-            String query = "INSERT INTO Product (product_image, product_condition) VALUES ('"+image+"','"+condition+"' );";
+            
+            String query = "INSERT INTO Product (product_image, product_condition, general_type) VALUES ('"+image+"','"+condition+"', '"+general_type+"' );";
             
             Statement statement = connection.createStatement();
             statement.execute(query);

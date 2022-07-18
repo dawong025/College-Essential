@@ -27,7 +27,7 @@ public class DBHome {
                 String q = "SELECT MarketplaceListing.title, Product.product_image, Product.product_condition FROM ProductListings"
                + " JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
                +" JOIN Product ON ProductListings.product_id = Product.product_id"
-               +" WHERE MarketplaceListing.title LIKE '%" +Title+ "%' AND Product.product_condition LIKE '%" +selector+ "%';";
+               +" WHERE MarketplaceListing.title LIKE '%" +Title+ "%' AND Product.general_type LIKE '%" +selector+ "%';";
             
                 String nameItem;
                 String imageURL;

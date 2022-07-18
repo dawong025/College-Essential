@@ -20,6 +20,8 @@ public class PostItemDetail {
    @NotBlank
    private String catagory;//make getter and setters
 
+   
+
    public String getCondition(){
     return condition;
    }
@@ -35,5 +37,8 @@ public class PostItemDetail {
    public String getUrl() {return url;}
 
    public void setUrl(String url) {this.url = url;}
-    
+   public String getCategory(){return catagory;};
+   public void setCatagory(String catagory){
+    this.catagory = catagory;
+   }
 }

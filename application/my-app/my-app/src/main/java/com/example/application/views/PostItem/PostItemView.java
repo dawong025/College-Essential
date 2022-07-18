@@ -40,7 +40,7 @@ public class PostItemView extends VerticalLayout{
     private Select<String> condition;
     private VerticalLayout vert;
     private TextField price;
-    Select<String> catagory;
+    private Select<String> catagory;
 
     public PostItemView(){
             
