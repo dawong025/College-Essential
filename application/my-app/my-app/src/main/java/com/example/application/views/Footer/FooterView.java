@@ -73,6 +73,7 @@ public class FooterView{
         footerLayout.setClassName("FooterLayout");
         footerLayout.setAlignItems(Alignment.BASELINE);
         footerLayout.setJustifyContentMode(JustifyContentMode.AROUND);
+        footerLayout.setWidthFull();
         return footerLayout;
 
     }
