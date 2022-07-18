@@ -74,7 +74,7 @@
 
 .logInButton {
   color: gainsboro;
-  background-color: darkcyan;
+  background-color: var(--lumo-primary-color);
   color: black;
   
 }
@@ -86,7 +86,7 @@
 
 .accountButton{
   color: gainsboro;
-  background-color: darkcyan;
+  background-color: var(--lumo-primary-color);
   color: black;
 }
 
@@ -97,7 +97,7 @@
 
 .logOutButton {
   color: gainsboro;
-  background-color: darkcyan;
+  background-color: var(--lumo-primary-color);
   color: black;
 }
 
@@ -108,7 +108,7 @@
 
 .regButton {
   color: gainsboro;
-  background-color: darkcyan;
+  background-color: var(--lumo-primary-color);
   color: black;
 }
 
@@ -119,7 +119,7 @@
 
 .cartButton {
   color: gainsboro;
-  background-color: darkcyan;
+  background-color: var(--lumo-primary-color);
   color: black;
 }
 
