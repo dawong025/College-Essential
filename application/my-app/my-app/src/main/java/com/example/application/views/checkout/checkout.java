@@ -128,8 +128,11 @@ public class checkout extends HorizontalLayout{
         VerticalLayout payment = new VerticalLayout();
 
         H3 paymentHeader = new H3("Payment");
-        paymentHeader.addClassName("h3");
+        paymentHeader.setClassName("h3");
         payment.add(paymentHeader);
+
+        VerticalLayout paymentBox = new VerticalLayout();
+        paymentBox.setClassName("verticalLayout");
 
         for (HashMap<String,String> i:cart){
 
@@ -144,7 +147,7 @@ public class checkout extends HorizontalLayout{
             HorizontalLayout priceList = new HorizontalLayout();
             priceList.add(title, price);
 
-            payment.add(priceList);
+            paymentBox.add(priceList);
 
         }
 
@@ -152,7 +155,8 @@ public class checkout extends HorizontalLayout{
         totalPrice.setValue("this is the total");
         totalPrice.setReadOnly(true);
 
-        payment.add(totalPrice);
+        paymentBox.add(totalPrice);
+        payment.add(paymentBox);
 
 
         add(payment);
@@ -165,7 +169,8 @@ public class checkout extends HorizontalLayout{
         h3.addClassName("h3");
 
 
-
+        VerticalLayout reviewBox = new VerticalLayout();
+        reviewBox.addClassName("verticalLayout");
 
         //shipping address layout 
         HorizontalLayout shippingAddressLayout = new HorizontalLayout();
@@ -215,51 +220,15 @@ public class checkout extends HorizontalLayout{
         Button placeYourOrder = new Button("Place Your Order");
         placeYourOrder.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-
+        reviewBox.add(shippingAddressLayout, paymentMethodLayout, billingAddressLayout, placeYourOrder);
 
 
         //add all to vertical layout
-        userInfo.add(h3, shippingAddressLayout, paymentMethodLayout, billingAddressLayout, placeYourOrder);
+        userInfo.add(h3, reviewBox);
         add(userInfo);
         userInfo.addClassName("box");
 
         
-
-
-
-        // VerticalLayout recentlyAdded = new VerticalLayout();
-
-        // H3 header2 = new H3("Recently Viewed");
-        // header2.addClassName("h3");
-        // recentlyAdded.add(header2);
-
-        // for (HashMap<String, String> i: cart)
-        // {
-
-        //     String recentUrl = ("image");
-
-        //     VerticalLayout recentlyAddedItem = new VerticalLayout();
-
-
-        //     TextArea recentlyViewed = new TextArea();
-        //     recentlyViewed.setValue(i.get("title"));
-        //     recentlyViewed.setReadOnly(true);
-        //     recentlyViewed.setWidth("150px");
-        //     recentlyViewed.setHeight("100px");
-
-        //     Image recentImage = new Image(recentUrl,"");
-        //     recentImage.setHeight("200px");
-        //     recentImage.setWidth("150px");
-        //     recentlyAddedItem.addClassName("verticalLayout");
-        //     recentlyAddedItem.add(recentlyViewed, recentImage);
-        //     recentlyAddedItem.setAlignItems(Alignment.CENTER);
-        //     recentlyAdded.add(recentlyAddedItem);
-
-
-        // }
-
-        // add(recentlyAdded);
-
 
         } 
 
