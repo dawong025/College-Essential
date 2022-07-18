@@ -40,7 +40,7 @@ public class PostItemView extends VerticalLayout{
     private Select<String> condition;
     private VerticalLayout vert;
     private TextField price;
-    private Select<String> catagory;
+    private Select<String> category;
 
     public PostItemView(){
             
@@ -70,13 +70,13 @@ public class PostItemView extends VerticalLayout{
 
             h1.add(condition);
             
-            catagory = new Select<>();
-            catagory.setLabel("Select Category of item");
+            category = new Select<>();
+            category.setLabel("Select Category of item");
             
-            catagory.setItems(
+            category.setItems(
                 "Textbook", "School Supplies", "Furniture", "Lifestyle", "Miscellaneous");
-               catagory.setPlaceholder("Select Category");
-                h1.add(catagory);
+               category.setPlaceholder("Select Category");
+                h1.add(category);
 
             price = new TextField("Enter Price");
             price.setPlaceholder("0.00");
@@ -97,7 +97,7 @@ public class PostItemView extends VerticalLayout{
            footerLay = footer.getFooter();
            add(footerLay);
 
-           setRequiredIndicatorVisible(Title, url, condition, catagory,price);
+           setRequiredIndicatorVisible(Title, url, condition, category,price);
 
             PostItemFormBinder postItemFormBinder= new PostItemFormBinder(this);
        postItemFormBinder.addBinderForPostItem();

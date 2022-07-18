@@ -18,7 +18,7 @@ public class PostItemDetail {
    private String price;
 
    @NotBlank
-   private String catagory;//make getter and setters
+   private String category;//make getter and setters
 
    
 
@@ -37,8 +37,8 @@ public class PostItemDetail {
    public String getUrl() {return url;}
 
    public void setUrl(String url) {this.url = url;}
-   public String getCategory(){return catagory;};
-   public void setCatagory(String catagory){
-    this.catagory = catagory;
+   public String getCategory(){return category;}
+   public void setCategory(String category){
+    this.category = category;
    }
 }
