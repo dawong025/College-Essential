@@ -8,8 +8,11 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -43,10 +46,22 @@ public class ItemView extends VerticalLayout{
        ta.setValue("This is where we will put the description of the item");
        ta.setReadOnly(true);
        vl.add(ta);
+       TextField price = new TextField("Price");
+       price.setValue("$00.00");
+       price.setReadOnly(true);
+       vl.add(price);
 
 
 
-       Button addToCart = new Button("Add");
+
+
+
+       Button addToCart = new Button("Add to Cart",event ->{
+        //add to db of cart
+        this.getUI().ifPresent(ui -> ui.navigate("/home"));
+        showSuccess();
+
+       });
        addToCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
        vl.add(addToCart);
         vl.setAlignItems(Alignment.CENTER);
@@ -61,6 +76,14 @@ public class ItemView extends VerticalLayout{
     }
 
     
+    private void showSuccess() {
+      Notification notification =
+              Notification.show("Item Was Success Fully added to Shopping cart");
+      notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+      
+
+      // Here you'd typically redirect the user to another view
+  }
 
     
     
