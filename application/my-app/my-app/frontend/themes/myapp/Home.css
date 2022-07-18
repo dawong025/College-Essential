@@ -23,7 +23,7 @@
     background-size: cover;
     /* position: absolute; */
     position:relative;
-    overflow: hidden;
+    overflow:auto;
     height: 100%;
 }
 
