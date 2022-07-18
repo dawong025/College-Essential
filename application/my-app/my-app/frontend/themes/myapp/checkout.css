@@ -21,7 +21,7 @@
 }
 
 .verticalLayout{
-    border-style: solid;
+    border:auto ;
     padding: 20px 30px;
     background-color: white;
 
