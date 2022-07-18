@@ -6,6 +6,7 @@ import com.example.application.views.Items.ItemView;
 import com.example.application.views.PostItem.PostItemView;
 import com.example.application.views.SellingPage.SellingPageView;
 import com.example.application.views.Services.ServiceList;
+import com.example.application.views.Terms.TermsOfService;
 import com.example.application.views.aboutus.AboutUsView;
 import com.example.application.views.forum.ForumList;
 import com.example.application.views.home.HomeView;
@@ -24,17 +25,20 @@ import com.vaadin.flow.component.html.Footer;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.html.H6;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.LumoUtility.JustifyContent;
-
+import com.vaadin.flow.component.html.Image;
 //mvn spring-boot:run
 
 /**
@@ -158,6 +162,7 @@ public class MainLayout extends AppLayout {
 
     private Component createDrawerContent() {
         H2 appName = new H2("College Essentials");
+        // Image appName = new Image("https://cdn.discordapp.com/attachments/998116033850249267/998120448061616228/unknown.png", "Logo");
         appName.addClassNames("app-name");
 
         com.vaadin.flow.component.html.Section section = new com.vaadin.flow.component.html.Section(appName,
@@ -185,9 +190,7 @@ public class MainLayout extends AppLayout {
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[] { //
-                new MenuItemInfo("Home", "la la-adjust", HomeView.class), //
-
-                new MenuItemInfo("About Us", "la la-adjust", AboutUsView.class), //
+                new MenuItemInfo("Home", "la la-adjust", HomeView.class),
                 // added for registration
                 new MenuItemInfo("Post", "la la-adjust", PostItemView.class),
                 new MenuItemInfo("Buy", "la la-adjust", SellingPageView.class),
@@ -201,10 +204,13 @@ public class MainLayout extends AppLayout {
     private Footer createFooter() {
         Footer layout = new Footer();
         layout.addClassNames("footer");
-        HorizontalLayout hLayout = new HorizontalLayout();
-        H3 n = new H3("Hi");
-        hLayout.add(n);
-        layout.add(hLayout);
+        VerticalLayout vLayout = new VerticalLayout();
+        Div aboutus = new Div();
+        aboutus.add(new RouterLink("About Us", AboutUsView.class));
+        Div terms = new Div();
+        terms.add(new RouterLink("Terms of Service", TermsOfService.class));
+        vLayout.add(aboutus, terms);
+        layout.add(vLayout);
 
         return layout;
     }

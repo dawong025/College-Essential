@@ -26,9 +26,11 @@ import com.vaadin.flow.function.ValueProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
+import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.html.*;
 
 @CssImport("./themes/myapp/Home.css")
-@PageTitle("College Essentials Home")
+@PageTitle("College Essentials")
 @Route(value = "home", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 public class HomeView extends VerticalLayout {
@@ -59,12 +61,10 @@ public class HomeView extends VerticalLayout {
         searchBar.setWidth("40em");
         searchBar.addClassName("home-search-bar");
 
-        
-
         // dropdown menu
         select = new Select<>();
-        select.setItems("All Category","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
-        select.setValue("All Category");
+        select.setItems("All Categories","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
+        select.setValue("All Categories");
         select.setClassName("selector");
         select.addClassName("home-dropdown-bar");
 
@@ -75,15 +75,35 @@ public class HomeView extends VerticalLayout {
 
 
         HorizontalLayout hv = new HorizontalLayout(searchBar, select,search);
+        hv.addClassName("search-bar");
         hv.setSpacing(false);
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
         add(hv);
 
-        H1 descrip = new H1("Get Started By clicking one of the three button or searching for our products with the search bar");
-        descrip.setClassName("description");
+        Paragraph college = new Paragraph("Connect students and faculty from");
+        college.addClassName("title-p1");
+        Paragraph essentials = new Paragraph("colleges all over the world.");
+        essentials.addClassName("title-p2");
         
-        comps.add(descrip);
-        Button marketPlaceButton = new Button("Marketplace",e->{
+        add(college);
+        add(essentials);
+
+        H1 descrip1 = new H1("Get started today by browsing our marketplace, ");
+        descrip1.setClassName("description-1");
+        H1 descrip2 = new H1("ask a question in our forums,");
+        descrip2.setClassName("description-2");
+        H1 descrip3 = new H1("or look for different service listings.");
+        descrip3.setClassName("description-3");
+        
+        add(descrip1);
+        add(descrip2);
+        add(descrip3);
+        comps.add(descrip1);
+        comps.add(descrip2);
+        comps.add(descrip3);
+        comps.add(college);
+        comps.add(essentials);
+        Button marketPlaceButton = new Button("Marketplace", e->{
             //clears page and shows grid of everything
             if (!comps.isEmpty()) {
                 for (Component c : comps) {
@@ -101,7 +121,7 @@ public class HomeView extends VerticalLayout {
         Button formButton = new Button("Forum Place", ev ->{
             this.getUI().ifPresent(ui -> ui.navigate("/forumList"));
         });
-        formButton.setClassName("formButton");
+        formButton.setClassName("forumButton");
         formButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
 
         Button serviceButton = new Button("Service Listings" ,event ->{
@@ -116,7 +136,7 @@ public class HomeView extends VerticalLayout {
         buttonLayout.setJustifyContentMode(JustifyContentMode.AROUND);
         buttonLayout.setClassName("buttonLayout");
         add(buttonLayout);
-        add(descrip);
+        //add(descrip);
         comps.add(buttonLayout);
 
 
