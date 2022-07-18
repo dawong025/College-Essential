@@ -27,7 +27,7 @@ import java.util.HashMap;
 
 @CssImport("./themes/myapp/checkout.css")
 
-@PageTitle("checkout")//maybe make to name of web
+@PageTitle("Checkout")//maybe make to name of web
 @Route(value = "checkout", layout = MainLayout.class)
 
 public class checkout extends HorizontalLayout{
