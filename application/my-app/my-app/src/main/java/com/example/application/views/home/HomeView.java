@@ -169,7 +169,19 @@ public class HomeView extends VerticalLayout {
                 }
             }
 
-            popPage();
+            if(itemList.isEmpty()){
+                H2 error = new H2("Sorry, we couldnt find what you were searching for");
+                error.setClassName("errorMessage");
+                add(error);
+                comps.add(error);
+                add(footerLay);
+                comps.add(footerLay);
+
+            }else{
+                popPage();
+            }
+
+            
 
         });
 
