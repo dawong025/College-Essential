@@ -33,6 +33,19 @@
     grid-area: Profile;
     background-color: #316879;
     border-radius: 10px;
+    justify-self: stretch;
+}
+.purchases {
+    margin-left: 50%;
+    margin-top: 190px;
+    background-color: black;
+    color: white;
+}
+.editAcc {
+    margin-left: 70%;
+    margin-top: 190px;
+    background-color: black;
+    color: white;
 }
 
 .label-two {
@@ -99,7 +112,7 @@
 
 .name {
     border-radius: 5px;
-    margin-top: 190px;
+    margin-top: 150px;
     color: black;
 }
 

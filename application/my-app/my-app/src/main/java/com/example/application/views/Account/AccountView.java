@@ -7,6 +7,7 @@ import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.grid.Grid;
 
 import com.vaadin.flow.component.dependency.StyleSheet;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
@@ -43,10 +44,15 @@ public class AccountView extends Div{
         H1 name = new H1("Kelly Smith");
         name.addClassName("name");
         
+        Button purchaseHistory = new Button("Recent Orders");
+        purchaseHistory.addClassName("purchases");
 
-        HorizontalLayout h1 = new HorizontalLayout(img1, name);
+        Button editAccount = new Button("Edit Account");
+        editAccount.addClassName("editAcc");
+        HorizontalLayout h1 = new HorizontalLayout(img1, name, purchaseHistory, editAccount);
         h1.addClassName("label-one");
 
+        
         /* Contact Grid Area */
         Div personalDiv = new Div();
         H3 aboutMe = new H3("About Me");
