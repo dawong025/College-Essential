@@ -84,6 +84,17 @@
   background-color: azure;
 }
 
+.accountButton{
+  color: gainsboro;
+  background-color: darkcyan;
+  color: black;
+}
+
+.accountButton:hover{
+  color: black;
+  background-color: azure;
+}
+
 .logOutButton {
   color: gainsboro;
   background-color: darkcyan;

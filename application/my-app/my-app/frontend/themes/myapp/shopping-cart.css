@@ -6,6 +6,7 @@
 
 .shoppingCartLayout{
     border-style: solid;
+    width: auto;
     padding: 30px 20px;
 }
 
