@@ -1,10 +1,12 @@
 package com.example.application.views.PostItem;
 
 import com.example.application.views.MainLayout;
+import com.example.application.views.Footer.FooterView;
 import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
@@ -26,6 +28,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+
+@CssImport("./themes/myapp/Post.css")
 @PageTitle("Post Item")
 @Route(value = "postItem", layout = MainLayout.class)
 
@@ -86,6 +90,12 @@ public class PostItemView extends VerticalLayout{
             vert.setAlignItems(Alignment.CENTER);
            // h1.setAll
            add(vert);
+
+           FooterView footer = new FooterView();
+           HorizontalLayout footerLay = new HorizontalLayout();
+           footerLay.setClassName("FooterLayout");
+           footerLay = footer.getFooter();
+           add(footerLay);
 
            setRequiredIndicatorVisible(Title, url, condition, catagory,price);
 
