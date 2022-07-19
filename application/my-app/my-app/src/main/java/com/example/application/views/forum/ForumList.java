@@ -75,12 +75,14 @@ public class ForumList extends VerticalLayout {
         post1.put("route", "/fPost1");
         post1.put("title", "Anime");
         post1.put("user", "Brendan1");
+        post1.put("account_route", "/Brendini1");
         post1.put("description", "I really like this one anime. AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 
         HashMap<String, String> post2 = new HashMap<String, String>();
         post2.put("route", "/fPost2");
         post2.put("title", "Website");
         post2.put("user", "Brendan2");
+        post2.put("account_route", "/Brendini2");
         post2.put("description", "This is a website. AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 
         post.add(post1);
@@ -100,7 +102,7 @@ public class ForumList extends VerticalLayout {
             title.addClassName("forum-post-title-hov");
 
             Button user = new Button("User: " + i.get("user"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate("/Account"));
+                this.getUI().ifPresent(ui -> ui.navigate(i.get("account_route")));
             });
             user.addClassName("forum-post-user");
             user.addClassName("forum-post-user-hov");
