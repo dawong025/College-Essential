@@ -1,5 +1,6 @@
 package com.example.application.views.Items;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.example.application.views.MainLayout;
@@ -21,7 +22,7 @@ import com.vaadin.flow.router.Route;
 @Route(value = "itemView", layout = MainLayout.class)
 public class ItemView extends VerticalLayout{
     private String itemName;
-    private HashMap<String,String> items = new HashMap<>();
+    private HashMap<String,ArrayList<String>> items = new HashMap<>();
    // private ItemDetails itemDetail;
    // HomeView hv = new HomeView();
 
@@ -33,7 +34,7 @@ public class ItemView extends VerticalLayout{
        items = HomeView.getMap();
        H3 h3 = new H3(itemName);
        vl.add(h3);
-       String url = items.get(itemName);
+       String url = items.get(itemName).get(0);
        if(url != null){
         Image image = new Image(url,"");
 
