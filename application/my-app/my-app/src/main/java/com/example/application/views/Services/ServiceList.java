@@ -23,20 +23,23 @@ import com.vaadin.flow.router.Route;
 public class ServiceList extends VerticalLayout{
     //Array list of posts to be added to the horizontal layout. Temporary, and should be deleted later
     ArrayList<HashMap<String, String>> post = new ArrayList<HashMap<String, String>>();
-    
-    //Code for the search button
-    Button search = new Button("Search");
-
-    //Code for the new post button that routes you to a page where you can make a post
-    Button newPost = new Button("Make a new post", e ->{
-        this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
-    });
 
     public ServiceList(){
         this.addClassName("service-background");
 
+        //Code for the search button
+        Button search = new Button("Search");
+        search.addClassName("forum-search-button");
+
+        //Code for the new post button that routes you to a page where you can make a post
+        Button newPost = new Button("Make a new post", e ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
+        });
+        newPost.addClassName("forum-search-button");
+
         //Code for the text field
         TextField searchBar = new TextField();
+        searchBar.addClassName("forum-search-bar");
         searchBar.setPlaceholder("Search for a forum post (Title, Description, User)");
         searchBar.setPrefixComponent(VaadinIcon.SEARCH.create());
         searchBar.setClearButtonVisible(true);
@@ -44,6 +47,7 @@ public class ServiceList extends VerticalLayout{
 
         //This is a selection drop down bar. Dropdown is here as placeholder, and will not be changed till later.
         Select select = new Select<>();
+        select.addClassName("forum-dropdown-bar");
         select.setItems("New", "Used",
                 "All");
         select.setValue("All");
@@ -51,6 +55,7 @@ public class ServiceList extends VerticalLayout{
 
         //The horizontal layout with the text field, search button, and new post button
         HorizontalLayout hv = new HorizontalLayout(searchBar, search, select, newPost);
+        hv.addClassName("forum-search-layout");
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
         hv.setWidthFull();
         
@@ -58,7 +63,7 @@ public class ServiceList extends VerticalLayout{
 
         add(hv);
 
-        getSearchButton().addClickListener(event -> {
+        search.addClickListener(event -> {
             //Should show a list of forum posts based on the input from the search bar
         });
         
@@ -117,7 +122,4 @@ public class ServiceList extends VerticalLayout{
         
     }
 
-    public Button getSearchButton() {
-        return search;
-    }
 }
