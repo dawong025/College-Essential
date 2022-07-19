@@ -13,7 +13,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.dependency.CssImport;
 
+@CssImport("./themes/myapp/EditAccount.css")
 @PageTitle("Edit Account")
 @Route(value = "editAccount", layout = MainLayout.class)
 public class editAccountView extends Div{
@@ -21,7 +23,7 @@ public class editAccountView extends Div{
 
     public editAccountView(){
 
-        getElement().getClassList().add("hello-grid");
+        getElement().getClassList().add("hello-grid-2");
         setWidth("99%");
 
          /* Name Profile Grid Area */
@@ -37,6 +39,8 @@ public class editAccountView extends Div{
         HorizontalLayout h1 = new HorizontalLayout(img1, name);
         h1.addClassName("label-one");
 
+        H1 editTitle = new H1("Edit Profile");
+        editTitle.addClassName("edit-title");
         TextArea about = new TextArea("Change About Me");
         about.addClassName("about-me");
 
@@ -45,12 +49,17 @@ public class editAccountView extends Div{
 
         TextField college = new TextField("Change College");
 
+        Button cancel = new Button("Cancel", ev ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/Account"));
+        });
+
         Button submit = new Button("Submit", ev ->{
             this.getUI().ifPresent(ui -> ui.navigate("/Account"));
         });
 
-        VerticalLayout v1 = new VerticalLayout(about, contact, college, submit);
-        v1.addClassName("edit-profile");
+        HorizontalLayout buttons = new HorizontalLayout(cancel, submit);
+        VerticalLayout v1 = new VerticalLayout(editTitle, about, contact, college, buttons);
+        v1.addClassName("edit-label-two");
         v1.setAlignItems(Alignment.CENTER);
 
         // vMain.add(hl,vl);
