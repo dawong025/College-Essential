@@ -57,7 +57,7 @@ public class HomeView extends VerticalLayout {
         this.addClassName("background-photo");
         searchBar = new TextField();
         searchBar.setClassName("searchBar");
-        searchBar.setPlaceholder("Search For Books, Furniture and More....");
+        searchBar.setPlaceholder("Search For Products, and change the category section....");
         searchBar.setPrefixComponent(VaadinIcon.SEARCH.create());
         searchBar.setClearButtonVisible(true);
         searchBar.setWidth("40em");
@@ -114,7 +114,7 @@ public class HomeView extends VerticalLayout {
                 }
             }
             DBHome db = new DBHome();
-            itemList = db.searchHomeItem("", "All");
+            itemList = db.searchHomeItem("", "All Categories");
             popPage();
 
         });

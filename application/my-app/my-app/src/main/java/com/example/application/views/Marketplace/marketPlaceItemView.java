@@ -1,11 +1,10 @@
-package com.example.application.views.Items;
+package com.example.application.views.Marketplace;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.example.application.views.MainLayout;
 import com.example.application.views.Account.AccountView;
-import com.example.application.views.Footer.FooterView;
 import com.example.application.views.home.HomeView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -27,8 +26,8 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
 
 @CssImport("./themes/myapp/ItemView.css")
 @PageTitle("Item")
-@Route(value = "itemView", layout = MainLayout.class)
-public class ItemView extends VerticalLayout{
+@Route(value = "marketItemView", layout = MainLayout.class)
+public class marketPlaceItemView extends VerticalLayout{
     private String itemName;
     private HashMap<String,ArrayList<String>> items = new HashMap<>();
     private ArrayList<String> array;
@@ -36,14 +35,14 @@ public class ItemView extends VerticalLayout{
    // HomeView hv = new HomeView();
 
 
-    public ItemView(){
+    public marketPlaceItemView(){
         VerticalLayout vl = new VerticalLayout();
         vl.setClassName("verticLayout");
         HorizontalLayout hl = new HorizontalLayout();
         hl.setClassName("horLayout");
         setSizeFull();
-       itemName = HomeView.getTitle();
-       items = HomeView.getMap();
+       itemName = Marketplace.getTitle();
+       items = Marketplace.getMap();
        H3 h3 = new H3(itemName);
        vl.add(h3);
        array = items.get(itemName);
@@ -102,12 +101,6 @@ public class ItemView extends VerticalLayout{
         hl.setWidth("70%");
         hl.setJustifyContentMode(JustifyContentMode.AROUND);
         add(hl);
-
-        FooterView footer = new FooterView();
-           HorizontalLayout footerLay = new HorizontalLayout();
-           footerLay.setClassName("FooterLayout");
-           footerLay = footer.getFooter();
-           add(footerLay);
        
        
       //  itemName = hv.getTitle();

@@ -1,6 +1,7 @@
 package com.example.application.views.Services;
 
 import com.example.application.views.MainLayout;
+import com.example.application.views.Footer.FooterView;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -45,5 +46,10 @@ public class ServicePost extends VerticalLayout{
                 Notification.show("Service Listing was saved");
             })
         );
+        FooterView footer = new FooterView();
+           HorizontalLayout footerLay = new HorizontalLayout();
+           footerLay.setClassName("FooterLayout");
+           footerLay = footer.getFooter();
+           add(footerLay);
     }
 }
