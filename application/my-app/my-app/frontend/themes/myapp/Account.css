@@ -42,11 +42,25 @@
     background-color: black;
     color: white;
 }
+
+.purchases:hover{
+    margin-left: 47%;
+    margin-top: 190px;
+    background-color: white;
+    color: black;
+}
 .editAcc {
     
     margin-top: 190px;
     background-color: black;
     color: white;
+}
+
+.editAcc:hover {
+    
+    margin-top: 190px;
+    background-color: white;
+    color: black;
 }
 
 .label-two {
@@ -169,4 +183,9 @@
 #vaadin-text-area-0{
     background-color: white;
     border: none;
+}
+
+.edit-profile{
+    margin-left: 200%;
+    
 }
