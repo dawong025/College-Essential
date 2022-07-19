@@ -45,7 +45,7 @@ public class PostItemView extends VerticalLayout{
     public PostItemView(){
             
             vert = new VerticalLayout();
-            vert.setClassName("verticalLayout");
+            vert.setClassName("vertLayout");
             HorizontalLayout h1 = new HorizontalLayout();
             h1.setClassName("h1Layout");
 
@@ -85,8 +85,9 @@ public class PostItemView extends VerticalLayout{
             vert.add(h1);
 
 
-            postButton = new Button("Post");
+            postButton = new Button("Add To Market Place");
             postButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+            postButton.setClassName("addToMarketPlaceButton");
             vert.add(postButton);
             vert.setAlignItems(Alignment.CENTER);
            // h1.setAll

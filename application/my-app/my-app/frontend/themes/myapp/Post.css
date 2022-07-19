@@ -1,10 +1,11 @@
 
 
 
-.verticalLayout{
-    border: auto;
+.vertLayout{
+    border: 5px solid black;
     width: auto;
     border-radius: 40px;
+    background-color: rgb(213, 213, 213);
 
 
 }
@@ -26,3 +27,13 @@
     text-decoration: underline;
 }
 
+
+.addToMarketPlaceButton{
+    background-color: black;
+    color: white;
+}
+
+.addToMarketPlaceButton:hover{
+    background-color: white;
+    color: black;
+}
