@@ -101,7 +101,7 @@ public class sPost1 extends VerticalLayout{
         commentAuthor1.addClassName("fp-comment-author");
         Span datePosted1 = new Span ("12/17/2022");
         datePosted1.addClassName("fp-date-posted");
-        H6 commentText1 = new H6("I might be interested.");
+        H6 commentText1 = new H6("Is this that one algorithm class?");
         commentText1.addClassName("fp-comment-text");
         VerticalLayout comment1 = new VerticalLayout(commentAuthor1, datePosted1, commentText1);
         comment1.addClassName("fp-single-comment");
@@ -110,7 +110,7 @@ public class sPost1 extends VerticalLayout{
         commentAuthor2.addClassName("fp-comment-author");
         Span datePosted2 = new Span ("12/17/2022");
         datePosted2.addClassName("fp-date-posted");
-        H6 commentText2 = new H6("Might be good experience, considering picking this up.");
+        H6 commentText2 = new H6("Might take this up just to brush up my skills.");
         commentText2.addClassName("fp-comment-text");
         VerticalLayout comment2 = new VerticalLayout(commentAuthor2, datePosted2, commentText2);
         comment2.addClassName("fp-single-comment");
@@ -119,7 +119,7 @@ public class sPost1 extends VerticalLayout{
         commentAuthor3.addClassName("fp-comment-author");
         Span datePosted3 = new Span ("12/17/2022");
         datePosted3.addClassName("fp-date-posted");
-        H6 commentText3 = new H6("I am a bit too inexperienced for this.");
+        H6 commentText3 = new H6("This class gives me pain.");
         commentText3.addClassName("fp-comment-text");
         VerticalLayout comment3 = new VerticalLayout(commentAuthor3, datePosted3, commentText3);
         comment3.addClassName("fp-single-comment");

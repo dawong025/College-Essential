@@ -68,17 +68,7 @@ public class ForumPost extends VerticalLayout{
             header,
             title,
             description,
-<<<<<<< HEAD
             submit
-=======
-            new Button("Submit", event->{
-                //var fPost = new fPost();
-                //binder.writeBeanIfValid(fPost);
-                Notification.show("Post was saved");
-            })
-
-            
->>>>>>> d8b98e463c26f8d94f4193a519b4d6459c32b3e9
         );
         FooterView footer = new FooterView();
            HorizontalLayout footerLay = new HorizontalLayout();
