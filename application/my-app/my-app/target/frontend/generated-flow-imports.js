@@ -20,25 +20,29 @@ addCssBlock(`<style>${$css_3}</style>`);
 import $cssFromFile_4 from 'Frontend/themes/myapp/servicelist.css';
 const $css_4 = typeof $cssFromFile_4  === 'string' ? unsafeCSS($cssFromFile_4) : $cssFromFile_4;
 addCssBlock(`<style>${$css_4}</style>`);
-import $cssFromFile_5 from 'Frontend/themes/myapp/ad.css';
+import $cssFromFile_5 from 'Frontend/themes/myapp/makeservicepost.css';
 const $css_5 = typeof $cssFromFile_5  === 'string' ? unsafeCSS($cssFromFile_5) : $cssFromFile_5;
 addCssBlock(`<style>${$css_5}</style>`);
-import $cssFromFile_6 from 'Frontend/themes/myapp/checkout.css';
+import $cssFromFile_6 from 'Frontend/themes/myapp/forumpost.css';
 const $css_6 = typeof $cssFromFile_6  === 'string' ? unsafeCSS($cssFromFile_6) : $cssFromFile_6;
 addCssBlock(`<style>${$css_6}</style>`);
-import $cssFromFile_7 from 'Frontend/themes/myapp/forumlist.css';
+import $cssFromFile_7 from 'Frontend/themes/myapp/ad.css';
 const $css_7 = typeof $cssFromFile_7  === 'string' ? unsafeCSS($cssFromFile_7) : $cssFromFile_7;
 addCssBlock(`<style>${$css_7}</style>`);
-import $cssFromFile_8 from 'Frontend/themes/myapp/makeforumpost.css';
+import $cssFromFile_8 from 'Frontend/themes/myapp/checkout.css';
 const $css_8 = typeof $cssFromFile_8  === 'string' ? unsafeCSS($cssFromFile_8) : $cssFromFile_8;
 addCssBlock(`<style>${$css_8}</style>`);
-import $cssFromFile_9 from 'Frontend/themes/myapp/forumpost.css';
+import $cssFromFile_9 from 'Frontend/themes/myapp/forumlist.css';
 const $css_9 = typeof $cssFromFile_9  === 'string' ? unsafeCSS($cssFromFile_9) : $cssFromFile_9;
 addCssBlock(`<style>${$css_9}</style>`);
-import $cssFromFile_10 from 'Frontend/themes/myapp/Home.css';
+import $cssFromFile_10 from 'Frontend/themes/myapp/makeforumpost.css';
 const $css_10 = typeof $cssFromFile_10  === 'string' ? unsafeCSS($cssFromFile_10) : $cssFromFile_10;
 addCssBlock(`<style>${$css_10}</style>`);
+<<<<<<< HEAD
 import $cssFromFile_11 from 'Frontend/themes/myapp/login.css';
+=======
+import $cssFromFile_11 from 'Frontend/themes/myapp/Home.css';
+>>>>>>> d8e5c2d283b780f9b7b1b3291f608593961c83a5
 const $css_11 = typeof $cssFromFile_11  === 'string' ? unsafeCSS($cssFromFile_11) : $cssFromFile_11;
 addCssBlock(`<style>${$css_11}</style>`);
 

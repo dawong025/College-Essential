@@ -37,7 +37,8 @@
 .forum-search-button{
     border-radius: 5px;
     background-position: left top;
-    background-color: white;
+    color: white;
+    background-color: black;
     width: 200px;
     height: 45px;
     margin-top: 2px;
