@@ -41,7 +41,7 @@ public class HomeView extends VerticalLayout {
     private Button itemButton;
     TextField searchBar;
     Select<String> select;
-    static HashMap<String, String> itemList = new HashMap<>();
+    static HashMap<String, ArrayList<String>> itemList = new HashMap<>();
     String searchedItem;
     List<Component> comps = new ArrayList<>();
     //ItemView itemView = new ItemView();
@@ -169,7 +169,19 @@ public class HomeView extends VerticalLayout {
                 }
             }
 
-            popPage();
+            if(itemList.isEmpty()){
+                H2 error = new H2("Sorry, we couldnt find what you were searching for");
+                error.setClassName("errorMessage");
+                add(error);
+                comps.add(error);
+                add(footerLay);
+                comps.add(footerLay);
+
+            }else{
+                popPage();
+            }
+
+            
 
         });
 
@@ -183,12 +195,14 @@ public class HomeView extends VerticalLayout {
 
         int count = 0;
             hor = new HorizontalLayout();
+           
             
             vl = new VerticalLayout();
         for (String key : itemList.keySet()) {
-
+                ArrayList<String> array = new ArrayList<>();
             if (count < 4) {
-                Image image = new Image(itemList.get(key), key);
+                array = itemList.get(key);
+                Image image = new Image(array.get(0), key);
                 image.setHeight("200px");
                 image.setWidth("150px");
                 vl.add(image);
@@ -238,7 +252,7 @@ public class HomeView extends VerticalLayout {
         return currTitle;
     }
 
-    public static HashMap<String, String> getMap() {
+    public static HashMap<String, ArrayList<String>> getMap() {
         return itemList;
     }
 

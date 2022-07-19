@@ -120,8 +120,8 @@
     color: black;
 }
 
-.horItemLayout{
-border: 3px solid green;
+.errorMessage{
+    margin: auto;
 }
 
 .vertItemLayout{

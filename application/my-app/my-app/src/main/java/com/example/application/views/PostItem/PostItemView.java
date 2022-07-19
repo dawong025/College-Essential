@@ -50,6 +50,7 @@ public class PostItemView extends VerticalLayout{
             h1.setClassName("h1Layout");
 
             H3 header = new H3("Sell Item Form");
+            header.setClassName("Header");
             vert.add(header);
             url = new TextField("Enter URL of Image");
             url.setWidth("55%");
