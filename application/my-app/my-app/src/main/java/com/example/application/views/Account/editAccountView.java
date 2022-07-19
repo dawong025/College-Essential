@@ -2,6 +2,7 @@ package com.example.application.views.Account;
 
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -20,25 +21,32 @@ public class editAccountView extends VerticalLayout{
     public editAccountView(){
 
         HorizontalLayout hl = new HorizontalLayout();
+        hl.addClassName("label-one");
         VerticalLayout vl = new VerticalLayout();   
         VerticalLayout vMain = new VerticalLayout();   
         String name = "Kelly Smith";
 
-        H2 header = new H2(name);
+        H1 header = new H1(name);
+        header.addClassName("name");
+        
 
         Image img1 = new Image("images/icon.jpg", "placeholder icon");
         img1.setWidth("180px");
         img1.addClassName("pfp");
 
         Button edit = new Button("Edit");
+        edit.addClassName("editAcc");
 
         Button recent = new Button("Recent");
+        recent.addClassName("purchases");
 
         hl.add(img1,header,recent,edit);
 
         TextArea about = new TextArea("Change About Me");
+        about.addClassName("about-me");
 
         TextArea contact = new TextArea("Change Contact Info");
+        contact.addClassName("contact-me");
 
         TextField college = new TextField("Change College");
 
