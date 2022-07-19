@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import com.example.application.views.MainLayout;
 import com.example.application.views.Account.AccountView;
-import com.example.application.views.home.HomeView;
+import com.example.application.views.Marketplace.Marketplace;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -34,14 +34,16 @@ public class marketPlaceItemView extends VerticalLayout{
    // private ItemDetails itemDetail;
    // HomeView hv = new HomeView();
 
-
+  
     public marketPlaceItemView(){
+      System.out.println("1");
         VerticalLayout vl = new VerticalLayout();
         vl.setClassName("verticLayout");
         HorizontalLayout hl = new HorizontalLayout();
         hl.setClassName("horLayout");
         setSizeFull();
        itemName = Marketplace.getTitle();
+       System.out.println(itemName);
        items = Marketplace.getMap();
        H3 h3 = new H3(itemName);
        vl.add(h3);
@@ -80,12 +82,6 @@ public class marketPlaceItemView extends VerticalLayout{
        priceField.setReadOnly(true);
        vl.add(price);
        
-
-
-
-
-
-
        Button addToCart = new Button("Add to Cart",event ->{
         //add to db of cart
         this.getUI().ifPresent(ui -> ui.navigate("/home"));
@@ -106,8 +102,6 @@ public class marketPlaceItemView extends VerticalLayout{
       //  itemName = hv.getTitle();
         // System.out.println("Item is ="+itemName);
         
-        
-
     }
 
     

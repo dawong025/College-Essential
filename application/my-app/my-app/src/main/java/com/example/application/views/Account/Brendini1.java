@@ -27,9 +27,9 @@ import java.util.HashMap;
 
 @CssImport("./themes/myapp/Account.css")
 @PageTitle("My Account")
-@Route(value = "Account", layout = MainLayout.class)
-public class AccountView extends Div{
-    public AccountView(){
+@Route(value = "Brendini1", layout = MainLayout.class)
+public class Brendini1 extends Div{
+    public Brendini1(){
 
         getElement().getClassList().add("hello-grid");
         setWidth("99%");
@@ -41,17 +41,13 @@ public class AccountView extends Div{
         Image img1 = new Image("images/icon.jpg", "placeholder icon");
         img1.setWidth("180px");
         img1.addClassName("pfp");
-        H1 name = new H1("Kelly Smith");
+        H1 name = new H1("Brendan1");
         name.addClassName("name");
-    
-        Button purchaseHistory = new Button("Recent Orders", e ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/PurchaseHistory"));
-        });
+        
+        Button purchaseHistory = new Button("Recent Orders");
         purchaseHistory.addClassName("purchases");
 
-        //TODO: Make route + route to new route
         Button editAccount = new Button("Edit Account");
-
         editAccount.addClassName("editAcc");
         HorizontalLayout h1 = new HorizontalLayout(img1, name, purchaseHistory, editAccount);
         h1.addClassName("label-one");
@@ -62,15 +58,15 @@ public class AccountView extends Div{
         H3 aboutMe = new H3("About Me");
         aboutMe.addClassName("about-me");
         
-        H6 aboutText1 = new H6("Hi, I'm Kelly! Nice to meet you!");
-        H6 aboutText2 = new H6("CS @ Northwestern");
+        H6 aboutText1 = new H6("Hi, I'm Brendan1! Nice to meet you!");
+        H6 aboutText2 = new H6("CS @ San Francisco State University");
         
         VerticalLayout aboutText = new VerticalLayout(aboutText1, aboutText2);
         aboutText.addClassName("aboutText");
         
         H3 contactMe = new H3("Contact Me");
         contactMe.addClassName("contact-me");
-        H6 contactText1 = new H6("For business inquiries only: ksmith292@gmail.com");
+        H6 contactText1 = new H6("For business inquiries only: brendini1@gmail.com");
         VerticalLayout contactText = new VerticalLayout(contactText1);
         contactText.addClassName("contact-text");
         VerticalLayout personalInfo = new VerticalLayout(aboutMe, aboutText, contactMe, contactText);
@@ -88,7 +84,7 @@ public class AccountView extends Div{
         ratingAuthor1.addClassName("rating-author");
         Span datePosted1 = new Span ("12/17/2022");
         datePosted1.addClassName("date-posted");
-        H6 commentText1 = new H6("Kelly sold me a great oak table at a great price! Would buy from her again");
+        H6 commentText1 = new H6("Brendan1 sold me a great oak table at a great price! Would buy from her again");
         commentText1.addClassName("comment-text");
         VerticalLayout rating1 = new VerticalLayout(ratingAuthor1, datePosted1, commentText1);
         rating1.addClassName("single-rating");
@@ -97,7 +93,7 @@ public class AccountView extends Div{
         ratingAuthor2.addClassName("rating-author");
         Span datePosted2 = new Span ("12/17/2022");
         datePosted2.addClassName("date-posted");
-        H6 commentText2 = new H6("Kelly sold me a pair of Sony Headphones");
+        H6 commentText2 = new H6("Brendan1 sold me a pair of Sony Headphones");
         commentText2.addClassName("comment-text");
         VerticalLayout rating2 = new VerticalLayout(ratingAuthor2, datePosted2, commentText2);
         rating2.addClassName("single-rating");
@@ -106,7 +102,7 @@ public class AccountView extends Div{
         ratingAuthor3.addClassName("rating-author");
         Span datePosted3 = new Span ("12/17/2022");
         datePosted3.addClassName("date-posted");
-        H6 commentText3 = new H6("Kelly sold me a nice couch from IKEA");
+        H6 commentText3 = new H6("Brendan1 sold me a nice couch from IKEA");
         commentText3.addClassName("comment-text");
         VerticalLayout rating3 = new VerticalLayout(ratingAuthor3, datePosted3, commentText3);
         rating3.addClassName("single-rating");
