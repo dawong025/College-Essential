@@ -74,6 +74,7 @@ public class ServiceList extends VerticalLayout{
         post1.put("title", "CSC 648 TA");
         post1.put("school", "San Francisco State University");
         post1.put("user", "Brendan1");
+        post1.put("account_route", "/Brendini1");
         post1.put("route", "/sPost1");
         post1.put("description", "I am in need of a teacher assistant for my class.");
 
@@ -81,6 +82,7 @@ public class ServiceList extends VerticalLayout{
         post2.put("title", "CSC 510 TA");
         post2.put("school", "San Francisco State University");
         post2.put("user", "Brendan2");
+        post2.put("account_route", "/Brendini2");
         post2.put("route", "/sPost2");
         post2.put("description", "I am in need of a teacher assistant for my class.");
 
@@ -101,7 +103,7 @@ public class ServiceList extends VerticalLayout{
             title.addClassName("service-post-title-hov");
 
             Button user = new Button("User: " + i.get("user"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate("/Account"));
+                this.getUI().ifPresent(ui -> ui.navigate(i.get("account_route")));
             });
             user.addClassName("service-post-user");
             user.addClassName("service-post-user-hov");
