@@ -40,7 +40,7 @@
     grid-area: advertisements-footer;
 }
 .privacy-footer {
-    
+    margin-right: -600px;
     grid-area: privacy-footer;
 }
 .contact {

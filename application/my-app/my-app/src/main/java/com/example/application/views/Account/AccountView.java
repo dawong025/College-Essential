@@ -43,11 +43,15 @@ public class AccountView extends Div{
         img1.addClassName("pfp");
         H1 name = new H1("Kelly Smith");
         name.addClassName("name");
-        
-        Button purchaseHistory = new Button("Recent Orders");
+    
+        Button purchaseHistory = new Button("Recent Orders", e ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/PurchaseHistory"));
+        });
         purchaseHistory.addClassName("purchases");
 
+        //TODO: Make route + route to new route
         Button editAccount = new Button("Edit Account");
+
         editAccount.addClassName("editAcc");
         HorizontalLayout h1 = new HorizontalLayout(img1, name, purchaseHistory, editAccount);
         h1.addClassName("label-one");
