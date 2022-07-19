@@ -20,7 +20,7 @@
 .FooterLayout{
     border-radius: 40px;
     background-color: rgb(128,128,128, 0.5);
-    margin-top: 200px;
+    margin-top: 50%;
     height: 230px;
     display: grid;
     grid-template-rows: 1fr;

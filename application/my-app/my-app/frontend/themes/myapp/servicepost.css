@@ -1,52 +1,5 @@
-/* .title{
-    border-radius: 5px;
-    padding-bottom: 10px;
-    width: 800px;
-    height: 25px;
-    text-align: center;
-    background-color: rgb(144, 119, 119);
-    border-style: solid;
-    border-color: black;
-    opacity: 90%;
-    margin-top: 150px;
-    margin-bottom: 0px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.user{
-    border-radius: 5px;
-    background-position: left top;
-    padding-bottom: 10px;
-    width: 800px;
-    height: 25px;
-    text-align: center;
-    background-color: rgb(144, 119, 119);
-    border-style: solid;
-    border-color: black;
-    opacity: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.description{
-    border-radius: 5px;
-    background-position: left top;
-    padding-bottom: 10px;
-    width: 200px;
-    height: 25px;
-    text-align: center;
-    background-color: rgb(144, 119, 119);
-    border-style: solid;
-    border-color: black;
-    opacity: 90%;
-    margin-bottom: auto;
-    margin-left: auto;
-    margin-right: auto;
-} */
-
-/* Credit to Darren for figuring out grid*/
-/* Individual Forum Post CSS*/
+/*Inherits the same properties from forum post, but this is the css for service posts*/
+/*Changes can be made to this without affecting CSS for forum posts*/
 .forum-grid {
     display: grid !important;
     background-color: white;

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Footer.FooterView;
 import com.vaadin.flow.component.ClickNotifier;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
@@ -34,7 +35,7 @@ public class ServiceList extends VerticalLayout{
 
         //Code for the new post button that routes you to a page where you can make a post
         Button newPost = new Button("Make a new post", e ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/forumPost"));
+            this.getUI().ifPresent(ui -> ui.navigate("/servicePost"));
         });
         newPost.addClassName("forum-search-button");
 
@@ -71,14 +72,18 @@ public class ServiceList extends VerticalLayout{
         //Fake posts to be deleted later, code below this should be altered or deleted later
         HashMap<String, String> post1 = new HashMap<String, String>();
         post1.put("title", "CSC 648 TA");
-        post1.put("user", "Brendan1");
         post1.put("school", "San Francisco State University");
+        post1.put("user", "Brendan1");
+        post1.put("account_route", "/Brendini1");
+        post1.put("route", "/sPost1");
         post1.put("description", "I am in need of a teacher assistant for my class.");
 
         HashMap<String, String> post2 = new HashMap<String, String>();
         post2.put("title", "CSC 510 TA");
-        post2.put("user", "Brendan2");
         post2.put("school", "San Francisco State University");
+        post2.put("user", "Brendan2");
+        post2.put("account_route", "/Brendini2");
+        post2.put("route", "/sPost2");
         post2.put("description", "I am in need of a teacher assistant for my class.");
 
         post.add(post1);
@@ -92,25 +97,25 @@ public class ServiceList extends VerticalLayout{
 
             //Should at some point route to an url stored in the database
             Button title = new Button("(" + servicePostCounter + ")Title: " + i.get("title"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate("/servicePost"));
+                this.getUI().ifPresent(ui -> ui.navigate(i.get("route")));
             });
             title.addClassName("service-post-title");
             title.addClassName("service-post-title-hov");
 
             Button user = new Button("User: " + i.get("user"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate("/Account"));
+                this.getUI().ifPresent(ui -> ui.navigate(i.get("account_route")));
             });
             user.addClassName("service-post-user");
             user.addClassName("service-post-user-hov");
 
             Button school = new Button("School: " + i.get("school"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate("/Account"));
+                UI.getCurrent().getPage().executeJs("window.open('https://www.sfsu.edu/');");
             });
             school.addClassName("service-post-school");
             school.addClassName("service-post-school-hov");
 
             Button description = new Button(i.get("description"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate("/servicePost"));
+                this.getUI().ifPresent(ui -> ui.navigate(i.get("route")));
             });
             description.addClassName("service-post-description");
             description.addClassName("service-post-description-hov");

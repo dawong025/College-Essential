@@ -23,5 +23,4 @@ com\example\application\views\Items\ItemView.class
 com\example\application\views\MainLayout$MenuItemInfo.class
 com\example\application\views\checkout\checkout.class
 com\example\application\views\registration\RegistrationFormBinder.class
-com\example\application\views\forum\ForumPost.class
 com\example\application\views\Services\ServiceList.class

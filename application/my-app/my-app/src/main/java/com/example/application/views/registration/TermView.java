@@ -21,13 +21,13 @@ public class TermView extends VerticalLayout{
         terms.setValue("Do you agree to let us do what ever we want?");
         terms.setReadOnly(true);
         add(terms);
-        Path path = Paths.get("/termsText.txt");
-        Scanner input = new Scanner(new File(path.toString()));
+        // Path path = Paths.get("/termsText.txt");
+        // Scanner input = new Scanner(new File(path.toString()));
 
-        while (input.hasNextLine())
-        {
-        System.out.println(input.nextLine());
-        }
+        // while (input.hasNextLine())
+        // {
+        // System.out.println(input.nextLine());
+        // }
     }
 
 
