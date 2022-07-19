@@ -155,11 +155,11 @@ public class HomeView extends VerticalLayout {
        
         getSearchButton().addClickListener(event -> {
             searchedItem = searchBar.getValue();
-            String condition = select.getValue();
+            String category = select.getValue();
 
             // key is title, val is url
             DBHome db = new DBHome();
-            itemList = db.searchHomeItem(searchedItem, condition);
+            itemList = db.searchHomeItem(searchedItem, category);
          
 
             // removes components

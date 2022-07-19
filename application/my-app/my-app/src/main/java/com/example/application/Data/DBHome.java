@@ -23,22 +23,30 @@ public class DBHome {
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
 
-            if(!selector.contains("All")){
+            if(!selector.contains("All Categories")){
                 
-                String q = "SELECT MarketplaceListing.title, Product.product_image, Product.product_condition FROM ProductListings"
-               + " JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
-               +" JOIN Product ON ProductListings.product_id = Product.product_id"
-               +" WHERE MarketplaceListing.title LIKE '%" +Title+ "%' AND Product.general_type LIKE '%" +selector+ "%';";
+                String q = "SELECT MarketplaceListing.marketplace_listing_id, MarketplaceListing.title, MarketplaceListing.price,"
+                +" MarketplaceListing.created_at, MarketplaceListing.body, MarketplaceListing.seller_id, Product.product_condition,"
+                +" Product.product_image FROM ProductListings"
+                +" JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
+                +" JOIN Product ON ProductListings.product_id = Product.product_id"
+                +" WHERE MarketplaceListing.title LIKE '%" +Title+"%' AND Product.general_type LIKE '%" +selector+ "%';";
             
                 String nameItem;
                 String imageURL;
+                String price;
+                String body;
                 try (Statement stmt = connection.createStatement()) {
                     ResultSet rs = stmt.executeQuery(q);
                     while (rs.next()) {
                         ArrayList array = new ArrayList<>();
                       nameItem = rs.getString("title");
                       imageURL = rs.getString("product_image");
+                      price = rs.getString("price");
+                      body = rs.getString("body");
                       array.add(imageURL);
+                      array.add(body);
+                      array.add(price);
                       System.out.println(nameItem + " " +imageURL+ " "+selector);
                         itemList.put(nameItem,array);
                       
@@ -48,14 +56,16 @@ public class DBHome {
                   }  
 
             }else{
-            String q = "SELECT MarketplaceListing.title, Product.product_image FROM ProductListings"
+            String q = "SELECT MarketplaceListing.marketplace_listing_id, MarketplaceListing.title, MarketplaceListing.price,"
+            +" MarketplaceListing.created_at, MarketplaceListing.body, MarketplaceListing.seller_id, Product.product_condition,"
+            +" Product.product_image FROM ProductListings"
             +" JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
-           +" JOIN Product ON ProductListings.product_id = Product.product_id"
-            + " WHERE MarketplaceListing.title LIKE '%" +Title + "%';";
+            +" JOIN Product ON ProductListings.product_id = Product.product_id"
+            +" WHERE MarketplaceListing.title LIKE '%" +Title + "%';";
             String nameItem;
             String imageURL;
             String price;
-            String descrip;
+            String body;
             try (Statement stmt = connection.createStatement()) {
                 ResultSet rs = stmt.executeQuery(q);
                
@@ -63,8 +73,11 @@ public class DBHome {
                     ArrayList array = new ArrayList<>();
                   nameItem = rs.getString("title");
                   imageURL = rs.getString("product_image");
-                  
-                  array.add(imageURL);
+                  price = rs.getString("price");
+                      body = rs.getString("body");
+                      array.add(imageURL);
+                      array.add(body);
+                      array.add(price);
                   
                     itemList.put(nameItem,array);
                   

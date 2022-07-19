@@ -2,6 +2,7 @@
   "productionMode": false,
   "useDeprecatedV14Bootstrapping": false,
   "eagerServerLoad": false,
+<<<<<<< HEAD
   "npmFolder": "C:\\Users\\Otaku\\Desktop\\csc648\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app",
   "node.version": "v16.15.0",
   "node.download.root": "https://nodejs.org/dist/",
@@ -12,6 +13,18 @@
   "connect.applicationProperties": "C:\\Users\\Otaku\\Desktop\\csc648\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app\\src\\main\\resources\\application.properties",
   "connect.openApiFile": "C:\\Users\\Otaku\\Desktop\\csc648\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app\\target\\generated-resources\\openapi.json",
   "project.frontend.generated": "C:\\Users\\Otaku\\Desktop\\csc648\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app\\frontend\\generated",
+=======
+  "npmFolder": "C:\\Users\\Admin\\Documents\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app",
+  "node.version": "v16.15.0",
+  "node.download.root": "https://nodejs.org/dist/",
+  "generatedFolder": "C:\\Users\\Admin\\Documents\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app\\target\\frontend",
+  "frontendFolder": "C:\\Users\\Admin\\Documents\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app\\frontend",
+  "connect.javaSourceFolder": "C:\\Users\\Admin\\Documents\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app\\src\\main\\java",
+  "javaResourceFolder": "C:\\Users\\Admin\\Documents\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app\\src\\main\\resources",
+  "connect.applicationProperties": "C:\\Users\\Admin\\Documents\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app\\src\\main\\resources\\application.properties",
+  "connect.openApiFile": "C:\\Users\\Admin\\Documents\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app\\target\\generated-resources\\openapi.json",
+  "project.frontend.generated": "C:\\Users\\Admin\\Documents\\csc648-848-01-sw-engineering-summer-22-team04\\application\\my-app\\my-app\\frontend\\generated",
+>>>>>>> db5d383223a7c7ac1abdded515404dc6a3fa166e
   "pnpm.enable": false,
   "require.home.node": false,
   "build.folder": "target"
