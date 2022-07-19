@@ -17,6 +17,12 @@
     border-radius: 40px;
     background-color: gray;
     justify-self: stretch;
-    margin: auto;
+    margin-top: 200px;
+    height: 230px;
+
+}
+
+.Header{
+    text-decoration: underline;
 }
 

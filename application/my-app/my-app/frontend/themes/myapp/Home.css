@@ -21,8 +21,10 @@
     background-image: url("https://cdn.discordapp.com/attachments/998116033850249267/998362671403516005/blurred-background.jpg");
     background-color: #cccccc;
     background-size: cover;
+    /* position: absolute; */
+    position:relative;
+    overflow:auto;
     height: 100%;
-    overflow: hidden;
 }
 
 .home-search-bar{
@@ -118,8 +120,8 @@
     color: black;
 }
 
-.horItemLayout{
-border: 3px solid green;
+.errorMessage{
+    margin: auto;
 }
 
 .vertItemLayout{
@@ -129,7 +131,7 @@ border: 3px solid green;
 
 .buttonItem{
     background-color: black;
-    
+    color: white;
 }
 
 .buttonItem:hover{

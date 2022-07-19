@@ -12,8 +12,9 @@ import com.vaadin.flow.component.charts.model.Items;
 public class DBHome {
 
     
-    public static HashMap<String,String> searchHomeItem(String Title, String selector) {
-        HashMap<String, String> itemList = new HashMap<String,String>();
+    public static HashMap<String,ArrayList<String>> searchHomeItem(String Title, String selector) {
+        HashMap<String, ArrayList<String>> itemList = new HashMap<String,ArrayList<String>>();
+        // ArrayList array = new ArrayList<>();
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
         String password = "team4_2022";
@@ -27,17 +28,19 @@ public class DBHome {
                 String q = "SELECT MarketplaceListing.title, Product.product_image, Product.product_condition FROM ProductListings"
                + " JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
                +" JOIN Product ON ProductListings.product_id = Product.product_id"
-               +" WHERE MarketplaceListing.title LIKE '%" +Title+ "%' AND Product.product_condition LIKE '%" +selector+ "%';";
+               +" WHERE MarketplaceListing.title LIKE '%" +Title+ "%' AND Product.general_type LIKE '%" +selector+ "%';";
             
                 String nameItem;
                 String imageURL;
                 try (Statement stmt = connection.createStatement()) {
                     ResultSet rs = stmt.executeQuery(q);
                     while (rs.next()) {
+                        ArrayList array = new ArrayList<>();
                       nameItem = rs.getString("title");
                       imageURL = rs.getString("product_image");
+                      array.add(imageURL);
                       System.out.println(nameItem + " " +imageURL+ " "+selector);
-                        itemList.put(nameItem,imageURL);
+                        itemList.put(nameItem,array);
                       
                     }
                   } catch (SQLException e) {
@@ -51,14 +54,19 @@ public class DBHome {
             + " WHERE MarketplaceListing.title LIKE '%" +Title + "%';";
             String nameItem;
             String imageURL;
+            String price;
+            String descrip;
             try (Statement stmt = connection.createStatement()) {
                 ResultSet rs = stmt.executeQuery(q);
                
                 while (rs.next()) {
+                    ArrayList array = new ArrayList<>();
                   nameItem = rs.getString("title");
                   imageURL = rs.getString("product_image");
                   
-                    itemList.put(nameItem,imageURL);
+                  array.add(imageURL);
+                  
+                    itemList.put(nameItem,array);
                   
                 }
               } catch (SQLException e) {

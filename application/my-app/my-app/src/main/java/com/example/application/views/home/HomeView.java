@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import com.example.application.Data.DBHome;
 import com.example.application.views.MainLayout;
+import com.example.application.views.Footer.FooterView;
 import com.example.application.views.Items.ItemView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
@@ -40,7 +41,7 @@ public class HomeView extends VerticalLayout {
     private Button itemButton;
     TextField searchBar;
     Select<String> select;
-    static HashMap<String, String> itemList = new HashMap<>();
+    static HashMap<String, ArrayList<String>> itemList = new HashMap<>();
     String searchedItem;
     List<Component> comps = new ArrayList<>();
     //ItemView itemView = new ItemView();
@@ -64,7 +65,7 @@ public class HomeView extends VerticalLayout {
 
         // dropdown menu
         select = new Select<>();
-        select.setItems("All Categories","Textbook", "School", "Supplies", "Furniture", "Lifestyle");
+        select.setItems("All Categories","Textbook", "School Supplies", "Furniture", "Lifestyle", "Miscellaneous");
         select.setValue("All Categories");
         select.setClassName("selector");
         select.addClassName("home-dropdown-bar");
@@ -141,6 +142,11 @@ public class HomeView extends VerticalLayout {
         add(buttonLayout);
         //add(descrip);
         comps.add(buttonLayout);
+        FooterView footer = new FooterView();
+        HorizontalLayout footerLay = footer.getFooter();
+        
+        comps.add(footerLay);
+        add(footerLay);
 
 
         ArrayList<Button> buttonList = new ArrayList<>();
@@ -163,11 +169,25 @@ public class HomeView extends VerticalLayout {
                 }
             }
 
-            popPage();
+            if(itemList.isEmpty()){
+                H2 error = new H2("Sorry, we couldnt find what you were searching for");
+                error.setClassName("errorMessage");
+                add(error);
+                comps.add(error);
+                add(footerLay);
+                comps.add(footerLay);
+
+            }else{
+                popPage();
+            }
+
+            
 
         });
 
         itemList.clear();
+
+       
 
     }
 
@@ -175,12 +195,14 @@ public class HomeView extends VerticalLayout {
 
         int count = 0;
             hor = new HorizontalLayout();
+           
             
             vl = new VerticalLayout();
         for (String key : itemList.keySet()) {
-
+                ArrayList<String> array = new ArrayList<>();
             if (count < 4) {
-                Image image = new Image(itemList.get(key), key);
+                array = itemList.get(key);
+                Image image = new Image(array.get(0), key);
                 image.setHeight("200px");
                 image.setWidth("150px");
                 vl.add(image);
@@ -218,6 +240,10 @@ public class HomeView extends VerticalLayout {
         hor.setWidthFull();
         hor.setJustifyContentMode(JustifyContentMode.AROUND);
         add(hor);
+        HorizontalLayout footer = new HorizontalLayout();
+        footer = new FooterView().getFooter();
+        add(footer);
+        comps.add(footer);
 
 
     }
@@ -226,7 +252,7 @@ public class HomeView extends VerticalLayout {
         return currTitle;
     }
 
-    public static HashMap<String, String> getMap() {
+    public static HashMap<String, ArrayList<String>> getMap() {
         return itemList;
     }
 
