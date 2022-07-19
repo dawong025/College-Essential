@@ -26,3 +26,16 @@
     background-color: white;
 
 }
+
+.button{
+    border-radius: 5px;
+    border-color: black;
+    border-style: solid;
+    background-color: black;
+    color: whitesmoke;
+}
+
+.button:hover{
+    background-color: whitesmoke;
+    color: black;
+}

@@ -1,6 +1,7 @@
 package com.example.application.views.Footer;
 
 import com.example.application.views.ContactUs.ContactUsview;
+import com.example.application.views.PrivacyPolicies.PrivacyPolicies;
 import com.example.application.views.aboutus.AboutUsView;
 import com.example.application.views.aboutus.BrendanView;
 import com.example.application.views.aboutus.DarrenView;
@@ -89,7 +90,9 @@ public class FooterView{
         adds.addClassName("advertisements-footer");
 
         VerticalLayout privacy = new VerticalLayout();
-        H4 priv = new H4("Privacy Policies");
+        // H4 priv = new H4("Privacy Policies");
+        Div priv = new Div();
+        priv.add(new RouterLink("Privacy Policies", PrivacyPolicies.class));
         priv.addClassName("privacy");
         privacy.add(priv);
         privacy.addClassName("privacy-footer");

@@ -38,26 +38,22 @@ public class checkout extends HorizontalLayout{
     String quantity;
 
     public checkout(){
-        // todo make bigger and underline
-        // H3 h1 = new H3("Shopping Cart");
-       
-    
-        // add(h1); 
+
 
         ArrayList<HashMap<String, String>> cart = new ArrayList<HashMap<String, String>>(); 
 
         // mock data delete later
         HashMap<String, String> item1 = new HashMap<String, String>();
-        item1.put("title", "really long string of text");
-        item1.put("image", "url");
-        item1.put("price", "10");
+        item1.put("title", "pencil");
+        item1.put("image", "https://imgur.com/qGQJ6UV");
+        item1.put("price", "2");
         item1.put("quantity", "1");
 
         HashMap<String, String> item2 = new HashMap<String, String>();
-        item2.put("title", "paper");
-        item2.put("image", "url");
-        item2.put("price", "5");
-        item2.put("quantity", "3");
+        item2.put("title", "backpack");
+        item2.put("image", "https://imgur.com/D6eNwVV");
+        item2.put("price", "60");
+        item2.put("quantity", "1");
 
         cart.add(item1);
         cart.add(item2);
@@ -69,7 +65,7 @@ public class checkout extends HorizontalLayout{
         Button checkout = new Button("checkout", e ->{
             this.getUI().ifPresent(ui -> ui.navigate("/checkout"));
         });
-        checkout.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        checkout.setClassName("button");
 
        // Horizontal layout for shopping cart items
         shoppingCartItems.add(h1);
@@ -84,7 +80,7 @@ public class checkout extends HorizontalLayout{
             
             TextArea title = new TextArea("Name");
 
-            Image image = new Image(cartUrl,"");
+            Image image = new Image(cartUrl,"This is the cart image");
             image.setHeight("150px");
             image.setWidth("150px");
 
@@ -93,7 +89,7 @@ public class checkout extends HorizontalLayout{
             TextArea price = new TextArea("Price");
 
             Button removeFromCart = new Button("Remove from Cart");
-            removeFromCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+            removeFromCart.setClassName("button");
 
 
             title.setValue(i.get("title"));
@@ -118,7 +114,7 @@ public class checkout extends HorizontalLayout{
         Button returnToCart = new Button("Return To Cart", e ->{
             this.getUI().ifPresent(ui -> ui.navigate("/ShoppingCart"));
         });
-        returnToCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        returnToCart.setClassName("button");
 
         shoppingCartItems.add(returnToCart);
         add(shoppingCartItems);
@@ -179,7 +175,7 @@ public class checkout extends HorizontalLayout{
         shippingAddress.setReadOnly(true);
 
         Button changeShippingAddress = new Button("change");
-        changeShippingAddress.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        changeShippingAddress.setClassName("button");
         shippingAddressLayout.add(shippingAddress, changeShippingAddress);
         shippingAddressLayout.setAlignItems(Alignment.BASELINE);
 
@@ -194,7 +190,7 @@ public class checkout extends HorizontalLayout{
         paymentMethod.setReadOnly(true);
 
         Button changePayment = new Button("change");
-        changePayment.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        changePayment.setClassName("button");
         paymentMethodLayout.add(paymentMethod, changePayment);
         paymentMethodLayout.setAlignItems(Alignment.BASELINE);
 
@@ -211,14 +207,14 @@ public class checkout extends HorizontalLayout{
         billingAddress.setReadOnly(true);
 
         Button changeBillingAddress = new Button("change");
-        changeBillingAddress.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        changeBillingAddress.setClassName("button");
         
         billingAddressLayout.add(billingAddress, changeBillingAddress);
         billingAddressLayout.setAlignItems(Alignment.BASELINE);
 
         //Place your order button
         Button placeYourOrder = new Button("Place Your Order");
-        placeYourOrder.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        placeYourOrder.setClassName("button");
 
         reviewBox.add(shippingAddressLayout, paymentMethodLayout, billingAddressLayout, placeYourOrder);
 

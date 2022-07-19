@@ -24,13 +24,32 @@ import com.vaadin.flow.component.textfield.TextField;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+
 @PageTitle("Terms Of Service")
 @Route(value = "tos", layout = MainLayout.class)
-public class TermsOfService extends Div{
-    public TermsOfService(){
+public class TermsOfService extends VerticalLayout{
 
-        H1 tos = new H1("Terms of Service");
-        add(tos);
+    public TermsOfService(){
+        H2 header = new H2("Terms of Service");
+
+        TextArea tos = new TextArea("");
+        tos.setValue("Terms of Service.");
+        tos.setReadOnly(true);
+        tos.setWidth("500px");
+        tos.setHeight("500px");
+    
+
+        VerticalLayout layout = new VerticalLayout();
+        layout.add(header, tos);
+        layout.setAlignItems(Alignment.CENTER);
+        add(layout);
+
+
+
     }
+
+
+
 }
 

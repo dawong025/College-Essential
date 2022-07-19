@@ -65,7 +65,7 @@ public class PurchaseHistory extends HorizontalLayout{
         Button account = new Button("Return to Account", e ->{
             this.getUI().ifPresent(ui -> ui.navigate("/Account"));
         });
-        account.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        account.setClassName("button");
         
         purchaseHistory.add(account);
 
