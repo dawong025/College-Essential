@@ -47,16 +47,16 @@ public class ShoppingCartView extends HorizontalLayout{
 
         // mock data delete later
         HashMap<String, String> item1 = new HashMap<String, String>();
-        item1.put("title", "really long string of text");
-        item1.put("image", "url");
-        item1.put("price", "10");
+        item1.put("title", "pencil");
+        item1.put("image", "https://imgur.com/qGQJ6UV");
+        item1.put("price", "2");
         item1.put("quantity", "1");
 
         HashMap<String, String> item2 = new HashMap<String, String>();
-        item2.put("title", "paper");
-        item2.put("image", "url");
-        item2.put("price", "5");
-        item2.put("quantity", "3");
+        item2.put("title", "backpack");
+        item2.put("image", "https://imgur.com/D6eNwVV");
+        item2.put("price", "60");
+        item2.put("quantity", "1");
 
         cart.add(item1);
         cart.add(item2);
@@ -68,7 +68,7 @@ public class ShoppingCartView extends HorizontalLayout{
         Button checkout = new Button("checkout", e ->{
             this.getUI().ifPresent(ui -> ui.navigate("/checkout"));
         });
-        checkout.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        checkout.setClassName("button");
 
        
         shoppingCartItems.add(h1);
@@ -83,7 +83,7 @@ public class ShoppingCartView extends HorizontalLayout{
             
             TextArea title = new TextArea("Name");
 
-            Image image = new Image(cartUrl,"");
+            Image image = new Image(cartUrl, "shopping cart image");
             image.setHeight("150px");
             image.setWidth("150px");
             // TextField image = new TextField();
@@ -96,12 +96,12 @@ public class ShoppingCartView extends HorizontalLayout{
             price.setHeight("50%");
 
             Button removeFromCart = new Button("Remove from Cart");
-            removeFromCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+            removeFromCart.setClassName("button");
 
 
             title.setValue(i.get("title"));
             title.setReadOnly(true);
-            image.setTitle(i.get("image"));
+            // image.setTitle(i.get("image"));
             quantity.setValue(i.get("quantity"));
             price.setValue(i.get("price"));
             price.setReadOnly(true);
@@ -113,7 +113,7 @@ public class ShoppingCartView extends HorizontalLayout{
                 quantity.setValue(val.toString());
             });
             plusButton.setWidth("10%");
-            plusButton.addThemeVariants(ButtonVariant.LUMO_ICON);
+            plusButton.setClassName("button");
 
             Button minusButton = new Button("-",e->{
                 
@@ -124,7 +124,7 @@ public class ShoppingCartView extends HorizontalLayout{
                 quantity.setValue(val.toString());
             });
             minusButton.setWidth("10%");
-            minusButton.addThemeVariants(ButtonVariant.LUMO_ICON);
+            minusButton.setClassName("button");
 
             HorizontalLayout quantLayout = new HorizontalLayout();
             quantLayout.add(minusButton, quantity, plusButton);
@@ -162,7 +162,7 @@ public class ShoppingCartView extends HorizontalLayout{
         for (HashMap<String, String> i: cart)
         {
 
-            String recentUrl = ("image");
+            String recentUrl = i.get("image");
 
             VerticalLayout recentlyAddedItem = new VerticalLayout();
 
@@ -173,7 +173,7 @@ public class ShoppingCartView extends HorizontalLayout{
             recentlyViewed.setWidth("150px");
             recentlyViewed.setHeight("100px");
 
-            Image recentImage = new Image(recentUrl,"");
+            Image recentImage = new Image(recentUrl,"Recently Viewed Image");
             recentImage.setHeight("200px");
             recentImage.setWidth("150px");
             recentlyAddedItem.addClassName("verticalLayout");
@@ -184,6 +184,7 @@ public class ShoppingCartView extends HorizontalLayout{
 
         }
 
+        recentlyAdded.setAlignItems(Alignment.CENTER);
         add(recentlyAdded);
 
         

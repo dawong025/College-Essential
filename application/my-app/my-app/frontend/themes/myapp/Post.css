@@ -5,7 +5,10 @@
     border: 5px solid black;
     width: auto;
     border-radius: 40px;
-    background-color: rgb(213, 213, 213);
+    background-color: white;
+    max-width: 60%;
+    justify-content: center;
+    margin: auto;
 
 
 }
@@ -41,7 +44,7 @@
     grid-area: advertisements-footer;
 }
 .privacy-footer {
-    
+    margin-right: -600px;
     grid-area: privacy-footer;
 }
 .contact {

@@ -41,7 +41,7 @@ public class AdSubmissionForm extends HorizontalLayout{
         H3 submissionHeader = new H3("Ad Submission Form");
         submissionHeader.addClassName("h3");
 
-        TextArea title = new TextArea("title");
+        TextArea title = new TextArea("Title");
         title.setWidth("500px");
         title.setMinHeight("100px");
 
@@ -58,7 +58,7 @@ public class AdSubmissionForm extends HorizontalLayout{
         reach.setMinHeight("100px");
 
         Button submitForm = new Button("Submit Form");
-        submitForm.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        submitForm.setClassName("button");
 
 
         title.setValue("This is my Ad Name");

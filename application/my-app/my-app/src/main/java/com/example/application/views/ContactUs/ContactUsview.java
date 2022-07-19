@@ -20,10 +20,14 @@ public class ContactUsview extends VerticalLayout {
         TextArea notes = new TextArea("");
         notes.setValue("Here are some things about the team that created this site");
         notes.setReadOnly(true);
+        notes.setWidth("500px");
+        notes.setHeight("500px");
     
         TextField email = new TextField("Our Email");
         email.setValue("CollegeEssentialsHelp@CollegeEssentials.com");
         email.setReadOnly(true);
+        email.setWidth("500px");
+        email.setHeight("200px");
 
         VerticalLayout layout = new VerticalLayout();
         layout.add(header,notes,email);

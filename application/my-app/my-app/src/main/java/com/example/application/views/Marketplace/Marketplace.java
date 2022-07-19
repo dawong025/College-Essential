@@ -46,7 +46,7 @@ public class Marketplace extends VerticalLayout {
     //ItemView itemView = new ItemView();
     HorizontalLayout hor = new HorizontalLayout();
     VerticalLayout vl = new VerticalLayout();
-    private static String currTitle;
+    private static String currentTitle;
     public Marketplace() {
         // searchbar
         searchBar = new TextField();
@@ -140,7 +140,8 @@ public class Marketplace extends VerticalLayout {
                 image.setWidth("150px");
                 vl.add(image);
                 Button b = new Button(key, e -> {
-                    currTitle = key;
+                    currentTitle = key;
+                    System.out.println(currentTitle);
                     this.getUI().ifPresent(ui -> ui.navigate("/marketItemView"));
                 });
         
@@ -178,7 +179,7 @@ public class Marketplace extends VerticalLayout {
     }
 
     public static String getTitle() {
-        return currTitle;
+        return currentTitle;
     }
 
     public static HashMap<String, ArrayList<String>> getMap() {
