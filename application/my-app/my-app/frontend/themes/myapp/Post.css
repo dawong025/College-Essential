@@ -15,14 +15,36 @@
 
 .FooterLayout{
     border-radius: 40px;
-    background-color: gray;
+    background-color: rgb(128,128,128, 0.5);
     justify-self: stretch;
     margin-top: 200px;
     height: 230px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(1fr);
+    grid-template-areas:
+    "about-us-footer contact-us-footer advertisements-footer privacy-footer";
 
 }
 
 .Header{
     text-decoration: underline;
 }
+.about-us-footer {
+    margin-top: -10px;
+    grid-area: about-us-footer;
+}
+.contact-us-footer {
+    margin-top: -10px;
+    grid-area: contact-us-footer;
+}
+.advertisements-footer {
+    margin-top: -10px;
+    grid-area: advertisements-footer;
+}
+.privacy-footer {
+    margin-top: -10px;
+    grid-area: privacy-footer;
+}
+
 

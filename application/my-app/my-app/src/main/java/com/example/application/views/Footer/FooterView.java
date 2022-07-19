@@ -22,8 +22,6 @@ public class FooterView{
     
     public FooterView(){
      
-        
-
     }
 
     public HorizontalLayout getFooter(){
@@ -33,8 +31,6 @@ public class FooterView{
         // 
         Div about = new Div();
         about.add(new RouterLink("About Us", AboutUsView.class));
-        //about.getUI().ifPresent(ui -> ui.navigate("/aboutuss"));
-        //H6 ryan = new H6("Ryan");
         Div ryan = new Div();
         ryan.add(new RouterLink("Ryan", RyanView.class));
         //H6 darren = new H6("Darren");
@@ -51,6 +47,7 @@ public class FooterView{
         duncan.add(new RouterLink("Duncan", DuncanView.class));
         AboutUs.setSpacing(false);
         AboutUs.add(about,ryan,darren,brend,justin,duncan);
+        AboutUs.addClassName("about-us-footer");
 
         VerticalLayout contactUs = new VerticalLayout();
         //H3 contact = new H3("Contact Us");
@@ -58,10 +55,11 @@ public class FooterView{
         contact.add(new RouterLink("Contact Us", ContactUsview.class));
         H6 email = new H6("CollegeEssentialsHelp@CollegeEssentials.com");
         H6 number = new H6("415-000-0000");
-        H6 addy = new H6("1600 Hollow way, SF, 94132");
-        H6 country = new H6("Unided States");
+        H6 addy = new H6("1600 Holloway, SF, 94132");
+        H6 country = new H6("United States");
         contactUs.setSpacing(false);
         contactUs.add(contact,email,number,addy,country);
+        contactUs.addClassName("contact-us-footer");
 
         VerticalLayout adds = new VerticalLayout();
         Div Adver = new Div();
@@ -71,10 +69,12 @@ public class FooterView{
         H6 add3 = new H6("AD Status");
         adds.setSpacing(false);
         adds.add(Adver,add2,add3);
+        adds.addClassName("advertisements-footer");
 
         VerticalLayout privacy = new VerticalLayout();
         H3 priv = new H3("Privacy Policies");
         privacy.add(priv);
+        privacy.addClassName("privacy-footer");
         footerLayout.add(AboutUs,contactUs,adds,privacy);
         footerLayout.setClassName("FooterLayout");
         footerLayout.setAlignItems(Alignment.BASELINE);
