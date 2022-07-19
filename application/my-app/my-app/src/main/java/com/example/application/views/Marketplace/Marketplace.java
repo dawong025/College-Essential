@@ -1,4 +1,4 @@
-package com.example.application.views.home;
+package com.example.application.views.Marketplace;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,11 +31,10 @@ import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.*;
 
-@CssImport("./themes/myapp/Home.css")
-@PageTitle("College Essentials")
-@Route(value = "home", layout = MainLayout.class)
-@RouteAlias(value = "", layout = MainLayout.class)
-public class HomeView extends VerticalLayout {
+
+@PageTitle("Marketplace")
+@Route(value = "marketplace", layout = MainLayout.class)
+public class Marketplace extends VerticalLayout {
 
     private Button search;
     private Button itemButton;
@@ -48,13 +47,8 @@ public class HomeView extends VerticalLayout {
     HorizontalLayout hor = new HorizontalLayout();
     VerticalLayout vl = new VerticalLayout();
     private static String currTitle;
-    
-    // Liveshare test - Darren Wong
-    public HomeView() {
+    public Marketplace() {
         // searchbar
-        // adds background image
-        //this.getElement().getStyle().set( "background-image" , "url('https://cdn.discordapp.com/attachments/982032674078216210/997652262996430868/unknown.png')" );
-        this.addClassName("background-photo");
         searchBar = new TextField();
         searchBar.setClassName("searchBar");
         searchBar.setPlaceholder("Search For Books, Furniture and More....");
@@ -75,90 +69,33 @@ public class HomeView extends VerticalLayout {
         search.setClassName("searchButton");
         search.addClassName("home-search-button");
 
+        Button newItem = new Button("Sell an item", e ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/postItem"));
+        });
+        newItem.addClassName("searchButton-2");
 
-        HorizontalLayout hv = new HorizontalLayout(searchBar, select,search);
+        HorizontalLayout hv = new HorizontalLayout(searchBar, select, search, newItem);
         hv.addClassName("search-bar");
         hv.setSpacing(false);
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
         add(hv);
 
-        Paragraph college = new Paragraph("Connect students and faculty from");
-        college.addClassName("title-p1");
-        Paragraph essentials = new Paragraph("colleges all over the world.");
-        essentials.addClassName("title-p2");
-        
-        add(college);
-        add(essentials);
 
-        H1 descrip1 = new H1("Get started today by browsing our marketplace, ");
-        descrip1.setClassName("description-1");
-        H1 descrip2 = new H1("ask a question in our forums,");
-        descrip2.setClassName("description-2");
-        H1 descrip3 = new H1("or look for different service listings.");
-        descrip3.setClassName("description-3");
-
-        
-        add(descrip1);
-        add(descrip2);
-        add(descrip3);
-        comps.add(descrip1);
-        comps.add(descrip2);
-        comps.add(descrip3);
-        comps.add(college);
-        comps.add(essentials);
-        Button marketPlaceButton = new Button("Marketplace", e->{
-            //clears page and shows grid of everything
-            if (!comps.isEmpty()) {
-                for (Component c : comps) {
-                    remove(c);
-                }
-            }
-            DBHome db = new DBHome();
-            itemList = db.searchHomeItem("", "All");
-            popPage();
-
-        });
-        marketPlaceButton.setClassName("marketPlaceButton");
-        marketPlaceButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
-
-        Button formButton = new Button("Forum Place", ev ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/forumList"));
-        });
-        formButton.setClassName("forumButton");
-        formButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
-
-        Button serviceButton = new Button("Service Listings" ,event ->{
-            //add for service listing serviceList
-            this.getUI().ifPresent(ui -> ui.navigate("/serviceList"));
-        });
-        serviceButton.setClassName("serviceButton");
-        serviceButton.addThemeVariants(ButtonVariant.LUMO_LARGE);
-
-        HorizontalLayout buttonLayout = new HorizontalLayout();
-        buttonLayout.add(marketPlaceButton,formButton,serviceButton);
-        buttonLayout.setJustifyContentMode(JustifyContentMode.AROUND);
-        buttonLayout.setClassName("buttonLayout");
-        add(buttonLayout);
-        //add(descrip);
-        comps.add(buttonLayout);
         FooterView footer = new FooterView();
         HorizontalLayout footerLay = footer.getFooter();
-        
-        comps.add(footerLay);
-        add(footerLay);
 
 
         ArrayList<Button> buttonList = new ArrayList<>();
         hor.setClassName("horItemLayout");
         vl.setClassName("vertItemLayout");
        
+        DBHome db = new DBHome();
+        itemList = db.searchHomeItem("", "All Categories");
+        popPage();
         getSearchButton().addClickListener(event -> {
             searchedItem = searchBar.getValue();
             String category = select.getValue();
-
-            // key is title, val is url
-            DBHome db = new DBHome();
-            itemList = db.searchHomeItem(searchedItem, category);
+            
          
 
             // removes components
@@ -185,9 +122,6 @@ public class HomeView extends VerticalLayout {
         });
 
         itemList.clear();
-
-       
-
     }
 
     public void popPage(){
@@ -276,3 +210,4 @@ public class HomeView extends VerticalLayout {
     }
 
 }
+

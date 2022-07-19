@@ -169,9 +169,15 @@
     background-color: white;
 }
 .searchButton{
-    background-color: white;
-    color:black;
+    background-color: black;
+    color:white;
     
+}
+
+.searchButton-2 {
+    margin-left: 2px;
+    background-color: black;
+    color: white;
 }
 
 .searchButton:hover{
