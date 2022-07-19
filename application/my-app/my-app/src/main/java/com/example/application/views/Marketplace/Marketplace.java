@@ -141,7 +141,7 @@ public class Marketplace extends VerticalLayout {
                 vl.add(image);
                 Button b = new Button(key, e -> {
                     currTitle = key;
-                    this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
+                    this.getUI().ifPresent(ui -> ui.navigate("/marketItemView"));
                 });
         
                 b.setClassName("buttonItem");
