@@ -74,9 +74,15 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         add(vLayout);
         loginButton.addClickListener(event ->{
             setRequiredIndicatorVisible(userName,passWord);
-                status = true;
+            if(userName.getValue().equals("admin")){
+                overlay.getUI().ifPresent(ui ->
+                ui.navigate("/Admin")); 
+            }else{
+              
                     overlay.getUI().ifPresent(ui ->
-                ui.navigate("/home"));
+                ui.navigate("/home"));  
+            }
+                
 
         });
 
