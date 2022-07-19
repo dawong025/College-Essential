@@ -20,6 +20,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.component.textfield.TextAreaVariant;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.router.PageTitle;
@@ -31,7 +32,7 @@ import com.vaadin.flow.router.Route;
 public class fPost1 extends VerticalLayout{
     public fPost1(){
         getElement().getClassList().add("forum-grid");
-        setWidth("99%");
+        setWidth("100%");
         this.addClassName("forum-background");
 
         HashMap<String, String> post1 = new HashMap<String, String>();
@@ -64,6 +65,7 @@ public class fPost1 extends VerticalLayout{
         Div postholder = new Div();
         postholder.addClassName("fp-description");
         TextArea description = new TextArea("");
+        description.addThemeVariants(TextAreaVariant.LUMO_ALIGN_CENTER);
         description.setWidth("800px");
         description.setMinHeight("200px");
         description.setValue(post1.get("description"));
