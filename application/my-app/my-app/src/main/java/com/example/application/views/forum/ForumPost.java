@@ -1,6 +1,7 @@
 package com.example.application.views.forum;
 
 import com.example.application.views.MainLayout;
+import com.example.application.views.Footer.FooterView;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -67,7 +68,22 @@ public class ForumPost extends VerticalLayout{
             header,
             title,
             description,
+<<<<<<< HEAD
             submit
+=======
+            new Button("Submit", event->{
+                //var fPost = new fPost();
+                //binder.writeBeanIfValid(fPost);
+                Notification.show("Post was saved");
+            })
+
+            
+>>>>>>> d8b98e463c26f8d94f4193a519b4d6459c32b3e9
         );
+        FooterView footer = new FooterView();
+           HorizontalLayout footerLay = new HorizontalLayout();
+           footerLay.setClassName("FooterLayout");
+           footerLay = footer.getFooter();
+           add(footerLay);
     }
 }

@@ -141,13 +141,9 @@ public class Marketplace extends VerticalLayout {
                 vl.add(image);
                 Button b = new Button(key, e -> {
                     currTitle = key;
-                    this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
+                    this.getUI().ifPresent(ui -> ui.navigate("/marketItemView"));
                 });
-                // H3 b = new H3(key);
-                //     b.addClickListener(e->{
-                //         currTitle = key;
-                //         this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
-                //     });
+        
                 b.setClassName("buttonItem");
                 //b.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
                 vl.add(b);

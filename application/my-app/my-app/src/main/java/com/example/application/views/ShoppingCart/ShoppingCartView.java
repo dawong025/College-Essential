@@ -186,6 +186,8 @@ public class ShoppingCartView extends HorizontalLayout{
 
         add(recentlyAdded);
 
+        
+
 
         } 
 

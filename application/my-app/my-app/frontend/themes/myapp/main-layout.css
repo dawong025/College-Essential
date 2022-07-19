@@ -74,58 +74,58 @@
 
 .logInButton {
   color: gainsboro;
-  background-color: var(--lumo-primary-color);
-  color: black;
+  background-color:black;
+  color: white;
   
 }
 
 .logInButton:hover {
   color: black;
-  background-color: azure;
+  background-color: white;
 }
 
 .accountButton{
   color: gainsboro;
-  background-color: var(--lumo-primary-color);
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 .accountButton:hover{
-  color: black;
-  background-color: azure;
+  color:black;
+  background-color:white;
 }
 
 .logOutButton {
   color: gainsboro;
-  background-color: var(--lumo-primary-color);
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 .logOutButton:hover {
   color: black;
-  background-color: azure;
+  background-color: white;
 }
 
 .regButton {
   color: gainsboro;
-  background-color: var(--lumo-primary-color);
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 .regButton:hover {
-  color: black;
-  background-color: azure;
+  color:black;
+  background-color: white;
 }
 
 .cartButton {
   color: gainsboro;
-  background-color: var(--lumo-primary-color);
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 .cartButton:hover {
-  color: black;
-  background-color: azure;
+  color:black;
+  background-color:white;
 }
 
 .view-header {

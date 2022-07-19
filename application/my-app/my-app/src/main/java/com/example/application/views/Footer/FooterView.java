@@ -11,7 +11,7 @@ import com.example.application.views.ads.AdSubmissionForm;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.html.H6;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
@@ -22,8 +22,6 @@ public class FooterView{
     
     public FooterView(){
      
-        
-
     }
 
     public HorizontalLayout getFooter(){
@@ -32,10 +30,10 @@ public class FooterView{
         // H3 about = new H3("AboutUs");
         // 
         Div about = new Div();
+        about.addClassName("about-us-div");
         about.add(new RouterLink("About Us", AboutUsView.class));
-        //about.getUI().ifPresent(ui -> ui.navigate("/aboutuss"));
-        //H6 ryan = new H6("Ryan");
         Div ryan = new Div();
+        ryan.addClassName("ryan");
         ryan.add(new RouterLink("Ryan", RyanView.class));
         //H6 darren = new H6("Darren");
         Div darren = new Div();
@@ -51,30 +49,50 @@ public class FooterView{
         duncan.add(new RouterLink("Duncan", DuncanView.class));
         AboutUs.setSpacing(false);
         AboutUs.add(about,ryan,darren,brend,justin,duncan);
+        AboutUs.addClassName("about-us-footer");
 
         VerticalLayout contactUs = new VerticalLayout();
         //H3 contact = new H3("Contact Us");
         Div contact = new Div();
         contact.add(new RouterLink("Contact Us", ContactUsview.class));
-        H6 email = new H6("CollegeEssentialsHelp@CollegeEssentials.com");
+        contact.addClassName("contact");
+        H6 email = new H6("CEHelp@ce.com");
         H6 number = new H6("415-000-0000");
-        H6 addy = new H6("1600 Hollow way, SF, 94132");
-        H6 country = new H6("Unided States");
+        H6 addy = new H6("1600 Holloway, SF, 94132");
+        H6 country = new H6("United States");
         contactUs.setSpacing(false);
         contactUs.add(contact,email,number,addy,country);
+        contactUs.addClassName("contact-us-footer");
+
+        // VerticalLayout adds = new VerticalLayout();
+        // Div advertisements = new Div();
+        // // adver.add(new RouterLink("Advertisements", AdSubmissionForm.class));
+        // advertisements.add(new RouterLink("Advertisements", AdSubmissionForm.class));
+        // advertisements.addClassName("adver");
+        
+        // // Adver.add(new RouterLink("Adver", AdSubmissionForm.class));
+        // H6 add2 = new H6("Apply for an Ad");
+        // H6 add3 = new H6("AD Status");
+        // adds.setSpacing(false);
+        // adds.add(advertisements, add2, add3);
+        // adds.addClassName("advertisements-footer");
 
         VerticalLayout adds = new VerticalLayout();
-        Div Adver = new Div();
-        Adver.add(new RouterLink("Advertisements", AdSubmissionForm.class));
-        // H3 Adver = new H3("Advertisements");
+        //H3 contact = new H3("Contact Us");
+        Div ads = new Div();
+        ads.add(new RouterLink("Advertisements", AdSubmissionForm.class));
+        ads.addClassName("contact");
         H6 add2 = new H6("Apply for an Ad");
         H6 add3 = new H6("AD Status");
         adds.setSpacing(false);
-        adds.add(Adver,add2,add3);
+        adds.add(ads,add2, add3);
+        adds.addClassName("advertisements-footer");
 
         VerticalLayout privacy = new VerticalLayout();
-        H3 priv = new H3("Privacy Policies");
+        H4 priv = new H4("Privacy Policies");
+        priv.addClassName("privacy");
         privacy.add(priv);
+        privacy.addClassName("privacy-footer");
         footerLayout.add(AboutUs,contactUs,adds,privacy);
         footerLayout.setClassName("FooterLayout");
         footerLayout.setAlignItems(Alignment.BASELINE);
