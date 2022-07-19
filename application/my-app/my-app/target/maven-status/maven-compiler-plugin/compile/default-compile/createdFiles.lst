@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 com\example\application\views\registration\TermView.class
 com\example\application\Data\DBForumList.class
 com\example\application\views\aboutus\DarrenView.class
@@ -24,3 +25,5 @@ com\example\application\views\MainLayout$MenuItemInfo.class
 com\example\application\views\checkout\checkout.class
 com\example\application\views\registration\RegistrationFormBinder.class
 com\example\application\views\Services\ServiceList.class
+=======
+>>>>>>> 37f4fba74c8587fddc556007237c503227da8494
