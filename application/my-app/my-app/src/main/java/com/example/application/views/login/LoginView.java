@@ -18,6 +18,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.FlexLayout.FlexDirection;
+import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -56,7 +57,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         TextField userName = new TextField("Enter Username or Email");
         overlay.add(header);
 
-        TextField passWord = new TextField("Password");
+        PasswordField passWord = new PasswordField("Password");
 
         Button loginButton = new Button("Login");
         loginButton.setClassName("loginButton");
@@ -73,9 +74,16 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         add(vLayout);
         loginButton.addClickListener(event ->{
             setRequiredIndicatorVisible(userName,passWord);
-                status = true;
+            status = true;
+            if(userName.getValue().equals("admin")){
+                overlay.getUI().ifPresent(ui ->
+                ui.navigate("/Admin")); 
+            }else{
+              
                     overlay.getUI().ifPresent(ui ->
-                ui.navigate("/home"));
+                ui.navigate("/home"));  
+            }
+                
 
         });
 
