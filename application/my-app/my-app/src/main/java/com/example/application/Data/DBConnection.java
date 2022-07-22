@@ -12,7 +12,7 @@ public class DBConnection implements CommandLineRunner{
 
     private JdbcTemplate jdbc;
 
-    public static void StoreRegUser(String FirstName, String LastName, String Email, String Password) {
+    public static void StoreRegUser(String FirstName, String LastName, String Email, String Password, String school, String uName) {
         
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
