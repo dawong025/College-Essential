@@ -6,6 +6,8 @@ import com.vaadin.flow.component.html.H2;
 
 import java.util.stream.Stream;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.math3.analysis.function.Add;
 
 import com.example.application.views.home.HomeView;
@@ -15,6 +17,7 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.orderedlayout.FlexLayout.FlexDirection;
@@ -41,6 +44,10 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
 	private final LoginForm login = new LoginForm(); 
     public static boolean status = false;
+    private TextField userName;
+    private PasswordField passWord;
+
+
 
 	public LoginView(){
         // LoginOverlay overlay = getContent();
@@ -54,10 +61,10 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
         H2 header = new H2("Login To College Essentials");
         header.addClassName("loginHeader");
-        TextField userName = new TextField("Enter Username or Email");
+         userName = new TextField("Enter Username or Email");
         overlay.add(header);
 
-        PasswordField passWord = new PasswordField("Password");
+        passWord = new PasswordField("Password");
 
         Button loginButton = new Button("Login");
         loginButton.setClassName("loginButton");
@@ -75,20 +82,44 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         loginButton.addClickListener(event ->{
             setRequiredIndicatorVisible(userName,passWord);
             status = true;
-            if(userName.getValue().equals("admin")){
+            
+            Boolean loginSuccess = getloginFlag();
+
+            if(loginSuccess == true){
                 overlay.getUI().ifPresent(ui ->
-                ui.navigate("/Admin")); 
-            }else{
-              
-                    overlay.getUI().ifPresent(ui ->
                 ui.navigate("/home"));  
+                showSuccess();
+            }else{
+                System.err.println("wrong Password");
+                showFail();
             }
+            
+
+            // if(userName.getValue().equals("admin")){
+            //     overlay.getUI().ifPresent(ui ->
+            //     ui.navigate("/Admin")); 
+            // }else{
+              
+            //         overlay.getUI().ifPresent(ui ->
+            //     ui.navigate("/home"));  
+            // }
                 
 
         });
 
 		
 	}
+    
+
+    public Boolean getloginFlag(){
+        Boolean loginSuccess = false;
+            
+            //getPassword
+            LoginSecurity loginCheck = new LoginSecurity(getUserName(),getPassWord());
+            loginSuccess = loginCheck.getFlag();
+            return loginSuccess;
+
+    }
 
     public static boolean logStatus(){
         return status;
@@ -97,6 +128,14 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     public static void logOut(){
         status = false;
+    }
+
+    protected String getUserName(){
+        return userName.getValue();
+    }
+
+    protected String getPassWord(){
+        return passWord.getValue();
     }
 
 	@Override
@@ -113,4 +152,23 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     private void setRequiredIndicatorVisible(HasValueAndElement<?, ?>... components) {
         Stream.of(components).forEach(comp -> comp.setRequiredIndicatorVisible(true));
     }
+
+    private void showSuccess() {
+        Notification notification =
+                Notification.show("Successfully logged in, welcome back " + userName.getValue());
+        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        
+ 
+        // Here you'd typically redirect the user to another view
+    }
+
+    private void showFail() {
+        Notification notification =
+                Notification.show("Wrong username/Email or wrong password was entered");
+        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        
+ 
+        // Here you'd typically redirect the user to another view
+    }
+
 }

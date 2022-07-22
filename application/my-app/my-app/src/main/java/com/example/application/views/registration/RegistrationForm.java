@@ -108,12 +108,12 @@ public class RegistrationForm extends FormLayout {
         
 
         db.StoreRegUser(userBean.getFirstName(), userBean.getLastName(), userBean.getEmail(), userBean.getPassword(),userBean.getSchool(),userBean.getUserName());
-
+        showSuccess(userBean);
         this.getUI().ifPresent(ui ->
                ui.navigate("/login"));
 
        });
-       showSuccess(userBean);
+       
 
    }
 

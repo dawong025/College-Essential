@@ -45,7 +45,7 @@ public class DBConnection implements CommandLineRunner{
               }
               
             
-            String query = "Insert into RegisteredUser(first_name, last_name, email, password, general_user_id) values('"+FirstName+"','"+LastName+"','"+Email+"','"+password+"', '"+generalUserId+"')";
+            String query = "Insert into RegisteredUser(first_name, last_name, email, password, general_user_id,username) values('"+FirstName+"','"+LastName+"','"+Email+"','"+password+"', '"+generalUserId+"', '"+uName+"')";
             
             statement = connection.createStatement();
             statement.execute(query);
