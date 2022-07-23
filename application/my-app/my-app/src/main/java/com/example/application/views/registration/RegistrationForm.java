@@ -1,4 +1,6 @@
 package com.example.application.views.registration;
+import com.example.application.Data.DBConnection;
+import com.example.application.Data.UserDetails;
 import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -6,11 +8,16 @@ import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.Route;
+
 import java.util.stream.Stream;
 
 import javax.swing.event.HyperlinkEvent;
@@ -18,6 +25,8 @@ import javax.swing.event.HyperlinkEvent;
 import org.apache.poi.common.usermodel.Hyperlink;
 import org.apache.poi.hslf.record.InteractiveInfoAtom.Link;
 
+@PageTitle("Registration")
+@Route(value = "registration")
 public class RegistrationForm extends FormLayout {
 
    private H3 title;
@@ -36,6 +45,7 @@ public class RegistrationForm extends FormLayout {
    private Span errorMessageField;
 
    private Button submitButton;
+   private UserDetails userBean = new UserDetails();
 
 
    public RegistrationForm() {
@@ -87,6 +97,24 @@ public class RegistrationForm extends FormLayout {
        setColspan(email, 2);
        setColspan(errorMessageField, 2);
        setColspan(submitButton, 2);
+
+//        RegistrationFormBinder registrationFormBinder = new RegistrationFormBinder(this);
+//        registrationFormBinder.addBindingAndValidation();
+
+       submitButton.addClickListener(ev ->{
+
+        DBConnection db = new DBConnection();
+        storeUserInfo();
+        
+
+        db.StoreRegUser(userBean.getFirstName(), userBean.getLastName(), userBean.getEmail(), userBean.getPassword(),userBean.getSchool(),userBean.getUserName());
+        showSuccess(userBean);
+        this.getUI().ifPresent(ui ->
+               ui.navigate("/login"));
+
+       });
+       
+
    }
 
    public PasswordField getPasswordField() { return password; }
@@ -100,5 +128,23 @@ public class RegistrationForm extends FormLayout {
    private void setRequiredIndicatorVisible(HasValueAndElement<?, ?>... components) {
        Stream.of(components).forEach(comp -> comp.setRequiredIndicatorVisible(true));
    }
+
+   private void storeUserInfo(){
+        userBean.setFirstName(firstName.getValue());
+        userBean.setLastName(lastName.getValue());
+        userBean.setEmail(email.getValue());
+        userBean.setPassword(password.getValue());
+        userBean.setUserName(userName.getValue());
+        userBean.setSchool(school.getValue());
+   }
+
+   private void showSuccess(UserDetails userBean) {
+        Notification notification =
+                Notification.show("Account Created, welcome " + userBean.getFirstName());
+        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        
+ 
+        // Here you'd typically redirect the user to another view
+    }
 
 }

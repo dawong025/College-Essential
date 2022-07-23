@@ -11,7 +11,6 @@ import com.example.application.views.Terms.TermsOfService;
 import com.example.application.views.aboutus.AboutUsView;
 import com.example.application.views.forum.ForumList;
 import com.example.application.views.home.HomeView;
-import com.example.application.views.registration.RegistrationView;
 import com.example.application.views.login.*;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;

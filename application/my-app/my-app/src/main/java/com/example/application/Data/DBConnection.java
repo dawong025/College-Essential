@@ -12,7 +12,7 @@ public class DBConnection implements CommandLineRunner{
 
     private JdbcTemplate jdbc;
 
-    public static void StoreRegUser(String FirstName, String LastName, String Email, String Password) {
+    public static void StoreRegUser(String FirstName, String LastName, String Email, String Password, String school, String uName) {
         
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
@@ -45,7 +45,7 @@ public class DBConnection implements CommandLineRunner{
               }
               
             
-            String query = "Insert into RegisteredUser(first_name, last_name, email, password, general_user_id) values('"+FirstName+"','"+LastName+"','"+Email+"','"+password+"', '"+generalUserId+"')";
+            String query = "Insert into RegisteredUser(first_name, last_name, email, password, general_user_id,username) values('"+FirstName+"','"+LastName+"','"+Email+"','"+password+"', '"+generalUserId+"', '"+uName+"')";
             
             statement = connection.createStatement();
             statement.execute(query);

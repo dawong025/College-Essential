@@ -16,6 +16,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
 import com.vaadin.flow.component.dependency.StyleSheet;
 
@@ -39,24 +40,32 @@ public class checkout extends HorizontalLayout{
 
     public checkout(){
 
+        VaadinSession currentSession = VaadinSession.getCurrent();
 
-        ArrayList<HashMap<String, String>> cart = new ArrayList<HashMap<String, String>>(); 
+        if(currentSession.getAttribute("cart") == null){
+            currentSession.setAttribute("cart", new ArrayList<HashMap<String, String>>());
+          }
 
-        // mock data delete later
-        HashMap<String, String> item1 = new HashMap<String, String>();
-        item1.put("title", "pencil");
-        item1.put("image", "https://imgur.com/qGQJ6UV");
-        item1.put("price", "2");
-        item1.put("quantity", "1");
+        ArrayList<HashMap<String, String>> cart = (ArrayList<HashMap<String, String>>) currentSession.getAttribute("cart");
 
-        HashMap<String, String> item2 = new HashMap<String, String>();
-        item2.put("title", "backpack");
-        item2.put("image", "https://imgur.com/D6eNwVV");
-        item2.put("price", "60");
-        item2.put("quantity", "1");
 
-        cart.add(item1);
-        cart.add(item2);
+        // ArrayList<HashMap<String, String>> cart = new ArrayList<HashMap<String, String>>(); 
+
+        // // mock data delete later
+        // HashMap<String, String> item1 = new HashMap<String, String>();
+        // item1.put("title", "pencil");
+        // item1.put("image", "https://imgur.com/qGQJ6UV");
+        // item1.put("price", "2");
+        // item1.put("quantity", "1");
+
+        // HashMap<String, String> item2 = new HashMap<String, String>();
+        // item2.put("title", "backpack");
+        // item2.put("image", "https://imgur.com/D6eNwVV");
+        // item2.put("price", "60");
+        // item2.put("quantity", "1");
+
+        // cart.add(item1);
+        // cart.add(item2);
 
         VerticalLayout shoppingCartItems = new VerticalLayout();
         H3 h1 = new H3("Shopping Cart");
@@ -171,12 +180,11 @@ public class checkout extends HorizontalLayout{
         //shipping address layout 
         HorizontalLayout shippingAddressLayout = new HorizontalLayout();
         TextArea shippingAddress = new TextArea("Shipping Address:");
-        shippingAddress.setValue("this is someone's shipping address");
-        shippingAddress.setReadOnly(true);
+        shippingAddress.setValue("Enter your shipping address with 'change'.");
 
-        Button changeShippingAddress = new Button("change");
-        changeShippingAddress.setClassName("button");
-        shippingAddressLayout.add(shippingAddress, changeShippingAddress);
+        // Button changeShippingAddress = new Button("change");
+        // changeShippingAddress.setClassName("button");
+        shippingAddressLayout.add(shippingAddress);
         shippingAddressLayout.setAlignItems(Alignment.BASELINE);
 
 
@@ -186,12 +194,11 @@ public class checkout extends HorizontalLayout{
         //paymentMethodLayout horizontal layout
         HorizontalLayout paymentMethodLayout = new HorizontalLayout();
         TextArea paymentMethod = new TextArea("Payment Method:");
-        paymentMethod.setValue("This is someone's payment method.");
-        paymentMethod.setReadOnly(true);
+        paymentMethod.setValue("Enter your payment method with 'change'.");
 
-        Button changePayment = new Button("change");
-        changePayment.setClassName("button");
-        paymentMethodLayout.add(paymentMethod, changePayment);
+        // Button changePayment = new Button("change");
+        // changePayment.setClassName("button");
+        paymentMethodLayout.add(paymentMethod);
         paymentMethodLayout.setAlignItems(Alignment.BASELINE);
 
 
@@ -203,13 +210,12 @@ public class checkout extends HorizontalLayout{
         TextArea billingAddress = new TextArea("Billing address:");
         // if billing address == shipping address
         // setValue = "same as shipping address"
-        billingAddress.setValue("this is someone's shipping address");
-        billingAddress.setReadOnly(true);
+        billingAddress.setValue("Enter your billing address with 'change'.");
 
-        Button changeBillingAddress = new Button("change");
-        changeBillingAddress.setClassName("button");
+        // Button changeBillingAddress = new Button("change");
+        // changeBillingAddress.setClassName("button");
         
-        billingAddressLayout.add(billingAddress, changeBillingAddress);
+        billingAddressLayout.add(billingAddress);
         billingAddressLayout.setAlignItems(Alignment.BASELINE);
 
         //Place your order button
