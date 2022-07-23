@@ -27,7 +27,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @CssImport("./themes/myapp/forumpost.css")
-@PageTitle("Forum Page")
+@PageTitle("Service Listing")
 @Route(value = "sPost2", layout = MainLayout.class)
 public class sPost2 extends VerticalLayout{
     public sPost2(){

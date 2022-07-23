@@ -31,9 +31,10 @@
 
 .label-one {
     grid-area: Profile;
-    background-color: #316879;
+    background-color: rgb(49, 104, 121, 0.6);
     border-radius: 10px;
     justify-self: stretch;
+    box-shadow: 1px 1px lightgray;
 }
 .purchases {
     margin-left: 47%;
@@ -50,8 +51,9 @@
 
 .label-two {
 
-    background-color: gray;
+    background-color: whitesmoke;
     border-radius: 10px;
+    box-shadow: 1px 1px lightgray;
     grid-area: Contact;
     display: grid;
     justify-self: stretch;
@@ -68,13 +70,14 @@
     margin: 5px;
     height: auto;
     grid-area: about-title;
-    
-    
+
 }
 
 .aboutText {
     grid-area: about-me;
     background-color: white;
+    margin-top: -80px;
+    height: 200px;
 }
 .contact-me {
     grid-area: contact-title;
@@ -83,14 +86,16 @@
 .contact-text {
     grid-area: contact-me;
     background-color: white;
+    margin-top: -80px;
+    height: 200px;
 }
 
 
 .label-three {
-    background-color: tan;
+    background-color: rgba(207, 66, 24, 0.3);
     border-radius: 10px;
     grid-area: Ratings;
-
+    box-shadow: 1px 1px lightgray;
     display: grid;
     justify-self: stretch;
     grid-template-rows: 45px auto 60px;

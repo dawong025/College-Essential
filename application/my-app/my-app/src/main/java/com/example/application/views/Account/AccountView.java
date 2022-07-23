@@ -50,7 +50,9 @@ public class AccountView extends Div{
         purchaseHistory.addClassName("purchases");
 
         //TODO: Make route + route to new route
-        Button editAccount = new Button("Edit Account");
+        Button editAccount = new Button("Edit Account", ev ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/editAccount"));
+        });
 
         editAccount.addClassName("editAcc");
         HorizontalLayout h1 = new HorizontalLayout(img1, name, purchaseHistory, editAccount);

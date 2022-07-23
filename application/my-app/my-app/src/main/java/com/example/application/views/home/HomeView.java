@@ -244,7 +244,6 @@ public class HomeView extends VerticalLayout {
         add(footer);
         comps.add(footer);
 
-
     }
 
     public static String getTitle() {
