@@ -32,7 +32,7 @@ public class PostItemFormBinder {
  
                 // Run validators and write the values to the bean
                 binder.writeBean(userBean);
-                db.StorePostItem(userBean.getTitle(), userBean.getUrl(), userBean.getCondition(), userBean.getCategory());
+                db.StorePostItem(userBean.getTitle(), userBean.getUrl(), userBean.getCondition(), userBean.getCategory(),userBean.getPrice(),userBean.getDescription());
                 System.out.println(userBean.getCategory()+ " " + userBean.getCondition());
                  postItem.getUI().ifPresent(ui ->
                 ui.navigate("/home"));

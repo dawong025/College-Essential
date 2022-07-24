@@ -81,11 +81,12 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         add(vLayout);
         loginButton.addClickListener(event ->{
             setRequiredIndicatorVisible(userName,passWord);
-            status = true;
+            
             
             Boolean loginSuccess = getloginFlag();
 
             if(loginSuccess == true){
+                status = true;
                 overlay.getUI().ifPresent(ui ->
                 ui.navigate("/home"));  
                 showSuccess();
@@ -165,7 +166,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     private void showFail() {
         Notification notification =
                 Notification.show("Wrong username/Email or wrong password was entered");
-        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         
  
         // Here you'd typically redirect the user to another view

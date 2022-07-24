@@ -15,7 +15,7 @@ public class DBPostItem {
     
 
 
-    public static void StorePostItem(String Title, String image, String condition, String general_type) {
+    public static void StorePostItem(String Title, String image, String condition, String general_type, String price, String body) {
         
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
@@ -28,7 +28,7 @@ public class DBPostItem {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, userName, password);
-            System.out.println("Connection is Successful to the database" + url);
+            System.out.println("Connection is Successful to the database");
             
             /* Insert into the product table */
             
@@ -53,10 +53,10 @@ public class DBPostItem {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
              connection = DriverManager.getConnection(url, userName, password);
-            System.out.println("Connection is Successful to the database" + url);
+            System.out.println("Connection is Successful to the database for PostItems");
             
             //TODO - Hardcoded solution
-             query = "Insert into MarketplaceListing(title, seller_id) values('"+Title+"', 1)";
+             query = "Insert into MarketplaceListing(title, seller_id, price, body) values('"+Title+"', 1 , '"+price+"', '"+body+"')";
             
              statement = connection.createStatement();
             statement.execute(query);
