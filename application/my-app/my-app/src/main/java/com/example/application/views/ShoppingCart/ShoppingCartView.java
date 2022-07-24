@@ -24,6 +24,8 @@ import com.vaadin.flow.component.dependency.StyleSheet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.commons.lang3.StringUtils;
+
 
 
 @CssImport("./themes/myapp/shopping-cart.css")
@@ -46,7 +48,9 @@ public class ShoppingCartView extends HorizontalLayout{
             currentSession.setAttribute("cart", new ArrayList<HashMap<String, String>>());
           }
 
+
         ArrayList<HashMap<String, String>> cart = (ArrayList<HashMap<String, String>>) currentSession.getAttribute("cart");
+
 
         
         // ArrayList<HashMap<String, String>> cart = new ArrayList<HashMap<String, String>>(); 
@@ -71,13 +75,19 @@ public class ShoppingCartView extends HorizontalLayout{
         H3 h1 = new H3("Shopping Cart");
         h1.addClassName("h3");
 
+
         Button checkout = new Button("checkout", e ->{
             this.getUI().ifPresent(ui -> ui.navigate("/checkout"));
         });
         checkout.setClassName("button");
 
+
        
         shoppingCartItems.add(h1);
+        if(cart.size() == 0){
+            H3 empty = new H3("Your cart is empty!");
+            shoppingCartItems.add(empty);
+        }
         for (HashMap<String, String> i: cart){
             HorizontalLayout horizontalSC = new HorizontalLayout();
            
@@ -101,6 +111,10 @@ public class ShoppingCartView extends HorizontalLayout{
             price.setWidth("50%");
             price.setHeight("50%");
 
+            TextField priceFinal = new TextField("Final Price");
+            price.setWidth("50%");
+            price.setHeight("50%");
+
             Button removeFromCart = new Button("Remove from Cart", e->
             {
                 for(int index=0; index < cart.size(); index++)
@@ -118,6 +132,8 @@ public class ShoppingCartView extends HorizontalLayout{
             });
             
             removeFromCart.setClassName("button");
+            removeFromCart.setWidth("50%");
+            removeFromCart.setHeight("50%");
 
 
             title.setValue(i.get("title"));
@@ -125,9 +141,22 @@ public class ShoppingCartView extends HorizontalLayout{
             // image.setTitle(i.get("image"));
             quantity.setValue(i.get("quantity"));
             quantity.setReadOnly(true);
+
+            if (StringUtils.isNumeric(i.get("price")))
+            {
+            Float finalPrice = Float.parseFloat(i.get("quantity"))  * Float.parseFloat(i.get("price"));
+
             price.setValue(i.get("price"));
+
+            priceFinal.setValue(String.valueOf(finalPrice));
+            }    
+            else{
+                price.setValue("No price was set.");
+                priceFinal.setValue("No price was set.");
+            }
+
+            priceFinal.setReadOnly(true);
             price.setReadOnly(true);
-            
             
             // layout for the quanitity and buttons
             Button plusButton = new Button("+",e->
@@ -188,7 +217,7 @@ public class ShoppingCartView extends HorizontalLayout{
 
             // layout helps align removeFromCart
             HorizontalLayout priceLayout = new HorizontalLayout();
-            priceLayout.add(price, removeFromCart);
+            priceLayout.add(price, priceFinal, removeFromCart);
             priceLayout.setSpacing(true);
             priceLayout.setAlignItems(Alignment.BASELINE);
 
@@ -201,7 +230,11 @@ public class ShoppingCartView extends HorizontalLayout{
 
         }
 
+        if(cart.size() > 0)
+        {
         shoppingCartItems.add(checkout);
+        }
+
         add(shoppingCartItems);
         
 
