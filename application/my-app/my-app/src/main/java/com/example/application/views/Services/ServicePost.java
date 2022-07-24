@@ -1,5 +1,7 @@
 package com.example.application.views.Services;
 
+import com.example.application.Data.DBPostService;
+import com.example.application.Data.PostSLDetail;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Footer.FooterView;
 import com.vaadin.flow.component.ClickNotifier;
@@ -10,6 +12,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
@@ -23,6 +26,10 @@ import com.vaadin.flow.router.Route;
 @PageTitle("Service Post")
 @Route(value = "servicePost", layout = MainLayout.class)
 public class ServicePost extends VerticalLayout{
+    private Button submit;
+    TextField title;
+    TextArea description;
+    private PostSLDetail userBean = new PostSLDetail();
 
     public ServicePost(){
         getElement().getClassList().add("make-forum-grid");
@@ -33,30 +40,26 @@ public class ServicePost extends VerticalLayout{
 
         Div headerholder = new Div();
         headerholder.addClassName("header");
-        H1 header = new H1("Make a new Post!");
+        H1 header = new H1("Make a new Service Listing!");
         header.addClassName("header");
 
 
         Div titleholder = new Div();
         titleholder.addClassName("make-title");
-        TextField title= new TextField("Title");
+        title = new TextField("Title");
         title.addClassName("make-title");
 
 
         Div descriptionholder = new Div();
         descriptionholder.addClassName("make-description");
-        TextArea description = new TextArea("Description");
+        description = new TextArea("Description");
         description.addClassName("make-description");
         description.setWidth("800px");
         description.setHeight("200px");
 
         Div submitholder = new Div();
         submitholder.addClassName("make-submit-button");
-        Button submit = new Button("Submit", event->{
-            //var fPost = new fPost();
-            //binder.writeBeanIfValid(fPost);
-            Notification.show("Service Listing was saved");
-        });
+        submit = new Button("Submit");
         submit.addClassName("make-submit-button");
 
         //This should create a new post object which will later be stored on the database to be accessed later
@@ -70,10 +73,38 @@ public class ServicePost extends VerticalLayout{
             description,
             submit
         );
+        submit.addClickListener(ev ->{
+            System.out.println("Estoy aqui");
+            DBPostService db = new DBPostService();
+            System.out.println("Estoy aqui2");
+            storeUserInfo();
+            System.out.println("Estoy aqui3");
+            
+            System.out.println(userBean.getTitle());
+            db.StorePostService(userBean.getTitle(), userBean.getBody());
+            showSuccess(userBean);
+            this.getUI().ifPresent(ui ->
+                ui.navigate("/home"));
+        });
+
         FooterView footer = new FooterView();
            HorizontalLayout footerLay = new HorizontalLayout();
            footerLay.setClassName("FooterLayout");
            footerLay = footer.getFooter();
            add(footerLay);
     }
+    public Button getPostButton() { return submit; }
+
+    private void showSuccess(PostSLDetail userBean) {
+        Notification notification =
+                Notification.show("Forum Post was successfully created");
+        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+
+    }
+
+    private void storeUserInfo(){
+        userBean.setTitle(title.getValue());
+        userBean.setBody(description.getValue());
+
+   }
 }
