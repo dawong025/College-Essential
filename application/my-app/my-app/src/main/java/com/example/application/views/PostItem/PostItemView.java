@@ -85,7 +85,7 @@ public class PostItemView extends VerticalLayout{
             vert.add(h1);
 
 
-            postButton = new Button("Add To Market Place");
+            postButton = new Button("Add To Marketplace");
             postButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
             postButton.setClassName("addToMarketPlaceButton");
             vert.add(postButton);
@@ -101,7 +101,7 @@ public class PostItemView extends VerticalLayout{
 
            setRequiredIndicatorVisible(Title, url, condition, category,price);
 
-            PostItemFormBinder postItemFormBinder= new PostItemFormBinder(this);
+            PostItemFormBinder postItemFormBinder = new PostItemFormBinder(this);
        postItemFormBinder.addBinderForPostItem();
 
 
