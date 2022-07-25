@@ -44,6 +44,7 @@ public class checkout extends HorizontalLayout{
 
     public checkout(){
 
+        //intialize session
         VaadinSession currentSession = VaadinSession.getCurrent();
 
         if(currentSession.getAttribute("cart") == null){
@@ -51,25 +52,6 @@ public class checkout extends HorizontalLayout{
           }
 
         ArrayList<HashMap<String, String>> cart = (ArrayList<HashMap<String, String>>) currentSession.getAttribute("cart");
-
-
-        // ArrayList<HashMap<String, String>> cart = new ArrayList<HashMap<String, String>>(); 
-
-        // // mock data delete later
-        // HashMap<String, String> item1 = new HashMap<String, String>();
-        // item1.put("title", "pencil");
-        // item1.put("image", "https://imgur.com/qGQJ6UV");
-        // item1.put("price", "2");
-        // item1.put("quantity", "1");
-
-        // HashMap<String, String> item2 = new HashMap<String, String>();
-        // item2.put("title", "backpack");
-        // item2.put("image", "https://imgur.com/D6eNwVV");
-        // item2.put("price", "60");
-        // item2.put("quantity", "1");
-
-        // cart.add(item1);
-        // cart.add(item2);
 
         VerticalLayout shoppingCartItems = new VerticalLayout();
         H3 h1 = new H3("Shopping Cart");
@@ -120,8 +102,10 @@ public class checkout extends HorizontalLayout{
             horizontalSC.setAlignItems(Alignment.CENTER);
 
             shoppingCartItems.add(horizontalSC);
+            shoppingCartItems.setSizeUndefined();
 
         }
+
 
         //return to cart button
         Button returnToCart = new Button("Return To Cart", e ->{
@@ -230,6 +214,7 @@ public class checkout extends HorizontalLayout{
         TextArea billingAddress = new TextArea("Billing address:");
         // if billing address == shipping address
         // setValue = "same as shipping address"
+        
         billingAddress.setValue("Enter your billing address with 'change'.");
 
         // Button changeBillingAddress = new Button("change");
@@ -255,7 +240,7 @@ public class checkout extends HorizontalLayout{
         userInfo.add(h3, reviewBox);
         add(userInfo);
         userInfo.addClassName("box");
-
+        userInfo.setSizeUndefined();
         
 
         } 
