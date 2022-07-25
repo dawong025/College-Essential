@@ -36,6 +36,7 @@ public class DBHome {
                 String imageURL;
                 String price;
                 String body;
+                String quant;
                 try (Statement stmt = connection.createStatement()) {
                     ResultSet rs = stmt.executeQuery(q);
                     while (rs.next()) {
@@ -44,9 +45,11 @@ public class DBHome {
                       imageURL = rs.getString("product_image");
                       price = rs.getString("price");
                       body = rs.getString("body");
+                      quant = rs.getString("quantity");
                       array.add(imageURL);
                       array.add(body);
                       array.add(price);
+                      array.add(quant);
                       System.out.println(nameItem + " " +imageURL+ " "+selector);
                         itemList.put(nameItem,array);
                       
@@ -66,6 +69,7 @@ public class DBHome {
             String imageURL;
             String price;
             String body;
+            String quant;
             try (Statement stmt = connection.createStatement()) {
                 ResultSet rs = stmt.executeQuery(q);
                
@@ -75,9 +79,11 @@ public class DBHome {
                   imageURL = rs.getString("product_image");
                   price = rs.getString("price");
                       body = rs.getString("body");
+                      quant = rs.getString("quantity");
                       array.add(imageURL);
                       array.add(body);
                       array.add(price);
+                      array.add(quant);
                   
                     itemList.put(nameItem,array);
                   
