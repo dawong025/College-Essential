@@ -4,6 +4,7 @@ import com.example.application.Data.DBPostItem;
 import com.example.application.Data.PostItemDetail;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Footer.FooterView;
+import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
@@ -125,12 +126,16 @@ public class PostItemView extends VerticalLayout{
            postButton.addClickListener(e->{
                 DBPostItem db = new DBPostItem();
                 //setItem();
-
-                db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(), price.getValue(), description.getValue(),quant.getValue());
+                if(LoginView.logStatus()){
+                    db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(), price.getValue(), description.getValue(),quant.getValue());
                 showSuccess(userBean);
                 userBean = new PostItemDetail();
                 this.getUI().ifPresent(ui ->
                ui.navigate("/home"));
+                }else{
+                    showFail(userBean);
+                }
+                
            });
 
     //         PostItemFormBinder postItemFormBinder= new PostItemFormBinder(this);
@@ -159,6 +164,15 @@ public class PostItemView extends VerticalLayout{
         Notification notification =
                 Notification.show(Title.getValue() +" Was Succesfully added");
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        
+ 
+        // Here you'd typically redirect the user to another view
+    }
+
+    private void showFail(PostItemDetail userBean) {
+        Notification notification =
+                Notification.show("Must Be Logged in to post");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
         
  
         // Here you'd typically redirect the user to another view

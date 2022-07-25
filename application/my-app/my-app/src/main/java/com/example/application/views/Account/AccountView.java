@@ -1,6 +1,7 @@
 
 package com.example.application.views.Account;
 
+import com.example.application.Data.DBAccount;
 import com.example.application.views.MainLayout;
 import com.example.application.views.login.LoginView;
 import com.microsoft.schemas.office.office.impl.HrpctAttributeImpl;
@@ -31,8 +32,19 @@ import java.util.HashMap;
 @Route(value = "Account", layout = MainLayout.class)
 public class AccountView extends Div{
     public AccountView(){
-        
+        ArrayList<String> userMap = new ArrayList<>();
+            /*index 0 is firstname
+             * index 1 is lastname
+             * index 2 is school
+             */
+
+
+
+
         String userName = LoginView.getUser();
+        DBAccount db = new DBAccount();
+        userMap = db.getUserInfo(userName);
+        
 
         getElement().getClassList().add("hello-grid");
         setWidth("99%");
@@ -44,7 +56,7 @@ public class AccountView extends Div{
         Image img1 = new Image("images/icon.jpg", "placeholder icon");
         img1.setWidth("180px");
         img1.addClassName("pfp");
-        H1 name = new H1("Kelly Smith");
+        H1 name = new H1(userMap.get(0) + " " + userMap.get(1));
         name.addClassName("name");
     
         Button purchaseHistory = new Button("Recent Orders", e ->{
