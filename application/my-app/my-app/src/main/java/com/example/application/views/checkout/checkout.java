@@ -92,7 +92,7 @@ public class checkout extends HorizontalLayout{
             image.setTitle(i.get("image"));
             quantity.setValue(i.get("quantity"));
             quantity.setReadOnly(true);
-            price.setValue(i.get("price"));
+            price.setValue("$" + i.get("price"));
             price.setReadOnly(true);
             
 
@@ -145,7 +145,7 @@ public class checkout extends HorizontalLayout{
             {
             Float finalPrice = Float.parseFloat(i.get("quantity"))  * Float.parseFloat(i.get("price"));
 
-            price.setValue(String.valueOf(finalPrice));
+            price.setValue("$" + String.valueOf(finalPrice));
             priceTotal += finalPrice; 
             }else{
                 price.setValue("No price was set.");
@@ -161,7 +161,7 @@ public class checkout extends HorizontalLayout{
         }
 
         TextArea totalPrice = new TextArea("Total Price");
-        totalPrice.setValue(String.valueOf(priceTotal));
+        totalPrice.setValue("$" + String.valueOf(priceTotal));
         totalPrice.setReadOnly(true);
 
         paymentBox.add(totalPrice);

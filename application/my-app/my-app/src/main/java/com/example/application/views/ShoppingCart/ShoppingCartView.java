@@ -12,6 +12,10 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -39,6 +43,7 @@ public class ShoppingCartView extends HorizontalLayout{
     String image;
     String price;
     String quantity;
+    String maxAmount;
 
     public ShoppingCartView(){
 
@@ -128,9 +133,9 @@ public class ShoppingCartView extends HorizontalLayout{
             {
             Float finalPrice = Float.parseFloat(i.get("quantity"))  * Float.parseFloat(i.get("price"));
 
-            price.setValue(i.get("price"));
+            price.setValue("$" + i.get("price"));
 
-            priceFinal.setValue(String.valueOf(finalPrice));
+            priceFinal.setValue("$" +  String.valueOf(finalPrice));
             }    
             else{
                 price.setValue("No price was set.");
@@ -141,28 +146,40 @@ public class ShoppingCartView extends HorizontalLayout{
             price.setReadOnly(true);
             
             // layout for the quanitity and buttons
-            Button plusButton = new Button("+",e->
+            Button plusButton = new Button(new Icon(VaadinIcon.PLUS),e->
             {
                 for(int index=0; index < cart.size(); index++)
                 {
                     if(cart.get(index).get("title").equals(i.get("title")))
                     {
-                        int quant = Integer.parseInt(i.get("quantity"));
-                        quant += 1;
-                        cart.get(index).put("quantity", String.valueOf(quant));
+
+                        int buyerQuant = Integer.parseInt(i.get("quantity")); 
+                        int sellerQuant = Integer.parseInt(i.get("amount")); 
+
+                        if(buyerQuant < sellerQuant)
+                        {
+                        buyerQuant += 1;
+                        cart.get(index).put("quantity", String.valueOf(buyerQuant));
+                        currentSession.setAttribute("cart", cart);
+                        UI.getCurrent().getPage().reload();
+                        }
+                        else{
+                            Notification notification =
+                            Notification.show("Seller does not have enough in stock!");
+                            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                        }
+
                     }
 
                 }
 
-                currentSession.setAttribute("cart", cart);
-                UI.getCurrent().getPage().reload();
 
             });
 
             plusButton.setWidth("10%");
             plusButton.setClassName("button");
 
-            Button minusButton = new Button("-",e->{
+            Button minusButton = new Button(new Icon(VaadinIcon.MINUS),e->{
                 
                 for(int index=0; index < cart.size(); index++)
                 {
