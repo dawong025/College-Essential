@@ -12,6 +12,9 @@ public class PostItemDetail {
    private String url;
 
    @NotBlank
+   private String descrition;
+
+   @NotBlank
    private String condition;
 
    @NotBlank
@@ -20,7 +23,13 @@ public class PostItemDetail {
    @NotBlank
    private String category;//make getter and setters
 
-   
+   public String getDescription(){
+        return descrition;
+   }
+
+   public void setDescription(String body){
+    descrition = body;
+   }
 
    public String getCondition(){
     return condition;
@@ -28,6 +37,14 @@ public class PostItemDetail {
 
    public void setCondition(String condition){
     this.condition = condition;
+   }
+
+   public String getPrice(){
+    return price;
+   }
+
+   public void setprice(String price){
+    this.price = price;
    }
 
    public String getTitle() {return Title;}

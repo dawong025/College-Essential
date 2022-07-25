@@ -4,6 +4,7 @@ import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -11,16 +12,23 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
 import com.vaadin.flow.component.dependency.StyleSheet;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.apache.commons.lang3.StringUtils;
 
 
 
@@ -35,43 +43,37 @@ public class ShoppingCartView extends HorizontalLayout{
     String image;
     String price;
     String quantity;
+    String maxAmount;
 
     public ShoppingCartView(){
-        // todo make bigger and underline
-        // H3 h1 = new H3("Shopping Cart");
-       
-    
-        // add(h1); 
 
-        ArrayList<HashMap<String, String>> cart = new ArrayList<HashMap<String, String>>(); 
+        VaadinSession currentSession = VaadinSession.getCurrent();
 
-        // mock data delete later
-        HashMap<String, String> item1 = new HashMap<String, String>();
-        item1.put("title", "pencil");
-        item1.put("image", "https://imgur.com/qGQJ6UV");
-        item1.put("price", "2");
-        item1.put("quantity", "1");
+        if(currentSession.getAttribute("cart") == null){
+            currentSession.setAttribute("cart", new ArrayList<HashMap<String, String>>());
+          }
 
-        HashMap<String, String> item2 = new HashMap<String, String>();
-        item2.put("title", "backpack");
-        item2.put("image", "https://imgur.com/D6eNwVV");
-        item2.put("price", "60");
-        item2.put("quantity", "1");
 
-        cart.add(item1);
-        cart.add(item2);
+        ArrayList<HashMap<String, String>> cart = (ArrayList<HashMap<String, String>>) currentSession.getAttribute("cart");
+
 
         VerticalLayout shoppingCartItems = new VerticalLayout();
         H3 h1 = new H3("Shopping Cart");
         h1.addClassName("h3");
+
 
         Button checkout = new Button("checkout", e ->{
             this.getUI().ifPresent(ui -> ui.navigate("/checkout"));
         });
         checkout.setClassName("button");
 
+
        
         shoppingCartItems.add(h1);
+        if(cart.size() == 0){
+            H3 empty = new H3("Your cart is empty!");
+            shoppingCartItems.add(empty);
+        }
         for (HashMap<String, String> i: cart){
             HorizontalLayout horizontalSC = new HorizontalLayout();
            
@@ -88,6 +90,7 @@ public class ShoppingCartView extends HorizontalLayout{
             image.setWidth("150px");
             // TextField image = new TextField();
             TextField quantity = new TextField("Quantity");
+            quantity.setClassName("textField");
             quantity.setWidth("50%");
             quantity.setHeight("50%");
 
@@ -95,33 +98,112 @@ public class ShoppingCartView extends HorizontalLayout{
             price.setWidth("50%");
             price.setHeight("50%");
 
-            Button removeFromCart = new Button("Remove from Cart");
+            TextField priceFinal = new TextField("Final Price");
+            price.setWidth("50%");
+            price.setHeight("50%");
+
+            Button removeFromCart = new Button("Remove from Cart", e->
+            {
+                for(int index=0; index < cart.size(); index++)
+                {
+                    if(cart.get(index).get("title").equals(i.get("title")))
+                    {
+                        cart.remove(index);
+                        break;
+                    }
+                }
+
+                currentSession.setAttribute("cart", cart);
+                UI.getCurrent().getPage().reload();
+
+            });
+            
             removeFromCart.setClassName("button");
+            removeFromCart.setWidth("50%");
+            removeFromCart.setHeight("50%");
 
 
             title.setValue(i.get("title"));
             title.setReadOnly(true);
             // image.setTitle(i.get("image"));
             quantity.setValue(i.get("quantity"));
-            price.setValue(i.get("price"));
+            quantity.setReadOnly(true);
+
+            if (StringUtils.isNumeric(i.get("price")))
+            {
+            Float finalPrice = Float.parseFloat(i.get("quantity"))  * Float.parseFloat(i.get("price"));
+
+            price.setValue("$" + i.get("price"));
+
+            priceFinal.setValue("$" +  String.valueOf(finalPrice));
+            }    
+            else{
+                price.setValue("No price was set.");
+                priceFinal.setValue("No price was set.");
+            }
+
+            priceFinal.setReadOnly(true);
             price.setReadOnly(true);
             
-            
             // layout for the quanitity and buttons
-            Button plusButton = new Button("+",e->{
-                Integer val = Integer.parseInt("quantity") +1;
-                quantity.setValue(val.toString());
+            Button plusButton = new Button(new Icon(VaadinIcon.PLUS),e->
+            {
+                for(int index=0; index < cart.size(); index++)
+                {
+                    if(cart.get(index).get("title").equals(i.get("title")))
+                    {
+
+                        int buyerQuant = Integer.parseInt(i.get("quantity")); 
+                        int sellerQuant = Integer.parseInt(i.get("amount")); 
+
+                        if(buyerQuant < sellerQuant)
+                        {
+                        buyerQuant += 1;
+                        cart.get(index).put("quantity", String.valueOf(buyerQuant));
+                        currentSession.setAttribute("cart", cart);
+                        UI.getCurrent().getPage().reload();
+                        }
+                        else{
+                            Notification notification =
+                            Notification.show("Seller does not have enough in stock!");
+                            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+                        }
+
+                    }
+
+                }
+
+
             });
+
             plusButton.setWidth("10%");
             plusButton.setClassName("button");
 
-            Button minusButton = new Button("-",e->{
+            Button minusButton = new Button(new Icon(VaadinIcon.MINUS),e->{
                 
-                Integer val = Integer.parseInt("quantity");
-                if (val != 0){
-                    val--;
+                for(int index=0; index < cart.size(); index++)
+                {
+                    if(cart.get(index).get("title").equals(i.get("title")))
+                    {
+                        int quant = Integer.parseInt(i.get("quantity"));
+                        quant -= 1;
+                        if(quant == 0){
+                            cart.remove(index);
+                            break;
+                        }
+                        else{
+                           cart.get(index).put("quantity", String.valueOf(quant));
+                        }
+
+                    }
                 }
-                quantity.setValue(val.toString());
+                    
+
+                currentSession.setAttribute("cart", cart);
+                UI.getCurrent().getPage().reload();
+
+                
+                
             });
             minusButton.setWidth("10%");
             minusButton.setClassName("button");
@@ -134,7 +216,7 @@ public class ShoppingCartView extends HorizontalLayout{
 
             // layout helps align removeFromCart
             HorizontalLayout priceLayout = new HorizontalLayout();
-            priceLayout.add(price, removeFromCart);
+            priceLayout.add(price, priceFinal, removeFromCart);
             priceLayout.setSpacing(true);
             priceLayout.setAlignItems(Alignment.BASELINE);
 
@@ -147,9 +229,13 @@ public class ShoppingCartView extends HorizontalLayout{
 
         }
 
+        if(cart.size() > 0)
+        {
         shoppingCartItems.add(checkout);
+        }
+
         add(shoppingCartItems);
-        
+        shoppingCartItems.setSizeUndefined();
 
 
 
@@ -186,6 +272,7 @@ public class ShoppingCartView extends HorizontalLayout{
 
         recentlyAdded.setAlignItems(Alignment.CENTER);
         add(recentlyAdded);
+        recentlyAdded.setSizeUndefined();
 
         
 

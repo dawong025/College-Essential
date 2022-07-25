@@ -14,6 +14,9 @@ public class UserDetails {
    private String lastName;
 
    @NotBlank
+   private String userName;
+
+   @NotBlank
    @UniqueElements
    @Email
    private String email;
@@ -26,6 +29,12 @@ public class UserDetails {
    // FIXME Passwords should never be stored in plain text!
    @Size(min = 8, max = 64, message = "Password must be 8-64 char long")
    private String password;
+
+   public String getSchool(){return school;}
+   public void setSchool(String school){this.school = school; }
+
+   public String getUserName(){return userName;}
+   public void setUserName(String userName){this.userName = userName;}
 
    public String getFirstName() {return firstName;}
 

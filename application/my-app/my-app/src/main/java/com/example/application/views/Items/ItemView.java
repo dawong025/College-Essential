@@ -1,7 +1,10 @@
 package com.example.application.views.Items;
 
+import java.security.Provider.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.example.application.views.MainLayout;
 import com.example.application.views.Account.AccountView;
@@ -24,12 +27,17 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
+import com.vaadin.flow.server.VaadinSession;
 
 @CssImport("./themes/myapp/ItemView.css")
 @PageTitle("Item")
 @Route(value = "itemView", layout = MainLayout.class)
 public class ItemView extends VerticalLayout{
     private String itemName;
+    private String url;
+    private String body;
+    private String price;
+    private String quant;
     private HashMap<String,ArrayList<String>> items = new HashMap<>();
     private ArrayList<String> array;
    // private ItemDetails itemDetail;
@@ -37,22 +45,24 @@ public class ItemView extends VerticalLayout{
 
 
     public ItemView(){
-        VerticalLayout vl = new VerticalLayout();
-        vl.setClassName("verticLayout");
-        HorizontalLayout hl = new HorizontalLayout();
-        hl.setClassName("horLayout");
-        setSizeFull();
-       itemName = HomeView.getTitle();
-       items = HomeView.getMap();
-       H3 h3 = new H3(itemName);
-       vl.add(h3);
-       array = items.get(itemName);
-       String url = array.get(0);
-       String body = array.get(1);
-       String price = array.get(2);
-       String seller = "By user";
-       String condition = "New";
-       if(url != null){
+      
+      VerticalLayout vl = new VerticalLayout();
+      vl.setClassName("verticLayout");
+      HorizontalLayout hl = new HorizontalLayout();
+      hl.setClassName("horLayout");
+      setSizeFull();
+      itemName = HomeView.getTitle();
+      items = HomeView.getMap();
+      H3 h3 = new H3(itemName);
+      vl.add(h3);
+      array = items.get(itemName);
+      url = array.get(0);
+      body = array.get(1);
+      price = array.get(2);
+      quant = array.get(3);
+      String seller = "By user";
+      String condition = "New";
+      if(url != null){
         Image image = new Image(url,"");
 
         image.setHeight("500px");
@@ -60,54 +70,82 @@ public class ItemView extends VerticalLayout{
         image.setClassName("itemPostImage");
         hl.add(image);
        }
-       if(price == null || body == null){
+
+      if(price == null || body == null){
         price = "No price was set";
         body = "No description was given";
        }
-       TextArea ta = new TextArea("Description");//maybe remove title because its not center
-       ta.setValue(body);
-       ta.setReadOnly(true);
-       ta.setClassName("DescripBox");
-       vl.add(ta);
-       TextField con = new TextField();
-       con.setValue(condition);
-       con.setReadOnly(true);
-       vl.add(con);
-       Div sellerLink = new Div();
+
+      TextArea ta = new TextArea("Description");//maybe remove title because its not center
+      ta.setValue(body);
+      ta.setReadOnly(true);
+      ta.setClassName("DescripBox");
+      vl.add(ta);
+      TextField con = new TextField();
+      con.setValue(condition);
+      con.setReadOnly(true);
+      vl.add(con);
+      Div sellerLink = new Div();
       sellerLink.add(new RouterLink(seller, AccountView.class));
-       vl.add(sellerLink);
-       TextField priceField = new TextField("Price");
-       priceField.setValue(price);
-       priceField.setReadOnly(true);
-       vl.add(price);
+      vl.add(sellerLink);
+      TextField priceField = new TextField("Price");
+      priceField.setValue(price);
+      priceField.setReadOnly(true);
+      TextField amount = new TextField("Quantity");
+      amount.setValue(quant);
+      amount.setReadOnly(true);
+      vl.add(amount);
+      vl.add(price);
        
 
 
 
 
+      //initalize session
+      VaadinSession currentSession = VaadinSession.getCurrent();
 
 
-       Button addToCart = new Button("Add to Cart",event ->{
+      Button addToCart = new Button("Add to Cart",event ->{
+
+        if(currentSession.getAttribute("cart") == null){
+          currentSession.setAttribute("cart", new ArrayList<HashMap<String, String>>());
+        }
+
+        HashMap<String, String> item = new HashMap<String, String>();
+        item.put("title", itemName);
+        item.put("image", url);
+        item.put("price", price);
+        item.put("quantity", "1");
+        item.put("amount", quant);
+
+        ArrayList<HashMap<String, String>> cart = (ArrayList<HashMap<String, String>>) currentSession.getAttribute("cart");
+
+        cart.add(item);
+        currentSession.setAttribute("cart", cart);
+        
         //add to db of cart
         this.getUI().ifPresent(ui -> ui.navigate("/home"));
         showSuccess();
 
-       });
-       addToCart.setClassName("addToCartButton");
-       addToCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-       vl.add(addToCart);
-        vl.setAlignItems(Alignment.CENTER);
-        hl.add(vl);
-        hl.setWidthFull();
-        hl.setWidth("70%");
-        hl.setJustifyContentMode(JustifyContentMode.AROUND);
-        add(hl);
+      });
+      // System.out.println(currentSession.getAttribute("cart"));
 
-        FooterView footer = new FooterView();
-           HorizontalLayout footerLay = new HorizontalLayout();
-           footerLay.setClassName("FooterLayout");
-           footerLay = footer.getFooter();
-           add(footerLay);
+
+      addToCart.setClassName("addToCartButton");
+      addToCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+      vl.add(addToCart);
+      vl.setAlignItems(Alignment.CENTER);
+      hl.add(vl);
+      hl.setWidthFull();
+      hl.setWidth("70%");
+      hl.setJustifyContentMode(JustifyContentMode.AROUND);
+      add(hl);
+
+      FooterView footer = new FooterView();
+      HorizontalLayout footerLay = new HorizontalLayout();
+      footerLay.setClassName("FooterLayout");
+      footerLay = footer.getFooter();
+      add(footerLay);
        
        
       //  itemName = hv.getTitle();
@@ -119,13 +157,14 @@ public class ItemView extends VerticalLayout{
 
     
     private void showSuccess() {
+      
       Notification notification =
-              Notification.show("Item Was Success Fully added to Shopping cart");
+      Notification.show("Item Was Success Fully added to Shopping cart");
       notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
       
 
       // Here you'd typically redirect the user to another view
-  }
+    }
 
     
     
