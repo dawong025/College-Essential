@@ -52,25 +52,6 @@ public class ShoppingCartView extends HorizontalLayout{
         ArrayList<HashMap<String, String>> cart = (ArrayList<HashMap<String, String>>) currentSession.getAttribute("cart");
 
 
-        
-        // ArrayList<HashMap<String, String>> cart = new ArrayList<HashMap<String, String>>(); 
-
-        // mock data delete later
-        // HashMap<String, String> item1 = new HashMap<String, String>();
-        // item1.put("title", "pencil");
-        // item1.put("image", "https://imgur.com/qGQJ6UV");
-        // item1.put("price", "2");
-        // item1.put("quantity", "1");
-
-        // HashMap<String, String> item2 = new HashMap<String, String>();
-        // item2.put("title", "backpack");
-        // item2.put("image", "https://imgur.com/D6eNwVV");
-        // item2.put("price", "60");
-        // item2.put("quantity", "1");
-
-        // cart.add(item1);
-        // cart.add(item2);
-
         VerticalLayout shoppingCartItems = new VerticalLayout();
         H3 h1 = new H3("Shopping Cart");
         h1.addClassName("h3");
@@ -104,6 +85,7 @@ public class ShoppingCartView extends HorizontalLayout{
             image.setWidth("150px");
             // TextField image = new TextField();
             TextField quantity = new TextField("Quantity");
+            quantity.setClassName("textField");
             quantity.setWidth("50%");
             quantity.setHeight("50%");
 
@@ -236,7 +218,7 @@ public class ShoppingCartView extends HorizontalLayout{
         }
 
         add(shoppingCartItems);
-        
+        shoppingCartItems.setSizeUndefined();
 
 
 
@@ -273,6 +255,7 @@ public class ShoppingCartView extends HorizontalLayout{
 
         recentlyAdded.setAlignItems(Alignment.CENTER);
         add(recentlyAdded);
+        recentlyAdded.setSizeUndefined();
 
         
 
