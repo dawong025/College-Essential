@@ -200,6 +200,7 @@ public class HomeView extends VerticalLayout {
            
             
             vl = new VerticalLayout();
+            vl.setSizeFull();
         for (String key : itemList.keySet()) {
                 ArrayList<String> array = new ArrayList<>();
             if (count < 4) {
@@ -223,19 +224,13 @@ public class HomeView extends VerticalLayout {
                     currTitle = key;
                     this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
                 });
-                // H3 b = new H3(key);
-                //     b.addClickListener(e->{
-                //         currTitle = key;
-                //         this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
-                //     });
                 b.setClassName("buttonItem");
-                //b.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
                 vl.add(b);
                 hor.add(vl);
                 comps.add(hor);
                 vl.setAlignItems(Alignment.CENTER);
                 vl = new VerticalLayout();
-            } else {
+            }  if (count == 3){
                 hor.setPadding(true);
                 hor.setSpacing(true);
                 hor.setWidthFull();
@@ -245,7 +240,7 @@ public class HomeView extends VerticalLayout {
 
                 hor = new HorizontalLayout();
 
-                count = 0;
+                count = -1;
             }
             count++;
         }

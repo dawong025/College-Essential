@@ -15,7 +15,7 @@ public class DBPostItem {
     
 
 
-    public static void StorePostItem(String Title, String image, String condition, String general_type, String price, String body) {
+    public static void StorePostItem(String Title, String image, String condition, String general_type, String price, String body, String quant) {
         
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
@@ -56,7 +56,7 @@ public class DBPostItem {
             System.out.println("Connection is Successful to the database for PostItems");
             
             //TODO - Hardcoded solution
-             query = "Insert into MarketplaceListing(title, seller_id, price, body) values('"+Title+"', 1 , '"+price+"', '"+body+"')";
+             query = "Insert into MarketplaceListing(title, seller_id, price, body, quantity) values('"+Title+"', 1 , '"+price+"', '"+body+"', '"+quant+"')";
             
              statement = connection.createStatement();
             statement.execute(query);

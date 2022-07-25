@@ -33,6 +33,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import org.apache.poi.sl.usermodel.TextBox;
+
 
 @CssImport("./themes/myapp/Post.css")
 @PageTitle("Post Item")
@@ -89,6 +91,13 @@ public class PostItemView extends VerticalLayout{
                 "Textbook", "School Supplies", "Furniture", "Lifestyle", "Miscellaneous");
                category.setPlaceholder("Select Category");
                 h1.add(category);
+                vert.add(h1);
+                h1 = new HorizontalLayout();
+            
+            TextField quant = new TextField("Enter amount of items");
+            quant.setValue("1");
+            h1.add(quant);
+
 
             price = new TextField("Enter Price");
             price.setPlaceholder("0.00");
@@ -117,7 +126,7 @@ public class PostItemView extends VerticalLayout{
                 DBPostItem db = new DBPostItem();
                 //setItem();
 
-                db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(), price.getValue(), description.getValue());
+                db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(), price.getValue(), description.getValue(),quant.getValue());
                 showSuccess(userBean);
                 userBean = new PostItemDetail();
                 this.getUI().ifPresent(ui ->
