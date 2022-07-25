@@ -44,7 +44,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
 	private final LoginForm login = new LoginForm(); 
     public static boolean status = false;
-    private TextField userName;
+    private static TextField userName;
     private PasswordField passWord;
 
 
@@ -137,6 +137,10 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     protected String getPassWord(){
         return passWord.getValue();
+    }
+
+    public static String getUser(){
+        return userName.getValue();
     }
 
 	@Override

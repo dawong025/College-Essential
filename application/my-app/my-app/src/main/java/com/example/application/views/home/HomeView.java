@@ -7,6 +7,7 @@ import com.example.application.Data.DBHome;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Footer.FooterView;
 import com.example.application.views.Items.ItemView;
+import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
@@ -51,6 +52,8 @@ public class HomeView extends VerticalLayout {
     
     // Liveshare test - Darren Wong
     public HomeView() {
+
+        
         // searchbar
         // adds background image
         //this.getElement().getStyle().set( "background-image" , "url('https://cdn.discordapp.com/attachments/982032674078216210/997652262996430868/unknown.png')" );
@@ -205,6 +208,17 @@ public class HomeView extends VerticalLayout {
                 image.setHeight("200px");
                 image.setWidth("150px");
                 vl.add(image);
+
+                //price
+                TextField price = new TextField();
+                String cost ="$"+ array.get(2);
+                if(array.get(2) == null){
+                    cost = "No price was Given";
+                }
+                price.setValue(cost);
+                price.setReadOnly(true);
+                vl.add(price);
+
                 Button b = new Button(key, e -> {
                     currTitle = key;
                     this.getUI().ifPresent(ui -> ui.navigate("/itemView"));

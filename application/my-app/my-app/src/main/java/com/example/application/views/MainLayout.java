@@ -109,7 +109,9 @@ public class MainLayout extends AppLayout {
             logout.addClassName("logOutButton");
             logout.addClickListener(e -> {
                 LoginView.logOut();
-                UI.getCurrent().getPage().reload();
+                
+               this.getUI().ifPresent(ui -> ui.navigate("/home"));
+               UI.getCurrent().getPage().reload();
             });
             Button account = new Button("Account",e->{
                 this.getUI().ifPresent(ui -> ui.navigate("/Account"));

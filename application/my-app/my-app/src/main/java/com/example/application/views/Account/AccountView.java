@@ -2,6 +2,7 @@
 package com.example.application.views.Account;
 
 import com.example.application.views.MainLayout;
+import com.example.application.views.login.LoginView;
 import com.microsoft.schemas.office.office.impl.HrpctAttributeImpl;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.grid.Grid;
@@ -30,6 +31,8 @@ import java.util.HashMap;
 @Route(value = "Account", layout = MainLayout.class)
 public class AccountView extends Div{
     public AccountView(){
+        
+        String userName = LoginView.getUser();
 
         getElement().getClassList().add("hello-grid");
         setWidth("99%");
