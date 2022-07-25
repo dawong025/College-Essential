@@ -26,7 +26,7 @@ public class DBHome {
             if(!selector.contains("All Categories")){
                 
                 String q = "SELECT MarketplaceListing.marketplace_listing_id, MarketplaceListing.title, MarketplaceListing.price,"
-                +" MarketplaceListing.created_at, MarketplaceListing.body, MarketplaceListing.seller_id, Product.product_condition,"
+                +" MarketplaceListing.created_at, MarketplaceListing.body, MarketplaceListing.quantity, MarketplaceListing.seller_id, Product.product_condition,"
                 +" Product.product_image FROM ProductListings"
                 +" JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
                 +" JOIN Product ON ProductListings.product_id = Product.product_id"
@@ -57,7 +57,7 @@ public class DBHome {
 
             }else{
             String q = "SELECT MarketplaceListing.marketplace_listing_id, MarketplaceListing.title, MarketplaceListing.price,"
-            +" MarketplaceListing.created_at, MarketplaceListing.body, MarketplaceListing.seller_id, Product.product_condition,"
+            +" MarketplaceListing.created_at, MarketplaceListing.body, MarketplaceListing.quantity, MarketplaceListing.seller_id, Product.product_condition,"
             +" Product.product_image FROM ProductListings"
             +" JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
             +" JOIN Product ON ProductListings.product_id = Product.product_id"
