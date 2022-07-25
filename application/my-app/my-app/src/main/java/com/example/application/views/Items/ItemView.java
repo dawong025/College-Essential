@@ -116,6 +116,7 @@ public class ItemView extends VerticalLayout{
         item.put("image", url);
         item.put("price", price);
         item.put("quantity", "1");
+        item.put("amount", quant);
 
         ArrayList<HashMap<String, String>> cart = (ArrayList<HashMap<String, String>>) currentSession.getAttribute("cart");
 
