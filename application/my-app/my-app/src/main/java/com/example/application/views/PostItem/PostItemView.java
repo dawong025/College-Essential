@@ -1,7 +1,10 @@
 package com.example.application.views.PostItem;
 
+import com.example.application.Data.DBPostItem;
+import com.example.application.Data.PostItemDetail;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Footer.FooterView;
+import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
@@ -10,10 +13,13 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.component.select.Select;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.router.PageTitle;
@@ -28,6 +34,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import org.apache.poi.sl.usermodel.TextBox;
+
 
 @CssImport("./themes/myapp/Post.css")
 @PageTitle("Post Item")
@@ -37,10 +45,12 @@ public class PostItemView extends VerticalLayout{
     private Button postButton;
     private TextField Title;
     private TextField url;
+    private TextArea description;
     private Select<String> condition;
     private VerticalLayout vert;
     private TextField price;
     private Select<String> category;
+    private PostItemDetail userBean = new PostItemDetail();
 
     public PostItemView(){
             
@@ -62,7 +72,11 @@ public class PostItemView extends VerticalLayout{
             Title.setWidth("55%");
             Title.setPlaceholder("Enter Title Here...");
 
-            vert.add(Title);
+            description = new TextArea("Describe the item");
+            description.setWidth("55%");
+            description.setPlaceholder("describe the item here...");
+
+            vert.add(Title,description);
 
             condition = new Select<>();
             condition.setLabel("Select Condition of item");
@@ -78,6 +92,13 @@ public class PostItemView extends VerticalLayout{
                 "Textbook", "School Supplies", "Furniture", "Lifestyle", "Miscellaneous");
                category.setPlaceholder("Select Category");
                 h1.add(category);
+                vert.add(h1);
+                h1 = new HorizontalLayout();
+            
+            TextField quant = new TextField("Enter amount of items");
+            quant.setValue("1");
+            h1.add(quant);
+
 
             price = new TextField("Enter Price");
             price.setPlaceholder("0.00");
@@ -85,7 +106,7 @@ public class PostItemView extends VerticalLayout{
             vert.add(h1);
 
 
-            postButton = new Button("Add To Market Place");
+            postButton = new Button("Add To Marketplace");
             postButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
             postButton.setClassName("addToMarketPlaceButton");
             vert.add(postButton);
@@ -99,12 +120,37 @@ public class PostItemView extends VerticalLayout{
            footerLay = footer.getFooter();
            add(footerLay);
 
-           setRequiredIndicatorVisible(Title, url, condition, category,price);
-
-            PostItemFormBinder postItemFormBinder= new PostItemFormBinder(this);
-       postItemFormBinder.addBinderForPostItem();
+           setRequiredIndicatorVisible(Title, url, condition, category,price, description);
 
 
+           postButton.addClickListener(e->{
+                DBPostItem db = new DBPostItem();
+                //setItem();
+                if(LoginView.logStatus()){
+                    db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(), price.getValue(), description.getValue(),quant.getValue());
+                showSuccess(userBean);
+                userBean = new PostItemDetail();
+                this.getUI().ifPresent(ui ->
+               ui.navigate("/home"));
+                }else{
+                    showFail(userBean);
+                }
+                
+           });
+
+    //         PostItemFormBinder postItemFormBinder= new PostItemFormBinder(this);
+    //    postItemFormBinder.addBinderForPostItem();
+
+
+
+    }
+
+    public void setItem(){
+        userBean.setCategory(category.getValue());
+        userBean.setCondition(condition.getValue());
+        userBean.setDescription(description.getValue());
+        userBean.setprice(price.getValue());
+        userBean.setUrl(url.getValue());
     }
     
     public Button getPostButton() { return postButton; }
@@ -112,6 +158,24 @@ public class PostItemView extends VerticalLayout{
 
     private void setRequiredIndicatorVisible(HasValueAndElement<?, ?>... components) {
         Stream.of(components).forEach(comp -> comp.setRequiredIndicatorVisible(true));
+    }
+
+    private void showSuccess(PostItemDetail userBean) {
+        Notification notification =
+                Notification.show(Title.getValue() +" Was Succesfully added");
+        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        
+ 
+        // Here you'd typically redirect the user to another view
+    }
+
+    private void showFail(PostItemDetail userBean) {
+        Notification notification =
+                Notification.show("Must Be Logged in to post");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+        
+ 
+        // Here you'd typically redirect the user to another view
     }
   
 

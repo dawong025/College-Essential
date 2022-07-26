@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Statement;
 
 import org.springframework.boot.CommandLineRunner;
@@ -12,7 +14,7 @@ public class DBConnection implements CommandLineRunner{
 
     private JdbcTemplate jdbc;
 
-    public static void StoreRegUser(String FirstName, String LastName, String Email, String Password, String school, String uName) {
+    public static void StoreRegUser(String FirstName, String LastName, String Email, String Pass, String school, String uName) {
         
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
@@ -23,6 +25,9 @@ public class DBConnection implements CommandLineRunner{
             System.out.println("Connection is Successful to the database" + url);
             
             //creates general user first
+                //ip getter, need more
+            //String ipAddress = request.getRemoteAddr();
+
             String GeneralQ = "INSERT INTO GeneralUser(ip_address) VALUES (1234567)";
             
             
@@ -45,7 +50,7 @@ public class DBConnection implements CommandLineRunner{
               }
               
             
-            String query = "Insert into RegisteredUser(first_name, last_name, email, password, general_user_id,username) values('"+FirstName+"','"+LastName+"','"+Email+"','"+password+"', '"+generalUserId+"', '"+uName+"')";
+            String query = "Insert into RegisteredUser(first_name, last_name, email, password, general_user_id,username) values('"+FirstName+"','"+LastName+"','"+Email+"','"+Pass+"', '"+generalUserId+"', '"+uName+"')";
             
             statement = connection.createStatement();
             statement.execute(query);

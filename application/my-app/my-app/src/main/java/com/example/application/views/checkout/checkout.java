@@ -12,6 +12,8 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -23,6 +25,8 @@ import com.vaadin.flow.component.dependency.StyleSheet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.apache.commons.lang3.StringUtils;
 
 
 
@@ -40,6 +44,7 @@ public class checkout extends HorizontalLayout{
 
     public checkout(){
 
+        //intialize session
         VaadinSession currentSession = VaadinSession.getCurrent();
 
         if(currentSession.getAttribute("cart") == null){
@@ -47,25 +52,6 @@ public class checkout extends HorizontalLayout{
           }
 
         ArrayList<HashMap<String, String>> cart = (ArrayList<HashMap<String, String>>) currentSession.getAttribute("cart");
-
-
-        // ArrayList<HashMap<String, String>> cart = new ArrayList<HashMap<String, String>>(); 
-
-        // // mock data delete later
-        // HashMap<String, String> item1 = new HashMap<String, String>();
-        // item1.put("title", "pencil");
-        // item1.put("image", "https://imgur.com/qGQJ6UV");
-        // item1.put("price", "2");
-        // item1.put("quantity", "1");
-
-        // HashMap<String, String> item2 = new HashMap<String, String>();
-        // item2.put("title", "backpack");
-        // item2.put("image", "https://imgur.com/D6eNwVV");
-        // item2.put("price", "60");
-        // item2.put("quantity", "1");
-
-        // cart.add(item1);
-        // cart.add(item2);
 
         VerticalLayout shoppingCartItems = new VerticalLayout();
         H3 h1 = new H3("Shopping Cart");
@@ -76,12 +62,12 @@ public class checkout extends HorizontalLayout{
         });
         checkout.setClassName("button");
 
+
        // Horizontal layout for shopping cart items
         shoppingCartItems.add(h1);
         for (HashMap<String, String> i: cart){
             HorizontalLayout horizontalSC = new HorizontalLayout();
            
-
 
             horizontalSC.setWidthFull();
 
@@ -106,7 +92,7 @@ public class checkout extends HorizontalLayout{
             image.setTitle(i.get("image"));
             quantity.setValue(i.get("quantity"));
             quantity.setReadOnly(true);
-            price.setValue(i.get("price"));
+            price.setValue("$" + i.get("price"));
             price.setReadOnly(true);
             
 
@@ -116,8 +102,10 @@ public class checkout extends HorizontalLayout{
             horizontalSC.setAlignItems(Alignment.CENTER);
 
             shoppingCartItems.add(horizontalSC);
+            shoppingCartItems.setSizeUndefined();
 
         }
+
 
         //return to cart button
         Button returnToCart = new Button("Return To Cart", e ->{
@@ -139,14 +127,30 @@ public class checkout extends HorizontalLayout{
         VerticalLayout paymentBox = new VerticalLayout();
         paymentBox.setClassName("verticalLayout");
 
+        float priceTotal = 0; 
+
         for (HashMap<String,String> i:cart){
 
-            TextArea title = new TextArea("title");
+            TextArea title = new TextArea("Name");
             title.setValue(i.get("title"));
             title.setReadOnly(true);
 
-            TextArea price = new TextArea("Price");
-            price.setValue(i.get("price"));
+            TextArea price = new TextArea("Final Price");
+            // Float finalPrice = Float.parseFloat(i.get("quantity"))  * Float.parseFloat(i.get("price"));
+
+            // price.setValue(String.valueOf(finalPrice));
+            // price.setReadOnly(true);
+
+            if (StringUtils.isNumeric(i.get("price")))
+            {
+            Float finalPrice = Float.parseFloat(i.get("quantity"))  * Float.parseFloat(i.get("price"));
+
+            price.setValue("$" + String.valueOf(finalPrice));
+            priceTotal += finalPrice; 
+            }else{
+                price.setValue("No price was set.");
+            }
+            
             price.setReadOnly(true);
 
             HorizontalLayout priceList = new HorizontalLayout();
@@ -157,7 +161,7 @@ public class checkout extends HorizontalLayout{
         }
 
         TextArea totalPrice = new TextArea("Total Price");
-        totalPrice.setValue("this is the total");
+        totalPrice.setValue("$" + String.valueOf(priceTotal));
         totalPrice.setReadOnly(true);
 
         paymentBox.add(totalPrice);
@@ -210,6 +214,7 @@ public class checkout extends HorizontalLayout{
         TextArea billingAddress = new TextArea("Billing address:");
         // if billing address == shipping address
         // setValue = "same as shipping address"
+        
         billingAddress.setValue("Enter your billing address with 'change'.");
 
         // Button changeBillingAddress = new Button("change");
@@ -219,7 +224,13 @@ public class checkout extends HorizontalLayout{
         billingAddressLayout.setAlignItems(Alignment.BASELINE);
 
         //Place your order button
-        Button placeYourOrder = new Button("Place Your Order");
+        Button placeYourOrder = new Button("Place Your Order", e->{
+            currentSession.setAttribute("cart", new ArrayList<HashMap<String, String>>());
+            this.getUI().ifPresent(ui -> ui.navigate("/home"));
+            Notification notification =
+            Notification.show("Order has been placed!");
+            notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+        });
         placeYourOrder.setClassName("button");
 
         reviewBox.add(shippingAddressLayout, paymentMethodLayout, billingAddressLayout, placeYourOrder);
@@ -229,7 +240,7 @@ public class checkout extends HorizontalLayout{
         userInfo.add(h3, reviewBox);
         add(userInfo);
         userInfo.addClassName("box");
-
+        userInfo.setSizeUndefined();
         
 
         } 

@@ -26,7 +26,7 @@ public class DBHome {
             if(!selector.contains("All Categories")){
                 
                 String q = "SELECT MarketplaceListing.marketplace_listing_id, MarketplaceListing.title, MarketplaceListing.price,"
-                +" MarketplaceListing.created_at, MarketplaceListing.body, MarketplaceListing.seller_id, Product.product_condition,"
+                +" MarketplaceListing.created_at, MarketplaceListing.body, MarketplaceListing.quantity, MarketplaceListing.seller_id, Product.product_condition,"
                 +" Product.product_image FROM ProductListings"
                 +" JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
                 +" JOIN Product ON ProductListings.product_id = Product.product_id"
@@ -36,6 +36,7 @@ public class DBHome {
                 String imageURL;
                 String price;
                 String body;
+                String quant;
                 try (Statement stmt = connection.createStatement()) {
                     ResultSet rs = stmt.executeQuery(q);
                     while (rs.next()) {
@@ -44,9 +45,11 @@ public class DBHome {
                       imageURL = rs.getString("product_image");
                       price = rs.getString("price");
                       body = rs.getString("body");
+                      quant = rs.getString("quantity");
                       array.add(imageURL);
                       array.add(body);
                       array.add(price);
+                      array.add(quant);
                       System.out.println(nameItem + " " +imageURL+ " "+selector);
                         itemList.put(nameItem,array);
                       
@@ -57,7 +60,7 @@ public class DBHome {
 
             }else{
             String q = "SELECT MarketplaceListing.marketplace_listing_id, MarketplaceListing.title, MarketplaceListing.price,"
-            +" MarketplaceListing.created_at, MarketplaceListing.body, MarketplaceListing.seller_id, Product.product_condition,"
+            +" MarketplaceListing.created_at, MarketplaceListing.body, MarketplaceListing.quantity, MarketplaceListing.seller_id, Product.product_condition,"
             +" Product.product_image FROM ProductListings"
             +" JOIN MarketplaceListing ON ProductListings.marketplace_listing_id = MarketplaceListing.marketplace_listing_id"
             +" JOIN Product ON ProductListings.product_id = Product.product_id"
@@ -66,6 +69,7 @@ public class DBHome {
             String imageURL;
             String price;
             String body;
+            String quant;
             try (Statement stmt = connection.createStatement()) {
                 ResultSet rs = stmt.executeQuery(q);
                
@@ -75,9 +79,11 @@ public class DBHome {
                   imageURL = rs.getString("product_image");
                   price = rs.getString("price");
                       body = rs.getString("body");
+                      quant = rs.getString("quantity");
                       array.add(imageURL);
                       array.add(body);
                       array.add(price);
+                      array.add(quant);
                   
                     itemList.put(nameItem,array);
                   

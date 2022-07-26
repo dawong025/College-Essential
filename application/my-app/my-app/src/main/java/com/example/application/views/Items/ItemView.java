@@ -37,6 +37,7 @@ public class ItemView extends VerticalLayout{
     private String url;
     private String body;
     private String price;
+    private String quant;
     private HashMap<String,ArrayList<String>> items = new HashMap<>();
     private ArrayList<String> array;
    // private ItemDetails itemDetail;
@@ -58,6 +59,7 @@ public class ItemView extends VerticalLayout{
       url = array.get(0);
       body = array.get(1);
       price = array.get(2);
+      quant = array.get(3);
       String seller = "By user";
       String condition = "New";
       if(url != null){
@@ -89,6 +91,10 @@ public class ItemView extends VerticalLayout{
       TextField priceField = new TextField("Price");
       priceField.setValue(price);
       priceField.setReadOnly(true);
+      TextField amount = new TextField("Quantity");
+      amount.setValue(quant);
+      amount.setReadOnly(true);
+      vl.add(amount);
       vl.add(price);
        
 
@@ -110,6 +116,7 @@ public class ItemView extends VerticalLayout{
         item.put("image", url);
         item.put("price", price);
         item.put("quantity", "1");
+        item.put("amount", quant);
 
         ArrayList<HashMap<String, String>> cart = (ArrayList<HashMap<String, String>>) currentSession.getAttribute("cart");
 

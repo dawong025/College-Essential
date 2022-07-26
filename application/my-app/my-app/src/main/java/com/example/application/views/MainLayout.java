@@ -91,7 +91,8 @@ public class MainLayout extends AppLayout {
     public MainLayout() {
         setPrimarySection(Section.DRAWER);
 
-        Text Title = new Text("College Essentials");
+        // H1 Title = new H1("Test");
+        //Image appName = new Image("https://cdn.discordapp.com/attachments/998116033850249267/1000655208122171403/unknown.png", "Logo");
         HorizontalLayout hv;
         Button cart = new Button("Cart");
         cart.addClassName("cartButton");
@@ -108,7 +109,9 @@ public class MainLayout extends AppLayout {
             logout.addClassName("logOutButton");
             logout.addClickListener(e -> {
                 LoginView.logOut();
-                UI.getCurrent().getPage().reload();
+                
+               this.getUI().ifPresent(ui -> ui.navigate("/home"));
+               UI.getCurrent().getPage().reload();
             });
             Button account = new Button("Account",e->{
                 this.getUI().ifPresent(ui -> ui.navigate("/Account"));
@@ -153,8 +156,9 @@ public class MainLayout extends AppLayout {
     }
 
     private Component createDrawerContent() {
-        H2 appName = new H2("College Essentials");
+        // H2 appName = new H2("College Essentials");
         // Image appName = new Image("https://cdn.discordapp.com/attachments/998116033850249267/998120448061616228/unknown.png", "Logo");
+        Image appName = new Image("https://cdn.discordapp.com/attachments/998116033850249267/1000655208122171403/unknown.png", "Logo");
         appName.addClassNames("app-name");
 
         com.vaadin.flow.component.html.Section section = new com.vaadin.flow.component.html.Section(appName,
