@@ -10,7 +10,7 @@ import java.util.HashMap;
 import com.mysql.cj.xdevapi.Statement;
 
 public class DBForumList {
-    public static ArrayList<HashMap<String, String>> searchHomeItem(String Title, String selector) throws ClassNotFoundException {
+    public ArrayList<HashMap<String, String>> getForumListings() throws ClassNotFoundException {
         //This function will return an array of hashmaps.
         //Each hashmap contains unique information for individual forum posts.
         ArrayList<HashMap<String, String>> posts = new ArrayList<HashMap<String, String>>();
@@ -28,20 +28,20 @@ public class DBForumList {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection to the database" + url + "didn't go kaboom");
-            Statement stmt = (Statement) connection.createStatement();
+            java.sql.Statement stmt = connection.createStatement();
 
             //An SQL query that relates and joins 3 tables together.
             //"Forum Post" joins to a general "Posts" table, and "Posts" joins and relates to "Registered User" table 
             String q = "SELECT ForumPost.title, ForumPost.description, ForumPost.created_at, RegisteredUser.username"
-                      +"FROM Posts"
-                      +"JOIN ForumPost ON ForumPost.forum_post_id = Posts.forum_post_id"
-                      +"JOIN RegisteredUser ON RegisteredUser.registered_user_id = Posts.registered_user_id";
+                      +" FROM Posts"
+                      +" JOIN ForumPost ON ForumPost.forum_post_id = Posts.forum_post_id"
+                      +" JOIN RegisteredUser ON RegisteredUser.registered_user_id = Posts.registered_user_id";
 
-            ResultSet rs = ((java.sql.Statement) stmt).executeQuery(q);
+            ResultSet rs = stmt.executeQuery(q);
             while (rs.next()) {
                 HashMap<String, String> post = new HashMap<String, String>();
                 forumTitle = rs.getString("title");
-                username = rs.getString("first_name");
+                username = rs.getString("username");
                 description = rs.getString("description");
                 post.put("title",forumTitle);
                 post.put("user",username);

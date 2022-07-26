@@ -50,8 +50,9 @@
 .forum-grid {
     display: grid !important;
     background-color: white;
-    grid-template-rows: 5fr;
-    grid-template-areas: 
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
     "Image Title Title Title Title Title Title Title"
     "Image Post Post Post Post Post Post Post"
     "Name Post Post Post Post Post Post Post"
@@ -65,7 +66,7 @@
 .fp-image {
     grid-area: Image;
     background-color: white;
-    width: 200px;
+    width: 240px;
     margin-top:auto;
     margin-bottom: auto;
     border-radius: 10px;
@@ -88,7 +89,7 @@
 
 .fp-user {
     grid-area: Name;
-    max-width: 200px;
+    max-width: 240px;
     background-color: white;
     border-radius: 10px;
     justify-self: stretch;
@@ -100,14 +101,14 @@
 .fp-description{
     grid-area: Post;
     background-color: white;
-    min-height: 200%;
+    display: flex;
     min-width: 99%;
     border-radius: 10px;
-    justify-self: stretch;
     margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
     border: 5px;
+    flex-direction: row;
     border-style: solid;
     border-color: black;
 }
@@ -119,7 +120,7 @@
     display: grid;
     height: 100%;
     max-height:100%;
-    max-width: 210px;
+    max-width: 250px;
     margin-bottom: auto;
     overflow: scroll;
     border: 5px;
