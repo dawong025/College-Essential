@@ -35,36 +35,66 @@
     border-radius: 10px;
     justify-self: stretch;
     box-shadow: 1px 1px lightgray;
+    display: grid;
+    justify-self: stretch;
+    grid-template-rows: 1fr;
+    grid-template-columns: 0.20fr 0.3fr 0.25fr 0.25fr;
+    grid-template-areas:
+    "pfp names names buttons";
+    min-width: 110vh;
 }
+.pfp {
+    display: block;
+    margin: 25px;
+    margin-top: 50px;
+    height: 190px;
+    width: 180px;
+    grid-area: pfp;
+}
+.names {
+    grid-area: names;
+    margin-left: -50px;
+    margin-top: -15px;
+}
+.name {
+    border-radius: 5px;
+
+    color: black;
+}
+.username-profile {
+    margin-top: -55px;
+    color: black;
+}
+
 .purchases {
-    margin-left: 47%;
     margin-top: 190px;
     background-color: black;
     color: white;
+    
 }
 
 .purchases:hover{
-    margin-left: 47%;
-    margin-top: 190px;
     background-color: white;
     color: black;
+    
 }
 .editAcc {
     
-    margin-top: 190px;
     background-color: black;
     color: white;
+    
 }
 
 .editAcc:hover {
-    
-    margin-top: 190px;
     background-color: white;
     color: black;
 }
+.profile-buttons {
+    grid-area: buttons;
+    
+}
 
 .label-two {
-
     background-color: whitesmoke;
     border-radius: 10px;
     box-shadow: 1px 1px lightgray;
@@ -121,19 +151,6 @@
 
 }
 
-.pfp {
-    display: block;
-    margin: 25px;
-    margin-top: 50px;
-    height: 180px;
-    width: 180px;
-}
-
-.name {
-    border-radius: 5px;
-    margin-top: 150px;
-    color: black;
-}
 
 .ratings {
     margin: 5px;
@@ -158,6 +175,9 @@
 
 .all-ratings {
     grid-area: messages;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
 }
 
 .rating-author {
@@ -173,12 +193,26 @@
 
 .comment-text {
     grid-area: comment;
-    overflow: hidden;
+
 }
 
 .new-rating-field {
     grid-area: commentbox;
-    
+}
+.new-rating-text {
+    width: 75%;
+    color: white;
+}
+
+.rating-selector {
+    width: 7%;
+    background-color: whitesmoke;
+
+}
+.submit-rating {
+    width: 15%;
+    background-color: black;
+    color: white;
 }
 #vaadin-text-area-0{
     background-color: white;

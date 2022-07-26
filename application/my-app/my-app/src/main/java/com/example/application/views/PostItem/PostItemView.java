@@ -94,7 +94,7 @@ public class PostItemView extends VerticalLayout{
                 vert.add(h1);
                 h1 = new HorizontalLayout();
             
-            TextField quant = new TextField("Enter amount of items");
+            TextField quant = new TextField("Enter Item Quantity");
             quant.setValue("1");
             h1.add(quant);
 

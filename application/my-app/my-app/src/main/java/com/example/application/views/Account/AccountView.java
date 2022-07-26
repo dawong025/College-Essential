@@ -1,6 +1,7 @@
 
 package com.example.application.views.Account;
 
+import com.example.application.Data.DBAccount;
 import com.example.application.views.MainLayout;
 import com.example.application.views.login.LoginView;
 import com.microsoft.schemas.office.office.impl.HrpctAttributeImpl;
@@ -30,9 +31,40 @@ import java.util.HashMap;
 @PageTitle("My Account")
 @Route(value = "Account", layout = MainLayout.class)
 public class AccountView extends Div{
-    public AccountView(){
+    public AccountView() throws ClassNotFoundException{
+        DBAccount db = new DBAccount();
+        /* Store the user info from the DB to an array */
+        ArrayList<String> user = new ArrayList<String>();
+        String first_name = "Kelly";
+        String last_name = "Smith";
+        String username = "ksmith99";
+        String emailDB = "kellysmith@gmail.com";
+        String about = "Hi, I'm Kelly! Nice to meet you!\nCS @ SFSU";
+        String contact = "For business inquiries only: kellysmith@gmail.com";
         
-        String userName = LoginView.getUser();
+        String userName;
+
+        if(LoginView.getUser() != null){
+            userName = LoginView.getUser();
+            System.out.println(userName);
+
+            if(userName.contains("@")){
+                user = db.searchEmail(userName);
+            }
+            else{
+                user = DBAccount.searchUser(userName);
+            }
+            first_name = user.get(0);
+            last_name = user.get(1);
+            username = user.get(2);
+            emailDB = user.get(3);
+            about = user.get(4);
+            contact = user.get(5);
+
+            for(int i = 0; i < user.size(); i++){
+                System.out.println(user.get(i));
+            }
+        }
 
         getElement().getClassList().add("hello-grid");
         setWidth("99%");
@@ -44,9 +76,14 @@ public class AccountView extends Div{
         Image img1 = new Image("images/icon.jpg", "placeholder icon");
         img1.setWidth("180px");
         img1.addClassName("pfp");
-        H1 name = new H1("Kelly Smith");
+        H1 name = new H1(first_name + " "+ last_name);
         name.addClassName("name");
-    
+
+        H2 usernameProfile = new H2("@"+username);
+        usernameProfile.addClassName("username-profile");
+        VerticalLayout names = new VerticalLayout(name, usernameProfile);
+        names.addClassName("names");
+        
         Button purchaseHistory = new Button("Recent Orders", e ->{
             this.getUI().ifPresent(ui -> ui.navigate("/PurchaseHistory"));
         });
@@ -58,7 +95,9 @@ public class AccountView extends Div{
         });
 
         editAccount.addClassName("editAcc");
-        HorizontalLayout h1 = new HorizontalLayout(img1, name, purchaseHistory, editAccount);
+        HorizontalLayout buttons = new HorizontalLayout(purchaseHistory, editAccount);
+        buttons.addClassName("profile-buttons");
+        HorizontalLayout h1 = new HorizontalLayout(img1, names, buttons);
         h1.addClassName("label-one");
 
         
@@ -67,22 +106,20 @@ public class AccountView extends Div{
         H3 aboutMe = new H3("About Me");
         aboutMe.addClassName("about-me");
         
-        H6 aboutText1 = new H6("Hi, I'm Kelly! Nice to meet you!");
-        H6 aboutText2 = new H6("CS @ Northwestern");
+        H6 aboutText1 = new H6(about);
+        H6 aboutText2 = new H6();
         
         VerticalLayout aboutText = new VerticalLayout(aboutText1, aboutText2);
         aboutText.addClassName("aboutText");
         
         H3 contactMe = new H3("Contact Me");
         contactMe.addClassName("contact-me");
-        H6 contactText1 = new H6("For business inquiries only: ksmith292@gmail.com");
+        H6 contactText1 = new H6(contact);
         VerticalLayout contactText = new VerticalLayout(contactText1);
         contactText.addClassName("contact-text");
         VerticalLayout personalInfo = new VerticalLayout(aboutMe, aboutText, contactMe, contactText);
         personalInfo.addClassName("label-two");
         
-
-
         /* Ratings Grid Area */
         Div ratingsDiv = new Div();
         H3 ratings = new H3("Ratings");
@@ -119,11 +156,22 @@ public class AccountView extends Div{
         VerticalLayout allRatings = new VerticalLayout(rating1, rating2, rating3);
         allRatings.addClassName("all-ratings");
         
-        TextArea newRatingField = new TextArea();
+        TextField newRatingField = new TextField();
         newRatingField.addClassName("new-rating-text");
         newRatingField.setPlaceholder("Add a new rating for this user");
 
-        VerticalLayout h3 = new VerticalLayout(ratings, allRatings, newRatingField);
+        Select <Integer> select = new Select<>();
+        select.setItems(1, 2, 3, 4, 5);
+        select.setValue(1);
+        select.addClassName("rating-selector");
+
+        Button submitRating = new Button("Submit");
+        submitRating.addClassName("submit-rating");
+
+        HorizontalLayout newRating = new HorizontalLayout(newRatingField, select, submitRating);
+        newRating.addClassName("new-rating-field");
+
+        VerticalLayout h3 = new VerticalLayout(ratings, allRatings, newRating);
         h3.addClassName("label-three");
         ratingsDiv.addClassName("label-three");
         add(nametag);
