@@ -21,6 +21,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.stream.Stream;
 
 import javax.swing.event.HyperlinkEvent;
@@ -43,6 +45,7 @@ public class RegistrationForm extends FormLayout {
    private TextField userName;
    private PasswordField password;
    private PasswordField passwordConfirm;
+   private PasswordField passwordHashed;
 
    private Checkbox allowMarketing;
 
@@ -137,7 +140,24 @@ public class RegistrationForm extends FormLayout {
        
 
    }
-
+  /*  public PasswordField hasher (){
+    try {
+      MessageDigest md = MessageDigest.getInstance("MD5");
+  md.update(password.getValue().getBytes());
+  byte[] resultByteArray = md.digest();
+  StringBuilder sd = new StringBuilder();
+  for (byte b : resultByteArray)
+  {
+      sd.append(String.format("%02x",b));
+  }
+        return passwordHashed;
+  } catch (NoSuchAlgorithmException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+  }
+  return null;
+  
+}*/
    public PasswordField getPasswordField() { return password; }
 
    public PasswordField getPasswordConfirmField() { return passwordConfirm; }
