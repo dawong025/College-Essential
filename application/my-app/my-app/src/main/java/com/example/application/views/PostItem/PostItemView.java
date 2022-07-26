@@ -72,21 +72,21 @@ public class PostItemView extends VerticalLayout{
             Title.setWidth("55%");
             Title.setPlaceholder("Enter Title Here...");
 
-            description = new TextArea("Describe the item");
+            description = new TextArea("Describe the Item");
             description.setWidth("55%");
-            description.setPlaceholder("describe the item here...");
+            description.setPlaceholder("Describe the Item Here...");
 
             vert.add(Title,description);
 
             condition = new Select<>();
-            condition.setLabel("Select Condition of item");
+            condition.setLabel("Select Condition of Item");
             condition.setItems("New","Used");
             condition.setPlaceholder("Select Condition");
 
             h1.add(condition);
             
             category = new Select<>();
-            category.setLabel("Select Category of item");
+            category.setLabel("Select Category of Item");
             
             category.setItems(
                 "Textbook", "School Supplies", "Furniture", "Lifestyle", "Miscellaneous");

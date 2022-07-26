@@ -1,15 +1,13 @@
-
-
-
 .vertLayout{
     border: 5px solid black;
     width: auto;
-    border-radius: 40px;
     background-color: whitesmoke;
     max-width: 60%;
     justify-content: center;
     margin: auto;
-
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 20px;
 
 }
 
@@ -31,7 +29,11 @@
 }
 
 .Header{
-    text-decoration: underline;
+    color: white;
+    background-color: black;
+    padding: 50px;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 .about-us-footer {
     margin-left: 40px;

@@ -5,7 +5,9 @@ import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
@@ -17,6 +19,7 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
 
 import java.util.stream.Stream;
 
@@ -27,9 +30,10 @@ import org.apache.poi.hslf.record.InteractiveInfoAtom.Link;
 
 @PageTitle("Registration")
 @Route(value = "registration")
+@CssImport("./themes/myapp/Registration.css")
 public class RegistrationForm extends FormLayout {
 
-   private H3 title;
+   private H2 title;
 
    private TextField firstName;
    private TextField lastName;
@@ -49,17 +53,33 @@ public class RegistrationForm extends FormLayout {
 
 
    public RegistrationForm() {
-       title = new H3("Signup for College Essentials");
+       this.getStyle().set("margin", "auto");
+       this.getStyle().set("margin-top", "100px");
+       this.getStyle().set("border", "2px solid black");
+       this.getStyle().set("padding-left", "150px");
+       this.getStyle().set("padding-right", "150px");
+       this.getStyle().set("padding-top", "50px");
+       this.getStyle().set("padding-bottom", "80px");
+       this.getStyle().set("background-color", "whitesmoke");
+
+       title = new H2("Signup for College Essentials");
+       title.addClassName("title-header");
        firstName = new TextField("First name");
+       firstName.addClassName("first-name");
        lastName = new TextField("Last name");
+       lastName.addClassName("last-name");
        email = new EmailField("Email");
+       email.addClassName("email");
        school = new TextField("University");
-       userName = new TextField("UserName");
+       school.addClassName("school");
+       userName = new TextField("Username");
+       userName.addClassName("username");
        userName.setWidth("20em");
        
         Button terms = new Button("Terms & Services",e ->{
                 this.getUI().ifPresent(ui -> ui.navigate("/termView"));
         });
+        terms.addClassName("terms");
 
         
 
@@ -76,14 +96,15 @@ public class RegistrationForm extends FormLayout {
        errorMessageField = new Span();
 
        submitButton = new Button("Create Account");
-       submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+       submitButton.addClassName("submit-reg");
 
-       add(title, firstName, lastName, userName,school,email, password,
+       add(title, firstName, lastName, userName,school, email, password,
                passwordConfirm, allowMarketing,terms, errorMessageField,
                submitButton);
 
        // Max width of the Form
        setMaxWidth("500px");
+
 
        // Allow the form layout to be responsive.
        // On device widths 0-490px we have one column.
