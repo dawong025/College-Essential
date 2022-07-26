@@ -3,6 +3,7 @@ package com.example.application.views.forum;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.example.application.Data.DBForumList;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Footer.FooterView;
 import com.vaadin.flow.component.ClickNotifier;
@@ -25,10 +26,18 @@ import com.vaadin.flow.router.Route;
 public class ForumList extends VerticalLayout {
 
     //Array list of posts to be added to the horizontal layout. Temporary, and should be deleted later
-    ArrayList<HashMap<String, String>> post = new ArrayList<HashMap<String, String>>();
+    static ArrayList<HashMap<String, String>> post = new ArrayList<HashMap<String, String>>();
+
+    //Determines the page to be shown when a post is clicked on
+    static String nav;
     
-    public ForumList(){
+    public ForumList() throws ClassNotFoundException{
         this.addClassName("forum-background");
+
+        //New database connection
+        DBForumList db = new DBForumList();
+        //Gets all the forum listings stored in the database.(broken)
+        post = db.getForumListings();
 
         //Code for the new post button that routes you to a page where you can make a post
         Button newPost = new Button("Make a new post", e ->{
@@ -96,7 +105,8 @@ public class ForumList extends VerticalLayout {
 
             //Should at some point route to an url stored in the database
             Button title = new Button("(" +forumPostCounter + ") Title: " + i.get("title"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate(i.get("route")));
+                nav = i.get("title");
+                this.getUI().ifPresent(ui -> ui.navigate("/fPost"));
             });
             title.addClassName("forum-post-title");
             title.addClassName("forum-post-title-hov");
@@ -108,7 +118,8 @@ public class ForumList extends VerticalLayout {
             user.addClassName("forum-post-user-hov");
 
             Button description = new Button(i.get("description"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate(i.get("route")));
+                nav = i.get("description");
+                this.getUI().ifPresent(ui -> ui.navigate("/fPost"));
             });
             description.addClassName("forum-post-description");
             description.addClassName("forum-post-description-hov");
@@ -124,6 +135,14 @@ public class ForumList extends VerticalLayout {
            footerLay = footer.getFooter();
            add(footerLay);
        
+    }
+
+    public static String getNav(){
+        return nav;
+    }
+
+    public static ArrayList<HashMap<String, String>> getPosts(){
+        return post;
     }
 
     

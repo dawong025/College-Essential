@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Statement;
 
 import org.springframework.boot.CommandLineRunner;
@@ -23,6 +25,9 @@ public class DBConnection implements CommandLineRunner{
             System.out.println("Connection is Successful to the database" + url);
             
             //creates general user first
+                //ip getter, need more
+            //String ipAddress = request.getRemoteAddr();
+
             String GeneralQ = "INSERT INTO GeneralUser(ip_address) VALUES (1234567)";
             
             
