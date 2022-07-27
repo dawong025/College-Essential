@@ -42,7 +42,7 @@ public class ServiceList extends VerticalLayout{
         //Code for the text field
         TextField searchBar = new TextField();
         searchBar.addClassName("forum-search-bar");
-        searchBar.setPlaceholder("Search for a forum post (Title, Description, User)");
+        searchBar.setPlaceholder("Search for a service (Title, Description, User, School)");
         searchBar.setPrefixComponent(VaadinIcon.SEARCH.create());
         searchBar.setClearButtonVisible(true);
         searchBar.setWidth("50em");

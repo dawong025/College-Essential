@@ -157,8 +157,9 @@ public class MainLayout extends AppLayout {
 
     private Component createDrawerContent() {
         // H2 appName = new H2("College Essentials");
-        // Image appName = new Image("https://cdn.discordapp.com/attachments/998116033850249267/998120448061616228/unknown.png", "Logo");
+        
         Image appName = new Image("https://cdn.discordapp.com/attachments/998116033850249267/1000655208122171403/unknown.png", "Logo");
+        appName.addClickListener(e -> appName.getUI().ifPresent(ui -> ui.navigate("/home")));
         appName.addClassNames("app-name");
 
         com.vaadin.flow.component.html.Section section = new com.vaadin.flow.component.html.Section(appName,

@@ -1,4 +1,7 @@
 package com.example.application.Data;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -48,7 +51,26 @@ public class UserDetails {
 
    public void setEmail(String email) {this.email = email;}
 
-   public String getPassword() {return password;}
+   public String getPassword() {
+      String hashPass;
+      try {
+         MessageDigest md = MessageDigest.getInstance("MD5");
+     md.update(password.getBytes());
+     byte[] resultByteArray = md.digest();
+     StringBuilder sd = new StringBuilder();
+     for (byte b : resultByteArray)
+     {
+         System.out.println(sd.toString());
+         sd.append(String.format("%02x",b));
+     }
+     System.out.println(sd.toString());
+           hashPass =  sd.toString();
+           return hashPass;
+     } catch (NoSuchAlgorithmException e) {
+         // TODO Auto-generated catch block
+         e.printStackTrace();
+     }
+      return ""; }
 
    public void setPassword(String password) {this.password = password;}
 
