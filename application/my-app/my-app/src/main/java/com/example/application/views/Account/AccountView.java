@@ -18,6 +18,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.html.Image;
@@ -89,13 +90,18 @@ public class AccountView extends Div{
         });
         purchaseHistory.addClassName("purchases");
 
+        Button sellingHistory = new Button("Selling History", e ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/SellingHistory"));
+        });
+        sellingHistory.addClassName("purchases");
+
         //TODO: Make route + route to new route
         Button editAccount = new Button("Edit Account", ev ->{
             this.getUI().ifPresent(ui -> ui.navigate("/editAccount"));
         });
-
         editAccount.addClassName("editAcc");
-        HorizontalLayout buttons = new HorizontalLayout(purchaseHistory, editAccount);
+
+        HorizontalLayout buttons = new HorizontalLayout(purchaseHistory, sellingHistory, editAccount);
         buttons.addClassName("profile-buttons");
         HorizontalLayout h1 = new HorizontalLayout(img1, names, buttons);
         h1.addClassName("label-one");

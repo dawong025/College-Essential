@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import com.example.application.views.MainLayout;
 import com.example.application.views.Footer.FooterView;
+import com.example.application.views.login.LoginView;
+
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -12,6 +14,8 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
@@ -35,7 +39,16 @@ public class ServiceList extends VerticalLayout{
 
         //Code for the new post button that routes you to a page where you can make a post
         Button newPost = new Button("Make a new post", e ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/servicePost"));
+            if(LoginView.logStatus() == false){
+                Notification notification =
+                Notification.show("User not logged in!");
+                notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+            }else{
+
+                this.getUI().ifPresent(ui -> ui.navigate("/servicePost")); 
+            }
+
+
         });
         newPost.addClassName("forum-search-button");
 
