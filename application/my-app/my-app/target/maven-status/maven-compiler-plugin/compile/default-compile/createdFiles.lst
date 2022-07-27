@@ -28,6 +28,7 @@ com\example\application\views\aboutus\BrendanView.class
 com\example\application\views\Account\Brendini2.class
 com\example\application\views\ads\AdSubmissionForm.class
 com\example\application\views\Footer\FooterView.class
+com\example\application\views\Account\SellingHistory.class
 com\example\application\views\Items\ItemView.class
 com\example\application\views\MainLayout$MenuItemInfo.class
 com\example\application\views\checkout\checkout.class
