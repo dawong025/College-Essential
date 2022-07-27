@@ -126,15 +126,20 @@ public class RegistrationForm extends FormLayout {
 //        registrationFormBinder.addBindingAndValidation();
 
        submitButton.addClickListener(ev ->{
-
-        DBConnection db = new DBConnection();
+        String f = firstName.getValue();
+        if(firstName.getValue() != "" && lastName.getValue() != "" && userName.getValue() != "" && password.getValue() != "" && passwordConfirm.getValue() != "" && school.getValue() != "" && email.getValue() != ""){
+           DBConnection db = new DBConnection();
         storeUserInfo();
         
 
         db.StoreRegUser(userBean.getFirstName(), userBean.getLastName(), userBean.getEmail(), userBean.getPassword(),userBean.getSchool(),userBean.getUserName());
         showSuccess(userBean);
         this.getUI().ifPresent(ui ->
-               ui.navigate("/login"));
+               ui.navigate("/login"));     
+        }else{
+                showFail(userBean);
+        }
+        
 
        });
        
@@ -183,9 +188,14 @@ public class RegistrationForm extends FormLayout {
         Notification notification =
                 Notification.show("Account Created, welcome " + userBean.getFirstName());
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-        
- 
-        // Here you'd typically redirect the user to another view
+      
+    }
+
+    private void showFail(UserDetails userBean) {
+        Notification notification =
+                Notification.show("There is some missing info");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+      
     }
 
 }
