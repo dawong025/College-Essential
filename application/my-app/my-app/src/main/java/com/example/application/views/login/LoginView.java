@@ -110,7 +110,6 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
 		
 	}
-    
 
     public Boolean getloginFlag(){
         Boolean loginSuccess = false;
@@ -126,12 +125,11 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         return status;
 
     }
-
     public static void logOut(){
         status = false;
     }
 
-    protected String getUserName(){
+    public String getUserName(){
         return userName.getValue();
     }
 
