@@ -93,7 +93,7 @@ public class AccountView extends Div{
         Button sellingHistory = new Button("Selling History", e ->{
             this.getUI().ifPresent(ui -> ui.navigate("/SellingHistory"));
         });
-        sellingHistory.addClassName("purchases");
+        sellingHistory.addClassName("selling-history");
 
         //TODO: Make route + route to new route
         Button editAccount = new Button("Edit Account", ev ->{
