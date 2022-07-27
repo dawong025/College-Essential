@@ -125,15 +125,33 @@ public class PostItemView extends VerticalLayout{
 
            postButton.addClickListener(e->{
                 DBPostItem db = new DBPostItem();
-                //setItem();
+                int count = 0;
+                
                 if(LoginView.logStatus()){
-                    db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(), price.getValue(), description.getValue(),quant.getValue());
-                showSuccess(userBean);
-                userBean = new PostItemDetail();
-                this.getUI().ifPresent(ui ->
-               ui.navigate("/home"));
+                    float p = Float.parseFloat(price.getValue());
+                    int q = Integer.parseInt(quant.getValue());
+                    if(price.getValue().contains("-") || quant.getValue().contains("-")
+                    ){
+                        showNeg(userBean);
+                        count++;
+                        
+                    }
+
+                    if(p == 0 || q ==0){
+                        showZero();
+                    }
+                    
                 }else{
+                    count++;
                     showFail(userBean);
+                }
+                if(count ==0 && url.getValue() != "" && Title.getValue() != "" &&  description.getValue() != ""
+                && category.getValue() != null && condition.getValue() != null && price.getValue() != ""){
+                    db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(), price.getValue(), description.getValue(),quant.getValue());
+                    showSuccess(userBean);
+                    userBean = new PostItemDetail();
+                    this.getUI().ifPresent(ui ->
+                   ui.navigate("/home"));
                 }
                 
            });
@@ -173,10 +191,18 @@ public class PostItemView extends VerticalLayout{
         Notification notification =
                 Notification.show("Must Be Logged in to post");
         notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-        
- 
-        // Here you'd typically redirect the user to another view
     }
-  
+
+    private void showNeg(PostItemDetail userBean) {
+        Notification notification =
+                Notification.show("price or quantity can be negitive");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+    }
+
+    private void showZero() {
+        Notification notification =
+                Notification.show("price or quantity can be 0");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+    }
 
 }
