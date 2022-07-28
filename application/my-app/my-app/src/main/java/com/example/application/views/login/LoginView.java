@@ -70,7 +70,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         loginButton.setClassName("loginButton");
 
         Div forgot = new Div();
-        forgot.add(new RouterLink("Forgot Password?", HomeView.class));
+        forgot.add(new RouterLink("Forgot Password?", ForgotPassword.class));
 
         vLayout.add(overlay,userName,passWord,loginButton,forgot);
         vLayout.setAlignItems(Alignment.CENTER);
@@ -167,9 +167,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         Notification notification =
                 Notification.show("Successfully logged in, welcome back " + userName.getValue());
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-        
- 
-        // Here you'd typically redirect the user to another view
+
     }
 
     private void showFail() {

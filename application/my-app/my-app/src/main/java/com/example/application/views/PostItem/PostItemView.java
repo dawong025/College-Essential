@@ -139,6 +139,7 @@ public class PostItemView extends VerticalLayout{
 
                     if(p == 0 || q ==0){
                         showZero();
+                        flag++;
                     }
                     
                 }else{
