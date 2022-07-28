@@ -125,7 +125,7 @@ public class PostItemView extends VerticalLayout{
 
            postButton.addClickListener(e->{
                 DBPostItem db = new DBPostItem();
-                int count = 0;
+                int flag = 0;
                 
                 if(LoginView.logStatus()){
                     float p = Float.parseFloat(price.getValue());
@@ -133,19 +133,20 @@ public class PostItemView extends VerticalLayout{
                     if(price.getValue().contains("-") || quant.getValue().contains("-")
                     ){
                         showNeg(userBean);
-                        count++;
+                        flag++;
                         
                     }
 
                     if(p == 0 || q ==0){
                         showZero();
+                        flag++;
                     }
                     
                 }else{
-                    count++;
+                    flag++;
                     showFail(userBean);
                 }
-                if(count ==0 && url.getValue() != "" && Title.getValue() != "" &&  description.getValue() != ""
+                if(flag ==0 && url.getValue() != "" && Title.getValue() != "" &&  description.getValue() != ""
                 && category.getValue() != null && condition.getValue() != null && price.getValue() != ""){
                     db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(), price.getValue(), description.getValue(),quant.getValue());
                     showSuccess(userBean);
