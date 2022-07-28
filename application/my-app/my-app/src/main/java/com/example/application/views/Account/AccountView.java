@@ -34,7 +34,7 @@ import java.util.HashMap;
 public class AccountView extends Div{
     public AccountView() throws ClassNotFoundException{
         DBAccount db = new DBAccount();
-        /* Store the user info from the DB to an array */
+
         ArrayList<String> user = new ArrayList<String>();
         String first_name = "Kelly";
         String last_name = "Smith";
@@ -44,7 +44,8 @@ public class AccountView extends Div{
         String contact = "For business inquiries only: kellysmith@gmail.com";
         
         String userName;
-
+        /* Comment out this code if you want to solely work on testing AccountView */
+        /* Connect to DB and store the user info of the person who logged in */
         if(LoginView.getUser() != null){
             userName = LoginView.getUser();
             System.out.println(userName);
@@ -62,11 +63,13 @@ public class AccountView extends Div{
             about = user.get(4);
             contact = user.get(5);
 
-            for(int i = 0; i < user.size(); i++){
-                System.out.println(user.get(i));
-            }
+            /* Test the values from the DB */
+            // for(int i = 0; i < user.size(); i++){
+            //     System.out.println(user.get(i));
+            // }
         }
 
+        /* CSS Grid for Formatting */
         getElement().getClassList().add("hello-grid");
         setWidth("99%");
 
@@ -74,6 +77,7 @@ public class AccountView extends Div{
         Div nametag = new Div();
         nametag.addClassName("label-one");
 
+        /* Profile Banner */
         Image img1 = new Image("images/icon.jpg", "placeholder icon");
         img1.setWidth("180px");
         img1.addClassName("pfp");
@@ -85,29 +89,31 @@ public class AccountView extends Div{
         VerticalLayout names = new VerticalLayout(name, usernameProfile);
         names.addClassName("names");
         
+        /* Order History View */
         Button purchaseHistory = new Button("Recent Orders", e ->{
             this.getUI().ifPresent(ui -> ui.navigate("/PurchaseHistory"));
         });
         purchaseHistory.addClassName("purchases");
 
+        /* Selling History View */
         Button sellingHistory = new Button("Selling History", e ->{
             this.getUI().ifPresent(ui -> ui.navigate("/SellingHistory"));
         });
         sellingHistory.addClassName("selling-history");
 
-        //TODO: Make route + route to new route
+        /* Edit Account View */
         Button editAccount = new Button("Edit Account", ev ->{
             this.getUI().ifPresent(ui -> ui.navigate("/editAccount"));
         });
         editAccount.addClassName("editAcc");
 
+        /* Add the Buttons */
         HorizontalLayout buttons = new HorizontalLayout(purchaseHistory, sellingHistory, editAccount);
         buttons.addClassName("profile-buttons");
         HorizontalLayout h1 = new HorizontalLayout(img1, names, buttons);
         h1.addClassName("label-one");
 
-        
-        /* Contact Grid Area */
+        /* About Grid Area */
         Div personalDiv = new Div();
         H3 aboutMe = new H3("About Me");
         aboutMe.addClassName("about-me");
@@ -118,6 +124,7 @@ public class AccountView extends Div{
         VerticalLayout aboutText = new VerticalLayout(aboutText1, aboutText2);
         aboutText.addClassName("aboutText");
         
+        /* Contact Me Area */
         H3 contactMe = new H3("Contact Me");
         contactMe.addClassName("contact-me");
         H6 contactText1 = new H6(contact);
@@ -131,7 +138,7 @@ public class AccountView extends Div{
         H3 ratings = new H3("Ratings");
         ratings.addClassName("ratings");
 
-        
+        /* Filler Reviewer Area, get rid of once DB setup is in place */
         H6 ratingAuthor1 = new H6 ("@Reviewer1");
         ratingAuthor1.addClassName("rating-author");
         Span datePosted1 = new Span ("12/17/2022");
