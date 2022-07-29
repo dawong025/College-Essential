@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.math3.analysis.function.Add;
 
 import com.example.application.views.home.HomeView;
+import com.example.application.views.registration.RegistrationForm;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -30,6 +31,7 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.shared.Registration;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
 
 import ch.qos.logback.core.status.Status;
@@ -69,7 +71,10 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         Div forgot = new Div();
         forgot.add(new RouterLink("Forgot Password?", ForgotPassword.class));
 
-        vLayout.add(overlay,userName,passWord,loginButton,forgot);
+        Div newUser = new Div();
+        newUser.add(new RouterLink("New User? Join Today!", RegistrationForm.class));
+
+        vLayout.add(overlay,userName,passWord,loginButton,forgot, newUser);
         vLayout.setAlignItems(Alignment.CENTER);
 
 
@@ -95,7 +100,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
                 ui.navigate("/home"));  
                 showSuccess();
             }else{
-                System.err.println("wrong Password");
+                System.err.println("Wrong Password");
                 showFail();
             }
             

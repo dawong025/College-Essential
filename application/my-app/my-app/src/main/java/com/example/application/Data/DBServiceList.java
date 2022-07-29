@@ -35,7 +35,8 @@ public class DBServiceList {
             String q = "SELECT ForumPost.title, ForumPost.description, ForumPost.created_at, RegisteredUser.username"
                       +" FROM Posts"
                       +" JOIN ForumPost ON ForumPost.forum_post_id = Posts.forum_post_id"
-                      +" JOIN RegisteredUser ON RegisteredUser.registered_user_id = Posts.registered_user_id";
+                      +" JOIN RegisteredUser ON RegisteredUser.registered_user_id = Posts.registered_user_id"
+                      +" ORDER BY ForumPost.created_at DESC";
 
             ResultSet rs = stmt.executeQuery(q);
             while (rs.next()) {
