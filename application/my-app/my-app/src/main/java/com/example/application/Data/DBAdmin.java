@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DBAdmin {
 
-    public static ArrayList<ArrayList<String>> searchUser() throws ClassNotFoundException {
+    public  ArrayList<ArrayList<String>> searchUser() throws ClassNotFoundException {
         ArrayList<String> user = new ArrayList<String>();
         ArrayList<ArrayList<String>> userNumList = new ArrayList<>();
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
@@ -26,9 +26,10 @@ public class DBAdmin {
             String emailDB;
             String school;
             String contact;
+            int isBanned;
             
                 
-            String q = "SELECT first_name, last_name, username, email FROM RegisteredUser";
+            String q = "SELECT first_name, last_name, username, email, is_banned FROM RegisteredUser";
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
@@ -38,12 +39,14 @@ public class DBAdmin {
                     last_name = rs.getString("last_name");
                     username = rs.getString("username");
                     emailDB = rs.getString("email");
+                    isBanned = rs.getInt("is_banned");
                     
                     
                     user.add(first_name);
                     user.add(last_name);
                     user.add(username);
                     user.add(emailDB);
+                    user.add(""+isBanned);
         
 
                     userNumList.add(user);
@@ -64,7 +67,7 @@ public class DBAdmin {
     }
 
 
-    public static void deleteUser(String deletedName){
+    public  void deleteUser(String deletedName){
 
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
@@ -99,6 +102,74 @@ public class DBAdmin {
             throwables.printStackTrace();
         }  
 
+
+    }
+
+
+    public void banUser(String username) {
+         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
+        String userName = "team42022";
+        String password = "team4_2022";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, userName, password);
+            System.out.println("Connection is Successful to the database" + url);
+            
+            
+                
+            String q = "UPDATE RegisteredUser"
+           +" SET is_banned = 1"
+           +" WHERE username = '"+username+"';";
+            try {
+                Statement stmt = connection.createStatement();
+                stmt.execute(q);
+                System.out.println("\n\n\nHERE\n\n\n");
+              
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }  
+
+
+
+    }
+
+
+    public void unBanUser(String username) {
+        String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
+        String userName = "team42022";
+        String password = "team4_2022";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, userName, password);
+            System.out.println("Connection is Successful to the database" + url);
+            
+            
+                
+            String q = "UPDATE RegisteredUser"
+           +" SET is_banned = 0"
+           +" WHERE username = '"+username+"';";
+            try {
+                Statement stmt = connection.createStatement();
+                stmt.execute(q);
+                System.out.println("\n\n\nHERE\n\n\n");
+              
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }  
 
     }
     
