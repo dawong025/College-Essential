@@ -66,7 +66,6 @@ public class PostItemView extends VerticalLayout{
             url.setWidth("55%");
             url.setPlaceholder("Enter URL of Image here...");
             vert.add(url);
-        // Configure upload component
         
             Title = new TextField("Title Of Post");
             Title.setWidth("55%");
@@ -127,17 +126,20 @@ public class PostItemView extends VerticalLayout{
                 DBPostItem db = new DBPostItem();
                 int flag = 0;
                 
+                //checks if logged in then executes
                 if(LoginView.logStatus()){
-                    float p = Float.parseFloat(price.getValue());
-                    int q = Integer.parseInt(quant.getValue());
+                    float numPrice = Float.parseFloat(price.getValue());
+                    int numQuant = Integer.parseInt(quant.getValue());
+                    
+                    //checks to see if value or quantity have a negitive sign then send error message
                     if(price.getValue().contains("-") || quant.getValue().contains("-")
                     ){
                         showNeg(userBean);
                         flag++;
                         
                     }
-
-                    if(p == 0 || q ==0){
+                    //chcks to see if num and quant are zero then sends error message
+                    if(numPrice == 0 || numQuant ==0){
                         showZero();
                         flag++;
                     }
@@ -146,9 +148,12 @@ public class PostItemView extends VerticalLayout{
                     flag++;
                     showFail(userBean);
                 }
+                //checks to see if all flags are zero and if all textfields are empty
+                //if not then it does the posting to the db then redicracts to the home page
                 if(flag ==0 && url.getValue() != "" && Title.getValue() != "" &&  description.getValue() != ""
                 && category.getValue() != null && condition.getValue() != null && price.getValue() != ""){
-                    db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(), price.getValue(), description.getValue(),quant.getValue());
+                    db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(),
+                     price.getValue(), description.getValue(),quant.getValue());
                     showSuccess(userBean);
                     userBean = new PostItemDetail();
                     this.getUI().ifPresent(ui ->
@@ -184,8 +189,6 @@ public class PostItemView extends VerticalLayout{
                 Notification.show(Title.getValue() +" Was Succesfully added");
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         
- 
-        // Here you'd typically redirect the user to another view
     }
 
     private void showFail(PostItemDetail userBean) {

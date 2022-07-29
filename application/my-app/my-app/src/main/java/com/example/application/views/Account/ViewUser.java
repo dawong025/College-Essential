@@ -1,43 +1,37 @@
-
 package com.example.application.views.Account;
 
-import com.example.application.Data.DBAccount;
+import java.util.ArrayList;
+
+import com.example.application.Data.DBViewUser;
 import com.example.application.views.MainLayout;
 import com.example.application.views.login.LoginView;
-import com.microsoft.schemas.office.office.impl.HrpctAttributeImpl;
-import com.vaadin.flow.component.select.Select;
-import com.vaadin.flow.component.grid.Grid;
-
-import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H6;
+import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.orderedlayout.FlexComponent.Alignment;
+import com.vaadin.flow.component.select.Select;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.*;
-import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.component.textfield.TextField;
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.vaadin.flow.router.RouterLink;
 
 @CssImport("./themes/myapp/Account.css")
-@PageTitle("My Account")
-@Route(value = "Account", layout = MainLayout.class)
-public class AccountView extends Div{
+@PageTitle("User Account")
+@Route(value = "viewAccount", layout = MainLayout.class)
+public class ViewUser extends VerticalLayout{
+    public static String clickedUser;
 
 
-    static String clickedUser;
+    public ViewUser(){
 
-    public AccountView() throws ClassNotFoundException{
-        DBAccount db = new DBAccount();
+        DBViewUser db = new DBViewUser();
         /* Store the user info from the DB to an array */
         ArrayList<String> user = new ArrayList<String>();
         String first_name = "Kelly";
@@ -49,15 +43,27 @@ public class AccountView extends Div{
         
         String userName;
 
+       
+
         if(LoginView.getUser() != null){
-            userName = LoginView.getUser();
+            userName = AccountView.getClickedUser();
             System.out.println(userName);
 
             if(userName.contains("@")){
-                user = db.searchEmail(userName);
+                try {
+                    user = DBViewUser.searchEmail(userName);
+                } catch (ClassNotFoundException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
             else{
-                user = DBAccount.searchUser(userName);
+                try {
+                    user = DBViewUser.searchUser(userName);
+                } catch (ClassNotFoundException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
             first_name = user.get(0);
             last_name = user.get(1);
@@ -65,6 +71,33 @@ public class AccountView extends Div{
             emailDB = user.get(3);
             about = user.get(4);
             contact = user.get(5);
+            //adds comments
+            // for( int i =6; i < user.size(); i++ ){
+            //     if(i+3 <= user.size()){
+            //     Div ratingAuthor3 = new Div();
+            //     String currClicked = user.get(i);
+            //     ratingAuthor3.setText(currClicked);
+            //     //new RouterLink(currClicked, ViewUser.class)
+            //     //add something for clicked user
+            //     ratingAuthor3.addClickListener(ev ->{
+            //         clickedUser = currClicked;
+                   
+            //         this.getUI().ifPresent(ui -> ui.navigate("/viewAccount"));
+            //     });
+            //     ratingAuthor3.addClassName("rating-author");
+            //          i++;
+            //     Span datePosted3 = new Span (user.get(i));
+            //     datePosted3.addClassName("date-posted");
+            //         i++;
+            //     H6 commentText3 = new H6(user.get(i));
+            //     commentText3.addClassName("comment-text");
+                
+            //   //  VerticalLayout rating3 = new VerticalLayout(ratingAuthor3, datePosted3, commentText3);
+            //   //  rating3.addClassName("single-rating");
+            //     }
+                
+                
+            // }
 
             for(int i = 0; i < user.size(); i++){
                 System.out.println(user.get(i));
@@ -136,12 +169,7 @@ public class AccountView extends Div{
         ratings.addClassName("ratings");
 
         
-        Button ratingAuthor1 = new Button();
-        ratingAuthor1.setText("@" + "tester6");
-        ratingAuthor1.addClickListener(event -> {
-            clickedUser = "tester6";
-            this.getUI().ifPresent(ui -> ui.navigate("/viewAccount"));
-        });
+        H6 ratingAuthor1 = new H6 ("@Reviewer1");
         ratingAuthor1.addClassName("rating-author");
         Span datePosted1 = new Span ("12/17/2022");
         datePosted1.addClassName("date-posted");
@@ -180,7 +208,9 @@ public class AccountView extends Div{
         select.setValue(1);
         select.addClassName("rating-selector");
 
-        Button submitRating = new Button("Submit");
+        Button submitRating = new Button("Submit", e ->{
+            
+        });
         submitRating.addClassName("submit-rating");
 
         HorizontalLayout newRating = new HorizontalLayout(newRatingField, select, submitRating);
@@ -196,11 +226,12 @@ public class AccountView extends Div{
         add(h1);
         add(personalInfo);
         add(h3);
+    
     }
 
 
     public static String getClickedUser(){
         return clickedUser;
     }
-
+    
 }

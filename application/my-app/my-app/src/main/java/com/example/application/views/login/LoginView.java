@@ -50,10 +50,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
 
 	public LoginView(){
-        // LoginOverlay overlay = getContent();
-        // overlay.setTitle("College Essentials");
-        // overlay.setDescription("Sign up to post or buy");
-        // overlay.setOpened(true);
+        
         HorizontalLayout overlay = new HorizontalLayout();
         setClassName("HeaderLayoutLogin");
         VerticalLayout vLayout = new VerticalLayout();
@@ -102,17 +99,6 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
                 showFail();
             }
             
-
-            // if(userName.getValue().equals("admin")){
-            //     overlay.getUI().ifPresent(ui ->
-            //     ui.navigate("/Admin")); 
-            // }else{
-              
-            //         overlay.getUI().ifPresent(ui ->
-            //     ui.navigate("/home"));  
-            // }
-                
-
         });
 
 		
