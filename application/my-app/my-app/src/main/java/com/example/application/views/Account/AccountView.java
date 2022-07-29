@@ -37,6 +37,9 @@ public class AccountView extends Div{
     static String clickedUser;
 
     public AccountView() throws ClassNotFoundException{
+        if(LoginView.logStatus()){
+
+        
         DBAccount db = new DBAccount();
 
         ArrayList<String> user = new ArrayList<String>();
@@ -205,7 +208,13 @@ public class AccountView extends Div{
         add(h1);
         add(personalInfo);
         add(h3);
+    }else{
+        H1 header = new H1("You must be logged in to view");
+        add(header);
     }
+    
+}
+    
 
 
     public static String getClickedUser(){

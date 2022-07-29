@@ -26,7 +26,8 @@ public class AdminView extends VerticalLayout{
     private DBAdmin db = new DBAdmin();
 
     public AdminView() throws ClassNotFoundException{
-    if(LoginView.isAdmin()){
+    if(LoginView.logStatus()){
+       if(LoginView.isAdmin()){
         
     
         H1 header = new H1("Admin View");
@@ -46,12 +47,16 @@ public class AdminView extends VerticalLayout{
         TextField lastName = new TextField("last");
             lastName.setValue("last");
             lastName.setReadOnly(true);
+        TextField banned = new TextField("Ban");
+        banned.setValue("Ban");
+        banned.setReadOnly(true);
+        banned.setWidth("7%");
 
          HorizontalLayout row = new HorizontalLayout();
          row.setSpacing(false);
          VerticalLayout layout = new VerticalLayout();
 
-         row.add(FirstName, lastName, userName, email );
+         row.add(FirstName, lastName, userName, email, banned );
          add(row);
 
          
@@ -114,7 +119,13 @@ public class AdminView extends VerticalLayout{
         }else{
             H1 header = new H1("Restriced Access, Only Admins can view");
             add(header);
-        }
+        } 
+    }else{
+        H1 header = new H1("Restriced Access, Only Admins can view");
+        add(header);
+    } 
+        
+    
           
 
          
