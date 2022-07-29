@@ -10,6 +10,7 @@ import com.example.application.views.MainLayout;
 import com.example.application.views.Account.AccountView;
 import com.example.application.views.Footer.FooterView;
 import com.example.application.views.home.HomeView;
+import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -103,13 +104,18 @@ public class ItemView extends VerticalLayout{
 
       //initalize session
       VaadinSession currentSession = VaadinSession.getCurrent();
-
+      Button adminDelete = new Button("Delete",eve ->{
+        //delete Post;
+      });
 
       Button addToCart = new Button("Add to Cart",event ->{
 
         if(currentSession.getAttribute("cart") == null){
           currentSession.setAttribute("cart", new ArrayList<HashMap<String, String>>());
         }
+      
+      
+
 
         HashMap<String, String> item = new HashMap<String, String>();
         item.put("title", itemName);
@@ -134,6 +140,19 @@ public class ItemView extends VerticalLayout{
       addToCart.setClassName("addToCartButton");
       addToCart.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
       vl.add(addToCart);
+
+      //checks if admin is logged in and gives the abbility to delete
+      if(LoginView.logStatus()){
+        if(LoginView.isAdmin()){
+          adminDelete.setVisible(true);
+        vl.add(adminDelete);
+        }
+        
+      }else{
+        adminDelete.setVisible(false);
+      }
+
+
       vl.setAlignItems(Alignment.CENTER);
       hl.add(vl);
       hl.setWidthFull();

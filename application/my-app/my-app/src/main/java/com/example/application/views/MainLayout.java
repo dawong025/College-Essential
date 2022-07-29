@@ -110,7 +110,6 @@ public class MainLayout extends AppLayout {
             logout.addClassName("logOutButton");
             logout.addClickListener(e -> {
                 LoginView.logOut();
-                
                this.getUI().ifPresent(ui -> ui.navigate("/home"));
                UI.getCurrent().getPage().reload();
             });

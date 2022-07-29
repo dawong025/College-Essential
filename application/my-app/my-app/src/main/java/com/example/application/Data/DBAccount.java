@@ -77,8 +77,9 @@ public class DBAccount {
             String emailDB;
             String about;
             String contact;
+            String rating;
             
-                
+                //add for rating
             String q = "SELECT first_name, last_name, username, email, about, contact FROM RegisteredUser WHERE username LIKE '%"+userLogin+"%'";
             try {
                 Statement stmt = connection.createStatement();
@@ -90,6 +91,7 @@ public class DBAccount {
                     emailDB = rs.getString("email");
                     about = rs.getString("about");
                     contact = rs.getString("contact");
+                    //rating = rs.getString("rating");
                     
                     user.add(first_name);
                     user.add(last_name);

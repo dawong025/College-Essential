@@ -48,6 +48,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     public static boolean status = false;
     private static TextField userName;
     private PasswordField passWord;
+    private static  Boolean isAdmin;//isAdmin();
+    private Boolean isBanned;
 
 
 
@@ -86,15 +88,15 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
             
             
             Boolean loginSuccess = getloginFlag();
+            
 
-            if( /*loginSuccess && */ userName.equals("admin")){
+            if( loginSuccess && isAdmin){
                 status = true;
                 overlay.getUI().ifPresent(ui ->
                 ui.navigate("/Admin"));  
                 showSuccess();
             }
-
-            if(loginSuccess == true){
+            else if(loginSuccess && !isBanned){
                 status = true;
                 overlay.getUI().ifPresent(ui ->
                 ui.navigate("/home"));  
@@ -109,14 +111,22 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 		
 	}
 
+    
+
     public Boolean getloginFlag(){
         Boolean loginSuccess = false;
             
             //getPassword
             LoginSecurity loginCheck = new LoginSecurity(getUserName(),getPassWord());
             loginSuccess = loginCheck.getFlag();
+            isAdmin = loginCheck.isAdmin();
+            isBanned = loginCheck.isBanned();
             return loginSuccess;
 
+    }
+
+    public static boolean isAdmin(){
+        return isAdmin;
     }
 
     public static boolean logStatus(){

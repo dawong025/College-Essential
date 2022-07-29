@@ -6,6 +6,7 @@ import javax.annotation.security.RolesAllowed;
 
 import com.example.application.Data.DBAdmin;
 import com.example.application.views.MainLayout;
+import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -22,9 +23,12 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
 // @RolesAllowed("ADMIN")
 
 public class AdminView extends VerticalLayout{
-    
+    private DBAdmin db = new DBAdmin();
 
     public AdminView() throws ClassNotFoundException{
+    if(LoginView.logStatus()){
+       if(LoginView.isAdmin()){
+        
     
         H1 header = new H1("Admin View");
          add(header);
@@ -43,25 +47,30 @@ public class AdminView extends VerticalLayout{
         TextField lastName = new TextField("last");
             lastName.setValue("last");
             lastName.setReadOnly(true);
+        TextField banned = new TextField("Ban");
+        banned.setValue("Ban");
+        banned.setReadOnly(true);
+        banned.setWidth("7%");
 
          HorizontalLayout row = new HorizontalLayout();
          row.setSpacing(false);
          VerticalLayout layout = new VerticalLayout();
 
-         row.add(FirstName, lastName, userName, email );
+         row.add(FirstName, lastName, userName, email, banned );
          add(row);
 
          
-         ArrayList<ArrayList<String>> users = DBAdmin.searchUser();
+         ArrayList<ArrayList<String>> users = db.searchUser();
 
 
          for(int i =0; i < users.size(); i++){
-            for(int j =0; j <users.get(i).size(); j+=4){
+            for(int j =0; j <users.get(i).size(); j+=5){
                 row = new HorizontalLayout();
           String first =  users.get(i).get(0);
           String last = users.get(i).get(1);
           String username = users.get(i).get(2);
           String userEmail = users.get(i).get(3);
+          String isUserBanned = users.get(i).get(4);
         
           TextField firstNam = new TextField();
           firstNam.setValue(first);
@@ -76,16 +85,30 @@ public class AdminView extends VerticalLayout{
           TextField usernemail = new TextField();
           usernemail.setValue(userEmail);
           usernemail.setReadOnly(true);
+          TextField isBannedUser = new TextField();
+          isBannedUser.setWidth("5%");
+          isBannedUser.setValue(isUserBanned);
+          isBannedUser.setReadOnly(true);
 
           Button delete = new Button("Delete",e->{
-            DBAdmin.deleteUser(username);
+            db.deleteUser(username);
+            UI.getCurrent().getPage().reload();
+
+          });
+          Button ban = new Button("Ban", ev->{
+            db.banUser(username);
+            UI.getCurrent().getPage().reload();
+          });
+
+          Button unBan = new Button("UnBan",eve->{
+            db.unBanUser(username);
             UI.getCurrent().getPage().reload();
 
           });
           HorizontalLayout b = new HorizontalLayout();
           b.setSpacing(true);
-          b.add(delete);
-          row.add(firstNam, lastNam, userNam, usernemail,b);
+          b.add(unBan, ban,delete);
+          row.add(firstNam, lastNam, userNam, usernemail,isBannedUser,b);
           row.setSpacing(false);
           add(row);
             }
@@ -93,6 +116,16 @@ public class AdminView extends VerticalLayout{
 
          }
           
+        }else{
+            H1 header = new H1("Restriced Access, Only Admins can view");
+            add(header);
+        } 
+    }else{
+        H1 header = new H1("Restriced Access, Only Admins can view");
+        add(header);
+    } 
+        
+    
           
 
          

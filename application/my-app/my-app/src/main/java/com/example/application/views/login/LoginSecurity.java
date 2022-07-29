@@ -8,8 +8,11 @@ import com.example.application.Data.DBlogin;
 public class LoginSecurity {
     private Boolean flag;
     DBlogin db = new DBlogin();
-    String userName;
-    String passWord;
+   private String userName;
+    private String passWord;
+    private Boolean isAdmin;
+    private Boolean isBanned;
+
 
     public LoginSecurity(String userName, String passWord){
         
@@ -20,10 +23,14 @@ public class LoginSecurity {
         if( userName.contains("@")){
             //is email
          flag = db.getEmailCred(userName,passWord);
+         isAdmin = db.getAdmin();
+         isBanned = db.isBanned();
 
         }else{
             //is username
          flag = db.getUserNameCred(userName,passWord);
+         isAdmin = db.getAdmin();
+         isBanned = db.isBanned();
 
 
         }
@@ -53,8 +60,19 @@ public class LoginSecurity {
      }
       return ""; 
     }
+
     public Boolean getFlag(){
         return flag;
     }
+
+    public Boolean isAdmin(){
+        return isAdmin;
+    }
+
+    public Boolean isBanned(){
+        return isBanned;
+    }
+
+    
     
 }
