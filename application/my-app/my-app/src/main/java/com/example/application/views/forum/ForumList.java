@@ -88,7 +88,7 @@ public class ForumList extends VerticalLayout {
         select.setValue("All");
 
         // The horizontal layout with the text field, search button, and new post button
-        HorizontalLayout hv = new HorizontalLayout(searchBar, search, select, newPost);
+        HorizontalLayout hv = new HorizontalLayout(searchBar, select, search, newPost);
         hv.addClassName("forum-search-layout");
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
         hv.setWidthFull();
