@@ -42,6 +42,7 @@ public class ForumList extends VerticalLayout {
     private String searchedItem;
     private DBForumList db;
     private int forumPostCounter;
+    Select<String> select;
     private List<Component> comps = new ArrayList<>();
 
     public ForumList() throws ClassNotFoundException {
@@ -49,7 +50,6 @@ public class ForumList extends VerticalLayout {
 
         // New database connection
         db = new DBForumList();
-        // Gets all the forum listings stored in the database.(broken)
         post = db.getForumListings();
 
         // Code for the new post button that routes you to a page where you can make a
@@ -75,17 +75,16 @@ public class ForumList extends VerticalLayout {
         // Code for the text field
         searchBar = new TextField();
         searchBar.addClassName("forum-search-bar");
-        searchBar.setPlaceholder("Search for a forum post (Title, Description, User)");
+        searchBar.setPlaceholder("Search for a forum post (Title, Description, All)");
         searchBar.setPrefixComponent(VaadinIcon.SEARCH.create());
         searchBar.setClearButtonVisible(true);
         searchBar.setWidth("50em");
 
         // This is a selection drop down bar. Dropdown is here as placeholder, and will
         // not be changed till later.
-        Select select = new Select<>();
+        select = new Select<>();
         select.addClassName("forum-dropdown-bar");
-        select.setItems("New", "Used",
-                "All");
+        select.setItems("All", "Title", "Description");
         select.setValue("All");
 
         // The horizontal layout with the text field, search button, and new post button
@@ -142,10 +141,11 @@ public class ForumList extends VerticalLayout {
         getSearchButton().addClickListener(event -> {
             // Should show a list of forum posts based on the input from the search bar
             searchedItem = searchBar.getValue();
-            System.out.println(searchedItem);
+            String searchValue = select.getValue();
+            //System.out.println(searchedItem);
 
             try {
-                post = db.searchForumListings(searchedItem);
+                post = db.searchForumListings(searchedItem, searchValue);
                 // removes components
                 if (!comps.isEmpty()) {
                     for (Component c : comps) {
@@ -158,9 +158,9 @@ public class ForumList extends VerticalLayout {
                     error.setClassName("errorMessage");
                     add(error);
                     comps.add(error);
-                    //add(footerLay);
-                    //comps.add(footerLay);
-    
+                    
+                    // comps.add(footerLay);
+                    // add(footerLay);
                 } else{
                     loadPage();
                 }
@@ -188,6 +188,10 @@ public class ForumList extends VerticalLayout {
 
     public TextField getSearch() {
         return searchBar;
+    }
+    
+    public String getSelector() {
+        return select.toString();
     }
 
     public void loadPage() {

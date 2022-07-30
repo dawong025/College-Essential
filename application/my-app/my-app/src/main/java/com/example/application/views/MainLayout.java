@@ -192,8 +192,8 @@ public class MainLayout extends AppLayout {
                 // new MenuItemInfo("Marketplace", "la la-adjust", Marketplace.class),
                 new MenuItemInfo("Sell an Item", "la la-shopping-cart", PostItemView.class),
                // new MenuItemInfo("Buy", "la la-adjust", SellingPageView.class),
-                new MenuItemInfo("Forum Listing", "la la-list", ForumList.class),
-                new MenuItemInfo("Services Listing", "la la-paste", ServiceList.class),
+                new MenuItemInfo("Forum Listings", "la la-list", ForumList.class),
+                new MenuItemInfo("Services Listings", "la la-paste", ServiceList.class),
                 
         };
     }

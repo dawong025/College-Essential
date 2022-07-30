@@ -20,7 +20,7 @@ public class DBForumList {
 
         try{
             //Variables needed to hold information from database to be stored in hashmaps/posts
-            String forumTitle;
+            String serviceTitle;
             String username;
             String description;
 
@@ -41,13 +41,13 @@ public class DBForumList {
             ResultSet rs = stmt.executeQuery(q);
             while (rs.next()) {
                 HashMap<String, String> post = new HashMap<String, String>();
-                forumTitle = rs.getString("title");
+                serviceTitle = rs.getString("title");
                 username = rs.getString("username");
                 description = rs.getString("description");
-                post.put("title",forumTitle);
+                post.put("title",serviceTitle);
                 post.put("user",username);
                 post.put("description",description);
-                System.out.println(forumTitle + " " +username+ " "+description);
+                System.out.println(serviceTitle + " " +username+ " "+description);
                 posts.add(post);
             }
 
@@ -59,7 +59,7 @@ public class DBForumList {
 
         return posts;
     }
-    public ArrayList<HashMap<String, String>> searchForumListings(String title) throws ClassNotFoundException {
+    public ArrayList<HashMap<String, String>> searchForumListings(String searchValue, String searchBy) throws ClassNotFoundException {
         //This function will return an array of hashmaps.
         //Each hashmap contains unique information for individual forum posts.
         ArrayList<HashMap<String, String>> posts = new ArrayList<HashMap<String, String>>();
@@ -72,6 +72,7 @@ public class DBForumList {
             String forumTitle;
             String username;
             String description;
+            String q = "Filler";
 
             //Establishes database connection
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -81,13 +82,30 @@ public class DBForumList {
 
             //An SQL query that relates and joins 3 tables together.
             //"Forum Post" joins to a general "Posts" table, and "Posts" joins and relates to "Registered User" table 
-            String q = "SELECT ForumPost.title, ForumPost.description, ForumPost.created_at, RegisteredUser.username"
-                      +" FROM Posts"
-                      +" JOIN ForumPost ON ForumPost.forum_post_id = Posts.forum_post_id"
-                      +" JOIN RegisteredUser ON RegisteredUser.registered_user_id = Posts.registered_user_id"
-                      +" WHERE ForumPost.title LIKE '%" +title+"%'"
-                      +" ORDER BY ForumPost.created_at DESC";
-
+            if(searchBy.equals("Title")){
+            q = "SELECT ForumPost.title, ForumPost.description, ForumPost.created_at, RegisteredUser.username"
+                +" FROM Posts"
+                +" JOIN ForumPost ON ForumPost.forum_post_id = Posts.forum_post_id"
+                +" JOIN RegisteredUser ON RegisteredUser.registered_user_id = Posts.registered_user_id"
+                +" WHERE ForumPost.title LIKE '%" +searchValue+"%'"
+                +" ORDER BY ForumPost.created_at DESC";
+            }
+            else if(searchBy.equals("Description")){
+                q = "SELECT ForumPost.title, ForumPost.description, ForumPost.created_at, RegisteredUser.username"
+                    +" FROM Posts"
+                    +" JOIN ForumPost ON ForumPost.forum_post_id = Posts.forum_post_id"
+                    +" JOIN RegisteredUser ON RegisteredUser.registered_user_id = Posts.registered_user_id"
+                    +" WHERE ForumPost.description LIKE '%" +searchValue+"%'"
+                    +" ORDER BY ForumPost.created_at DESC";
+            }
+            else{
+                q = "SELECT ForumPost.title, ForumPost.description, ForumPost.created_at, RegisteredUser.username"
+                +" FROM Posts"
+                +" JOIN ForumPost ON ForumPost.forum_post_id = Posts.forum_post_id"
+                +" JOIN RegisteredUser ON RegisteredUser.registered_user_id = Posts.registered_user_id"
+                +" WHERE ForumPost.description LIKE '%" +searchValue+"%' OR ForumPost.title LIKE '%" +searchValue+"%'"
+                +" ORDER BY ForumPost.created_at DESC";
+            }
             ResultSet rs = stmt.executeQuery(q);
             while (rs.next()) {
                 HashMap<String, String> post = new HashMap<String, String>();
