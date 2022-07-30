@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.example.application.Data.DBAdmin;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Account.AccountView;
 import com.example.application.views.Footer.FooterView;
@@ -106,6 +107,12 @@ public class ItemView extends VerticalLayout{
       VaadinSession currentSession = VaadinSession.getCurrent();
       Button adminDelete = new Button("Delete",eve ->{
         //delete Post;
+        this.getUI().ifPresent(ui -> ui.navigate("/home"));
+        DBAdmin.deletePost(itemName);
+        
+
+
+
       });
 
       Button addToCart = new Button("Add to Cart",event ->{
@@ -181,8 +188,16 @@ public class ItemView extends VerticalLayout{
       Notification.show("Item Was Success Fully added to Shopping cart");
       notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
       
+    }
 
-      // Here you'd typically redirect the user to another view
+    private void showDeleteSuccess() {
+      
+      Notification notification =
+      Notification.show("Item Was Success deleted");
+      notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+
+      
+      
     }
 
     

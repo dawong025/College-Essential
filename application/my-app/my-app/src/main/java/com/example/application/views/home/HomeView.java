@@ -200,9 +200,11 @@ public class HomeView extends VerticalLayout {
            
             
             vl = new VerticalLayout();
+            
             vl.setSizeFull();
         for (String key : itemList.keySet()) {
                 ArrayList<String> array = new ArrayList<>();
+                vl.setClassName("vlHome");
             if (count < 4) {
                 array = itemList.get(key);
                 Image image = new Image(array.get(0), key);

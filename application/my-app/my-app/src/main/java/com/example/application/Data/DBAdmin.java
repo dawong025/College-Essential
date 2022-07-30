@@ -77,12 +77,6 @@ public class DBAdmin {
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
             
-            String first_name;
-            String last_name;
-            String username;
-            String emailDB;
-            String school;
-            String contact;
             
                 
             String q = "DELETE FROM RegisteredUser WHERE username = '"+deletedName+"';";
@@ -159,6 +153,37 @@ public class DBAdmin {
                 Statement stmt = connection.createStatement();
                 stmt.execute(q);
                 System.out.println("\n\n\nHERE\n\n\n");
+              
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }  
+
+    }
+
+
+    public static void deletePost(String title){
+
+        String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
+        String userName = "team42022";
+        String password = "team4_2022";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, userName, password);
+            System.out.println("Connection is Successful to the database" + url);
+            
+            
+                
+            String q = "DELETE FROM MarketplaceListing WHERE title = '"+title+"';";
+            try {
+                Statement stmt = connection.createStatement();
+                stmt.execute(q);
               
                 
             } catch (SQLException e) {
