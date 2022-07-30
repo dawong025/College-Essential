@@ -122,25 +122,9 @@ public class ViewUser extends VerticalLayout{
         VerticalLayout names = new VerticalLayout(name, usernameProfile);
         names.addClassName("names");
         
-        Button purchaseHistory = new Button("Recent Orders", e ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/PurchaseHistory"));
-        });
-        purchaseHistory.addClassName("purchases");
 
-        Button sellingHistory = new Button("Selling History", e ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/SellingHistory"));
-        });
-        sellingHistory.addClassName("selling-history");
 
-        //TODO: Make route + route to new route
-        Button editAccount = new Button("Edit Account", ev ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/editAccount"));
-        });
-        editAccount.addClassName("editAcc");
-
-        HorizontalLayout buttons = new HorizontalLayout(purchaseHistory, sellingHistory, editAccount);
-        buttons.addClassName("profile-buttons");
-        HorizontalLayout h1 = new HorizontalLayout(img1, names, buttons);
+        HorizontalLayout h1 = new HorizontalLayout(img1, names);
         h1.addClassName("label-one");
 
         

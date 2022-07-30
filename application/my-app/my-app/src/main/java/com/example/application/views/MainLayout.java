@@ -94,33 +94,51 @@ public class MainLayout extends AppLayout {
 
         // H1 Title = new H1("Test");
         //Image appName = new Image("https://cdn.discordapp.com/attachments/998116033850249267/1000655208122171403/unknown.png", "Logo");
-        HorizontalLayout hv;
+        HorizontalLayout hv = new HorizontalLayout();
         Button cart = new Button("Cart");
         cart.addClassName("cartButton");
         cart.addClickListener(e -> cart.getUI().ifPresent(ui -> ui.navigate("/ShoppingCart")));
+        Button log = new Button("Log in");
+        log.addClassName("logInButton");
+        log.addClickListener(e -> log.getUI().ifPresent(ui -> ui.navigate("/login")));
+        Button reg = new Button("Register");
+        reg.addClassName("regButton");
+        reg.addClickListener(e -> reg.getUI().ifPresent(ui -> ui.navigate("/registration")));
+        Button account = new Button("Account",e->{
+            this.getUI().ifPresent(ui -> ui.navigate("/Account"));
+        });
+        account.setClassName("accountButton");
+
+        Button logout = new Button("Log Out");
+        logout.addClassName("logOutButton");
+
 
         // change login and logout buttons
         if (LoginView.logStatus() == false) {
-            hv = setUnLogin();
-
+            // hv.add(log, reg);
+            logout.setVisible(false);
+            account.setVisible(false);
             hv.add(cart);
 
         } else {
-            Button logout = new Button("Log Out");
-            logout.addClassName("logOutButton");
+            log.setVisible(false);
+            reg.setVisible(false);
+           
             logout.addClickListener(e -> {
                 LoginView.logOut();
-               this.getUI().ifPresent(ui -> ui.navigate("/home"));
-               UI.getCurrent().getPage().reload();
-            });
-            Button account = new Button("Account",e->{
-                this.getUI().ifPresent(ui -> ui.navigate("/Account"));
-            });
-            account.setClassName("accountButton");
-
-            hv = new HorizontalLayout(account,logout, cart);
-
+                 logout.setVisible(false);
+                 account.setVisible(false);
+                 log.setVisible(true);
+                 reg.setVisible(true);
+                 
+               this.getUI().ifPresent(ui -> ui.navigate(
+                HomeView.class));
+           
+            }); 
+           
         }
+        hv = new HorizontalLayout(log,reg,account,logout, cart);
+
         hv.addClassNames("hv");
         hv.setHeight("3.5em");
         hv.setAlignItems(Alignment.CENTER);

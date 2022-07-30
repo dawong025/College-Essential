@@ -52,7 +52,7 @@ public class HomeView extends VerticalLayout {
     
     // Liveshare test - Darren Wong
     public HomeView() {
-
+        
         
         // searchbar
         // adds background image
@@ -202,6 +202,7 @@ public class HomeView extends VerticalLayout {
         for (String key : itemList.keySet()) {
                 ArrayList<String> array = new ArrayList<>();
                 vl.setClassName("vlHome");
+                vl.setWidth("25%");
             if (count < 4) {
                 array = itemList.get(key);
                 Image image = new Image(array.get(0), key);
