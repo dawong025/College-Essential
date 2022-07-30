@@ -58,7 +58,7 @@ public class AccountView extends Div{
             System.out.println(userName);
 
             if(userName.contains("@")){
-                user = db.searchEmail(userName);
+                user = DBAccount.searchEmail(userName);
             }
             else{
                 user = DBAccount.searchUser(userName);

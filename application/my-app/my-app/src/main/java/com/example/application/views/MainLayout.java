@@ -39,6 +39,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.LumoUtility.JustifyContent;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.icon.*;
 //mvn spring-boot:run
 
 /**
@@ -186,13 +187,13 @@ public class MainLayout extends AppLayout {
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[] { //
-                new MenuItemInfo("Home", "la la-adjust", HomeView.class),
+                new MenuItemInfo("Home", "la la-home", HomeView.class),
                 // added for registration
                 // new MenuItemInfo("Marketplace", "la la-adjust", Marketplace.class),
-                new MenuItemInfo("Sell an Item", "la la-adjust", PostItemView.class),
+                new MenuItemInfo("Sell an Item", "la la-shopping-cart", PostItemView.class),
                // new MenuItemInfo("Buy", "la la-adjust", SellingPageView.class),
-                new MenuItemInfo("Forum Listing", "la la-adjust", ForumList.class),
-                new MenuItemInfo("Services Listing", "la la-adjust", ServiceList.class),
+                new MenuItemInfo("Forum Listings", "la la-list", ForumList.class),
+                new MenuItemInfo("Services Listings", "la la-paste", ServiceList.class),
                 
         };
     }

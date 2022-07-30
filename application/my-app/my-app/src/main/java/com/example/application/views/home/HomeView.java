@@ -79,7 +79,7 @@ public class HomeView extends VerticalLayout {
         search.addClassName("home-search-button");
 
 
-        HorizontalLayout hv = new HorizontalLayout(searchBar, select,search);
+        HorizontalLayout hv = new HorizontalLayout(searchBar, select, search);
         hv.addClassName("search-bar");
         hv.setSpacing(false);
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
@@ -179,7 +179,7 @@ public class HomeView extends VerticalLayout {
                 add(footerLay);
                 comps.add(footerLay);
 
-            }else{
+            } else{
                 popPage();
             }
 
@@ -188,9 +188,6 @@ public class HomeView extends VerticalLayout {
         });
 
         itemList.clear();
-
-       
-
     }
 
     public void popPage(){
