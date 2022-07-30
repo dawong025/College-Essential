@@ -1,6 +1,7 @@
 package com.example.application.Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,7 +20,7 @@ public class DBPostService {
         String userName = "team42022";
         String password = "team4_2022";
         System.out.println("\n\n\n\n\n" + Title + " "+ body+"\n\n\n\n");
-
+        Statement statement;
         int serviceListingID = 0;
         
 
@@ -29,10 +30,13 @@ public class DBPostService {
             System.out.println("Connection is Successful to the database" + url);
             
             /* Insert into the ForumPost table */
-            String query = "INSERT INTO ServiceListing (title, description, created_at) VALUES ('"+Title+"','"+body+"', NOW());";
+            String query = "INSERT INTO ServiceListing (title, description, created_at) VALUES (?,?, NOW());";
             
-            Statement statement = connection.createStatement();
-            statement.execute(query);
+            PreparedStatement preparedStmt = connection.prepareStatement(query);
+            preparedStmt.setString(1, Title);
+            preparedStmt.setString(2, body);
+            
+            preparedStmt.execute();
 
             /* Get the ID of the newly added product */
             query = "SELECT service_listing_id FROM ServiceListing ORDER BY service_listing_id DESC LIMIT 1;";
@@ -53,10 +57,11 @@ public class DBPostService {
             System.out.println("Connection is Successful to the database" + url);
             
             //TODO - Hardcoded solution for registered user
-             query = "INSERT INTO Posts(service_listing_id, registered_user_id) values('"+serviceListingID+"', 1)";
-            
-             statement = connection.createStatement();
-            statement.execute(query);
+             query = "INSERT INTO Posts(service_listing_id, registered_user_id) values(?, 1)";
+             PreparedStatement preparedStmt2 = connection.prepareStatement(query);
+             preparedStmt2.setInt(1, serviceListingID);
+             
+             preparedStmt2.execute();
         
 
         } catch (ClassNotFoundException e) {
