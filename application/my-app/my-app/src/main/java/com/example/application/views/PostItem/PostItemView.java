@@ -66,7 +66,6 @@ public class PostItemView extends VerticalLayout{
             url.setWidth("55%");
             url.setPlaceholder("Enter URL of Image here...");
             vert.add(url);
-        // Configure upload component
         
             Title = new TextField("Title Of Post");
             Title.setWidth("55%");
@@ -125,15 +124,40 @@ public class PostItemView extends VerticalLayout{
 
            postButton.addClickListener(e->{
                 DBPostItem db = new DBPostItem();
-                //setItem();
+                int flag = 0;
+                
+                //checks if logged in then executes
                 if(LoginView.logStatus()){
-                    db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(), price.getValue(), description.getValue(),quant.getValue());
-                showSuccess(userBean);
-                userBean = new PostItemDetail();
-                this.getUI().ifPresent(ui ->
-               ui.navigate("/home"));
+                    float numPrice = Float.parseFloat(price.getValue());
+                    int numQuant = Integer.parseInt(quant.getValue());
+                    
+                    //checks to see if value or quantity have a negitive sign then send error message
+                    if(price.getValue().contains("-") || quant.getValue().contains("-")
+                    ){
+                        showNeg(userBean);
+                        flag++;
+                        
+                    }
+                    //chcks to see if num and quant are zero then sends error message
+                    if(numPrice == 0 || numQuant ==0){
+                        showZero();
+                        flag++;
+                    }
+                    
                 }else{
+                    flag++;
                     showFail(userBean);
+                }
+                //checks to see if all flags are zero and if all textfields are empty
+                //if not then it does the posting to the db then redicracts to the home page
+                if(flag ==0 && url.getValue() != "" && Title.getValue() != "" &&  description.getValue() != ""
+                && category.getValue() != null && condition.getValue() != null && price.getValue() != ""){
+                    db.StorePostItem(Title.getValue(), url.getValue(), condition.getValue(), category.getValue(),
+                     price.getValue(), description.getValue(),quant.getValue());
+                    showSuccess(userBean);
+                    userBean = new PostItemDetail();
+                    this.getUI().ifPresent(ui ->
+                   ui.navigate("/home"));
                 }
                 
            });
@@ -165,18 +189,24 @@ public class PostItemView extends VerticalLayout{
                 Notification.show(Title.getValue() +" Was Succesfully added");
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
         
- 
-        // Here you'd typically redirect the user to another view
     }
 
     private void showFail(PostItemDetail userBean) {
         Notification notification =
                 Notification.show("Must Be Logged in to post");
         notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-        
- 
-        // Here you'd typically redirect the user to another view
     }
-  
+
+    private void showNeg(PostItemDetail userBean) {
+        Notification notification =
+                Notification.show("price or quantity can be negitive");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+    }
+
+    private void showZero() {
+        Notification notification =
+                Notification.show("price or quantity can be 0");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+    }
 
 }

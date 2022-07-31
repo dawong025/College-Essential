@@ -52,7 +52,7 @@ public class HomeView extends VerticalLayout {
     
     // Liveshare test - Darren Wong
     public HomeView() {
-
+        
         
         // searchbar
         // adds background image
@@ -79,7 +79,7 @@ public class HomeView extends VerticalLayout {
         search.addClassName("home-search-button");
 
 
-        HorizontalLayout hv = new HorizontalLayout(searchBar, select,search);
+        HorizontalLayout hv = new HorizontalLayout(searchBar, select, search);
         hv.addClassName("search-bar");
         hv.setSpacing(false);
         setHorizontalComponentAlignment(Alignment.CENTER, hv);
@@ -142,6 +142,21 @@ public class HomeView extends VerticalLayout {
         buttonLayout.setJustifyContentMode(JustifyContentMode.AROUND);
         buttonLayout.setClassName("buttonLayout");
         add(buttonLayout);
+
+        //code for button images for home page
+        Div marketImage = new Div();
+        marketImage.setClassName("homePageMarketImage");
+        Div forumImage = new Div();
+        forumImage.setClassName("homePageForumImage");
+        Div serviceImage = new Div();
+        serviceImage.setClassName("homePageServiceImage");
+        HorizontalLayout imageLayout = new HorizontalLayout();
+        imageLayout.add(marketImage,forumImage,serviceImage);
+        imageLayout.setJustifyContentMode(JustifyContentMode.AROUND);
+        imageLayout.setClassName("homePageImageLayout");
+        add(imageLayout);
+        
+
         //add(descrip);
         comps.add(buttonLayout);
         FooterView footer = new FooterView();
@@ -179,7 +194,7 @@ public class HomeView extends VerticalLayout {
                 add(footerLay);
                 comps.add(footerLay);
 
-            }else{
+            } else{
                 popPage();
             }
 
@@ -188,9 +203,6 @@ public class HomeView extends VerticalLayout {
         });
 
         itemList.clear();
-
-       
-
     }
 
     public void popPage(){
@@ -200,9 +212,12 @@ public class HomeView extends VerticalLayout {
            
             
             vl = new VerticalLayout();
+            
             vl.setSizeFull();
         for (String key : itemList.keySet()) {
                 ArrayList<String> array = new ArrayList<>();
+                vl.setClassName("vlHome");
+                vl.setWidth("25%");
             if (count < 4) {
                 array = itemList.get(key);
                 Image image = new Image(array.get(0), key);

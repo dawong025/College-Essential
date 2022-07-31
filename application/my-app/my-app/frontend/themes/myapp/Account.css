@@ -53,16 +53,15 @@
 }
 .names {
     grid-area: names;
-    margin-left: -50px;
-    margin-top: -15px;
+    margin-left: -40px;
+    margin-top: -50px;
 }
 .name {
     border-radius: 5px;
-
     color: black;
 }
 .username-profile {
-    margin-top: -55px;
+    margin-top: -45px;
     color: black;
 }
 
@@ -70,7 +69,7 @@
     margin-top: 190px;
     background-color: black;
     color: white;
-    
+    margin-left: 500px;
 }
 
 .purchases:hover{
@@ -78,10 +77,15 @@
     color: black;
     
 }
-.editAcc {
-    
+.selling-history {
+    margin-top: 190px;
     background-color: black;
     color: white;
+}
+.editAcc {
+    background-color: black;
+    color: white;
+    
     
 }
 
@@ -91,7 +95,7 @@
 }
 .profile-buttons {
     grid-area: buttons;
-    
+
 }
 
 .label-two {

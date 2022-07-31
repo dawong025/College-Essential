@@ -4,7 +4,14 @@
 .buttonLayout{
     margin: auto;
     margin-top:10%;
-  width: 50%;
+    width: 50%;
+ 
+}
+
+.homePageImageLayout{
+    margin: auto;
+    margin-top:10%;
+    width: 50%;
  
 }
 
@@ -89,6 +96,7 @@
     background-color: black;
     color: whitesmoke;
     margin-top: -20%;
+    margin-right: 0%;
 }
 
 .marketPlaceButton:hover{
@@ -96,12 +104,29 @@
     color: black;
 
 }
+.homePageMarketImage{
+    background-color: black;
+    background-image: url("https://i.redd.it/g1s9pyznaql01.jpg");
+    background-size: cover;
+    border: 7px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    color: whitesmoke;
+    margin-top: -30%;
+    margin-right: auto;
+}
 
 
 .forumButton{
     background-color: black;
     color: whitesmoke;
     margin-top: -20%;
+    margin-right: auto;
+    margin-left: 18.5%;
+    left: 2.5%;
 }
 
 .forumButton:hover{
@@ -109,15 +134,50 @@
     color: black;
 }
 
+.homePageForumImage{
+    background-color: black;
+    background-image: url("https://i.redd.it/g1s9pyznaql01.jpg");
+    background-size: cover;
+    border: 7px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    color: whitesmoke;
+    margin-top: -30%;
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
 .serviceButton{
     background-color: black;
     color: whitesmoke;
     margin-top: -20%;
+    margin-right: auto;
+    margin-left: 10%;
+    left: 6%;
 }
 
 .serviceButton:hover{
     background-color: whitesmoke;
     color: black;
+}
+
+.homePageServiceImage{
+    background-color: black;
+    background-image: url("https://i.redd.it/g1s9pyznaql01.jpg");
+    background-size: cover;
+    border: 7px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    color: whitesmoke;
+    margin-top: -30%;
+    margin-right: auto;
+    margin-left: 0%;
 }
 
 .errorMessage{
@@ -183,4 +243,8 @@
 .searchButton:hover{
     background-color: white;
     color: black;
+}
+
+.vlHome{
+    background-color: white;
 }

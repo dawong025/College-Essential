@@ -1,4 +1,5 @@
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBForumList.java
+C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBViewUser.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Account\editAccountView.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\home\HomeView.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\SellingPage\SellingPageView.java
@@ -27,11 +28,14 @@ C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\appl
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\PostItem\PostItemView.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Marketplace\marketPlaceItemView.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\PrivacyPolicies\PrivacyPolicies.java
+C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBAdmin.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Account\AccountView.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Account\PurchaseHistory.java
+C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Account\SellingHistory.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\AboutUsView.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBAccount.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\messages\MessageView.java
+C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\login\ForgotPassword.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBlogin.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBPostItem.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\HomeDetail.java
@@ -45,6 +49,7 @@ C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\appl
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\PostSLDetail.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\aboutus\DarrenView.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\MainLayout.java
+C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Account\ViewUser.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\Data\DBServiceList.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\Services\ServicePost.java
 C:\Users\Otaku\Desktop\csc648\csc648-848-01-sw-engineering-summer-22-team04\application\my-app\my-app\src\main\java\com\example\application\views\forum\fPost2.java

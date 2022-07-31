@@ -1,6 +1,10 @@
 package com.example.application.views.Account;
 
+import java.util.ArrayList;
+
+import com.example.application.Data.DBAccount;
 import com.example.application.views.MainLayout;
+import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
@@ -22,11 +26,45 @@ import com.vaadin.flow.component.dependency.CssImport;
 public class editAccountView extends Div{
     
 
-    public editAccountView(){
+    public editAccountView() throws ClassNotFoundException{
 
         getElement().getClassList().add("hello-grid-2");
         setWidth("99%");
+        DBAccount db = new DBAccount();
 
+        ArrayList<String> user = new ArrayList<String>();
+        String first_name = "Kelly";
+        String last_name = "Smith";
+        String username = "ksmith99";
+        String emailDB = "kellysmith@gmail.com";
+        String aboutDB = "Hi, I'm Kelly! Nice to meet you!\nCS @ SFSU";
+        String contactDB = "For business inquiries only: kellysmith@gmail.com";
+        String userName;
+        
+        /* Comment out this code if you want to solely work on testing AccountView */
+        /* Connect to DB and store the user info of the person who logged in */
+        if(LoginView.getUser() != null){
+            userName = LoginView.getUser();
+            System.out.println(userName);
+
+            if(userName.contains("@")){
+                user = DBAccount.searchEmail(userName);
+            }
+            else{
+                user = DBAccount.searchUser(userName);
+            }
+            first_name = user.get(0);
+            last_name = user.get(1);
+            username = user.get(2);
+            emailDB = user.get(3);
+            aboutDB = user.get(4);
+            contactDB = user.get(5);
+
+            /* Test the values from the DB */
+            // for(int i = 0; i < user.size(); i++){
+            //     System.out.println(user.get(i));
+            // }
+        }
          /* Name Profile Grid Area */
          Div nametag = new Div();
          nametag.addClassName("label-one");
@@ -34,7 +72,7 @@ public class editAccountView extends Div{
          Image img1 = new Image("images/icon.jpg", "placeholder icon");
          img1.setWidth("180px");
          img1.addClassName("pfp");
-         H1 name = new H1("Kelly Smith");
+         H1 name = new H1(first_name + " " + last_name);
          name.addClassName("name");
 
         HorizontalLayout h1 = new HorizontalLayout(img1, name);

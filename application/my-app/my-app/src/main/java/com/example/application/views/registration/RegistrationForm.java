@@ -2,14 +2,18 @@ package com.example.application.views.registration;
 import com.example.application.Data.DBConnection;
 import com.example.application.Data.UserDetails;
 import com.vaadin.flow.component.HasValueAndElement;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.select.Select;
@@ -17,6 +21,7 @@ import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
@@ -46,7 +51,11 @@ public class RegistrationForm extends FormLayout {
    private PasswordField password;
    private PasswordField passwordConfirm;
    private PasswordField passwordHashed;
-
+   private Span passwordStrengthText;
+   private Boolean isPassLenght;
+   private Boolean isPassMatch;
+   private Icon checkIcon;
+   private Icon checkIcon2;
    private Checkbox allowMarketing;
 
    private Span errorMessageField;
@@ -90,8 +99,40 @@ public class RegistrationForm extends FormLayout {
        
        allowMarketing.getStyle().set("margin-top", "10px");
 
+       //password checker
        password = new PasswordField("Password");
+       Div passwordStrength = new Div();
+        passwordStrengthText = new Span();
+        passwordStrength.add(new Text(""), passwordStrengthText);
+        password.setHelperComponent(passwordStrength);
+        checkIcon = VaadinIcon.CHECK.create();
+         checkIcon.setVisible(false);
+         checkIcon.getStyle().set("color", "var(--lumo-success-color)");
+        password.setSuffixComponent(checkIcon);
+
+        password.setValueChangeMode(ValueChangeMode.EAGER);
+        password.addValueChangeListener(e -> {
+        String passwordValue = e.getValue();
+        updatePasswordHelper(passwordValue);
+        });
+        
+        //confirm password
        passwordConfirm = new PasswordField("Confirm password");
+       Div passwordMatch = new Div();
+        passwordStrengthText = new Span();
+        passwordStrength.add(new Text(""), passwordStrengthText);
+        passwordConfirm.setHelperComponent(passwordMatch);
+        checkIcon2 = VaadinIcon.CHECK.create();
+         checkIcon2.setVisible(false);
+         checkIcon2.getStyle().set("color", "var(--lumo-success-color)");
+        passwordConfirm.setSuffixComponent(checkIcon2);
+
+        passwordConfirm.setValueChangeMode(ValueChangeMode.EAGER);
+        passwordConfirm.addValueChangeListener(ev -> {
+        String conPassword = ev.getValue();
+        updatePasswordConfirmHelper(conPassword,password.getValue());
+        });
+
 
        setRequiredIndicatorVisible(firstName, lastName, email, userName,password,
                passwordConfirm);
@@ -126,8 +167,11 @@ public class RegistrationForm extends FormLayout {
 //        registrationFormBinder.addBindingAndValidation();
 
        submitButton.addClickListener(ev ->{
-        String f = firstName.getValue();
-        if(firstName.getValue() != "" && lastName.getValue() != "" && userName.getValue() != "" && password.getValue() != "" && passwordConfirm.getValue() != "" && school.getValue() != "" && email.getValue() != ""){
+        
+
+        
+        if(firstName.getValue() != "" && lastName.getValue() != "" && userName.getValue() != "" && password.getValue() != "" && passwordConfirm.getValue() != "" && school.getValue() != "" && email.getValue() != ""
+        && isPassLenght && isPassMatch){
            DBConnection db = new DBConnection();
         storeUserInfo();
         
@@ -145,24 +189,39 @@ public class RegistrationForm extends FormLayout {
        
 
    }
-  /*  public PasswordField hasher (){
-    try {
-      MessageDigest md = MessageDigest.getInstance("MD5");
-  md.update(password.getValue().getBytes());
-  byte[] resultByteArray = md.digest();
-  StringBuilder sd = new StringBuilder();
-  for (byte b : resultByteArray)
-  {
-      sd.append(String.format("%02x",b));
-  }
-        return passwordHashed;
-  } catch (NoSuchAlgorithmException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-  }
-  return null;
-  
-}*/
+
+   private void updatePasswordConfirmHelper(String conPassword, String pass) {
+
+        if(conPassword.equals(pass)){
+                passwordStrengthText.setText("Passwords Match");
+                passwordStrengthText.getStyle().set("color", "var(--lumo-success-color)");
+                checkIcon2.setVisible(true);
+                isPassMatch = true;
+        }else{
+                passwordStrengthText.setText("Passwords Must Match");
+                passwordStrengthText.getStyle().set("color", "var(--lumo-error-color)");
+                checkIcon2.setVisible(false);
+                isPassMatch = false;
+        }
+
+    }
+
+
+
+public void updatePasswordHelper(String pass){
+        if(pass.length() >= 8){
+                passwordStrengthText.setText("Password passes");
+                passwordStrengthText.getStyle().set("color", "var(--lumo-success-color)");
+                checkIcon.setVisible(true);
+                isPassLenght = true;
+        }else{
+                passwordStrengthText.setText("Password Must be at least 8 chars");
+                passwordStrengthText.getStyle().set("color", "var(--lumo-error-color)");
+                checkIcon.setVisible(false);
+                isPassLenght = false;
+        }
+   }
+ 
    public PasswordField getPasswordField() { return password; }
 
    public PasswordField getPasswordConfirmField() { return passwordConfirm; }

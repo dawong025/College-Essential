@@ -1,6 +1,7 @@
 package com.example.application.Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,10 +33,13 @@ public class DBPostItem {
             
             /* Insert into the product table */
             
-            String query = "INSERT INTO Product (product_image, product_condition, general_type) VALUES ('"+image+"','"+condition+"', '"+general_type+"' );";
+            String query = "INSERT INTO Product (product_image, product_condition, general_type) VALUES (?,?,?);";
+            PreparedStatement preparedStmt = connection.prepareStatement(query);
+            preparedStmt.setString(1, image);
+            preparedStmt.setString(2, condition);
+            preparedStmt.setString(3, general_type);
             
-            Statement statement = connection.createStatement();
-            statement.execute(query);
+            preparedStmt.execute();
 
             /* Get the ID of the newly added product */
             query = "SELECT product_id FROM Product ORDER BY product_id DESC LIMIT 1;";
@@ -56,10 +60,14 @@ public class DBPostItem {
             System.out.println("Connection is Successful to the database for PostItems");
             
             //TODO - Hardcoded solution
-             query = "Insert into MarketplaceListing(title, seller_id, price, body, quantity) values('"+Title+"', 1 , '"+price+"', '"+body+"', '"+quant+"')";
+             query = "INSERT MarketplaceListing(title, seller_id, price, body, quantity) values(?, 1 , ?, ?, ?)";
             
-             statement = connection.createStatement();
-            statement.execute(query);
+             PreparedStatement preparedStmt2 = connection.prepareStatement(query);
+             preparedStmt2.setString(1, Title);
+             preparedStmt2.setString(2, price);
+             preparedStmt2.setString(3, body);
+             preparedStmt2.setString(4, quant);
+             preparedStmt2.execute();
         
 
         } catch (ClassNotFoundException e) {
@@ -85,10 +93,12 @@ public class DBPostItem {
              connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
             
-             query = "INSERT INTO ProductListings (marketplace_listing_id, product_id) VALUES ('"+marketPlaceID+"', '"+productID+"');";
-            
-             statement = connection.createStatement();
-            statement.execute(query);
+             query = "INSERT INTO ProductListings (marketplace_listing_id, product_id) VALUES (?, ?);";
+             PreparedStatement preparedStmt3 = connection.prepareStatement(query);
+             preparedStmt3.setInt(1, marketPlaceID);
+             preparedStmt3.setInt(2, productID);
+
+             preparedStmt3.execute();
         
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.math3.analysis.function.Add;
 
 import com.example.application.views.home.HomeView;
+import com.example.application.views.registration.RegistrationForm;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -30,12 +31,14 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.shared.Registration;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
 
 import ch.qos.logback.core.status.Status;
 
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasValueAndElement;
+import com.vaadin.flow.component.UI;
 
 @Route("login") 
 @PageTitle("Login | College Essentials")
@@ -46,14 +49,13 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     public static boolean status = false;
     private static TextField userName;
     private PasswordField passWord;
+    private static  Boolean isAdmin;//isAdmin();
+    private Boolean isBanned;
 
 
 
 	public LoginView(){
-        // LoginOverlay overlay = getContent();
-        // overlay.setTitle("College Essentials");
-        // overlay.setDescription("Sign up to post or buy");
-        // overlay.setOpened(true);
+        
         HorizontalLayout overlay = new HorizontalLayout();
         setClassName("HeaderLayoutLogin");
         VerticalLayout vLayout = new VerticalLayout();
@@ -70,9 +72,12 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         loginButton.setClassName("loginButton");
 
         Div forgot = new Div();
-        forgot.add(new RouterLink("Forgot Password?", HomeView.class));
+        forgot.add(new RouterLink("Forgot Password?", ForgotPassword.class));
 
-        vLayout.add(overlay,userName,passWord,loginButton,forgot);
+        Div newUser = new Div();
+        newUser.add(new RouterLink("New User? Join Today!", RegistrationForm.class));
+
+        vLayout.add(overlay,userName,passWord,loginButton,forgot, newUser);
         vLayout.setAlignItems(Alignment.CENTER);
 
 
@@ -84,32 +89,30 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
             
             
             Boolean loginSuccess = getloginFlag();
+            
 
-            if(loginSuccess == true){
+            if( loginSuccess && isAdmin){
+                status = true;
+                overlay.getUI().ifPresent(ui ->
+                ui.navigate("/Admin"));  
+                showSuccess();
+            }
+            else if(loginSuccess && !isBanned){
                 status = true;
                 overlay.getUI().ifPresent(ui ->
                 ui.navigate("/home"));  
                 showSuccess();
             }else{
-                System.err.println("wrong Password");
+                System.err.println("Wrong Password");
                 showFail();
             }
             
-
-            // if(userName.getValue().equals("admin")){
-            //     overlay.getUI().ifPresent(ui ->
-            //     ui.navigate("/Admin")); 
-            // }else{
-              
-            //         overlay.getUI().ifPresent(ui ->
-            //     ui.navigate("/home"));  
-            // }
-                
-
         });
 
 		
 	}
+
+    
 
     public Boolean getloginFlag(){
         Boolean loginSuccess = false;
@@ -117,8 +120,14 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
             //getPassword
             LoginSecurity loginCheck = new LoginSecurity(getUserName(),getPassWord());
             loginSuccess = loginCheck.getFlag();
+            isAdmin = loginCheck.isAdmin();
+            isBanned = loginCheck.isBanned();
             return loginSuccess;
 
+    }
+
+    public static boolean isAdmin(){
+        return isAdmin;
     }
 
     public static boolean logStatus(){
@@ -127,6 +136,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     }
     public static void logOut(){
         status = false;
+        //UI.getCurrent().getPage().reload();
     }
 
     public String getUserName(){
@@ -160,9 +170,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         Notification notification =
                 Notification.show("Successfully logged in, welcome back " + userName.getValue());
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-        
- 
-        // Here you'd typically redirect the user to another view
+
     }
 
     private void showFail() {

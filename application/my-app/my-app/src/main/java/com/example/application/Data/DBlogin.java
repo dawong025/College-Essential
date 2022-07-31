@@ -14,6 +14,9 @@ public class DBlogin {
    private final String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
    private final String userName = "team42022";
    private final String password = "team4_2022";
+   private int adminId = 0;
+   private int userID;
+   private int isBanned;
 
     public DBlogin(){
         System.out.println("hi");
@@ -28,7 +31,7 @@ public class DBlogin {
             System.out.println("Connection is Successful to the database for Login" + url);
 
 
-            final String sqlEmail = "SELECT RegisteredUser.email FROM RegisteredUser"
+            final String sqlEmail = "SELECT RegisteredUser.email,RegisteredUser.registered_user_id, RegisteredUser.is_banned FROM RegisteredUser"
             + " WHERE RegisteredUser.email LIKE '%" +email+"%';";
      
            final String sqlPassWord = "SELECT RegisteredUser.password FROM RegisteredUser"
@@ -39,6 +42,25 @@ public class DBlogin {
                 while (rs.next()) {
 
                   tempEmail = rs.getString("email");
+                  userID =rs.getInt("registered_user_id");
+                  isBanned = rs.getInt("is_banned");
+                  
+                  //isAdmin = rs.getBoolean("admin");
+                  
+                }
+            } catch (SQLException e) {
+    
+            } 
+
+            final String admincheck = "SELECT RegisteredUser.email, RegisteredUser.registered_user_id FROM RegisteredUser"
+           +" JOIN Admin ON Admin.registered_user_id = RegisteredUser.registered_user_id"
+            +" WHERE RegisteredUser.registered_user_id = '"+userID+"';";
+
+            try (Statement stmt = connection.createStatement()) {
+                ResultSet rs = stmt.executeQuery(admincheck);
+                while (rs.next()) {
+                    adminId = rs.getInt("registered_user_id");
+                 
                   
                 }
             } catch (SQLException e) {
@@ -89,7 +111,7 @@ public class DBlogin {
             System.out.println("Connection is Successful to the database for Login" + url);
 
 
-           final String sqlUserName = "SELECT RegisteredUser.username FROM RegisteredUser"
+           final String sqlUserName = "SELECT RegisteredUser.username, RegisteredUser.registered_user_id, RegisteredUser.is_banned FROM RegisteredUser"
             + " WHERE RegisteredUser.username LIKE '%" +uName+"%';";
      
            final String sqlPassWord = "SELECT RegisteredUser.password FROM RegisteredUser"
@@ -100,6 +122,25 @@ public class DBlogin {
                 while (rs.next()) {
 
                   tempEmail = rs.getString("username");
+                  userID =rs.getInt("registered_user_id");
+                  isBanned = rs.getInt("is_banned");
+                  //isAdmin = rs.getBoolean("admin");
+                  
+                }
+            } catch (SQLException e) {
+    
+            } 
+
+            final String admincheck = "SELECT RegisteredUser.username, RegisteredUser.registered_user_id FROM RegisteredUser"
+           +" JOIN Admin ON Admin.registered_user_id = RegisteredUser.registered_user_id"
+            +" WHERE RegisteredUser.registered_user_id = '"+userID+"';";
+
+            try (Statement stmt = connection.createStatement()) {
+                ResultSet rs = stmt.executeQuery(admincheck);
+                while (rs.next()) {
+                    adminId = rs.getInt("registered_user_id");
+                 
+                  //isAdmin = rs.getBoolean("admin");
                   
                 }
             } catch (SQLException e) {
@@ -138,6 +179,29 @@ public class DBlogin {
 
         return flag;
 
+    }
+
+
+    public Boolean getAdmin(){
+        if(adminId == 0){
+            return false;
+        }else{
+            return true;
+        }
+        
+
+    }
+
+    public int getUserId(){
+        return userID;
+    }
+
+    public Boolean isBanned(){
+        if(isBanned == 0){
+            return false;
+        }else{
+            return true;
+        }
     }
     
 }
