@@ -4,11 +4,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import com.example.application.Data.DBlogin;
+import com.vaadin.flow.server.VaadinSession;
 
 public class LoginSecurity {
     private Boolean flag;
     DBlogin db = new DBlogin();
-   private String userName;
+    private String userName;
     private String passWord;
     private Boolean isAdmin;
     private Boolean isBanned;
@@ -73,6 +74,9 @@ public class LoginSecurity {
         return isBanned;
     }
 
-    
+    public int getUserId(){
+        return DBlogin.getUserId();
+    }
+
     
 }

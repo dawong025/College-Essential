@@ -15,7 +15,7 @@ public class DBlogin {
    private final String userName = "team42022";
    private final String password = "team4_2022";
    private int adminId = 0;
-   private int userID;
+   private static int userID;
    private int isBanned;
 
     public DBlogin(){
@@ -192,7 +192,7 @@ public class DBlogin {
 
     }
 
-    public int getUserId(){
+    public static int getUserId(){
         return userID;
     }
 
