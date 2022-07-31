@@ -142,6 +142,21 @@ public class HomeView extends VerticalLayout {
         buttonLayout.setJustifyContentMode(JustifyContentMode.AROUND);
         buttonLayout.setClassName("buttonLayout");
         add(buttonLayout);
+
+        //code for button images for home page
+        Div marketImage = new Div();
+        marketImage.setClassName("homePageMarketImage");
+        Div forumImage = new Div();
+        forumImage.setClassName("homePageForumImage");
+        Div serviceImage = new Div();
+        serviceImage.setClassName("homePageServiceImage");
+        HorizontalLayout imageLayout = new HorizontalLayout();
+        imageLayout.add(marketImage,forumImage,serviceImage);
+        imageLayout.setJustifyContentMode(JustifyContentMode.AROUND);
+        imageLayout.setClassName("homePageImageLayout");
+        add(imageLayout);
+        
+
         //add(descrip);
         comps.add(buttonLayout);
         FooterView footer = new FooterView();

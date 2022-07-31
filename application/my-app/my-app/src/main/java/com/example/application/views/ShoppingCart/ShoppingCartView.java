@@ -63,7 +63,7 @@ public class ShoppingCartView extends HorizontalLayout{
 
 
         Button checkout = new Button("checkout", e ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/checkout"));
+            this.getUI().ifPresent(ui -> ui.navigate("/CheckoutForm"));
         });
         checkout.setClassName("button");
 
