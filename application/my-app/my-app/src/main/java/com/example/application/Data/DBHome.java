@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import com.vaadin.flow.component.charts.model.Items;
 public class DBHome {
+    private static String userId;
 
     
     public static HashMap<String,ArrayList<String>> searchHomeItem(String Title, String selector) {
@@ -56,6 +57,7 @@ public class DBHome {
                       array.add(quant);
                       array.add(product_id);
                       array.add(seller_id);
+                      userId = seller_id;
                       System.out.println(nameItem + " " +imageURL+ " "+selector);
                         itemList.put(nameItem,array);
                       
@@ -110,5 +112,9 @@ public class DBHome {
             throwables.printStackTrace();
         }
         return itemList;
+    }
+
+    public static String getUserId(){
+        return userId;
     }
 }

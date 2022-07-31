@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import com.example.application.Data.DBAdmin;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Account.AccountView;
+import com.example.application.views.Account.ViewUser;
 import com.example.application.views.Footer.FooterView;
 import com.example.application.views.home.HomeView;
 import com.example.application.views.login.LoginView;
@@ -44,6 +45,7 @@ public class ItemView extends VerticalLayout{
     private String seller_id;
     private HashMap<String,ArrayList<String>> items = new HashMap<>();
     private ArrayList<String> array;
+    private static String userName;
    // private ItemDetails itemDetail;
    // HomeView hv = new HomeView();
 
@@ -92,7 +94,7 @@ public class ItemView extends VerticalLayout{
       con.setReadOnly(true);
       vl.add(con);
       Div sellerLink = new Div();
-      sellerLink.add(new RouterLink(seller, AccountView.class));
+      sellerLink.add(new RouterLink(seller, ViewUser.class));
       vl.add(sellerLink);
       TextField priceField = new TextField("Price");
       priceField.setValue(price);
@@ -114,8 +116,6 @@ public class ItemView extends VerticalLayout{
         this.getUI().ifPresent(ui -> ui.navigate("/home"));
         DBAdmin.deletePost(itemName);
         
-
-
 
       });
 
@@ -205,6 +205,10 @@ public class ItemView extends VerticalLayout{
 
       
       
+    }
+
+    public static String getUser(){
+      return userName;
     }
 
     

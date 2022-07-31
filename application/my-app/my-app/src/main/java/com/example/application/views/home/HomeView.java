@@ -117,6 +117,7 @@ public class HomeView extends VerticalLayout {
                 }
             }
             DBHome db = new DBHome();
+            
             itemList = db.searchHomeItem("", "All Categories");
             popPage();
 
@@ -155,7 +156,7 @@ public class HomeView extends VerticalLayout {
         imageLayout.setJustifyContentMode(JustifyContentMode.AROUND);
         imageLayout.setClassName("homePageImageLayout");
         add(imageLayout);
-        
+        comps.add(imageLayout);
 
         //add(descrip);
         comps.add(buttonLayout);
@@ -209,10 +210,7 @@ public class HomeView extends VerticalLayout {
 
         int count = 0;
             hor = new HorizontalLayout();
-           
-            
             vl = new VerticalLayout();
-            
             vl.setSizeFull();
         for (String key : itemList.keySet()) {
                 ArrayList<String> array = new ArrayList<>();

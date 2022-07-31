@@ -3,10 +3,8 @@ package com.example.application.views.Account;
 import java.util.ArrayList;
 
 import com.example.application.Data.DBViewUser;
-import com.example.application.views.MainLayout;
-import com.example.application.views.login.LoginView;
+import com.example.application.views.Items.ItemView;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
@@ -18,20 +16,14 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouterLink;
 
-@CssImport("./themes/myapp/Account.css")
-@PageTitle("User Account")
-@Route(value = "viewAccount", layout = MainLayout.class)
-public class ViewUser extends VerticalLayout{
+public class ItemUserView extends VerticalLayout{
     public static String clickedUser;
 
+    public ItemUserView(){
 
-    public ViewUser(){
-
-        DBViewUser db = new DBViewUser();
+        
+        
         /* Store the user info from the DB to an array */
         ArrayList<String> user = new ArrayList<String>();
         String first_name = "Kelly";
@@ -44,10 +36,8 @@ public class ViewUser extends VerticalLayout{
         String userName;
 
        
-
-        if(LoginView.getUser() != null){
-            userName = AccountView.getClickedUser();
-            System.out.println(userName);
+            userName = ItemView.getUser();
+            
 
             if(userName.contains("@")){
                 try {
@@ -65,44 +55,16 @@ public class ViewUser extends VerticalLayout{
                     e1.printStackTrace();
                 }
             }
-            first_name = user.get(0);
-            last_name = user.get(1);
-            username = user.get(2);
-            emailDB = user.get(3);
-            about = user.get(4);
-            contact = user.get(5);
-            //adds comments
-            // for( int i =6; i < user.size(); i++ ){
-            //     if(i+3 <= user.size()){
-            //     Div ratingAuthor3 = new Div();
-            //     String currClicked = user.get(i);
-            //     ratingAuthor3.setText(currClicked);
-            //     //new RouterLink(currClicked, ViewUser.class)
-            //     //add something for clicked user
-            //     ratingAuthor3.addClickListener(ev ->{
-            //         clickedUser = currClicked;
-                   
-            //         this.getUI().ifPresent(ui -> ui.navigate("/viewAccount"));
-            //     });
-            //     ratingAuthor3.addClassName("rating-author");
-            //          i++;
-            //     Span datePosted3 = new Span (user.get(i));
-            //     datePosted3.addClassName("date-posted");
-            //         i++;
-            //     H6 commentText3 = new H6(user.get(i));
-            //     commentText3.addClassName("comment-text");
-                
-            //   //  VerticalLayout rating3 = new VerticalLayout(ratingAuthor3, datePosted3, commentText3);
-            //   //  rating3.addClassName("single-rating");
-            //     }
-                
-                
-            // }
-
-            for(int i = 0; i < user.size(); i++){
-                System.out.println(user.get(i));
+            if(!user.isEmpty()){
+                first_name = user.get(0);
+                last_name = user.get(1);
+                username = user.get(2);
+                emailDB = user.get(3);
+                about = user.get(4);
+                contact = user.get(5); 
             }
-        }
+        
+        
 
         getElement().getClassList().add("hello-grid");
         setWidth("99%");
@@ -218,5 +180,7 @@ public class ViewUser extends VerticalLayout{
         return clickedUser;
     }
     
-    
 }
+
+    
+

@@ -60,10 +60,11 @@ public class DBPostItem {
             System.out.println("Connection is Successful to the database for PostItems");
             
             //TODO - Hardcoded solution
-             query = "INSERT MarketplaceListing(title, seller_id, price, body, quantity) values(?, 1 , ?, ?, ?)";
+             query = "INSERT MarketplaceListing(title, seller_id, price, body, quantity) values(?, ? , ?, ?, ?)";
             
              PreparedStatement preparedStmt2 = connection.prepareStatement(query);
              preparedStmt2.setString(1, Title);
+             preparedStmt2.setInt( 2,DBlogin.getUserId());
              preparedStmt2.setString(2, price);
              preparedStmt2.setString(3, body);
              preparedStmt2.setString(4, quant);
