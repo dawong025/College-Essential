@@ -43,6 +43,7 @@ public class editAccountView extends Div{
         
         /* Comment out this code if you want to solely work on testing AccountView */
         /* Connect to DB and store the user info of the person who logged in */
+        if(LoginView.logStatus())
         if(LoginView.getUser() != null){
             userName = LoginView.getUser();
             System.out.println(userName);
@@ -80,6 +81,10 @@ public class editAccountView extends Div{
 
         H1 editTitle = new H1("Edit Profile");
         editTitle.addClassName("edit-title");
+
+        TextField pic = new TextField("Change Profile Pic");
+        pic.setValue("Enter new image url...");
+
         TextArea about = new TextArea("Change About Me");
         about.addClassName("about-me");
 
@@ -97,7 +102,7 @@ public class editAccountView extends Div{
         });
 
         HorizontalLayout buttons = new HorizontalLayout(cancel, submit);
-        VerticalLayout v1 = new VerticalLayout(editTitle, about, contact, college, buttons);
+        VerticalLayout v1 = new VerticalLayout(editTitle, pic,about, contact, college, buttons);
         v1.addClassName("edit-label-two");
         v1.setAlignItems(Alignment.CENTER);
 
