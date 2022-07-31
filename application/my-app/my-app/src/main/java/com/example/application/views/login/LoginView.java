@@ -38,6 +38,7 @@ import ch.qos.logback.core.status.Status;
 
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasValueAndElement;
+import com.vaadin.flow.component.UI;
 
 @Route("login") 
 @PageTitle("Login | College Essentials")
@@ -135,6 +136,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     }
     public static void logOut(){
         status = false;
+        //UI.getCurrent().getPage().reload();
     }
 
     public String getUserName(){
