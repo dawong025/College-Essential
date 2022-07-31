@@ -31,6 +31,7 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.shared.Registration;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Horizontal;
 
@@ -122,6 +123,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
             loginSuccess = loginCheck.getFlag();
             isAdmin = loginCheck.isAdmin();
             isBanned = loginCheck.isBanned();
+            VaadinSession currentSession = VaadinSession.getCurrent();
+            currentSession.setAttribute("user_id", loginCheck.getUserId());
             return loginSuccess;
 
     }

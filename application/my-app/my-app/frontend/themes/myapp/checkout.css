@@ -39,3 +39,8 @@
     background-color: whitesmoke;
     color: black;
 }
+
+aside
+{
+    float: right;
+}
