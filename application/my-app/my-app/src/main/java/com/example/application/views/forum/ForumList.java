@@ -106,6 +106,7 @@ public class ForumList extends VerticalLayout {
             // Should at some point route to an url stored in the database
             Button title = new Button("(" + forumPostCounter + ") Title: " + i.get("title"), e -> {
                 nav = i.get("title");
+                System.out.println("Title:" + i.get("title"));
                 this.getUI().ifPresent(ui -> ui.navigate("/fPost"));
             });
             title.addClassName("forum-post-title");
@@ -171,7 +172,7 @@ public class ForumList extends VerticalLayout {
             }
 
         });
-        post.clear();
+        //post.clear();
     }
 
     public static String getNav() {

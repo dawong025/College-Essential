@@ -41,6 +41,7 @@ public class fPost extends VerticalLayout{
         for(HashMap<String, String> i: posts){
             if(nav == i.get("title")){
                 post1 = i;
+                
             }
             if(nav == i.get("description")){
                 post1 = i;

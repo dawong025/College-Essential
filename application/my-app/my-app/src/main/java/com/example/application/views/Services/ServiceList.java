@@ -170,7 +170,7 @@ public class ServiceList extends VerticalLayout{
             }
 
         });
-        post.clear();
+        //post.clear();
     } 
     public static String getNav() {
         return nav;
