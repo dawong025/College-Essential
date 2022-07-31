@@ -207,7 +207,16 @@
     grid-area: fp-comment-text;
     overflow: hidden;
 }
+.new-comment-text {
+    width: 90%;
+    margin-left: 5px;
+}
 
 .fp-new-rating-field {
     grid-area: fp-commentbox;
+}
+
+.fp-submit-button {
+    background-color: black;
+    color: white;
 }

@@ -3,7 +3,11 @@ package com.example.application.views.forum;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.example.application.Data.DBAccount;
+import com.example.application.Data.DBComments;
+import com.example.application.Data.DBForumList;
 import com.example.application.views.MainLayout;
+import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -30,7 +34,7 @@ import com.vaadin.flow.router.Route;
 @PageTitle("Forum Page")
 @Route(value = "fPost", layout = MainLayout.class)
 public class fPost extends VerticalLayout{
-    public fPost(){
+    public fPost() throws ClassNotFoundException{
         getElement().getClassList().add("forum-grid");
         setWidth("100%");
         this.addClassName("forum-background");
@@ -47,11 +51,11 @@ public class fPost extends VerticalLayout{
                 post1 = i;
             }
         }
-
+        
         // post1.put("title", "Anime");
         // post1.put("user", "Brendan1");
         // post1.put("description", "I really like this one anime. AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-
+        
         //Grid area for image
         Div imageholder = new Div();
         imageholder.addClassName("fp-image");
@@ -143,7 +147,36 @@ public class fPost extends VerticalLayout{
         newCommentField.addClassName("new-comment-text");
         newCommentField.setPlaceholder("Add a new comment for this user");
 
-        VerticalLayout h3 = new VerticalLayout(comments, allComments, newCommentField);
+        Button submitComment = new Button("Submit");
+        submitComment.addClassName("fp-submit-button");
+        submitComment.addClickListener(e->{ 
+            String comment = newCommentField.getValue();
+            String userName;
+            DBForumList dbForumList = new DBForumList();
+            DBAccount dbAccount = new DBAccount();
+            if(LoginView.getUser() != null){
+                userName = LoginView.getUser();
+
+                System.out.println(userName);
+                int userId;
+                try {
+                    userId = dbAccount.getUserID(userName);
+                    System.out.println("userId:" + userId);
+                    int forum_post_id = DBForumList.getForumPostID(nav);
+                    System.out.println("forum_post_id:" + forum_post_id);
+                    DBComments.StoreForumReply(comment, forum_post_id, userId);
+                } catch (ClassNotFoundException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                
+            }
+            
+        });
+
+        HorizontalLayout commentSubmission = new HorizontalLayout(newCommentField, submitComment);
+
+        VerticalLayout h3 = new VerticalLayout(comments, allComments, commentSubmission);
         h3.addClassName("fp-comments");
         commentsDiv.addClassName("fp-comments");
 

@@ -102,7 +102,8 @@ public class ServiceList extends VerticalLayout{
 
             //Should at some point route to an url stored in the database
             Button title = new Button("(" + servicePostCounter + ")Title: " + i.get("title"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate(i.get("route")));
+                nav = i.get("title");
+                this.getUI().ifPresent(ui -> ui.navigate("/sPost"));
             });
             title.addClassName("service-post-title");
             title.addClassName("service-post-title-hov");
@@ -120,7 +121,8 @@ public class ServiceList extends VerticalLayout{
             // school.addClassName("service-post-school-hov");
 
             Button description = new Button(i.get("description"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate(i.get("route")));
+                nav = i.get("description");
+                this.getUI().ifPresent(ui -> ui.navigate("/sPost"));
             });
             description.addClassName("service-post-description");
             description.addClassName("service-post-description-hov");
@@ -200,7 +202,7 @@ public class ServiceList extends VerticalLayout{
             // Should at some point route to an url stored in the database
             Button title = new Button("(" + servicePostCounter + ") Title: " + i.get("title"), e -> {
                 nav = i.get("title");
-                this.getUI().ifPresent(ui -> ui.navigate("/fPost"));
+                this.getUI().ifPresent(ui -> ui.navigate("/sPost"));
             });
             title.addClassName("forum-post-title");
             title.addClassName("forum-post-title-hov");
@@ -213,7 +215,7 @@ public class ServiceList extends VerticalLayout{
 
             Button description = new Button(i.get("description"), e -> {
                 nav = i.get("description");
-                this.getUI().ifPresent(ui -> ui.navigate("/fPost"));
+                this.getUI().ifPresent(ui -> ui.navigate("/sPost"));
             });
             description.addClassName("forum-post-description");
             description.addClassName("forum-post-description-hov");

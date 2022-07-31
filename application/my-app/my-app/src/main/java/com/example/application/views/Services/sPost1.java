@@ -28,7 +28,7 @@ import com.vaadin.flow.router.Route;
 
 @CssImport("./themes/myapp/forumpost.css")
 @PageTitle("Service Listing")
-@Route(value = "sPost1", layout = MainLayout.class)
+@Route(value = "sPost", layout = MainLayout.class)
 public class sPost1 extends VerticalLayout{
     public sPost1(){
         getElement().getClassList().add("forum-grid");
@@ -36,9 +36,18 @@ public class sPost1 extends VerticalLayout{
         this.addClassName("forum-background");
 
         HashMap<String, String> post1 = new HashMap<String, String>();
-        post1.put("title", "CSC 648 TA");
-        post1.put("user", "Brendan1");
-        post1.put("description", "I am in need of a teacher assistant for my class.");
+        ArrayList<HashMap<String, String>> posts = ServiceList.getPosts();
+        String nav = ServiceList.getNav();
+        System.out.println(nav);
+        for(HashMap<String, String> i: posts){
+            if(nav == i.get("title")){
+                post1 = i;
+                
+            }
+            if(nav == i.get("description")){
+                post1 = i;
+            }
+        }
 
         //Grid area for image
         Div imageholder = new Div();
