@@ -112,5 +112,42 @@ public class DBAccount {
         }  
         return user;
     }
+
+    public static int getUserID(String loginCred) throws ClassNotFoundException {
+        ArrayList<String> user = new ArrayList<String>();
+        String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
+        String userName = "team42022";
+        String password = "team4_2022";
+        int reg_user_id = 0;
+        String q;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, userName, password);
+            System.out.println("Connection is Successful to the database" + url);
+
+            if(!loginCred.contains("@")){
+                q = "SELECT registered_user_id FROM RegisteredUser WHERE username LIKE '%"+loginCred+"%'";
+            }
+            else{
+                q = "SELECT registered_user_id FROM RegisteredUser WHERE email LIKE '%"+loginCred+"%'";
+            }
+            try {
+                Statement stmt = connection.createStatement();
+                ResultSet rs = stmt.executeQuery(q);
+                while (rs.next()) {
+                    reg_user_id = rs.getInt("registered_user_id");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }  
+        return reg_user_id;
+    }
+    
 }
 
