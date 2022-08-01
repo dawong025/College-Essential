@@ -8,8 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import java.sql.Statement; 
-
+import java.sql.Statement;
 
 public class DBAccount {
     public static ArrayList<String> searchEmail(String email) throws ClassNotFoundException {
@@ -21,7 +20,7 @@ public class DBAccount {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
-            
+
             String first_name;
             String last_name;
             String username;
@@ -29,9 +28,9 @@ public class DBAccount {
             String about;
             String contact;
             String pfp;
-            
-                
-            String q = "SELECT first_name, last_name, username, email, about, contact, pfp FROM RegisteredUser WHERE email LIKE '%"+email+"%'";
+
+            String q = "SELECT first_name, last_name, username, email, about, contact, pfp FROM RegisteredUser WHERE email LIKE '%"
+                    + email + "%'";
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
@@ -51,17 +50,17 @@ public class DBAccount {
                     user.add(about);
                     user.add(contact);
                     user.add(pfp);
-                      
+
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            }  
+            }
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }  
+        }
         return user;
     }
 
@@ -74,7 +73,7 @@ public class DBAccount {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
-            
+
             String first_name;
             String last_name;
             String username;
@@ -83,8 +82,9 @@ public class DBAccount {
             String contact;
             String pfp;
 
-            //add for rating
-            String q = "SELECT first_name, last_name, username, email, about, contact, pfp FROM RegisteredUser WHERE username LIKE '%"+userLogin+"%'";
+            // add for rating
+            String q = "SELECT first_name, last_name, username, email, about, contact, pfp FROM RegisteredUser WHERE username LIKE '%"
+                    + userLogin + "%'";
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
@@ -96,8 +96,8 @@ public class DBAccount {
                     about = rs.getString("about");
                     contact = rs.getString("contact");
                     pfp = rs.getString("pfp");
-                    //rating = rs.getString("rating");
-                    
+                    // rating = rs.getString("rating");
+
                     user.add(first_name);
                     user.add(last_name);
                     user.add(username);
@@ -105,22 +105,21 @@ public class DBAccount {
                     user.add(about);
                     user.add(contact);
                     user.add(pfp);
-                      
+
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            }  
+            }
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }  
+        }
         return user;
     }
 
-
-    public static String getUserNameFromId(String string){
+    public static String getUserNameFromId(String string) {
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
         String password = "team4_2022";
@@ -129,22 +128,21 @@ public class DBAccount {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
-            
-            
-                //add for rating
+
+            // add for rating
             String q = "SELECT RegisteredUser.username FROM RegisteredUser"
-           +" WHERE registered_user_id = '"+string+"';";
+                    + " WHERE registered_user_id = '" + string + "';";
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
                 while (rs.next()) {
-            
+
                     name = rs.getString("username");
-                      
+
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            }  
+            }
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -166,11 +164,10 @@ public class DBAccount {
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
 
-            if(!loginCred.contains("@")){
-                q = "SELECT registered_user_id FROM RegisteredUser WHERE username LIKE '%"+loginCred+"%'";
-            }
-            else{
-                q = "SELECT registered_user_id FROM RegisteredUser WHERE email LIKE '%"+loginCred+"%'";
+            if (!loginCred.contains("@")) {
+                q = "SELECT registered_user_id FROM RegisteredUser WHERE username LIKE '%" + loginCred + "%'";
+            } else {
+                q = "SELECT registered_user_id FROM RegisteredUser WHERE email LIKE '%" + loginCred + "%'";
             }
             try {
                 Statement stmt = connection.createStatement();
@@ -180,17 +177,17 @@ public class DBAccount {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            }  
+            }
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }  
+        }
         return reg_user_id;
     }
 
-    public static void addRating(int rating,String comment, int currUserId, String accountPostedOnId){
+    public static void addRating(int rating, String comment, int currUserId, String accountPostedOnId) {
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
         String password = "team4_2022";
@@ -201,32 +198,28 @@ public class DBAccount {
             System.out.println("Connection is Successful to the database" + url);
 
             String q = "INSERT INTO Ratings (rating, registered_user_sender_id, registered_user_receiver_id,  description, posted_at)"
-          +  " VALUES (?, ?, ?, ?, NOW());";
+                    + " VALUES (?, ?, ?, ?, NOW());";
             try {
                 PreparedStatement preparedStmt = connection.prepareStatement(q);
                 preparedStmt.setInt(1, rating);
                 preparedStmt.setInt(2, currUserId);
                 preparedStmt.setString(3, accountPostedOnId);
                 preparedStmt.setString(4, comment);
-            
-                
+
                 preparedStmt.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
-            }  
+            }
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }  
-
-
-
+        }
 
     }
 
-    public static ArrayList<ArrayList<String>> getRating(String AccountId){
+    public static ArrayList<ArrayList<String>> getRating(String AccountId) {
         ArrayList<ArrayList<String>> ratings = new ArrayList<>();
         ArrayList<String> details = new ArrayList<>();
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
@@ -238,11 +231,11 @@ public class DBAccount {
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
 
-            String q = "SELECT Ratings.rating, Ratings.description, Ratings.posted_at, RegisteredUser.username" 
-          + " FROM Ratings"
-          + " JOIN RegisteredUser ON RegisteredUser.registered_user_id = Ratings.registered_user_receiver_id"
-          + " WHERE RegisteredUser.registered_user_id = '"+AccountId+"'";
-          String rating, description,postedAt,name;
+            String q = "SELECT Ratings.rating, Ratings.description, Ratings.posted_at, RegisteredUser.username"
+                    + " FROM Ratings"
+                    + " JOIN RegisteredUser ON RegisteredUser.registered_user_id = Ratings.registered_user_receiver_id"
+                    + " WHERE RegisteredUser.registered_user_id = '" + AccountId + "'";
+            String rating, description, postedAt, name;
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
@@ -259,22 +252,19 @@ public class DBAccount {
                     details.add(name);
                     ratings.add(details);
                     details = new ArrayList<>();
-                   
+
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            }  
+            }
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }  
-
-
+        }
 
         return ratings;
     }
-    
-}
 
+}
