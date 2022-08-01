@@ -84,7 +84,7 @@ public class DBHome {
                 ResultSet rs = stmt.executeQuery(q);
                
                 while (rs.next()) {
-                    ArrayList array = new ArrayList<>();
+                ArrayList array = new ArrayList<>();
                   nameItem = rs.getString("title");
                   imageURL = rs.getString("product_image");
                   price = rs.getString("price");

@@ -126,6 +126,34 @@ public class DBServiceList {
 
         return posts;
     }
+    public static int getServiceListingID(String title) throws ClassNotFoundException {    
+        String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
+        String userName = "team42022";
+        String password = "team4_2022";
+        int service_listing_id = 0;
+        try{
+            //Establishes database connection
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, userName, password);
+            System.out.println("Connection to the database" + url + "didn't go kaboom");
+            java.sql.Statement stmt = connection.createStatement();
+
+            //An SQL query that relates and joins 3 tables together.
+            //"Forum Post" joins to a general "Posts" table, and "Posts" joins and relates to "Registered User" table 
+            String q = "SELECT ServiceListing.service_listing_id FROM ServiceListing WHERE ServiceListing.title ='"+title+"';";
+
+            ResultSet rs = stmt.executeQuery(q);
+            while (rs.next()) {
+                service_listing_id = rs.getInt("service_listing_id");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }  
+        return service_listing_id;
+    }
 }
 
 

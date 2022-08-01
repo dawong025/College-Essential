@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -150,10 +151,10 @@ public class DBComments {
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("DBComment: Connection is Successful to the database" + url);
 
-            String query = "INSERT INTO Posts service_reply_id, registered_user_id) VALUES (?, ?);";
+            String query = "INSERT INTO Posts (service_reply_id, registered_user_id) VALUES (?, ?);";
             PreparedStatement preparedStmt2 = connection.prepareStatement(query);
             preparedStmt2.setInt(1, service_reply_id);
-            preparedStmt2.setInt(1, registered_user_id);
+            preparedStmt2.setInt(2, registered_user_id);
 
             preparedStmt2.execute();
 
@@ -162,5 +163,94 @@ public class DBComments {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+    public static ArrayList<ArrayList<String>> getForumReply(int forumPostID){
+        ArrayList<ArrayList<String>> comments = new ArrayList<>();
+        String description;
+        String postedAt;
+        String username;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, userName, password);
+            System.out.println("DBComment: Connection is Successful to the database" + url);
+
+            String query = "SELECT ForumReply.description, ForumReply.posted_at, RegisteredUser.username, ForumPost.forum_post_id"
+            +" FROM ForumReply"
+            +" JOIN ForumTies ON ForumTies.forum_reply_id = ForumReply.forum_reply_id"
+            +" JOIN Posts ON Posts.forum_reply_id = ForumReply.forum_reply_id"
+            +" JOIN RegisteredUser ON RegisteredUser.registered_user_id = Posts.registered_user_id"
+            +" JOIN ForumPost ON ForumPost.forum_post_id = ForumTies.forum_post_id"
+            +" WHERE ForumPost.forum_post_id ="+forumPostID+""
+            +" ORDER BY ForumReply.posted_at DESC;";
+
+            try (Statement stmt = connection.createStatement()) {
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    ArrayList array = new ArrayList<>();
+                    description = rs.getString("description");
+                    postedAt = rs.getString("posted_at");
+                    username = rs.getString("username");
+                    
+                    array.add(description);
+                    array.add(postedAt);
+                    array.add(username);
+                    System.out.println(description+ " "+postedAt+" "+username);
+                    comments.add(array);
+                }
+            } catch (SQLException e) {
+
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return comments;
+    }
+    public static ArrayList<ArrayList<String>> getServiceReply(int serviceListingID){
+        ArrayList<ArrayList<String>> comments = new ArrayList<>();
+        String description;
+        String postedAt;
+        String username;
+
+        //Insert into ForumReply table + get ID of recently added ForumReply
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, userName, password);
+            System.out.println("DBComment: Connection is Successful to the database" + url);
+
+            String query ="SELECT ServiceReply.description, ServiceReply.posted_at, RegisteredUser.username, ServiceListing.service_listing_id"
+            +" FROM ServiceReply"
+            +" JOIN ServiceTies ON ServiceTies.service_reply_id = ServiceReply.service_reply_id"
+            +" JOIN Posts ON Posts.service_reply_id = ServiceReply.service_reply_id"
+            +" JOIN RegisteredUser ON RegisteredUser.registered_user_id = Posts.registered_user_id"
+            +" JOIN ServiceListing ON ServiceListing.service_listing_id = ServiceTies.service_listing_id"
+            +" WHERE ServiceListing.service_listing_id ="+serviceListingID+""
+            +" ORDER BY ServiceReply.posted_at DESC;";
+
+            try (Statement stmt = connection.createStatement()) {
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    ArrayList<String> indivComment = new ArrayList<>();
+                    description = rs.getString("description");
+                    postedAt = rs.getString("posted_at");
+                    username = rs.getString("username");
+                    
+                    indivComment.add(description);
+                    indivComment.add(postedAt);
+                    indivComment.add(username);
+                    
+                    comments.add(indivComment);
+                }
+            } catch (SQLException e) {
+
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return comments;
     }
 }

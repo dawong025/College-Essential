@@ -166,7 +166,8 @@
     grid-template-areas:
     "fp-comment-title"
     "fp-messages"
-    "fp-commentbox";
+    "fp-commentbox"
+    "fp-submit";
 }
 
 .fp-comment-title {
@@ -219,4 +220,7 @@
 .fp-submit-button {
     background-color: black;
     color: white;
+}
+.comment-submission {
+    grid-area: fp-submit;
 }
