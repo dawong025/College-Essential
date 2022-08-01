@@ -96,7 +96,7 @@ public class ItemView extends VerticalLayout{
       con.setReadOnly(true);
       vl.add(con);
       Div sellerLink = new Div();
-      userName = DBAccount.getUserNameFromId(DBHome.getUserId());
+      userName = DBAccount.getUserNameFromId(HomeView.getUserId());
       sellerLink.add(new RouterLink("By " + userName, ViewUser.class));
       vl.add(sellerLink);
       TextField priceField = new TextField("Price");

@@ -8,6 +8,7 @@ import com.example.application.views.MainLayout;
 import com.example.application.views.Footer.FooterView;
 import com.example.application.views.Items.ItemView;
 import com.example.application.views.login.LoginView;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
@@ -49,6 +50,7 @@ public class HomeView extends VerticalLayout {
     HorizontalLayout hor = new HorizontalLayout();
     VerticalLayout vl = new VerticalLayout();
     private static String currTitle;
+    private static String userId;
     
     // Liveshare test - Darren Wong
     public HomeView() {
@@ -232,9 +234,10 @@ public class HomeView extends VerticalLayout {
                 price.setValue(cost);
                 price.setReadOnly(true);
                 vl.add(price);
-
+                String Id = array.get(4);
                 Button b = new Button(key, e -> {
                     currTitle = key;
+                    userId = Id;
                     this.getUI().ifPresent(ui -> ui.navigate("/itemView"));
                 });
                 b.setClassName("buttonItem");
@@ -270,6 +273,10 @@ public class HomeView extends VerticalLayout {
 
     public static String getTitle() {
         return currTitle;
+    }
+
+    public static String getUserId(){
+        return userId;
     }
 
     public static HashMap<String, ArrayList<String>> getMap() {
