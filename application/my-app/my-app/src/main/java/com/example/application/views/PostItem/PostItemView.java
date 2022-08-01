@@ -37,6 +37,9 @@ import java.util.stream.Stream;
 import org.apache.poi.sl.usermodel.TextBox;
 
 
+
+
+
 @CssImport("./themes/myapp/Post.css")
 @PageTitle("Post Item")
 @Route(value = "postItem", layout = MainLayout.class)
@@ -58,6 +61,7 @@ public class PostItemView extends VerticalLayout{
             vert.setClassName("vertLayout");
             HorizontalLayout h1 = new HorizontalLayout();
             h1.setClassName("h1Layout");
+            
 
             H3 header = new H3("Sell Item Form");
             header.setClassName("Header");
