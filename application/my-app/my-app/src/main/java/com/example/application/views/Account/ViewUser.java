@@ -8,7 +8,9 @@ import com.example.application.Data.DBlogin;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Items.ItemView;
 import com.example.application.views.Services.ServiceList;
+import com.example.application.views.Services.sPost1;
 import com.example.application.views.forum.ForumList;
+import com.example.application.views.forum.fPost;
 import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -61,6 +63,12 @@ public class ViewUser extends Div {
             getInfoFromForumList();
         }
         else if(ServiceList.getServiceUser() != null){
+            getInfoFromServiceList();
+        }
+        else if(fPost.getFPostUser() != null){
+            getInfoFromForumPost();
+        }
+        else if(sPost1.getListingUser() != null){
             getInfoFromServiceList();
         }
         else if(AccountView.getClickedUser() != null){
@@ -318,7 +326,60 @@ public class ViewUser extends Div {
         contact = user.get(5);
         accountId = user.get(6);
     }
+    public void getInfoFromForumPost(){
+        userName = fPost.getFPostUser();
+        System.out.println(userName);
 
+        if (userName.contains("@")) {
+            try {
+                user = DBViewUser.searchEmail(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        } else {
+            try {
+                user = DBViewUser.searchUser(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        first_name = user.get(0);
+        last_name = user.get(1);
+        username = user.get(2);
+        emailDB = user.get(3);
+        about = user.get(4);
+        contact = user.get(5);
+        accountId = user.get(6);
+    }
+    public void getInfoFromServiceList(){
+        userName = sPost1.getListingUser();
+        System.out.println(userName);
+
+        if (userName.contains("@")) {
+            try {
+                user = DBViewUser.searchEmail(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        } else {
+            try {
+                user = DBViewUser.searchUser(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        first_name = user.get(0);
+        last_name = user.get(1);
+        username = user.get(2);
+        emailDB = user.get(3);
+        about = user.get(4);
+        contact = user.get(5);
+        accountId = user.get(6);
+    }
     private void showSuccess() {
         Notification notification =
                 Notification.show("Rating was posted ");

@@ -39,6 +39,7 @@ import com.vaadin.flow.router.RouterLink;
 @PageTitle("Service Listing")
 @Route(value = "sPost", layout = MainLayout.class)
 public class sPost1 extends VerticalLayout{
+    private static String slUser;
     public sPost1() throws ClassNotFoundException{
         getElement().getClassList().add("forum-grid");
         setWidth("100%");
@@ -74,7 +75,7 @@ public class sPost1 extends VerticalLayout{
         Div nameholder = new Div();
         nameholder.addClassName("fp-user");
         Button user = new Button(post1.get("user"));
-        
+        slUser = post1.get("user");
         user.addClassName("fp-user");
         // user.setValue(post1.get("user"));
         // user.addThemeVariants(TextFieldVariant.LUMO_ALIGN_CENTER);
@@ -202,6 +203,9 @@ public class sPost1 extends VerticalLayout{
             personalInfo,
             h3
         );
+    }
+    public static String getListingUser(){
+        return slUser;
     }
 
     private void showFailer() {

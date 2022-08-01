@@ -37,6 +37,7 @@ import com.vaadin.flow.router.Route;
 @PageTitle("Forum Page")
 @Route(value = "fPost", layout = MainLayout.class)
 public class fPost extends VerticalLayout {
+    private static String fpUser;
     public fPost() throws ClassNotFoundException {
         getElement().getClassList().add("forum-grid");
         setWidth("100%");
@@ -70,6 +71,7 @@ public class fPost extends VerticalLayout {
         Div nameholder = new Div();
         nameholder.addClassName("fp-user");
         Button user = new Button(post1.get("user"));
+        fpUser = post1.get("user");
         user.addClassName("fp-user");
         user.addClickListener(e ->
         user.getUI().ifPresent(ui ->
@@ -189,7 +191,9 @@ public class fPost extends VerticalLayout {
                 personalInfo,
                 h3);
     }
-
+    public static String getFPostUser(){
+        return fpUser;
+    }
     private void showFailer() {
         Notification notification = Notification.show("Must be logged in to Post Comments");
         notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
