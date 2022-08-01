@@ -3,6 +3,7 @@ package com.example.application.views.Account;
 import java.util.ArrayList;
 
 import com.example.application.Data.DBAccount;
+import com.example.application.Data.DBEditAccount;
 import com.example.application.views.MainLayout;
 import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.button.Button;
@@ -17,6 +18,7 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.dependency.CssImport;
 
@@ -24,6 +26,10 @@ import com.vaadin.flow.component.dependency.CssImport;
 @PageTitle("Edit Account")
 @Route(value = "editAccount", layout = MainLayout.class)
 public class editAccountView extends Div{
+
+    private String aboutString;
+    private String contactString;
+    private String picString;
     
 
     public editAccountView() throws ClassNotFoundException{
@@ -40,6 +46,7 @@ public class editAccountView extends Div{
         String aboutDB = "Hi, I'm Kelly! Nice to meet you!\nCS @ SFSU";
         String contactDB = "For business inquiries only: kellysmith@gmail.com";
         String userName;
+
         
         /* Comment out this code if you want to solely work on testing AccountView */
         /* Connect to DB and store the user info of the person who logged in */
@@ -82,14 +89,35 @@ public class editAccountView extends Div{
         H1 editTitle = new H1("Edit Profile");
         editTitle.addClassName("edit-title");
 
+        VaadinSession currentSession = VaadinSession.getCurrent();
+        int user_id = (Integer)currentSession.getAttribute("user_id");
+
+        DBEditAccount dbEditAccount = new DBEditAccount();
+
         TextField pic = new TextField("Change Profile Pic");
         pic.setValue("Enter new image url...");
+        pic.addValueChangeListener(event ->{
+            picString = event.getValue();
+
+
+        });
 
         TextArea about = new TextArea("Change About Me");
         about.addClassName("about-me");
+        about.getValue();
+        about.addValueChangeListener(event ->{
+            aboutString = event.getValue();
+
+
+        });
 
         TextArea contact = new TextArea("Change Contact Info");
         contact.addClassName("contact-me");
+        contact.addValueChangeListener(event ->{
+            contactString = event.getValue();
+
+
+        });
 
         TextField college = new TextField("Change College");
 
@@ -98,7 +126,10 @@ public class editAccountView extends Div{
         });
 
         Button submit = new Button("Submit", ev ->{
+
+            dbEditAccount.EditAccount(user_id, aboutString, contactString, picString);
             this.getUI().ifPresent(ui -> ui.navigate("/Account"));
+
         });
 
         HorizontalLayout buttons = new HorizontalLayout(cancel, submit);
