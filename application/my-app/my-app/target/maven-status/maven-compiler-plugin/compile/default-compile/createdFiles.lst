@@ -1,4 +1,5 @@
 com\example\application\views\registration\TermView.class
+com\example\application\Data\DBPurchaseHistory.class
 com\example\application\Data\DBForumList.class
 com\example\application\views\aboutus\DarrenView.class
 com\example\application\views\Services\sPost1.class

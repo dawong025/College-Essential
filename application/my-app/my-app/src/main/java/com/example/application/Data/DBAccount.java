@@ -28,9 +28,10 @@ public class DBAccount {
             String emailDB;
             String about;
             String contact;
+            String pfp;
             
                 
-            String q = "SELECT first_name, last_name, username, email, about, contact FROM RegisteredUser WHERE email LIKE '%"+email+"%'";
+            String q = "SELECT first_name, last_name, username, email, about, contact, pfp FROM RegisteredUser WHERE email LIKE '%"+email+"%'";
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
@@ -41,13 +42,15 @@ public class DBAccount {
                     emailDB = rs.getString("email");
                     about = rs.getString("about");
                     contact = rs.getString("contact");
-                    
+                    pfp = rs.getString("pfp");
+
                     user.add(first_name);
                     user.add(last_name);
                     user.add(username);
                     user.add(emailDB);
                     user.add(about);
                     user.add(contact);
+                    user.add(pfp);
                       
                 }
             } catch (SQLException e) {
@@ -78,10 +81,10 @@ public class DBAccount {
             String emailDB;
             String about;
             String contact;
-            String rating;
-            
-                //add for rating
-            String q = "SELECT first_name, last_name, username, email, about, contact FROM RegisteredUser WHERE username LIKE '%"+userLogin+"%'";
+            String pfp;
+
+            //add for rating
+            String q = "SELECT first_name, last_name, username, email, about, contact, pfp FROM RegisteredUser WHERE username LIKE '%"+userLogin+"%'";
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
@@ -92,6 +95,7 @@ public class DBAccount {
                     emailDB = rs.getString("email");
                     about = rs.getString("about");
                     contact = rs.getString("contact");
+                    pfp = rs.getString("pfp");
                     //rating = rs.getString("rating");
                     
                     user.add(first_name);
@@ -100,6 +104,7 @@ public class DBAccount {
                     user.add(emailDB);
                     user.add(about);
                     user.add(contact);
+                    user.add(pfp);
                       
                 }
             } catch (SQLException e) {

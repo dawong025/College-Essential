@@ -14,7 +14,7 @@ import com.vaadin.flow.component.charts.model.Title;
 import com.vaadin.flow.component.html.Image;
 public class DBPostService {
     
-    public static void StorePostService(String Title, String body) {
+    public static void StorePostService(int userId, String Title, String body) {
         
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
         String userName = "team42022";
@@ -57,10 +57,10 @@ public class DBPostService {
             System.out.println("Connection is Successful to the database" + url);
             
             //TODO - Hardcoded solution for registered user
-             query = "INSERT INTO Posts(service_listing_id, registered_user_id) values(?, 1)";
+             query = "INSERT INTO Posts(service_listing_id, registered_user_id) values(?, ?)";
              PreparedStatement preparedStmt2 = connection.prepareStatement(query);
              preparedStmt2.setInt(1, serviceListingID);
-             
+             preparedStmt2.setInt(2, userId);
              preparedStmt2.execute();
         
 
