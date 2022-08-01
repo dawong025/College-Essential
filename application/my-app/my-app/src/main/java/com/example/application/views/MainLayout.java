@@ -112,22 +112,32 @@ public class MainLayout extends AppLayout {
         Button logout = new Button("Log Out");
         logout.addClassName("logOutButton");
 
+        Button admin = new Button("Admin",even ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/Admin"));
+        });
+        admin.addClassName("logOutButton");
+
 
         // change login and logout buttons
         if (LoginView.logStatus() == false) {
             // hv.add(log, reg);
             logout.setVisible(false);
             account.setVisible(false);
+            admin.setVisible(false);
             hv.add(cart);
 
         } else {
             log.setVisible(false);
             reg.setVisible(false);
+            if(!LoginView.isAdmin()){
+                admin.setVisible(false);
+            }
            
             logout.addClickListener(e -> {
                 LoginView.logOut();
                  logout.setVisible(false);
                  account.setVisible(false);
+                 admin.setVisible(false);
                  log.setVisible(true);
                  reg.setVisible(true);
                  
@@ -137,7 +147,7 @@ public class MainLayout extends AppLayout {
             }); 
            
         }
-        hv = new HorizontalLayout(log,reg,account,logout, cart);
+        hv = new HorizontalLayout(log,reg,admin,account,logout, cart);
 
         hv.addClassNames("hv");
         hv.setHeight("3.5em");

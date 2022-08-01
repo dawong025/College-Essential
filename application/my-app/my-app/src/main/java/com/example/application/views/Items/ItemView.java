@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.example.application.Data.DBAccount;
 import com.example.application.Data.DBAdmin;
+import com.example.application.Data.DBHome;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Account.AccountView;
+import com.example.application.views.Account.ViewUser;
 import com.example.application.views.Footer.FooterView;
 import com.example.application.views.home.HomeView;
 import com.example.application.views.login.LoginView;
@@ -44,6 +47,7 @@ public class ItemView extends VerticalLayout{
     private String seller_id;
     private HashMap<String,ArrayList<String>> items = new HashMap<>();
     private ArrayList<String> array;
+    private static String userName;
    // private ItemDetails itemDetail;
    // HomeView hv = new HomeView();
 
@@ -92,7 +96,8 @@ public class ItemView extends VerticalLayout{
       con.setReadOnly(true);
       vl.add(con);
       Div sellerLink = new Div();
-      sellerLink.add(new RouterLink(seller, AccountView.class));
+      userName = DBAccount.getUserNameFromId(DBHome.getUserId());
+      sellerLink.add(new RouterLink("By " + userName, ViewUser.class));
       vl.add(sellerLink);
       TextField priceField = new TextField("Price");
       priceField.setValue(price);
@@ -115,8 +120,6 @@ public class ItemView extends VerticalLayout{
         DBAdmin.deletePost(itemName);
         
 
-
-
       });
 
       Button addToCart = new Button("Add to Cart",event ->{
@@ -126,8 +129,6 @@ public class ItemView extends VerticalLayout{
         }
       
       
-
-
         HashMap<String, String> item = new HashMap<String, String>();
         item.put("title", itemName);
         item.put("image", url);
@@ -205,6 +206,10 @@ public class ItemView extends VerticalLayout{
 
       
       
+    }
+
+    public static String getUser(){
+      return userName;
     }
 
     

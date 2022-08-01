@@ -180,7 +180,7 @@
 .all-ratings {
     grid-area: messages;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: scroll;
     position: relative;
 }
 
