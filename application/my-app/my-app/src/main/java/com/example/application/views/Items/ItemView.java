@@ -160,6 +160,11 @@ public class ItemView extends VerticalLayout {
         adminDelete.setVisible(true);
         vl.add(adminDelete);
       }
+      String temp2 = LoginView.getUser();
+      if(LoginView.getUser().equalsIgnoreCase(userName) ){
+        adminDelete.setVisible(true);
+        vl.add(adminDelete);
+      }
 
     } else {
       adminDelete.setVisible(false);
