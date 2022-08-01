@@ -73,6 +73,10 @@ public class AccountView extends Div{
             contact = user.get(5);
             pfp = user.get(6);
 
+            if(pfp == null){
+                pfp = "images/icon.jpg";
+            }
+
 
             /* Test the values from the DB */
             // for(int i = 0; i < user.size(); i++){
@@ -89,7 +93,7 @@ public class AccountView extends Div{
         nametag.addClassName("label-one");
 
         /* Profile Banner */
-        Image img1 = new Image("images/icon.jpg", "placeholder icon");
+        Image img1 = new Image(pfp, "placeholder icon");
         img1.setWidth("180px");
         img1.addClassName("pfp");
         H1 name = new H1(first_name + " "+ last_name);
