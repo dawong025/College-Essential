@@ -7,6 +7,8 @@ import com.example.application.Data.DBViewUser;
 import com.example.application.Data.DBlogin;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Items.ItemView;
+import com.example.application.views.Services.ServiceList;
+import com.example.application.views.forum.ForumList;
 import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -55,7 +57,13 @@ public class ViewUser extends Div {
         if (ItemView.getUser() != null) {
             getInfoFromItemView();
 
-        }else if(AccountView.getClickedUser() != null){
+        }else if(ForumList.getForumUser() != null){
+            getInfoFromForumList();
+        }
+        else if(ServiceList.getServiceUser() != null){
+            getInfoFromServiceList();
+        }
+        else if(AccountView.getClickedUser() != null){
             getInfoFromRating();
         }else{
             //recursive view
@@ -231,6 +239,60 @@ public class ViewUser extends Div {
 
     public void getInfoFromRating(){
         userName = AccountView.getClickedUser();
+        System.out.println(userName);
+
+        if (userName.contains("@")) {
+            try {
+                user = DBViewUser.searchEmail(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        } else {
+            try {
+                user = DBViewUser.searchUser(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        first_name = user.get(0);
+        last_name = user.get(1);
+        username = user.get(2);
+        emailDB = user.get(3);
+        about = user.get(4);
+        contact = user.get(5);
+        accountId = user.get(6);
+    }
+    public void getInfoFromForumList(){
+        userName = ForumList.getForumUser();
+        System.out.println(userName);
+
+        if (userName.contains("@")) {
+            try {
+                user = DBViewUser.searchEmail(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        } else {
+            try {
+                user = DBViewUser.searchUser(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        first_name = user.get(0);
+        last_name = user.get(1);
+        username = user.get(2);
+        emailDB = user.get(3);
+        about = user.get(4);
+        contact = user.get(5);
+        accountId = user.get(6);
+    }
+    public void getInfoFromServiceList(){
+        userName = ServiceList.getServiceUser();
         System.out.println(userName);
 
         if (userName.contains("@")) {
