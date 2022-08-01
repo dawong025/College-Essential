@@ -36,6 +36,8 @@ public class AccountView extends Div{
 
 
     static String clickedUser;
+    private float RatingScore = 0;
+    private int numRatings = 0;
 
     public AccountView() throws ClassNotFoundException{
         if(LoginView.logStatus()){
@@ -143,13 +145,13 @@ public class AccountView extends Div{
         
         /* Ratings Grid Area */
         Div ratingsDiv = new Div();
-        H3 ratings = new H3("Ratings");
-        ratings.addClassName("ratings");
+        // H3 ratings = new H3("Ratings");
+        // ratings.addClassName("ratings");
 
         ArrayList<ArrayList<String>> details = DBAccount.getRating(""+DBlogin.getUserId());
         VerticalLayout allRatings = new VerticalLayout();
         allRatings.addClassName("all-ratings");
-
+        numRatings = details.size();
         for(int i =0; i<details.size(); i++){
             //rating, at, descr,name
             Button ratingAuthor1 = new Button();
@@ -163,7 +165,10 @@ public class AccountView extends Div{
             ratingAuthor1.addClassName("rating-author");
             Span datePosted1 = new Span (details.get(i).get(1));
             datePosted1.addClassName("date-posted");
-            H6 commentText1 = new H6(details.get(i).get(1) + ": " + details.get(i).get(2));
+            String curRating = details.get(i).get(0);
+            H6 commentText1 = new H6(curRating + ": " + details.get(i).get(2));
+            RatingScore += Integer.parseInt(curRating);
+
             commentText1.addClassName("comment-text");
             VerticalLayout rating1 = new VerticalLayout(ratingAuthor1, datePosted1, commentText1);
             rating1.addClassName("single-rating");
@@ -171,32 +176,24 @@ public class AccountView extends Div{
         allRatings.add(rating1);
         //add(allRatings);
         }
+
+        RatingScore = RatingScore/numRatings;
+        String temp = "";
+        if(details.size() == 0){
+            temp = "No Rating Yet";
+        }else{
+            temp = ""+RatingScore;
+        }
+
+        H3 ratings = new H3("Ratings " + temp);
+        ratings.addClassName("ratings");
+
         if(details.isEmpty()){
             H4 noRating = new H4("No ratings for user yet");
             allRatings.add(noRating);
         }
        
 
-        // H6 ratingAuthor2 = new H6 ("@Reviewer2");
-        // ratingAuthor2.addClassName("rating-author");
-        // Span datePosted2 = new Span ("12/17/2022");
-        // datePosted2.addClassName("date-posted");
-        // H6 commentText2 = new H6("Kelly sold me a pair of Sony Headphones");
-        // commentText2.addClassName("comment-text");
-        // VerticalLayout rating2 = new VerticalLayout(ratingAuthor2, datePosted2, commentText2);
-        // rating2.addClassName("single-rating");
-
-        // H6 ratingAuthor3 = new H6 ("@Reviewer3");
-        // ratingAuthor3.addClassName("rating-author");
-        // Span datePosted3 = new Span ("12/17/2022");
-        // datePosted3.addClassName("date-posted");
-        // H6 commentText3 = new H6("Kelly sold me a nice couch from IKEA");
-        // commentText3.addClassName("comment-text");
-        // VerticalLayout rating3 = new VerticalLayout(ratingAuthor3, datePosted3, commentText3);
-        // rating3.addClassName("single-rating");
-        
-        // VerticalLayout allRatings = new VerticalLayout(rating1, rating2, rating3);
-        // allRatings.addClassName("all-ratings");
         
         TextField newRatingField = new TextField();
         newRatingField.addClassName("new-rating-text");
