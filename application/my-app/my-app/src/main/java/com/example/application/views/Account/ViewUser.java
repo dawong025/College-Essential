@@ -69,7 +69,7 @@ public class ViewUser extends Div {
             getInfoFromForumPost();
         }
         else if(sPost1.getListingUser() != null){
-            getInfoFromServiceList();
+            getInfoFromServiceListing();
         }
         else if(AccountView.getClickedUser() != null){
             getInfoFromRating();
@@ -353,8 +353,8 @@ public class ViewUser extends Div {
         contact = user.get(5);
         accountId = user.get(6);
     }
-    public void getInfoFromServiceList(){
-        userName = sPost1.getListingUser();
+    public void getInfoFromServiceListing(){
+        userName = fPost.getFPostUser();
         System.out.println(userName);
 
         if (userName.contains("@")) {
