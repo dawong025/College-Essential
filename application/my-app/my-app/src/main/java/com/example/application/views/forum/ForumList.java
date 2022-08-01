@@ -43,6 +43,7 @@ public class ForumList extends VerticalLayout {
     private DBForumList db;
     private int forumPostCounter;
     Select<String> select;
+    private static String flUser;
     private List<Component> comps = new ArrayList<>();
 
     public ForumList() throws ClassNotFoundException {
@@ -113,7 +114,8 @@ public class ForumList extends VerticalLayout {
             title.addClassName("forum-post-title-hov");
 
             Button user = new Button("User: " + i.get("user"), e -> {
-                this.getUI().ifPresent(ui -> ui.navigate(i.get("account_route")));
+                flUser = i.get("user");
+                this.getUI().ifPresent(ui -> ui.navigate("/viewAccount"));
             });
             user.addClassName("forum-post-user");
             user.addClassName("forum-post-user-hov");
@@ -193,6 +195,9 @@ public class ForumList extends VerticalLayout {
     
     public String getSelector() {
         return select.toString();
+    }
+    public static String getForumUser(){
+        return flUser;
     }
 
     public void loadPage() {

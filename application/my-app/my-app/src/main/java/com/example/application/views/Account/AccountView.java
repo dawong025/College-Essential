@@ -159,7 +159,7 @@ public class AccountView extends Div{
         VerticalLayout allRatings = new VerticalLayout();
         allRatings.addClassName("all-ratings");
         numRatings = details.size();
-        for(int i =0; i<details.size(); i++){
+        for(int i = 0; i<details.size(); i++){
             //rating, at, descr,name
             Button ratingAuthor1 = new Button();
             String usern = details.get(i).get(3);

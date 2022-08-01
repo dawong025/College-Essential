@@ -69,11 +69,12 @@ public class fPost extends VerticalLayout {
         // Grid area for user name
         Div nameholder = new Div();
         nameholder.addClassName("fp-user");
-        TextField user = new TextField("");
+        Button user = new Button(post1.get("user"));
         user.addClassName("fp-user");
-        user.setValue(post1.get("user"));
-        user.addThemeVariants(TextFieldVariant.LUMO_ALIGN_CENTER);
-        user.setReadOnly(true);
+        user.addClickListener(e ->
+        user.getUI().ifPresent(ui ->
+            ui.navigate("viewAccount"))
+        );
 
         // Grid area for the post
         Div postholder = new Div();

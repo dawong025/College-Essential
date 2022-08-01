@@ -33,6 +33,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLink;
 
 @CssImport("./themes/myapp/forumpost.css")
 @PageTitle("Service Listing")
@@ -72,11 +73,16 @@ public class sPost1 extends VerticalLayout{
         //Grid area for user name
         Div nameholder = new Div();
         nameholder.addClassName("fp-user");
-        TextField user = new TextField("");
+        Button user = new Button(post1.get("user"));
+        
         user.addClassName("fp-user");
-        user.setValue(post1.get("user"));
-        user.addThemeVariants(TextFieldVariant.LUMO_ALIGN_CENTER);
-        user.setReadOnly(true);
+        // user.setValue(post1.get("user"));
+        // user.addThemeVariants(TextFieldVariant.LUMO_ALIGN_CENTER);
+        // user.setReadOnly(true);
+        user.addClickListener(e ->
+        user.getUI().ifPresent(ui ->
+            ui.navigate("viewAccount"))
+        );
 
         //Grid area for the post
         Div postholder = new Div();
@@ -122,7 +128,7 @@ public class sPost1 extends VerticalLayout{
             String username = comments.get(i).get(2);
 
             VerticalLayout indivComment = new VerticalLayout();
-            H6 commentAuthor = new H6(username);
+            Button commentAuthor = new Button(username);
             commentAuthor.addClassName("fp-comment-author");
             Span datePosted = new Span(postedAt);
             datePosted.addClassName("fp-date-posted");

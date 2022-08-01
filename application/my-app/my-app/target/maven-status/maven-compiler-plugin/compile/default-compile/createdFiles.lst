@@ -1,9 +1,6 @@
 com\example\application\views\registration\TermView.class
-<<<<<<< HEAD
-com\example\application\Data\DBPurchaseHistory.class
-=======
 com\example\application\views\Account\ItemUserView.class
->>>>>>> c523282783f3b793b8ebd72be0ae1b0edf6855ae
+com\example\application\Data\DBPurchaseHistory.class
 com\example\application\Data\DBForumList.class
 com\example\application\views\aboutus\DarrenView.class
 com\example\application\views\Services\sPost1.class
