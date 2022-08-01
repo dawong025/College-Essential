@@ -104,10 +104,10 @@ public class AccountView extends Div{
         purchaseHistory.addClassName("purchases");
 
         /* Selling History View */
-        Button sellingHistory = new Button("Selling History", e ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/SellingHistory"));
-        });
-        sellingHistory.addClassName("selling-history");
+        // Button sellingHistory = new Button("Selling History", e ->{
+        //     this.getUI().ifPresent(ui -> ui.navigate("/SellingHistory"));
+        // });
+        // sellingHistory.addClassName("selling-history");
 
         /* Edit Account View */
         Button editAccount = new Button("Edit Account", ev ->{
@@ -116,7 +116,7 @@ public class AccountView extends Div{
         editAccount.addClassName("editAcc");
 
         /* Add the Buttons */
-        HorizontalLayout buttons = new HorizontalLayout(purchaseHistory, sellingHistory, editAccount);
+        HorizontalLayout buttons = new HorizontalLayout(purchaseHistory, editAccount);
         buttons.addClassName("profile-buttons");
         HorizontalLayout h1 = new HorizontalLayout(img1, names, buttons);
         h1.addClassName("label-one");

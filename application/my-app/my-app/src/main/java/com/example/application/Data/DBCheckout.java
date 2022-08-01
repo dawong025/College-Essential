@@ -13,25 +13,6 @@ import com.mysql.cj.Query;
 public class DBCheckout {
 
     private static Connection connection;
-    
-    // public void init(){
-
-    //     String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
-    //     String userName = "team42022";
-    //     String password = "team4_2022";
-
-    //     try
-    //     {
-    //     Class.forName("com.mysql.cj.jdbc.Driver");
-    //     connection = DriverManager.getConnection(url, userName, password);
-    //     System.out.println("Connection is Successful to the database");
-    //     }
-    //     catch(Exception e){
-    //         System.out.println(e);
-    //     }
-  
-
-    // }
 
     public static void createPayment(String payment_type, String card_number)
     {
