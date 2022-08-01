@@ -31,7 +31,7 @@ import com.vaadin.flow.router.RouterLink;
 @CssImport("./themes/myapp/Account.css")
 @PageTitle("User Account")
 @Route(value = "viewAccount", layout = MainLayout.class)
-public class ViewUser extends VerticalLayout {
+public class ViewUser extends Div {
     public static String clickedUser;
     private ArrayList<String> user = new ArrayList<String>();
     private String first_name = "Kelly";
@@ -91,7 +91,7 @@ public class ViewUser extends VerticalLayout {
         aboutMe.addClassName("about-me");
 
         H6 aboutText1 = new H6(about);
-        H6 aboutText2 = new H6();
+        H6 aboutText2 = new H6(about);
 
         VerticalLayout aboutText = new VerticalLayout(aboutText1, aboutText2);
         aboutText.addClassName("aboutText");

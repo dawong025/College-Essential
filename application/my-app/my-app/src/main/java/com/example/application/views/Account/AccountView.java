@@ -52,6 +52,7 @@ public class AccountView extends Div{
         String emailDB = "kellysmith@gmail.com";
         String about = "Hi, I'm Kelly! Nice to meet you!\nCS @ SFSU";
         String contact = "For business inquiries only: kellysmith@gmail.com";
+        String pfp = "Filler pfp";
         
         String userName;
         /* Comment out this code if you want to solely work on testing AccountView */
@@ -72,6 +73,12 @@ public class AccountView extends Div{
             emailDB = user.get(3);
             about = user.get(4);
             contact = user.get(5);
+            pfp = user.get(6);
+
+            if(pfp == null){
+                pfp = "images/icon.jpg";
+            }
+
 
             /* Test the values from the DB */
             // for(int i = 0; i < user.size(); i++){
@@ -88,7 +95,7 @@ public class AccountView extends Div{
         nametag.addClassName("label-one");
 
         /* Profile Banner */
-        Image img1 = new Image("images/icon.jpg", "placeholder icon");
+        Image img1 = new Image(pfp, "placeholder icon");
         img1.setWidth("180px");
         img1.addClassName("pfp");
         H1 name = new H1(first_name + " "+ last_name);
@@ -106,10 +113,10 @@ public class AccountView extends Div{
         purchaseHistory.addClassName("purchases");
 
         /* Selling History View */
-        Button sellingHistory = new Button("Selling History", e ->{
-            this.getUI().ifPresent(ui -> ui.navigate("/SellingHistory"));
-        });
-        sellingHistory.addClassName("selling-history");
+        // Button sellingHistory = new Button("Selling History", e ->{
+        //     this.getUI().ifPresent(ui -> ui.navigate("/SellingHistory"));
+        // });
+        // sellingHistory.addClassName("selling-history");
 
         /* Edit Account View */
         Button editAccount = new Button("Edit Account", ev ->{
@@ -118,7 +125,7 @@ public class AccountView extends Div{
         editAccount.addClassName("editAcc");
 
         /* Add the Buttons */
-        HorizontalLayout buttons = new HorizontalLayout(purchaseHistory, sellingHistory, editAccount);
+        HorizontalLayout buttons = new HorizontalLayout(purchaseHistory, editAccount);
         buttons.addClassName("profile-buttons");
         HorizontalLayout h1 = new HorizontalLayout(img1, names, buttons);
         h1.addClassName("label-one");

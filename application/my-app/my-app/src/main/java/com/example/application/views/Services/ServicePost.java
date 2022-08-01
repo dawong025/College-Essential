@@ -1,9 +1,11 @@
 package com.example.application.views.Services;
 
+import com.example.application.Data.DBAccount;
 import com.example.application.Data.DBPostService;
 import com.example.application.Data.PostSLDetail;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Footer.FooterView;
+import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -74,14 +76,27 @@ public class ServicePost extends VerticalLayout{
             submit
         );
         submit.addClickListener(ev ->{
-            System.out.println("Estoy aqui");
             DBPostService db = new DBPostService();
-            System.out.println("Estoy aqui2");
             storeUserInfo();
-            System.out.println("Estoy aqui3");
-            
+            String userName;
+            int userId = 0;
+            DBAccount dbAccount = new DBAccount();
+            if (LoginView.getUser() != null) {
+                userName = LoginView.getUser();
+                System.out.println(userName);
+                
+                try {
+                    userId = dbAccount.getUserID(userName);
+                    System.out.println("userId:" + userId);
+
+                } catch (ClassNotFoundException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+            }
             System.out.println(userBean.getTitle());
-            db.StorePostService(userBean.getTitle(), userBean.getBody());
+            db.StorePostService(userId, userBean.getTitle(), userBean.getBody());
             showSuccess(userBean);
             this.getUI().ifPresent(ui ->
                 ui.navigate("/home"));
