@@ -147,11 +147,27 @@ public class HomeView extends VerticalLayout {
         add(buttonLayout);
 
         //code for button images for home page
-        Div marketImage = new Div();
+        Button marketImage = new Button("", e->{
+            //clears page and shows grid of everything
+            if (!comps.isEmpty()) {
+                for (Component c : comps) {
+                    remove(c);
+                }
+            }
+            DBHome db = new DBHome();
+            
+            itemList = db.searchHomeItem("", "All Categories");
+            popPage();
+
+        });
         marketImage.setClassName("homePageMarketImage");
-        Div forumImage = new Div();
+        Button forumImage = new Button("", ev ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/forumList"));
+        });
         forumImage.setClassName("homePageForumImage");
-        Div serviceImage = new Div();
+        Button serviceImage = new Button("", ev ->{
+            this.getUI().ifPresent(ui -> ui.navigate("/serviceList"));
+        });
         serviceImage.setClassName("homePageServiceImage");
         HorizontalLayout imageLayout = new HorizontalLayout();
         imageLayout.add(marketImage,forumImage,serviceImage);
