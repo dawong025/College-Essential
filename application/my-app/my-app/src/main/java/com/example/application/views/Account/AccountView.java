@@ -50,6 +50,7 @@ public class AccountView extends Div{
         String emailDB = "kellysmith@gmail.com";
         String about = "Hi, I'm Kelly! Nice to meet you!\nCS @ SFSU";
         String contact = "For business inquiries only: kellysmith@gmail.com";
+        String pfp = "Filler pfp";
         
         String userName;
         /* Comment out this code if you want to solely work on testing AccountView */
@@ -70,6 +71,8 @@ public class AccountView extends Div{
             emailDB = user.get(3);
             about = user.get(4);
             contact = user.get(5);
+            pfp = user.get(6);
+
 
             /* Test the values from the DB */
             // for(int i = 0; i < user.size(); i++){

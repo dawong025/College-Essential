@@ -2,10 +2,12 @@ package com.example.application.views.forum;
 
 import java.util.stream.Stream;
 
+import com.example.application.Data.DBAccount;
 import com.example.application.Data.DBPostForum;
 import com.example.application.Data.PostForumDetail;
 import com.example.application.views.MainLayout;
 import com.example.application.views.Footer.FooterView;
+import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.button.Button;
@@ -82,9 +84,26 @@ public class ForumPost extends VerticalLayout{
         submit.addClickListener(ev ->{
             DBPostForum db = new DBPostForum();
             storeUserInfo();
-            
+            String userName;
+            int userId = 0;
+            DBAccount dbAccount = new DBAccount();
+            if (LoginView.getUser() != null) {
+                userName = LoginView.getUser();
+
+                System.out.println(userName);
+                
+                try {
+                    userId = dbAccount.getUserID(userName);
+                    System.out.println("userId:" + userId);
+
+                } catch (ClassNotFoundException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+            }
             System.out.println(userBean.getTitle());
-            db.StorePostForum(userBean.getTitle(), userBean.getBody());
+            db.StorePostForum(userId, userBean.getTitle(), userBean.getBody());
             showSuccess(userBean);
             this.getUI().ifPresent(ui ->
                 ui.navigate("/home"));
