@@ -96,6 +96,8 @@
     background-color: black;
     color: whitesmoke;
     margin-top: -20%;
+    margin-left: auto;
+    min-width: 250px;
     /* margin-right: 0%; */
 }
 
@@ -113,10 +115,11 @@
     border-style: solid;
     border-color: black;
     border-radius: 10px;
-    width: 150px;
-    height: 150px;
+    min-width: 250px;
+    min-height: 250px;
     color: whitesmoke;
     margin-top: -30%;
+    margin-left: auto;
     /* margin-right: auto; */
 }
 
@@ -125,6 +128,7 @@
     position: relative;
     background-color: black;
     color: whitesmoke;
+    min-width: 250px;
     margin-top: -20%;
     /* margin-right: auto;
     margin-left: 18.5%;
@@ -145,8 +149,8 @@
     border-style: solid;
     border-color: black;
     border-radius: 10px;
-    width: 150px;
-    height: 150px;
+    min-width: 250px;
+    min-height: 250px;
     color: whitesmoke;
     margin-top: -30%;
     /* margin-right: 20%;
@@ -156,8 +160,9 @@
 .serviceButton{
     background-color: black;
     color: whitesmoke;
+    min-width: 250px;
     margin-top: -20%;
-    margin-right: 38%;
+    margin-right: auto;
     /* margin-right: auto;
     margin-left: 10%;
     left: 6%; */
@@ -177,11 +182,11 @@
     border-style: solid;
     border-color: black;
     border-radius: 10px;
-    width: 150px;
-    height: 150px;
     color: whitesmoke;
+    min-width: 250px;
+    min-height: 250px;
     margin-top: -30%;
-    margin-right: 38%;
+    margin-right: auto;
     /* margin-right: auto;
     margin-left: 0%; */
 }
