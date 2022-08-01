@@ -41,6 +41,7 @@ public class ServiceList extends VerticalLayout{
     private DBServiceList db;
     private int servicePostCounter;
     Select<String> select;
+    private static String slUser;
     private List<Component> comps = new ArrayList<>();
     
     public ServiceList() throws ClassNotFoundException{
@@ -109,7 +110,8 @@ public class ServiceList extends VerticalLayout{
             title.addClassName("service-post-title-hov");
 
             Button user = new Button("User: " + i.get("user"), e ->{
-                this.getUI().ifPresent(ui -> ui.navigate(i.get("account_route")));
+                slUser = i.get("user");
+                this.getUI().ifPresent(ui -> ui.navigate("/viewAccount"));
             });
             user.addClassName("service-post-user");
             user.addClassName("service-post-user-hov");
@@ -191,6 +193,9 @@ public class ServiceList extends VerticalLayout{
     }
     public String getSelector() {
         return select.toString();
+    }
+    public static String getServiceUser(){
+        return slUser;
     }
 
     public void loadPage() {
