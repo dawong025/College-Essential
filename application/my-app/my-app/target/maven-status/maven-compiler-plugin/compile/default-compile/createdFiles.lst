@@ -1,4 +1,5 @@
 com\example\application\views\registration\TermView.class
+com\example\application\views\Account\ItemUserView.class
 com\example\application\Data\DBForumList.class
 com\example\application\views\aboutus\DarrenView.class
 com\example\application\views\Services\sPost1.class
@@ -28,6 +29,7 @@ com\example\application\views\aboutus\BrendanView.class
 com\example\application\views\Account\Brendini2.class
 com\example\application\views\ads\AdSubmissionForm.class
 com\example\application\views\Footer\FooterView.class
+com\example\application\Data\DBComments.class
 com\example\application\views\Account\SellingHistory.class
 com\example\application\views\Items\ItemView.class
 com\example\application\views\MainLayout$MenuItemInfo.class

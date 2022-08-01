@@ -1,14 +1,14 @@
 
 
-
 .buttonLayout{
+    display: flex;
     margin: auto;
     margin-top:10%;
     width: 50%;
- 
 }
 
 .homePageImageLayout{
+    display: flex;
     margin: auto;
     margin-top:10%;
     width: 50%;
@@ -96,7 +96,7 @@
     background-color: black;
     color: whitesmoke;
     margin-top: -20%;
-    margin-right: 0%;
+    /* margin-right: 0%; */
 }
 
 .marketPlaceButton:hover{
@@ -105,6 +105,7 @@
 
 }
 .homePageMarketImage{
+    position: relative;
     background-color: black;
     background-image: url("https://i.redd.it/g1s9pyznaql01.jpg");
     background-size: cover;
@@ -116,17 +117,18 @@
     height: 150px;
     color: whitesmoke;
     margin-top: -30%;
-    margin-right: auto;
+    /* margin-right: auto; */
 }
 
 
 .forumButton{
+    position: relative;
     background-color: black;
     color: whitesmoke;
     margin-top: -20%;
-    margin-right: auto;
+    /* margin-right: auto;
     margin-left: 18.5%;
-    left: 2.5%;
+    left: 2.5%; */
 }
 
 .forumButton:hover{
@@ -135,6 +137,7 @@
 }
 
 .homePageForumImage{
+    position: relative;
     background-color: black;
     background-image: url("https://i.redd.it/g1s9pyznaql01.jpg");
     background-size: cover;
@@ -146,17 +149,18 @@
     height: 150px;
     color: whitesmoke;
     margin-top: -30%;
-    margin-right: 20%;
-    margin-left: 20%;
+    /* margin-right: 20%;
+    margin-left: 20%; */
 }
 
 .serviceButton{
     background-color: black;
     color: whitesmoke;
     margin-top: -20%;
-    margin-right: auto;
+    margin-right: 38%;
+    /* margin-right: auto;
     margin-left: 10%;
-    left: 6%;
+    left: 6%; */
 }
 
 .serviceButton:hover{
@@ -165,6 +169,7 @@
 }
 
 .homePageServiceImage{
+    position: static;
     background-color: black;
     background-image: url("https://i.redd.it/g1s9pyznaql01.jpg");
     background-size: cover;
@@ -176,8 +181,9 @@
     height: 150px;
     color: whitesmoke;
     margin-top: -30%;
-    margin-right: auto;
-    margin-left: 0%;
+    margin-right: 38%;
+    /* margin-right: auto;
+    margin-left: 0%; */
 }
 
 .errorMessage{
