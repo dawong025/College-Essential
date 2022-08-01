@@ -10,6 +10,7 @@ import com.example.application.Data.DBServiceList;
 import com.example.application.views.MainLayout;
 import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.ClickNotifier;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
@@ -21,6 +22,8 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
@@ -142,7 +145,9 @@ public class sPost1 extends VerticalLayout{
             String userName;
             DBServiceList dbServiceList = new DBServiceList();
             DBAccount dbAccount = new DBAccount();
-            if (LoginView.getUser() != null) {
+            if(LoginView.logStatus()){
+                if(comment != ""){
+                   if (LoginView.getUser() != null) {
                 userName = LoginView.getUser();
 
                 System.out.println(userName);
@@ -157,7 +162,17 @@ public class sPost1 extends VerticalLayout{
                     e1.printStackTrace();
                 }
 
+                UI.getCurrent().getPage().reload();
+
+            } 
+                }else{
+                    showEmpty();
+                }
+                
+            }else{
+                showFailer();
             }
+            
 
         });
 
@@ -181,5 +196,18 @@ public class sPost1 extends VerticalLayout{
             personalInfo,
             h3
         );
+    }
+
+    private void showFailer() {
+        Notification notification =
+                Notification.show("Must be logged in to Post Comments");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+      
+    }
+
+    private void showEmpty() {
+        Notification notification = Notification.show("Comments cant be empty");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+
     }
 }
