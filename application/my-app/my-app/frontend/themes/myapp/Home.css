@@ -80,17 +80,19 @@
     font-size: 25px;
     font-weight: 900;
     color: black;
-    margin-left: 25%;
     margin-top: 100px;
     text-shadow: 1px 1px white;
+    margin-right: auto;
+    margin-left: auto;
 }
 .title-p2 {
     font-size: 25px;
     font-weight: 900;
     color: black;
-    margin-left: 25%;
     margin-top: -35px;
     text-shadow: 1px 1px white;
+    margin-right: auto;
+    margin-left: auto;
 }
 .marketPlaceButton{
     background-color: black;
@@ -143,7 +145,7 @@
 .homePageForumImage{
     position: relative;
     background-color: black;
-    background-image: url("https://i.redd.it/g1s9pyznaql01.jpg");
+    background-image: url("https://static.vecteezy.com/system/resources/previews/000/337/734/original/vector-chat-icon.jpg");
     background-size: cover;
     border: 7px;
     border-style: solid;
@@ -211,25 +213,28 @@
 }
 
 .description-1{
-    margin-left: 25%;
     margin-top: -30px;
     font-size: 16px;
     color: black;
     text-shadow: 0.5px 0.5px white;
+    margin-right: auto;
+    margin-left: auto;
 }
 .description-2{
-    margin-left: 25%;
     margin-top: -20px;
     font-size: 16px;
     color: black;
     text-shadow: 0.5px 0.5px white;
+    margin-right: auto;
+    margin-left: auto;
 }
 .description-3{
-    margin-left: 25%;
     margin-top: -17px;
     font-size: 16px;
     color: black;
     text-shadow: 0.5px 0.5px white;
+    margin-right: auto;
+    margin-left: auto;
 }
 .searchBar{
     background-color: white;
