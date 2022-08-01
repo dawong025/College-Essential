@@ -137,6 +137,7 @@ public class MainLayout extends AppLayout {
                 LoginView.logOut();
                  logout.setVisible(false);
                  account.setVisible(false);
+                 admin.setVisible(false);
                  log.setVisible(true);
                  reg.setVisible(true);
                  

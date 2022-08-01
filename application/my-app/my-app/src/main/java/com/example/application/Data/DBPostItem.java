@@ -65,9 +65,9 @@ public class DBPostItem {
              PreparedStatement preparedStmt2 = connection.prepareStatement(query);
              preparedStmt2.setString(1, Title);
              preparedStmt2.setInt( 2,DBlogin.getUserId());
-             preparedStmt2.setString(2, price);
-             preparedStmt2.setString(3, body);
-             preparedStmt2.setString(4, quant);
+             preparedStmt2.setString(3, price);
+             preparedStmt2.setString(4, body);
+             preparedStmt2.setString(5, quant);
              preparedStmt2.execute();
         
 

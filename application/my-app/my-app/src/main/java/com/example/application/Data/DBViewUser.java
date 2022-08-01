@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.sql.Statement; 
 
 public class DBViewUser {
+
     public static ArrayList<String> searchEmail(String email) throws ClassNotFoundException {
         ArrayList<String> user = new ArrayList<String>();
         String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
@@ -25,9 +26,10 @@ public class DBViewUser {
             String emailDB;
             String about;
             String contact;
+            String id;
             
                 
-            String q = "SELECT first_name, last_name, username, email, about, contact FROM RegisteredUser WHERE email LIKE '%"+email+"%'";
+            String q = "SELECT first_name, last_name, username, email, registered_user_id ,about, contact FROM RegisteredUser WHERE email LIKE '%"+email+"%'";
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
@@ -38,6 +40,7 @@ public class DBViewUser {
                     emailDB = rs.getString("email");
                     about = rs.getString("about");
                     contact = rs.getString("contact");
+                    id = rs.getString("registered_user_id");
                     
                     user.add(first_name);
                     user.add(last_name);
@@ -45,6 +48,7 @@ public class DBViewUser {
                     user.add(emailDB);
                     user.add(about);
                     user.add(contact);
+                    user.add(id);
                       
                 }
             } catch (SQLException e) {
@@ -75,9 +79,9 @@ public class DBViewUser {
             String emailDB;
             String about;
             String contact;
-            
+            String id;
                 
-            String q = "SELECT first_name, last_name, username, email, about, contact FROM RegisteredUser WHERE username LIKE '%"+userLogin+"%'";
+            String q = "SELECT first_name, last_name, username, registered_user_id,email, about, contact FROM RegisteredUser WHERE username LIKE '%"+userLogin+"%'";
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
@@ -88,6 +92,7 @@ public class DBViewUser {
                     emailDB = rs.getString("email");
                     about = rs.getString("about");
                     contact = rs.getString("contact");
+                    id = rs.getString("registered_user_id");
                     
                     user.add(first_name);
                     user.add(last_name);
@@ -95,6 +100,7 @@ public class DBViewUser {
                     user.add(emailDB);
                     user.add(about);
                     user.add(contact);
+                    user.add(id);
                       
                 }
             } catch (SQLException e) {

@@ -98,6 +98,7 @@ public class DBHome {
                       array.add(quant);
                       array.add(product_id);
                       array.add(seller_id);
+                      userId = seller_id;
                   
                     itemList.put(nameItem,array);
                   
