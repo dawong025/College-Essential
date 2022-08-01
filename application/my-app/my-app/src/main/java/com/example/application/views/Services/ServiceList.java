@@ -121,7 +121,7 @@ public class ServiceList extends VerticalLayout{
             // school.addClassName("service-post-school-hov");
 
             Button description = new Button(i.get("description"), e ->{
-                nav = i.get("description");
+                nav = i.get("title");
                 this.getUI().ifPresent(ui -> ui.navigate("/sPost"));
             });
             description.addClassName("service-post-description");
