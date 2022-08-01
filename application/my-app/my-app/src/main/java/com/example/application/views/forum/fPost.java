@@ -33,8 +33,8 @@ import com.vaadin.flow.router.Route;
 @CssImport("./themes/myapp/forumpost.css")
 @PageTitle("Forum Page")
 @Route(value = "fPost", layout = MainLayout.class)
-public class fPost extends VerticalLayout{
-    public fPost() throws ClassNotFoundException{
+public class fPost extends VerticalLayout {
+    public fPost() throws ClassNotFoundException {
         getElement().getClassList().add("forum-grid");
         setWidth("100%");
         this.addClassName("forum-background");
@@ -42,33 +42,28 @@ public class fPost extends VerticalLayout{
         HashMap<String, String> post1 = new HashMap<String, String>();
         ArrayList<HashMap<String, String>> posts = ForumList.getPosts();
         String nav = ForumList.getNav();
-        for(HashMap<String, String> i: posts){
-            if(nav == i.get("title")){
+        for (HashMap<String, String> i : posts) {
+            if (nav == i.get("title")) {
                 post1 = i;
-                
+
             }
-            if(nav == i.get("description")){
+            if (nav == i.get("description")) {
                 post1 = i;
             }
         }
-        
-        // post1.put("title", "Anime");
-        // post1.put("user", "Brendan1");
-        // post1.put("description", "I really like this one anime. AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
-        
-        //Grid area for image
+        // Grid area for image
         Div imageholder = new Div();
         imageholder.addClassName("fp-image");
         Image img1 = new Image("images/icon.jpg", "placeholder icon");
         img1.addClassName("fp-image");
 
-        //Grid area for title
+        // Grid area for title
         Div titleholder = new Div();
         titleholder.addClassName("fp-title");
         H2 title = new H2(post1.get("title"));
         title.addClassName("fp-title");
 
-        //Grid area for user name
+        // Grid area for user name
         Div nameholder = new Div();
         nameholder.addClassName("fp-user");
         TextField user = new TextField("");
@@ -77,7 +72,7 @@ public class fPost extends VerticalLayout{
         user.addThemeVariants(TextFieldVariant.LUMO_ALIGN_CENTER);
         user.setReadOnly(true);
 
-        //Grid area for the post
+        // Grid area for the post
         Div postholder = new Div();
         postholder.addClassName("fp-description");
         TextArea description = new TextArea("");
@@ -88,18 +83,18 @@ public class fPost extends VerticalLayout{
         description.setReadOnly(true);
         description.addClassName("fp-description");
 
-        //Grid area for contact
+        // Grid area for contact
         Div contactHolder = new Div();
         contactHolder.addClassName("fp-contact");
         H3 aboutMe = new H3("About Me");
         aboutMe.addClassName("fp-about-me");
-        
+
         H6 aboutText1 = new H6("Hi, I'm " + post1.get("user") + "! Nice to meet you!");
         H6 aboutText2 = new H6("CS @ Northwestern");
-        
+
         VerticalLayout aboutText = new VerticalLayout(aboutText1, aboutText2);
         aboutText.addClassName("fp-aboutText");
-        
+
         H3 contactMe = new H3("Contact Me");
         contactMe.addClassName("fp-contact-me");
         H6 contactText1 = new H6("For business inquiries only: brendini1@gmail.com");
@@ -108,53 +103,41 @@ public class fPost extends VerticalLayout{
         VerticalLayout personalInfo = new VerticalLayout(aboutMe, aboutText, contactMe, contactText);
         personalInfo.addClassName("fp-contact");
 
-        //Comment Grid Area
-        Div commentsDiv = new Div();
-        H3 comments = new H3("Comments");
-        comments.addClassName("fp-comment-title");
+        // Comment Grid Area
+        DBComments db = new DBComments();
+        int forum_post_id = DBForumList.getForumPostID(nav);
+        VerticalLayout allComments = new VerticalLayout();
+        ArrayList<ArrayList<String>> comments = DBComments.getForumReply(forum_post_id);
+        for (int i = 0; i < comments.size(); i++) {
+            String desc = comments.get(i).get(0);
+            String postedAt = comments.get(i).get(1);
+            String username = comments.get(i).get(2);
 
-        H6 commentAuthor1 = new H6 ("@Reviewer1");
-        commentAuthor1.addClassName("fp-comment-author");
-        Span datePosted1 = new Span ("12/17/2022");
-        datePosted1.addClassName("fp-date-posted");
-        H6 commentText1 = new H6("Good for you.");
-        commentText1.addClassName("fp-comment-text");
-        VerticalLayout comment1 = new VerticalLayout(commentAuthor1, datePosted1, commentText1);
-        comment1.addClassName("fp-single-comment");
-
-        H6 commentAuthor2 = new H6 ("@Reviewer2");
-        commentAuthor2.addClassName("fp-comment-author");
-        Span datePosted2 = new Span ("12/17/2022");
-        datePosted2.addClassName("fp-date-posted");
-        H6 commentText2 = new H6("You too?");
-        commentText2.addClassName("fp-comment-text");
-        VerticalLayout comment2 = new VerticalLayout(commentAuthor2, datePosted2, commentText2);
-        comment2.addClassName("fp-single-comment");
-
-        H6 commentAuthor3 = new H6 ("@Reviewer3");
-        commentAuthor3.addClassName("fp-comment-author");
-        Span datePosted3 = new Span ("12/17/2022");
-        datePosted3.addClassName("fp-date-posted");
-        H6 commentText3 = new H6("Good to know.");
-        commentText3.addClassName("fp-comment-text");
-        VerticalLayout comment3 = new VerticalLayout(commentAuthor3, datePosted3, commentText3);
-        comment3.addClassName("fp-single-comment");
-        
-        VerticalLayout allComments = new VerticalLayout(comment1, comment2, comment3);
+            VerticalLayout indivComment = new VerticalLayout();
+            H6 commentAuthor = new H6(username);
+            commentAuthor.addClassName("fp-comment-author");
+            Span datePosted = new Span(postedAt);
+            datePosted.addClassName("fp-date-posted");
+            H6 commentText = new H6(desc);
+            commentText.addClassName("fp-comment-text");
+            indivComment = new VerticalLayout(commentAuthor, datePosted, commentText);
+            indivComment.addClassName("fp-single-comment");
+            allComments.add(indivComment);
+        }
         allComments.addClassName("fp-all-comments");
-        
+
         TextArea newCommentField = new TextArea();
         newCommentField.addClassName("new-comment-text");
         newCommentField.setPlaceholder("Add a new comment for this user");
 
         Button submitComment = new Button("Submit");
         submitComment.addClassName("fp-submit-button");
-        submitComment.addClickListener(e->{ 
+        submitComment.addClickListener(e -> {
             String comment = newCommentField.getValue();
             String userName;
             DBForumList dbForumList = new DBForumList();
             DBAccount dbAccount = new DBAccount();
-            if(LoginView.getUser() != null){
+            if (LoginView.getUser() != null) {
                 userName = LoginView.getUser();
 
                 System.out.println(userName);
@@ -162,31 +145,32 @@ public class fPost extends VerticalLayout{
                 try {
                     userId = dbAccount.getUserID(userName);
                     System.out.println("userId:" + userId);
-                    int forum_post_id = DBForumList.getForumPostID(nav);
-                    System.out.println("forum_post_id:" + forum_post_id);
-                    DBComments.StoreForumReply(comment, forum_post_id, userId);
+                    int forum_post_id1 = DBForumList.getForumPostID(nav);
+                    System.out.println("forum_post_id:" + forum_post_id1);
+                    DBComments.StoreForumReply(comment, forum_post_id1, userId);
                 } catch (ClassNotFoundException e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-                
+
             }
-            
+
         });
 
         HorizontalLayout commentSubmission = new HorizontalLayout(newCommentField, submitComment);
-
-        VerticalLayout h3 = new VerticalLayout(comments, allComments, commentSubmission);
+        commentSubmission.addClassName("comment-submission");
+        // VerticalLayout h3 = new VerticalLayout(comments, allComments,
+        // commentSubmission);
+        VerticalLayout h3 = new VerticalLayout(allComments, commentSubmission);
         h3.addClassName("fp-comments");
-        commentsDiv.addClassName("fp-comments");
+        // commentsDiv.addClassName("fp-comments");
 
         add(
-            img1,
-            title,
-            user,
-            description,
-            personalInfo,
-            h3
-        );
+                img1,
+                title,
+                user,
+                description,
+                personalInfo,
+                h3);
     }
 }
