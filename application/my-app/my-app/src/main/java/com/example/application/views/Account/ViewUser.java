@@ -46,11 +46,14 @@ public class ViewUser extends Div {
     private String about = "Hi, I'm Kelly! Nice to meet you!\nCS @ SFSU";
     private String contact = "For business inquiries only: kellysmith@gmail.com";
     private String accountId = "1";
+    private String pfp = "Filler pfp";
 
     private float ratingScore = 0;
     private int ratingCount = 0;
 
     private String userName;
+    private static String viewClickedUser;
+
 
     public ViewUser() {
 
@@ -61,30 +64,32 @@ public class ViewUser extends Div {
             getInfoFromItemView();
             ItemView.resetUser();
 
-        }else if(AccountView.getClickedUser() != null){
+        } else if (AccountView.getClickedUser() != null) {
             getInfoFromRating();
             AccountView.resetUser();
-           
-        }
-        else if(ForumList.getForumUser() != null){
+
+        } else if (ForumList.getForumUser() != null) {
             getInfoFromForumList();
             ForumList.resetFormUser();
-        }
-        else if(ServiceList.getServiceUser() != null){
+        } else if (ServiceList.getServiceUser() != null) {
             getInfoFromServiceList();
             ServiceList.resetUser();
-        }
-        else if(fPost.getFPostUser() != null){
+        } else if (fPost.getFPostUser() != null) {
             getInfoFromForumPost();
             fPost.resetUser();
-        }
-        else if(sPost1.getListingUser() != null){
+        } else if (sPost1.getListingUser() != null) {
             getInfoFromServiceListing();
             sPost1.resetUser();
         }
-        else{
-            //recursive view
-        
+        else if (NewViewAccount.getRatingAuthor() != null) {
+            getInfoFromUserRatingListing();
+            NewViewAccount.resetUser();
+        }else {
+            // recursive view
+            fillRecersive();
+            ;
+            viewClickedUser = null;
+
         }
 
         // add for clicked user
@@ -96,7 +101,7 @@ public class ViewUser extends Div {
         Div nametag = new Div();
         nametag.addClassName("label-one");
 
-        Image img1 = new Image("images/icon.jpg", "placeholder icon");
+        Image img1 = new Image(pfp, "placeholder icon");
         img1.setWidth("180px");
         img1.addClassName("pfp");
         H1 name = new H1(first_name + " " + last_name);
@@ -139,47 +144,54 @@ public class ViewUser extends Div {
         VerticalLayout allRatings = new VerticalLayout();
         allRatings.addClassName("all-ratings");
 
-        //loops the comments
+        // loops the comments
         ratingCount = ratingDetails.size();
-        for(int i = 0; i<ratingDetails.size();i++){
-            //rating, at, descr,name
+        for (int i = 0; i < ratingDetails.size(); i++) {
+            // rating, at, descr,name
             String username = ratingDetails.get(i).get(3);
-            //fix button name
-            Button ratingAuthor1 = new Button("@" +username, evet ->{
-                clickedUser = username;
-                this.getUI().ifPresent(ui -> ui.navigate(
-                    ViewUser.class));
+            // fix button name
+            // Button ratingAuthor1 = new Button("@" + username, evet -> {
+            //     clickedUser = username;
+            //     viewClickedUser = username;
+            //     // UI.getCurrent().getPage().reload();
+            //     this.getUI().ifPresent(ui -> ui.navigate(
+            //             NewViewAccount.class));
+            // });
+            Div ratingAuthor1 = new Div();
+            ratingAuthor1.add(new RouterLink(username, ViewUser.class));
+            ratingAuthor1.addClickListener(e ->{
+                NewViewAccount.setRatingAuthor(username);
+                UI.getCurrent().getPage().reload();
             });
-        ratingAuthor1.addClassName("rating-author");
-        Span datePosted1 = new Span(ratingDetails.get(i).get(1));
-        datePosted1.addClassName("date-posted");
-        String curRating = ratingDetails.get(i).get(0);
-        H6 commentText1 = new H6(curRating +": "+ratingDetails.get(i).get(2));
-        ratingScore += Integer.parseInt(curRating);
-        commentText1.addClassName("comment-text");
-        VerticalLayout rating1 = new VerticalLayout(ratingAuthor1, datePosted1, commentText1);
-        rating1.addClassName("single-rating");
-        allRatings.add(rating1);
-        add(allRatings);
+            
+            //ratingAuthor1.addClassName("rating-author");
+
+            Span datePosted1 = new Span(ratingDetails.get(i).get(1));
+            datePosted1.addClassName("date-posted");
+            String curRating = ratingDetails.get(i).get(0);
+            H6 commentText1 = new H6(curRating + ": " + ratingDetails.get(i).get(2));
+            ratingScore += Integer.parseInt(curRating);
+            commentText1.addClassName("comment-text");
+            VerticalLayout rating1 = new VerticalLayout(ratingAuthor1, datePosted1, commentText1);
+            rating1.addClassName("single-rating");
+            allRatings.add(rating1);
+            add(allRatings);
         }
 
-        if(ratingDetails.isEmpty()){
+        if (ratingDetails.isEmpty()) {
             H4 noRating = new H4("No ratings for user yet");
             allRatings.add(noRating);
         }
-        
-        ratingScore = ratingScore/ratingCount;
+
+        ratingScore = ratingScore / ratingCount;
         String temp = "";
-        if(ratingDetails.size() == 0){
+        if (ratingDetails.size() == 0) {
             temp = "";
-        }else{
-            temp = ""+ratingScore;
+        } else {
+            temp = "" + ratingScore;
         }
         H3 ratings = new H3("Ratings " + temp);
         ratings.addClassName("ratings");
-
-
-       
 
         TextField newRatingField = new TextField();
         newRatingField.addClassName("new-rating-text");
@@ -189,19 +201,17 @@ public class ViewUser extends Div {
         select.setItems(1, 2, 3, 4, 5);
         select.setValue(1);
         select.addClassName("rating-selector");
-        //System.out.println(DBAccount.getRating(accountId));
+        // System.out.println(DBAccount.getRating(accountId));
 
         Button submitRating = new Button("Submit", e -> {
-            //String rating,String comment, String currUserId, String accountPostedOnId
+            // String rating,String comment, String currUserId, String accountPostedOnId
             int rating = select.getValue();
             String comment = newRatingField.getValue();
             int userId = DBlogin.getUserId();
             String acId = accountId;
-            DBAccount.addRating( rating,comment, userId, acId);
-            UI.getCurrent().getPage().reload();
+            DBAccount.addRating(rating, comment, userId, acId);
+            // UI.getCurrent().getPage().reload();
             showSuccess();
-
-            
 
         });
         submitRating.addClassName("submit-rating");
@@ -223,39 +233,43 @@ public class ViewUser extends Div {
     }
 
     public static String getClickedUser() {
-        return clickedUser;
+        return viewClickedUser;
     }
 
-    public void getInfoFromItemView(){
+    public void getInfoFromItemView() {
         userName = ItemView.getUser();
-            System.out.println(userName);
+        System.out.println(userName);
 
-            if (userName.contains("@")) {
-                try {
-                    user = DBViewUser.searchEmail(userName);
-                } catch (ClassNotFoundException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-            } else {
-                try {
-                    user = DBViewUser.searchUser(userName);
-                } catch (ClassNotFoundException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+        if (userName.contains("@")) {
+            try {
+                user = DBViewUser.searchEmail(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
             }
-            first_name = user.get(0);
-            last_name = user.get(1);
-            username = user.get(2);
-            emailDB = user.get(3);
-            about = user.get(4);
-            contact = user.get(5);
-            accountId = user.get(6);
+        } else {
+            try {
+                user = DBViewUser.searchUser(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        first_name = user.get(0);
+        last_name = user.get(1);
+        username = user.get(2);
+        emailDB = user.get(3);
+        about = user.get(4);
+        contact = user.get(5);
+        accountId = user.get(6);
+        pfp = user.get(7);
+        if (pfp == null) {
+            pfp = "images/icon.jpg";
+        }
 
     }
 
-    public void getInfoFromRating(){
+    public void getInfoFromRating() {
         userName = AccountView.getClickedUser();
         System.out.println(userName);
 
@@ -281,8 +295,13 @@ public class ViewUser extends Div {
         about = user.get(4);
         contact = user.get(5);
         accountId = user.get(6);
+        pfp = user.get(7);
+        if (pfp == null) {
+            pfp = "images/icon.jpg";
+        }
     }
-    public void getInfoFromForumList(){
+
+    public void getInfoFromForumList() {
         userName = ForumList.getForumUser();
         System.out.println(userName);
 
@@ -308,8 +327,13 @@ public class ViewUser extends Div {
         about = user.get(4);
         contact = user.get(5);
         accountId = user.get(6);
+        pfp = user.get(7);
+        if (pfp == null) {
+            pfp = "images/icon.jpg";
+        }
     }
-    public void getInfoFromServiceList(){
+
+    public void getInfoFromServiceList() {
         userName = ServiceList.getServiceUser();
         System.out.println(userName);
 
@@ -335,8 +359,13 @@ public class ViewUser extends Div {
         about = user.get(4);
         contact = user.get(5);
         accountId = user.get(6);
+        pfp = user.get(7);
+        if (pfp == null) {
+            pfp = "images/icon.jpg";
+        }
     }
-    public void getInfoFromForumPost(){
+
+    public void getInfoFromForumPost() {
         userName = fPost.getFPostUser();
         System.out.println(userName);
 
@@ -362,8 +391,13 @@ public class ViewUser extends Div {
         about = user.get(4);
         contact = user.get(5);
         accountId = user.get(6);
+        pfp = user.get(7);
+        if (pfp == null) {
+            pfp = "images/icon.jpg";
+        }
     }
-    public void getInfoFromServiceListing(){
+
+    public void getInfoFromServiceListing() {
         userName = sPost1.getListingUser();
         System.out.println(userName);
 
@@ -389,12 +423,85 @@ public class ViewUser extends Div {
         about = user.get(4);
         contact = user.get(5);
         accountId = user.get(6);
+        pfp = user.get(7);
+        if (pfp == null) {
+            pfp = "images/icon.jpg";
+        }
     }
+
+    public void getInfoFromUserRatingListing() {
+        userName = NewViewAccount.getRatingAuthor();
+        System.out.println(userName);
+
+        if (userName.contains("@")) {
+            try {
+                user = DBViewUser.searchEmail(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        } else {
+            try {
+                user = DBViewUser.searchUser(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        first_name = user.get(0);
+        last_name = user.get(1);
+        username = user.get(2);
+        emailDB = user.get(3);
+        about = user.get(4);
+        contact = user.get(5);
+        accountId = user.get(6);
+        pfp = user.get(7);
+        if (pfp == null) {
+            pfp = "images/icon.jpg";
+        }
+    }
+
+    public void fillRecersive() {
+        userName = NewViewAccount.getClickedUser();
+        System.out.println(userName);
+
+        if (userName.contains("@")) {
+            try {
+                user = DBViewUser.searchEmail(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        } else {
+            try {
+                user = DBViewUser.searchUser(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        first_name = user.get(0);
+        last_name = user.get(1);
+        username = user.get(2);
+        emailDB = user.get(3);
+        about = user.get(4);
+        contact = user.get(5);
+        accountId = user.get(6);
+        pfp = user.get(7);
+        if (pfp == null) {
+            pfp = "images/icon.jpg";
+        }
+    }
+
     private void showSuccess() {
-        Notification notification =
-                Notification.show("Rating was posted ");
+        Notification notification = Notification.show("Rating was posted ");
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-      
+
+    }
+
+    private static String getRecursiveClickedUser() {
+        return viewClickedUser;
+
     }
 
 }

@@ -50,6 +50,9 @@ addCssBlock(`<style>${$css_13}</style>`);
 import $cssFromFile_14 from 'Frontend/themes/myapp/Registration.css';
 const $css_14 = typeof $cssFromFile_14  === 'string' ? unsafeCSS($cssFromFile_14) : $cssFromFile_14;
 addCssBlock(`<style>${$css_14}</style>`);
+import $cssFromFile_15 from 'Frontend/themes/myapp/Terms.css';
+const $css_15 = typeof $cssFromFile_15  === 'string' ? unsafeCSS($cssFromFile_15) : $cssFromFile_15;
+addCssBlock(`<style>${$css_15}</style>`);
 
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-list/iron-list.js';

@@ -52,8 +52,10 @@ public class DBAdmin {
                     userNumList.add(user);
                     user = new ArrayList<>();
                     count++;
-                      
+                         
                 }
+                System.out.println("DBAdmin searchUser connection closed");
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }  
@@ -89,7 +91,8 @@ public class DBAdmin {
             } catch (SQLException e) {
                 e.printStackTrace();
             }  
-
+            System.out.println("DBAdmin deleteUser connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -123,7 +126,8 @@ public class DBAdmin {
             } catch (SQLException e) {
                 e.printStackTrace();
             }  
-
+            System.out.println("DBAdmin banUser connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -158,7 +162,8 @@ public class DBAdmin {
             } catch (SQLException e) {
                 e.printStackTrace();
             }  
-
+            System.out.println("DBAdmin unbanUser connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -189,7 +194,8 @@ public class DBAdmin {
             } catch (SQLException e) {
                 e.printStackTrace();
             }  
-
+            System.out.println("DBAdmin deletePost connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {

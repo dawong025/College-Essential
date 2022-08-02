@@ -55,7 +55,8 @@ public class DBAccount {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
+            System.out.println("DBAccount searchEmail connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -110,7 +111,8 @@ public class DBAccount {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
+            System.out.println("DBAccount searchUsername connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -143,7 +145,8 @@ public class DBAccount {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
+            System.out.println("DBAccount getUserNameFromId connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -178,7 +181,8 @@ public class DBAccount {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
+            System.out.println("DBAccount getUserId connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -210,7 +214,8 @@ public class DBAccount {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
+            System.out.println("DBAccount addRating connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -268,6 +273,8 @@ public class DBAccount {
                     details = new ArrayList<>();
 
                 }
+                System.out.println("DBAccount getRating connection closed");
+                connection.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

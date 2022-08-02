@@ -56,7 +56,6 @@ public class DBPostService {
              connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
             
-            //TODO - Hardcoded solution for registered user
              query = "INSERT INTO Posts(service_listing_id, registered_user_id) values(?, ?)";
              PreparedStatement preparedStmt2 = connection.prepareStatement(query);
              preparedStmt2.setInt(1, serviceListingID);
@@ -70,7 +69,8 @@ public class DBPostService {
             throwables.printStackTrace();
         }
 
-    
+        System.out.println("DBPostItem storePostService connection closed");
+        connection.close();
     } catch (ClassNotFoundException e) {
         e.printStackTrace();
     } catch (SQLException throwables) {
