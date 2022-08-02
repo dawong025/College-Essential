@@ -203,5 +203,68 @@ public class DBAdmin {
         }  
 
     }
+
+
+    public static void deleteFormPost(String title){
+        String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
+        String userName = "team42022";
+        String password = "team4_2022";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, userName, password);
+            System.out.println("Connection is Successful to the database" + url);
+            
+            
+                
+            String q = "DELETE FROM ForumPost WHERE title = '"+title+"';";
+            try {
+                Statement stmt = connection.createStatement();
+                stmt.execute(q);
+              
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  
+            System.out.println("DBAdmin deletePost connection closed");
+            connection.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }  
+
+
+    }
+    
+    
+    public static void deleteServicePost(String title){
+        String url = "jdbc:mysql://aa6sm8glmiegl4.cabpjb9qfuhk.us-west-1.rds.amazonaws.com/ebdb";
+        String userName = "team42022";
+        String password = "team4_2022";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(url, userName, password);
+            System.out.println("Connection is Successful to the database" + url);
+            
+            
+                
+            String q = "DELETE FROM ServiceListing WHERE title = '"+title+"';";
+            try {
+                Statement stmt = connection.createStatement();
+                stmt.execute(q);
+              
+                
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  
+            System.out.println("DBAdmin deletePost connection closed");
+            connection.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }  
+        
+    }
     
 }

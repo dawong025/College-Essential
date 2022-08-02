@@ -95,7 +95,7 @@ public class DBHome {
                       array.add(imageURL);
                       array.add(body);
                       array.add(price);
-                      array.add(quant);
+                    array.add(quant);
                       array.add(product_id);
                       array.add(seller_id);
                       userId = seller_id;

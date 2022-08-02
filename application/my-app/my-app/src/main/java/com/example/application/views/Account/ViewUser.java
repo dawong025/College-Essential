@@ -2,6 +2,8 @@ package com.example.application.views.Account;
 
 import java.util.ArrayList;
 
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Lettuce.Cluster.Refresh;
+
 import com.example.application.Data.DBAccount;
 import com.example.application.Data.DBViewUser;
 import com.example.application.Data.DBlogin;
@@ -47,6 +49,8 @@ public class ViewUser extends Div {
     private String contact = "For business inquiries only: kellysmith@gmail.com";
     private String accountId = "1";
     private String pfp = "Filler pfp";
+    private static boolean didSubmit = false;
+    private static String refreshUserName;
 
     private float ratingScore = 0;
     private int ratingCount = 0;
@@ -60,9 +64,10 @@ public class ViewUser extends Div {
         DBViewUser db = new DBViewUser();
         /* Store the user info from the DB to an array */
 
-        if (ItemView.getUser() != null) {
+        if(!didSubmit){
+            if (ItemView.getUser() != null) {
             getInfoFromItemView();
-            ItemView.resetUser();
+            // ItemView.resetUser();
 
         } else if (AccountView.getClickedUser() != null) {
             getInfoFromRating();
@@ -79,7 +84,7 @@ public class ViewUser extends Div {
             fPost.resetUser();
         } else if (sPost1.getListingUser() != null) {
             getInfoFromServiceListing();
-            sPost1.resetUser();
+             sPost1.resetUser();
         }
         else if (NewViewAccount.getRatingAuthor() != null) {
             getInfoFromUserRatingListing();
@@ -87,10 +92,15 @@ public class ViewUser extends Div {
         }else {
             // recursive view
             fillRecersive();
-            ;
-            viewClickedUser = null;
+            
+            //viewClickedUser = null;
 
         }
+        }else{
+            refreshPage();
+        }
+
+        
 
         // add for clicked user
 
@@ -149,19 +159,13 @@ public class ViewUser extends Div {
         for (int i = 0; i < ratingDetails.size(); i++) {
             // rating, at, descr,name
             String username = ratingDetails.get(i).get(3);
-            // fix button name
-            // Button ratingAuthor1 = new Button("@" + username, evet -> {
-            //     clickedUser = username;
-            //     viewClickedUser = username;
-            //     // UI.getCurrent().getPage().reload();
-            //     this.getUI().ifPresent(ui -> ui.navigate(
-            //             NewViewAccount.class));
-            // });
+            
             Div ratingAuthor1 = new Div();
-            ratingAuthor1.add(new RouterLink(username, ViewUser.class));
+            NewViewAccount.setRatingAuthor(username);
+            ratingAuthor1.add(new RouterLink(username, NewViewAccount.class));
             ratingAuthor1.addClickListener(e ->{
-                NewViewAccount.setRatingAuthor(username);
-                UI.getCurrent().getPage().reload();
+                clickedUser = username;
+                //UI.getCurrent().getPage().reload();
             });
             
             //ratingAuthor1.addClassName("rating-author");
@@ -204,14 +208,30 @@ public class ViewUser extends Div {
         // System.out.println(DBAccount.getRating(accountId));
 
         Button submitRating = new Button("Submit", e -> {
-            // String rating,String comment, String currUserId, String accountPostedOnId
-            int rating = select.getValue();
+
+            //String rating,String comment, String currUserId, String accountPostedOnId
+            if(LoginView.logStatus()){
+                int rating = select.getValue();
+                didSubmit = true;
+                refreshUserName = userName;
+
             String comment = newRatingField.getValue();
             int userId = DBlogin.getUserId();
             String acId = accountId;
             DBAccount.addRating(rating, comment, userId, acId);
-            // UI.getCurrent().getPage().reload();
             showSuccess();
+            ItemView.resetUser();
+            AccountView.resetUser();
+            ForumList.resetFormUser();
+            ServiceList.resetUser();
+            fPost.resetUser();
+            sPost1.resetUser();
+            
+            UI.getCurrent().getPage().reload();
+            }else{
+                showFail();
+            }
+            
 
         });
         submitRating.addClassName("submit-rating");
@@ -232,8 +252,40 @@ public class ViewUser extends Div {
 
     }
 
+    private void refreshPage() {
+        userName = refreshUserName;
+        System.out.println(userName);
+
+        if (userName.contains("@")) {
+            try {
+                user = DBViewUser.searchEmail(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        } else {
+            try {
+                user = DBViewUser.searchUser(userName);
+            } catch (ClassNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        first_name = user.get(0);
+        last_name = user.get(1);
+        username = user.get(2);
+        emailDB = user.get(3);
+        about = user.get(4);
+        contact = user.get(5);
+        accountId = user.get(6);
+        pfp = user.get(7);
+        if (pfp == null) {
+            pfp = "images/icon.jpg";
+        }
+    }
+
     public static String getClickedUser() {
-        return viewClickedUser;
+        return clickedUser;
     }
 
     public void getInfoFromItemView() {
@@ -499,9 +551,25 @@ public class ViewUser extends Div {
 
     }
 
-    private static String getRecursiveClickedUser() {
+    private void showFail() {
+        Notification notification =
+                Notification.show("Must be logged in to Post Comments");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+      
+    }
+
+    private static String getRecursiveClickedUser(){
         return viewClickedUser;
 
+    }
+
+
+    static boolean didRefresh(){
+       return didSubmit;
+    }
+
+    static String getRefreshName(){
+        return refreshUserName;
     }
 
 }

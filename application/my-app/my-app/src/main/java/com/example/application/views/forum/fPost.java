@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.example.application.Data.DBAccount;
+import com.example.application.Data.DBAdmin;
 import com.example.application.Data.DBComments;
 import com.example.application.Data.DBForumList;
 import com.example.application.views.MainLayout;
@@ -64,6 +65,7 @@ public class fPost extends VerticalLayout {
         // Grid area for title
         Div titleholder = new Div();
         titleholder.addClassName("fp-title");
+        String titleString = post1.get("title");
         H2 title = new H2(post1.get("title"));
         title.addClassName("fp-title");
 
@@ -175,7 +177,26 @@ public class fPost extends VerticalLayout {
 
         });
 
-        HorizontalLayout commentSubmission = new HorizontalLayout(newCommentField, submitComment);
+        Button adminDelete = new Button("Delete",evnt ->{
+            //TODO add delete
+            this.getUI().ifPresent(ui -> ui.navigate("/forumList"));
+            DBAdmin.deleteFormPost(titleString);
+            showDeleteSuccess();
+
+        });
+
+        if(LoginView.logStatus()){
+           if(LoginView.isAdmin()){
+            adminDelete.setVisible(true);
+        }else{
+            adminDelete.setVisible(false);
+        } 
+        }else{
+            adminDelete.setVisible(false);
+        }
+        
+
+        HorizontalLayout commentSubmission = new HorizontalLayout(newCommentField, submitComment,adminDelete);
         commentSubmission.addClassName("comment-submission");
         // VerticalLayout h3 = new VerticalLayout(comments, allComments,
         // commentSubmission);
@@ -208,5 +229,12 @@ public class fPost extends VerticalLayout {
     public static void resetUser() {
         fpUser = null;
     }
+
+    private void showDeleteSuccess() {
+
+        Notification notification = Notification.show("Item Was Success deleted");
+        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+    
+      }
 
 }
