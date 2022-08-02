@@ -50,7 +50,8 @@ public class DBServiceList {
                 System.out.println(forumTitle + " " +username+ " "+description);
                 posts.add(post);
             }
-
+            System.out.println("DBServiceList getServiceListings connection closed");
+            connection.close();
         }catch(SQLException e){
             
         }
@@ -117,7 +118,8 @@ public class DBServiceList {
                 System.out.println(forumTitle + " " +username+ " "+description);
                 posts.add(post);
             }
-
+            System.out.println("DBServiceList searchServiceListings connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -146,7 +148,8 @@ public class DBServiceList {
             while (rs.next()) {
                 service_listing_id = rs.getInt("service_listing_id");
             }
-
+            System.out.println("DBServiceList getServiceListingId connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {

@@ -106,6 +106,8 @@ public class DBPostItem {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        System.out.println("DBPostItem postItem connection closed");
+        connection.close();
     } catch (ClassNotFoundException e) {
         e.printStackTrace();
     } catch (SQLException throwables) {

@@ -84,7 +84,8 @@ public class DBlogin {
 
                 }
             }
-
+            System.out.println("DBlogin getEmailCred connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -159,7 +160,8 @@ public class DBlogin {
 
                 }
             }
-
+            System.out.println("DBlogin getUsernameCred connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {

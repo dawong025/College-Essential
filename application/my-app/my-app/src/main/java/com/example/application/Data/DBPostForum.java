@@ -68,7 +68,8 @@ public class DBPostForum {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
+        System.out.println("DBPostForum storePostForum connection closed");
+        connection.close();
     
     } catch (ClassNotFoundException e) {
         e.printStackTrace();
