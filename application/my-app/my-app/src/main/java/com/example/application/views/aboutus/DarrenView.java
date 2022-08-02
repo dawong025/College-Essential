@@ -17,8 +17,12 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Vertical;
 public class DarrenView extends VerticalLayout {
 
     public DarrenView() {
-        add(new H2("Hello, my name is Darren Wong, and I'm a CS major hopefully graduating in the fall. I'm from SF "));
+        add(new H2("I see you have found this page, nice! Here's a a cookie c:"));
+        add(new H2("Note: Unfortunately we didn't have the time to style and format the about pages. Will be done in the future"));
+        
+        add(new H2("Hello, my name is Darren Wong, and I'm a CS major at SFSU graduating in Fall 2022 "));
+        add(new H2("My main role for this project was being the database master, as well as working as an assistant on both"));
+        add(new H2("the backend and some frontend on this project. Thank you! "));
     }
-
 }
 
