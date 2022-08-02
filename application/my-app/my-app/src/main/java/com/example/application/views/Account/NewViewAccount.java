@@ -60,7 +60,7 @@ public class NewViewAccount extends VerticalLayout {
 
         // recursive view
         fillRecersive();
-        viewClickedUser = null;
+        
 
         // add for clicked user
 
@@ -126,6 +126,7 @@ public class NewViewAccount extends VerticalLayout {
                 // UI.getCurrent().getPage().reload();
                 this.getUI().ifPresent(ui -> ui.navigate(
                         ViewUser.class));
+                        
             });
             ratingAuthor1.addClassName("rating-author");
             Span datePosted1 = new Span(ratingDetails.get(i).get(1));
@@ -167,13 +168,18 @@ public class NewViewAccount extends VerticalLayout {
 
         Button submitRating = new Button("Submit", e -> {
             // String rating,String comment, String currUserId, String accountPostedOnId
-            int rating = select.getValue();
+            if(LoginView.logStatus()){
+               int rating = select.getValue();
             String comment = newRatingField.getValue();
             int userId = DBlogin.getUserId();
             String acId = accountId;
             DBAccount.addRating(rating, comment, userId, acId);
             UI.getCurrent().getPage().reload();
-            showSuccess();
+            showSuccess(); 
+            }else{
+                showFail();
+            }
+            
 
         });
         submitRating.addClassName("submit-rating");
@@ -197,6 +203,13 @@ public class NewViewAccount extends VerticalLayout {
         Notification notification = Notification.show("Rating was posted ");
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
 
+    }
+
+    private void showFail() {
+        Notification notification =
+                Notification.show("Must be logged in to Post Comments");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+      
     }
 
     public void fillRecersive() {
@@ -226,6 +239,9 @@ public class NewViewAccount extends VerticalLayout {
         contact = user.get(5);
         accountId = user.get(6);
         pfp = user.get(7);
+        if(pfp == null){
+            pfp = "images/icon.jpg";
+        }
 
     }
 

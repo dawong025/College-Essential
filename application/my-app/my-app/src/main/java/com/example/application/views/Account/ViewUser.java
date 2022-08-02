@@ -61,28 +61,28 @@ public class ViewUser extends Div {
 
         if (ItemView.getUser() != null) {
             getInfoFromItemView();
-            ItemView.resetUser();
+            // ItemView.resetUser();
 
         }else if(AccountView.getClickedUser() != null){
             getInfoFromRating();
-            AccountView.resetUser();
+            // AccountView.resetUser();
            
         }
         else if(ForumList.getForumUser() != null){
             getInfoFromForumList();
-            ForumList.resetFormUser();
+            // ForumList.resetFormUser();
         }
         else if(ServiceList.getServiceUser() != null){
             getInfoFromServiceList();
-            ServiceList.resetUser();
+            // ServiceList.resetUser();
         }
         else if(fPost.getFPostUser() != null){
             getInfoFromForumPost();
-            fPost.resetUser();
+            // fPost.resetUser();
         }
         else if(sPost1.getListingUser() != null){
             getInfoFromServiceListing();
-            sPost1.resetUser();
+            // sPost1.resetUser();
         }
         else{
             //recursive view
@@ -155,6 +155,12 @@ public class ViewUser extends Div {
                 // UI.getCurrent().getPage().reload();
                 this.getUI().ifPresent(ui -> ui.navigate(
                     NewViewAccount.class));
+                    ItemView.resetUser();
+            AccountView.resetUser();
+            ForumList.resetFormUser();
+            ServiceList.resetUser();
+            fPost.resetUser();
+            sPost1.resetUser();
             });
         ratingAuthor1.addClassName("rating-author");
         Span datePosted1 = new Span(ratingDetails.get(i).get(1));
@@ -199,13 +205,24 @@ public class ViewUser extends Div {
 
         Button submitRating = new Button("Submit", e -> {
             //String rating,String comment, String currUserId, String accountPostedOnId
-            int rating = select.getValue();
+            if(LoginView.logStatus()){
+                int rating = select.getValue();
             String comment = newRatingField.getValue();
             int userId = DBlogin.getUserId();
             String acId = accountId;
             DBAccount.addRating( rating,comment, userId, acId);
             // UI.getCurrent().getPage().reload();
             showSuccess();
+            ItemView.resetUser();
+            AccountView.resetUser();
+            ForumList.resetFormUser();
+            ServiceList.resetUser();
+            fPost.resetUser();
+            sPost1.resetUser();
+            }else{
+                showFail();
+            }
+            
 
             
 
@@ -460,6 +477,13 @@ public class ViewUser extends Div {
         Notification notification =
                 Notification.show("Rating was posted ");
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+      
+    }
+
+    private void showFail() {
+        Notification notification =
+                Notification.show("Must be logged in to Post Comments");
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
       
     }
 

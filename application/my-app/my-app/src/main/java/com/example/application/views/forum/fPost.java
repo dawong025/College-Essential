@@ -175,7 +175,22 @@ public class fPost extends VerticalLayout {
 
         });
 
-        HorizontalLayout commentSubmission = new HorizontalLayout(newCommentField, submitComment);
+        Button adminDelete = new Button("Delete",evnt ->{
+            //TODO add delete
+        });
+
+        if(LoginView.logStatus()){
+           if(LoginView.isAdmin()){
+            adminDelete.setVisible(true);
+        }else{
+            adminDelete.setVisible(false);
+        } 
+        }else{
+            adminDelete.setVisible(false);
+        }
+        
+
+        HorizontalLayout commentSubmission = new HorizontalLayout(newCommentField, submitComment,adminDelete);
         commentSubmission.addClassName("comment-submission");
         // VerticalLayout h3 = new VerticalLayout(comments, allComments,
         // commentSubmission);
