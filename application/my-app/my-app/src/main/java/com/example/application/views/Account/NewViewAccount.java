@@ -216,7 +216,7 @@ public class NewViewAccount extends VerticalLayout {
     }
 
     public void fillRecersive() {
-        userName = ViewUser.getClickedUser();
+        userName =  ViewUser.getClickedUser();
         System.out.println(userName);
 
         if (userName.contains("@")) {

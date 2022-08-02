@@ -118,6 +118,7 @@ public class ItemView extends VerticalLayout {
       // delete Post;
       this.getUI().ifPresent(ui -> ui.navigate("/home"));
       DBAdmin.deletePost(itemName);
+      showDeleteSuccess();
 
     });
 
