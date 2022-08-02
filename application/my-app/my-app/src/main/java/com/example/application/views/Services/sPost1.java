@@ -8,6 +8,7 @@ import com.example.application.Data.DBComments;
 import com.example.application.Data.DBForumList;
 import com.example.application.Data.DBServiceList;
 import com.example.application.views.MainLayout;
+import com.example.application.views.Account.ViewUser;
 import com.example.application.views.login.LoginView;
 import com.vaadin.flow.component.ClickNotifier;
 import com.vaadin.flow.component.UI;
@@ -40,12 +41,14 @@ import com.vaadin.flow.router.RouterLink;
 @Route(value = "sPost", layout = MainLayout.class)
 public class sPost1 extends VerticalLayout{
     private static String slUser;
+    private static String slCommentUser;
+    HashMap<String, String> post1 = new HashMap<String, String>();
+
     public sPost1() throws ClassNotFoundException{
         getElement().getClassList().add("forum-grid");
         setWidth("100%");
         this.addClassName("forum-background");
 
-        HashMap<String, String> post1 = new HashMap<String, String>();
         ArrayList<HashMap<String, String>> posts = ServiceList.getPosts();
         String nav = ServiceList.getNav();
         System.out.println(nav);
@@ -71,15 +74,14 @@ public class sPost1 extends VerticalLayout{
         Div nameholder = new Div();
         nameholder.addClassName("fp-user");
         Button user = new Button(post1.get("user"));
-        slUser = post1.get("user");
         user.addClassName("fp-user");
         // user.setValue(post1.get("user"));
         // user.addThemeVariants(TextFieldVariant.LUMO_ALIGN_CENTER);
         // user.setReadOnly(true);
-        user.addClickListener(e ->
-        user.getUI().ifPresent(ui ->
-            ui.navigate("viewAccount"))
-        );
+        user.addClickListener(e ->{
+            slUser = post1.get("user");
+            user.getUI().ifPresent(ui ->ui.navigate("viewAccount"));
+        });
 
         //Grid area for the post
         Div postholder = new Div();
@@ -125,7 +127,11 @@ public class sPost1 extends VerticalLayout{
             String username = comments.get(i).get(2);
 
             VerticalLayout indivComment = new VerticalLayout();
-            Button commentAuthor = new Button(username);
+            Div commentAuthor = new Div();
+            commentAuthor.addClickListener(e ->{
+                slUser = username;
+            });
+            commentAuthor.add(new RouterLink(username, ViewUser.class));
             commentAuthor.addClassName("fp-comment-author");
             Span datePosted = new Span(postedAt);
             datePosted.addClassName("fp-date-posted");

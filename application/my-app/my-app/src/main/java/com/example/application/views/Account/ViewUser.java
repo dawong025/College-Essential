@@ -354,7 +354,7 @@ public class ViewUser extends Div {
         accountId = user.get(6);
     }
     public void getInfoFromServiceListing(){
-        userName = fPost.getFPostUser();
+        userName = sPost1.getListingUser();
         System.out.println(userName);
 
         if (userName.contains("@")) {
