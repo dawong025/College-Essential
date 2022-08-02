@@ -78,7 +78,7 @@ public class TermView extends VerticalLayout{
             + "the use of this website."
         );
         terms.setReadOnly(true);
-        terms.addClassName("terms");
+        terms.addClassName("terms-box");
         add(terms);
         // Path path = Paths.get("/termsText.txt");
         // Scanner input = new Scanner(new File(path.toString()));
