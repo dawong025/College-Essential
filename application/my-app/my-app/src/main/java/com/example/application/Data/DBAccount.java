@@ -231,11 +231,12 @@ public class DBAccount {
             Connection connection = DriverManager.getConnection(url, userName, password);
             System.out.println("Connection is Successful to the database" + url);
 
-            String q = "SELECT Ratings.rating, Ratings.description, Ratings.posted_at, RegisteredUser.username"
+            String q = "SELECT rating, registered_user_sender_id, description, posted_at"
                     + " FROM Ratings"
-                    + " JOIN RegisteredUser ON RegisteredUser.registered_user_id = Ratings.registered_user_receiver_id"
-                    + " WHERE RegisteredUser.registered_user_id = '" + AccountId + "'";
+                    + " WHERE registered_user_receiver_id = " + AccountId + ";";
             String rating, description, postedAt, name;
+            name = " ";
+            int user_id;
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
@@ -244,12 +245,25 @@ public class DBAccount {
                     rating = rs.getString("rating");
                     postedAt = rs.getString("posted_at");
                     description = rs.getString("description");
-                    name = rs.getString("username");
+                    user_id = rs.getInt("registered_user_sender_id");
+                    // name = rs.getString("username");
+
+                    q = "SELECT username FROM RegisteredUser WHERE registered_user_id =" + user_id + "";
+                    try {
+                        Statement stmt2 = connection.createStatement();
+                        ResultSet rs2 = stmt2.executeQuery(q);
+                        while (rs2.next()) {
+                            name = rs2.getString("username");
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
 
                     details.add(rating);
                     details.add(postedAt);
                     details.add(description);
                     details.add(name);
+                    // details.add(name);
                     ratings.add(details);
                     details = new ArrayList<>();
 
