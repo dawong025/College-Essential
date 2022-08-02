@@ -54,6 +54,9 @@ public class NewViewAccount extends VerticalLayout {
     private String userName;
     private static String viewClickedUser;
 
+    //temp variable to test router link
+    private static String userRatingAuthor;
+
     public NewViewAccount() {
         DBViewUser db = new DBViewUser();
         /* Store the user info from the DB to an array */
@@ -247,5 +250,17 @@ public class NewViewAccount extends VerticalLayout {
 
     public static String getClickedUser(){
         return viewClickedUser;
+    }
+
+    public static String getRatingAuthor(){
+        return userRatingAuthor;
+    }
+
+    public static void setRatingAuthor(String name){
+        userRatingAuthor = name;
+    }
+
+    public static void resetUser() {
+        userRatingAuthor = null;
     }
 }
