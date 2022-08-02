@@ -179,9 +179,9 @@ public class AccountView extends Div{
             commentText1.addClassName("comment-text");
             VerticalLayout rating1 = new VerticalLayout(ratingAuthor1, datePosted1, commentText1);
             rating1.addClassName("single-rating");
-             allRatings = new VerticalLayout(rating1);
-        allRatings.add(rating1);
-        //add(allRatings);
+             //allRatings = new VerticalLayout(rating1);
+            allRatings.add(rating1);
+            add(allRatings);
         }
 
         RatingScore = RatingScore/numRatings;
@@ -236,6 +236,12 @@ public class AccountView extends Div{
 
     public static String getClickedUser(){
         return clickedUser;
+    }
+
+
+
+    public static void resetUser() {
+        clickedUser = null;
     }
 
 }

@@ -233,7 +233,7 @@ public class DBAccount {
 
             String q = "SELECT Ratings.rating, Ratings.description, Ratings.posted_at, RegisteredUser.username"
                     + " FROM Ratings"
-                    + " JOIN RegisteredUser ON RegisteredUser.registered_user_id = Ratings.registered_user_receiver_id"
+                    + " JOIN RegisteredUser ON RegisteredUser.registered_user_id = Ratings.registered_user_sender_id"
                     + " WHERE RegisteredUser.registered_user_id = '" + AccountId + "'";
             String rating, description, postedAt, name;
             try {

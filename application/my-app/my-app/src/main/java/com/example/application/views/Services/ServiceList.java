@@ -232,5 +232,8 @@ public class ServiceList extends VerticalLayout{
             servicePostCounter++;
         }
     }
+    public static void resetUser() {
+        slUser = null;
+    }
 
 }
