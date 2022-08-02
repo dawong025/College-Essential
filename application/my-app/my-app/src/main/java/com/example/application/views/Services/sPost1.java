@@ -110,7 +110,7 @@ public class sPost1 extends VerticalLayout{
         
         H3 contactMe = new H3("Contact Me");
         contactMe.addClassName("fp-contact-me");
-        H6 contactText1 = new H6("For business inquiries only: brendini1@gmail.com");
+        H6 contactText1 = new H6("For business inquiries only: loremipsum@gmail.com");
         VerticalLayout contactText = new VerticalLayout(contactText1);
         contactText.addClassName("fp-contact-text");
         VerticalLayout personalInfo = new VerticalLayout(aboutMe, aboutText, contactMe, contactText);
