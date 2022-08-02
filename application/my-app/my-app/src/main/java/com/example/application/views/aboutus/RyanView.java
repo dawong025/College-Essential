@@ -18,7 +18,13 @@ import com.vaadin.flow.theme.lumo.LumoUtility.Margin.Vertical;
 public class RyanView extends VerticalLayout {
 
     public RyanView() {
-        add(new H2("Hello My name is Ryan Murphy and i am a student at SFSU"));
+        add(
+            new H2("Hello My name is Ryan Murphy and i am a student at SFSU, ")            
+            );
+        add(new H2(" I was team lead and backend lead for this project. My role was "));
+        add(new H2("To assignn tasks, Fix bugs, create the UI along with functioning backend."));
+        
+
     }
 
 }
