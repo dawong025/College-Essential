@@ -8,6 +8,7 @@
 }
 .hello-grid {
     margin: 10px;
+    max-height: 90%;
     
     width: 90%;
     display: grid !important;
@@ -181,8 +182,8 @@
 
 .all-ratings {
     grid-area: messages;
+    max-height: 95%;
     overflow-y: auto;
-    overflow-x: scroll;
     position: relative;
 }
 

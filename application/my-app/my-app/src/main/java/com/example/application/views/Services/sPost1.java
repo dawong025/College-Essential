@@ -222,4 +222,7 @@ public class sPost1 extends VerticalLayout{
         notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
 
     }
+    public static void resetUser() {
+        slUser = null;
+    }
 }

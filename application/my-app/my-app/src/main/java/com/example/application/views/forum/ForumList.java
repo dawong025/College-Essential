@@ -235,4 +235,8 @@ public class ForumList extends VerticalLayout {
         }
     }
 
+    public static void resetFormUser() {
+        flUser = null;
+    }
+
 }
