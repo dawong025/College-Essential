@@ -205,5 +205,8 @@ public class fPost extends VerticalLayout {
         notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
 
     }
+    public static void resetUser() {
+        fpUser = null;
+    }
 
 }

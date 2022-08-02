@@ -206,4 +206,8 @@ public class ItemView extends VerticalLayout {
     return userName;
   }
 
+public static void resetUser() {
+  userName = null;
+}
+
 }

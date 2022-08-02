@@ -12,6 +12,7 @@ import com.example.application.views.Services.sPost1;
 import com.example.application.views.forum.ForumList;
 import com.example.application.views.forum.fPost;
 import com.example.application.views.login.LoginView;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
@@ -58,22 +59,30 @@ public class ViewUser extends Div {
 
         if (ItemView.getUser() != null) {
             getInfoFromItemView();
+            ItemView.resetUser();
 
-        }else if(ForumList.getForumUser() != null){
+        }else if(AccountView.getClickedUser() != null){
+            getInfoFromRating();
+            AccountView.resetUser();
+           
+        }
+        else if(ForumList.getForumUser() != null){
             getInfoFromForumList();
+            ForumList.resetFormUser();
         }
         else if(ServiceList.getServiceUser() != null){
             getInfoFromServiceList();
+            ServiceList.resetUser();
         }
         else if(fPost.getFPostUser() != null){
             getInfoFromForumPost();
+            fPost.resetUser();
         }
         else if(sPost1.getListingUser() != null){
             getInfoFromServiceListing();
+            sPost1.resetUser();
         }
-        else if(AccountView.getClickedUser() != null){
-            getInfoFromRating();
-        }else{
+        else{
             //recursive view
         
         }
@@ -162,7 +171,7 @@ public class ViewUser extends Div {
         ratingScore = ratingScore/ratingCount;
         String temp = "";
         if(ratingDetails.size() == 0){
-            temp = "No Rating Yet";
+            temp = "";
         }else{
             temp = ""+ratingScore;
         }
@@ -189,6 +198,7 @@ public class ViewUser extends Div {
             int userId = DBlogin.getUserId();
             String acId = accountId;
             DBAccount.addRating( rating,comment, userId, acId);
+            UI.getCurrent().getPage().reload();
             showSuccess();
 
             
@@ -354,7 +364,7 @@ public class ViewUser extends Div {
         accountId = user.get(6);
     }
     public void getInfoFromServiceListing(){
-        userName = fPost.getFPostUser();
+        userName = sPost1.getListingUser();
         System.out.println(userName);
 
         if (userName.contains("@")) {

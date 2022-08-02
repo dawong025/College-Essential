@@ -74,7 +74,7 @@
     max-height:100%;
     max-width: 210px;
     margin-bottom: auto;
-    overflow: scroll;
+    overflow: hidden;
     border: 5px;
     border-style: solid;
     border-color: black;
@@ -147,6 +147,8 @@
 .fp-comment-author {
     color: #2196F3;
     grid: fp-author;
+    display: flex;
+    justify-content: left;
 }
 
 .fp-date-posted {
