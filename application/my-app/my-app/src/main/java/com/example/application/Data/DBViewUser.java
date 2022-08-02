@@ -80,8 +80,9 @@ public class DBViewUser {
             String about;
             String contact;
             String id;
+            String pfp;
                 
-            String q = "SELECT first_name, last_name, username, registered_user_id,email, about, contact FROM RegisteredUser WHERE username LIKE '%"+userLogin+"%'";
+            String q = "SELECT first_name, last_name, username, registered_user_id,email, about, contact, pfp  FROM RegisteredUser WHERE username LIKE '%"+userLogin+"%'";
             try {
                 Statement stmt = connection.createStatement();
                 ResultSet rs = stmt.executeQuery(q);
@@ -93,6 +94,7 @@ public class DBViewUser {
                     about = rs.getString("about");
                     contact = rs.getString("contact");
                     id = rs.getString("registered_user_id");
+                    pfp = rs.getString("pfp");
                     
                     user.add(first_name);
                     user.add(last_name);
@@ -101,6 +103,7 @@ public class DBViewUser {
                     user.add(about);
                     user.add(contact);
                     user.add(id);
+                    user.add(pfp);
                       
                 }
             } catch (SQLException e) {

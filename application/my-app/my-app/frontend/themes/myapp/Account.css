@@ -186,6 +186,12 @@
     overflow-y: auto;
     position: relative;
 }
+.all-ratings_new{
+    grid-area: messages;
+    max-height: 95%;
+    overflow-y: auto;
+    position: relative;
+}
 
 .rating-author {
     color: #2196F3;
