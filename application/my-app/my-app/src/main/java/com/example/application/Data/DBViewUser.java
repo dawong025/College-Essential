@@ -54,7 +54,8 @@ public class DBViewUser {
             } catch (SQLException e) {
                 e.printStackTrace();
             }  
-
+            System.out.println("DBViewUser searchEmail connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {
@@ -106,7 +107,8 @@ public class DBViewUser {
             } catch (SQLException e) {
                 e.printStackTrace();
             }  
-
+            System.out.println("DBViewUser searchUser connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {

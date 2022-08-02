@@ -107,6 +107,8 @@ public class DBHome {
 
               }  
             }
+            System.out.println("DBHome searchHomeItem connection closed");
+            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {

@@ -55,7 +55,8 @@ public class DBConnection implements CommandLineRunner{
             statement = connection.createStatement();
             statement.execute(query);
         
-
+            System.out.println("DBConnection storeRegUser connection closed");
+            connection.close();
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
