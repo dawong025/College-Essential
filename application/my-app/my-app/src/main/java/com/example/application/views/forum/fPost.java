@@ -96,14 +96,14 @@ public class fPost extends VerticalLayout {
         aboutMe.addClassName("fp-about-me");
 
         H6 aboutText1 = new H6("Hi, I'm " + post1.get("user") + "! Nice to meet you!");
-        H6 aboutText2 = new H6("CS @ Northwestern");
+        H6 aboutText2 = new H6("CS @ UC Berkeley");
 
         VerticalLayout aboutText = new VerticalLayout(aboutText1, aboutText2);
         aboutText.addClassName("fp-aboutText");
 
         H3 contactMe = new H3("Contact Me");
         contactMe.addClassName("fp-contact-me");
-        H6 contactText1 = new H6("For business inquiries only: brendini1@gmail.com");
+        H6 contactText1 = new H6("For business inquiries only: loremipsum@gmail.com");
         VerticalLayout contactText = new VerticalLayout(contactText1);
         contactText.addClassName("fp-contact-text");
         VerticalLayout personalInfo = new VerticalLayout(aboutMe, aboutText, contactMe, contactText);
